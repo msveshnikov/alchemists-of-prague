@@ -1,0 +1,48 @@
+start: houses=119 enemies=8 npcs=55 interactables=177
+PASS level built from layout JSON (houses > 100)
+PASS day population spawned (npcs > 30)
+screenshot 01_square_day
+PASS player moves (4.5 m)
+PASS attack animation plays
+screenshot 02_square_walk
+screenshot 03_inventory
+PASS a trader is open for business by day
+PASS buying deducts gold (30 -> 24)
+screenshot 04_trade
+screenshot 05_smith
+PASS smith upgrades the sword
+screenshot 06_house_door
+PASS entered a house interior
+PASS interior has throwable windows (2)
+screenshot 07_interior
+PASS first house hides an alchemist
+PASS wounded alchemist can be seized
+PASS prompt offers to seize the enemy
+PASS player holds the enemy
+PASS prompt offers to throw out of the window
+screenshot 08_defenestration
+PASS defenestrated alchemist dies on the cobbles
+PASS defenestration counted
+PASS body landed on the street (y=0.0)
+PASS chest looted for gold
+PASS left the house
+screenshot 09_body_on_street
+PASS night falls
+PASS night enemies spawned (19)
+PASS merchants closed at night
+screenshot 10_square_night
+PASS enemies notice the player at night (6 hostile)
+screenshot 11_night_fight
+PASS enemies deal damage (hp 11)
+PASS game saved to disk
+reloading save...
+PASS load restores gold (351)
+PASS load restores sword level
+PASS load restores kill counts
+PASS player can die
+PASS death screen shown
+screenshot 12_death
+screenshot 13_pause
+screenshot 14_settings
+screenshot 15_main_menu
+DONE fails=0

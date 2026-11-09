@@ -1,0 +1,11 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Exported builds (the Windows exe is published as a GitHub Release asset — too large for git)
+/build/
+
+# Blender backups / Python caches / temp render frames
+*.blend1
+__pycache__/
+renders/previews/_frames/

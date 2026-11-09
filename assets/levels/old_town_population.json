@@ -1,0 +1,1560 @@
+{
+ "level": "old_town_square",
+ "version": 1,
+ "coordinate_system": "Godot coordinates (same as old_town_layout.json). Characters face local +Z.",
+ "schedule": {
+  "day": "visible/active by day (merchants close at dusk)",
+  "night": "spawned at dusk (enemies)",
+  "always": "day and night"
+ },
+ "population": [
+  {
+   "id": "vaclav#00",
+   "character": "vaclav",
+   "path": "res://assets/characters/vaclav.gltf",
+   "role": "player",
+   "schedule": "always",
+   "animation": "idle",
+   "pos": [
+    0.0,
+    0.0,
+    20.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "butcher#00",
+   "character": "butcher",
+   "path": "res://assets/characters/butcher.gltf",
+   "role": "trader_meat",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -24.0,
+    0.0,
+    13.0
+   ],
+   "yaw_deg": 90.0,
+   "stall": "market_stall_meat#00"
+  },
+  {
+   "id": "merchant#00",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -24.0,
+    0.0,
+    13.0
+   ],
+   "yaw_deg": 90.0,
+   "stall": "market_stall_meat#00"
+  },
+  {
+   "id": "market_woman#00",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "trader_bread",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    -9.0,
+    0.0,
+    7.0
+   ],
+   "yaw_deg": 2.9,
+   "stall": "market_stall_bread#00"
+  },
+  {
+   "id": "market_woman#01",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "trader_produce",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    1.0,
+    0.0,
+    5.0
+   ],
+   "yaw_deg": 357.1,
+   "stall": "market_stall_produce#00"
+  },
+  {
+   "id": "market_woman#02",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    1.0,
+    0.0,
+    5.0
+   ],
+   "yaw_deg": 357.1,
+   "stall": "market_stall_produce#00"
+  },
+  {
+   "id": "merchant#01",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "trader_pottery",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    12.0,
+    0.0,
+    3.0
+   ],
+   "yaw_deg": 348.5,
+   "stall": "market_stall_pottery#00"
+  },
+  {
+   "id": "merchant#02",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    12.0,
+    0.0,
+    3.0
+   ],
+   "yaw_deg": 348.5,
+   "stall": "market_stall_pottery#00"
+  },
+  {
+   "id": "merchant#03",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "trader_cloth",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    -7.0,
+    0.0,
+    -4.0
+   ],
+   "yaw_deg": 8.6,
+   "stall": "market_stall_cloth#00"
+  },
+  {
+   "id": "beggar#00",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    -7.0,
+    0.0,
+    -4.0
+   ],
+   "yaw_deg": 8.6,
+   "stall": "market_stall_cloth#00"
+  },
+  {
+   "id": "market_woman#03",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "trader_produce",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    9.0,
+    0.0,
+    -7.0
+   ],
+   "yaw_deg": 354.3,
+   "stall": "market_stall_produce#01"
+  },
+  {
+   "id": "beggar#01",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    9.0,
+    0.0,
+    -7.0
+   ],
+   "yaw_deg": 354.3,
+   "stall": "market_stall_produce#01"
+  },
+  {
+   "id": "merchant#04",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "trader_weapons",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    23.0,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 270.0,
+   "stall": "market_stall_weapons#00"
+  },
+  {
+   "id": "market_woman#04",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "trader_bread",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    -16.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 17.2,
+   "stall": "market_stall_bread#01"
+  },
+  {
+   "id": "merchant#05",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    -16.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 17.2,
+   "stall": "market_stall_bread#01"
+  },
+  {
+   "id": "market_woman#05",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "trader_produce",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -13.5,
+    0.0,
+    17.5
+   ],
+   "yaw_deg": 5.7,
+   "stall": "market_stall_produce#02"
+  },
+  {
+   "id": "beggar#02",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    -13.5,
+    0.0,
+    17.5
+   ],
+   "yaw_deg": 5.7,
+   "stall": "market_stall_produce#02"
+  },
+  {
+   "id": "merchant#06",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "trader_pottery",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -4.0,
+    0.0,
+    17.0
+   ],
+   "yaw_deg": 354.3,
+   "stall": "market_stall_pottery#01"
+  },
+  {
+   "id": "merchant#07",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "trader_cloth",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    5.0,
+    0.0,
+    17.5
+   ],
+   "yaw_deg": 2.9,
+   "stall": "market_stall_cloth#01"
+  },
+  {
+   "id": "merchant#08",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    5.0,
+    0.0,
+    17.5
+   ],
+   "yaw_deg": 2.9,
+   "stall": "market_stall_cloth#01"
+  },
+  {
+   "id": "butcher#01",
+   "character": "butcher",
+   "path": "res://assets/characters/butcher.gltf",
+   "role": "trader_meat",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    17.0,
+    0.0,
+    -3.0
+   ],
+   "yaw_deg": 342.8,
+   "stall": "market_stall_meat#01"
+  },
+  {
+   "id": "market_woman#06",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    17.0,
+    0.0,
+    -3.0
+   ],
+   "yaw_deg": 342.8,
+   "stall": "market_stall_meat#01"
+  },
+  {
+   "id": "butcher#02",
+   "character": "butcher",
+   "path": "res://assets/characters/butcher.gltf",
+   "role": "cook",
+   "schedule": "day",
+   "animation": "work",
+   "pos": [
+    -22.5,
+    0.0,
+    21.0
+   ],
+   "yaw_deg": 11.5
+  },
+  {
+   "id": "butcher#03",
+   "character": "butcher",
+   "path": "res://assets/characters/butcher.gltf",
+   "role": "blacksmith",
+   "schedule": "day",
+   "animation": "work",
+   "pos": [
+    27.5,
+    0.0,
+    22.5
+   ],
+   "yaw_deg": 225.0,
+   "note": "uses the butcher model (apron) until a blacksmith model exists"
+  },
+  {
+   "id": "guard#00",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "npc_guard",
+   "schedule": "always",
+   "animation": "idle",
+   "pos": [
+    -31.0,
+    0.0,
+    10.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "guard#01",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "npc_guard",
+   "schedule": "always",
+   "animation": "idle",
+   "pos": [
+    1.5,
+    0.0,
+    -28.5
+   ],
+   "yaw_deg": 131.8
+  },
+  {
+   "id": "guard#02",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "npc_guard",
+   "schedule": "always",
+   "animation": "idle",
+   "pos": [
+    31.0,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 263.6
+  },
+  {
+   "id": "beggar#03",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "npc_beggar",
+   "schedule": "always",
+   "animation": "beg",
+   "pos": [
+    6.5,
+    0.0,
+    -30.5
+   ],
+   "yaw_deg": 35.3
+  },
+  {
+   "id": "beggar#04",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "npc_beggar",
+   "schedule": "always",
+   "animation": "beg",
+   "pos": [
+    1.5,
+    0.0,
+    -68.0
+   ],
+   "yaw_deg": 167.1
+  },
+  {
+   "id": "child_boy#00",
+   "character": "child_boy",
+   "path": "res://assets/characters/child_boy.gltf",
+   "role": "npc_child_boy",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    6.0,
+    0.0,
+    -18.0
+   ],
+   "yaw_deg": 315.0
+  },
+  {
+   "id": "child_girl#00",
+   "character": "child_girl",
+   "path": "res://assets/characters/child_girl.gltf",
+   "role": "npc_child_girl",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    7.2,
+    0.0,
+    -17.4
+   ],
+   "yaw_deg": 303.2
+  },
+  {
+   "id": "market_woman#07",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "npc_market_woman",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -3.0,
+    0.0,
+    1.0
+   ],
+   "yaw_deg": 202.5
+  },
+  {
+   "id": "merchant#09",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "npc_merchant",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    16.0,
+    0.0,
+    -10.0
+   ],
+   "yaw_deg": 334.2
+  },
+  {
+   "id": "guard#03",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "patrol",
+   "schedule": "always",
+   "animation": "walk",
+   "pos": [
+    -25.0,
+    0.0,
+    22.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_patrol_square_0",
+    "MARK_patrol_square_1",
+    "MARK_patrol_square_2",
+    "MARK_patrol_square_3",
+    "MARK_patrol_square_4",
+    "MARK_patrol_square_5",
+    "MARK_patrol_square_6"
+   ],
+   "speed_mps": 1.1
+  },
+  {
+   "id": "market_woman#08",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    -14.0,
+    0.0,
+    14.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_00",
+    "MARK_wander_01",
+    "MARK_wander_02",
+    "MARK_wander_09"
+   ]
+  },
+  {
+   "id": "merchant#10",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    18.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_03",
+    "MARK_wander_07",
+    "MARK_wander_04",
+    "MARK_wander_08"
+   ]
+  },
+  {
+   "id": "beggar#05",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    -20.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_06",
+    "MARK_wander_05",
+    "MARK_wander_08"
+   ]
+  },
+  {
+   "id": "child_boy#01",
+   "character": "child_boy",
+   "path": "res://assets/characters/child_boy.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "run",
+   "pos": [
+    -4.0,
+    0.0,
+    -9.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_08",
+    "MARK_wander_04",
+    "MARK_wander_09"
+   ]
+  },
+  {
+   "id": "horse#00",
+   "character": "horse",
+   "path": "res://assets/characters/horse.gltf",
+   "role": "cart_horse",
+   "schedule": "always",
+   "animation": "idle",
+   "pos": [
+    15.0,
+    0.0,
+    16.0
+   ],
+   "yaw_deg": 131.8,
+   "cart": "cart#00"
+  },
+  {
+   "id": "horse#01",
+   "character": "horse",
+   "path": "res://assets/characters/horse.gltf",
+   "role": "cart_driver",
+   "schedule": "day",
+   "animation": "pull",
+   "pos": [
+    98.0,
+    0.0,
+    8.6
+   ],
+   "yaw_deg": 0.0,
+   "route_points": [
+    [
+     98.0,
+     0.0,
+     8.6
+    ],
+    [
+     84.0,
+     0.0,
+     7.0
+    ],
+    [
+     62.0,
+     0.0,
+     12.0
+    ],
+    [
+     44.0,
+     0.0,
+     11.6
+    ]
+   ],
+   "speed_mps": 1.0,
+   "pulls": "res://assets/props/cart.gltf",
+   "cart_offset_m": 3.0
+  },
+  {
+   "id": "merchant#11",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "carter",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    98.0,
+    0.0,
+    7.6
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "alchemist#00",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    56.0,
+    0.0,
+    -36.0
+   ],
+   "yaw_deg": 37.1,
+   "spawn_marker": "MARK_spawn_alchemist_00"
+  },
+  {
+   "id": "alchemist#01",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    -82.0,
+    0.0,
+    31.0
+   ],
+   "yaw_deg": 134.1,
+   "spawn_marker": "MARK_spawn_alchemist_01"
+  },
+  {
+   "id": "alchemist#02",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    -6.0,
+    0.0,
+    -66.0
+   ],
+   "yaw_deg": 203.2,
+   "spawn_marker": "MARK_spawn_alchemist_02"
+  },
+  {
+   "id": "alchemist#03",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    12.0,
+    0.0,
+    -64.0
+   ],
+   "yaw_deg": 178.7,
+   "spawn_marker": "MARK_spawn_alchemist_03"
+  },
+  {
+   "id": "alchemist#04",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "night",
+   "animation": "cast",
+   "pos": [
+    -40.0,
+    0.0,
+    -62.0
+   ],
+   "yaw_deg": 279.8,
+   "spawn_marker": "MARK_spawn_alchemist_04"
+  },
+  {
+   "id": "skeleton#00",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "walk",
+   "pos": [
+    0.0,
+    0.0,
+    -58.0
+   ],
+   "yaw_deg": 210.8,
+   "spawn_marker": "MARK_spawn_skeleton_05"
+  },
+  {
+   "id": "skeleton#01",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "walk",
+   "pos": [
+    3.0,
+    0.0,
+    -60.0
+   ],
+   "yaw_deg": 130.2,
+   "spawn_marker": "MARK_spawn_skeleton_06"
+  },
+  {
+   "id": "skeleton#02",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    -3.0,
+    0.0,
+    -60.0
+   ],
+   "yaw_deg": 286.0,
+   "spawn_marker": "MARK_spawn_skeleton_07"
+  },
+  {
+   "id": "skeleton#03",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    3.0,
+    0.0,
+    80.0
+   ],
+   "yaw_deg": 29.5,
+   "spawn_marker": "MARK_spawn_skeleton_08"
+  },
+  {
+   "id": "skeleton#04",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "walk",
+   "pos": [
+    0.0,
+    0.0,
+    84.0
+   ],
+   "yaw_deg": 189.1,
+   "spawn_marker": "MARK_spawn_skeleton_09"
+  },
+  {
+   "id": "skeleton#05",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "walk",
+   "pos": [
+    6.0,
+    0.0,
+    82.0
+   ],
+   "yaw_deg": 262.6,
+   "spawn_marker": "MARK_spawn_skeleton_10"
+  },
+  {
+   "id": "golem#00",
+   "character": "golem",
+   "path": "res://assets/characters/golem.gltf",
+   "role": "enemy_golem",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    96.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 219.2,
+   "spawn_marker": "MARK_spawn_golem_11"
+  },
+  {
+   "id": "golem#01",
+   "character": "golem",
+   "path": "res://assets/characters/golem.gltf",
+   "role": "enemy_golem",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    1.0,
+    0.0,
+    92.0
+   ],
+   "yaw_deg": 42.5,
+   "spawn_marker": "MARK_spawn_golem_12"
+  },
+  {
+   "id": "alchemist#05",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    57.0,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 6.8,
+   "note": "daytime lurker"
+  },
+  {
+   "id": "skeleton#06",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton_patrol",
+   "schedule": "night",
+   "animation": "walk",
+   "pos": [
+    -6.0,
+    0.0,
+    -52.0
+   ],
+   "yaw_deg": 0.0,
+   "route_points": [
+    [
+     -6,
+     0,
+     -52
+    ],
+    [
+     8,
+     0,
+     -52
+    ],
+    [
+     8,
+     0,
+     -64
+    ],
+    [
+     -6,
+     0,
+     -64
+    ]
+   ],
+   "speed_mps": 1.0
+  },
+  {
+   "id": "skeleton#07",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton_band",
+   "schedule": "night",
+   "animation": "walk",
+   "pos": [
+    -20.0,
+    0.0,
+    -20.0
+   ],
+   "yaw_deg": 0.0,
+   "route_points": [
+    [
+     -20,
+     0,
+     -20
+    ],
+    [
+     18,
+     0,
+     -20
+    ],
+    [
+     18,
+     0,
+     8
+    ],
+    [
+     -18,
+     0,
+     8
+    ]
+   ],
+   "speed_mps": 1.0
+  },
+  {
+   "id": "skeleton#08",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton_band",
+   "schedule": "night",
+   "animation": "walk",
+   "pos": [
+    -18.4,
+    0.0,
+    -18.8
+   ],
+   "yaw_deg": 0.0,
+   "route_points": [
+    [
+     -20,
+     0,
+     -20
+    ],
+    [
+     18,
+     0,
+     -20
+    ],
+    [
+     18,
+     0,
+     8
+    ],
+    [
+     -18,
+     0,
+     8
+    ]
+   ],
+   "speed_mps": 1.0
+  },
+  {
+   "id": "skeleton#09",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton_band",
+   "schedule": "night",
+   "animation": "walk",
+   "pos": [
+    -16.8,
+    0.0,
+    -17.6
+   ],
+   "yaw_deg": 0.0,
+   "route_points": [
+    [
+     -20,
+     0,
+     -20
+    ],
+    [
+     18,
+     0,
+     -20
+    ],
+    [
+     18,
+     0,
+     8
+    ],
+    [
+     -18,
+     0,
+     8
+    ]
+   ],
+   "speed_mps": 1.0
+  },
+  {
+   "id": "alchemist#06",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist_ritual",
+   "schedule": "night",
+   "animation": "cast",
+   "pos": [
+    -1.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 315.0
+  },
+  {
+   "id": "alchemist#07",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist_ritual",
+   "schedule": "night",
+   "animation": "cast",
+   "pos": [
+    5.5,
+    0.0,
+    -11.0
+   ],
+   "yaw_deg": 49.4
+  },
+  {
+   "id": "beggar#06",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -4.258,
+    0.0,
+    -12.343
+   ],
+   "yaw_deg": 133.3
+  },
+  {
+   "id": "merchant#12",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -4.072,
+    0.0,
+    -22.177
+   ],
+   "yaw_deg": 58.8
+  },
+  {
+   "id": "guard#04",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -9.685,
+    0.0,
+    -9.374
+   ],
+   "yaw_deg": 86.2
+  },
+  {
+   "id": "merchant#13",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    15.438,
+    0.0,
+    20.699
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "guard#05",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -22.845,
+    0.0,
+    -9.672
+   ],
+   "yaw_deg": 76.3
+  },
+  {
+   "id": "market_woman#09",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    11.265,
+    0.0,
+    -18.578
+   ],
+   "yaw_deg": 286.2
+  },
+  {
+   "id": "child_boy#02",
+   "character": "child_boy",
+   "path": "res://assets/characters/child_boy.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    5.768,
+    0.0,
+    0.303
+   ],
+   "yaw_deg": 314.6
+  },
+  {
+   "id": "merchant#14",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    -19.274,
+    0.0,
+    12.114
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "beggar#07",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -2.642,
+    0.0,
+    -2.373
+   ],
+   "yaw_deg": 269.4
+  },
+  {
+   "id": "merchant#15",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    18.927,
+    0.0,
+    10.636
+   ],
+   "yaw_deg": 84.9
+  },
+  {
+   "id": "child_boy#03",
+   "character": "child_boy",
+   "path": "res://assets/characters/child_boy.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    9.502,
+    0.0,
+    5.739
+   ],
+   "yaw_deg": 137.6
+  },
+  {
+   "id": "child_boy#04",
+   "character": "child_boy",
+   "path": "res://assets/characters/child_boy.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    -21.685,
+    0.0,
+    16.738
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "merchant#16",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -12.337,
+    0.0,
+    23.804
+   ],
+   "yaw_deg": 171.9
+  },
+  {
+   "id": "market_woman#10",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    23.561,
+    0.0,
+    -9.144
+   ],
+   "yaw_deg": 263.5
+  },
+  {
+   "id": "merchant#17",
+   "character": "merchant",
+   "path": "res://assets/characters/merchant.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    20.776,
+    0.0,
+    -13.439
+   ],
+   "yaw_deg": 33.0
+  },
+  {
+   "id": "market_woman#11",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    -17.56,
+    0.0,
+    7.677
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "market_woman#12",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    -20.724,
+    0.0,
+    6.547
+   ],
+   "yaw_deg": 70.3
+  },
+  {
+   "id": "beggar#08",
+   "character": "beggar",
+   "path": "res://assets/characters/beggar.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    19.465,
+    0.0,
+    -5.475
+   ],
+   "yaw_deg": 315.1
+  },
+  {
+   "id": "market_woman#13",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -12.883,
+    0.0,
+    7.325
+   ],
+   "yaw_deg": 32.4
+  },
+  {
+   "id": "guard#06",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    25.641,
+    0.0,
+    1.633
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "child_boy#05",
+   "character": "child_boy",
+   "path": "res://assets/characters/child_boy.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    9.987,
+    0.0,
+    -0.784
+   ],
+   "yaw_deg": 28.0
+  },
+  {
+   "id": "market_woman#14",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "crowd",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -7.189,
+    0.0,
+    -9.123
+   ],
+   "yaw_deg": 264.3
+  }
+ ],
+ "fx": [
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    -9.8,
+    4.2,
+    -34.0
+   ],
+   "yaw_deg": 0.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    23.2,
+    4.2,
+    -34.0
+   ],
+   "yaw_deg": 0.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    36.0,
+    4.2,
+    -29.3
+   ],
+   "yaw_deg": 270.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    36.0,
+    4.2,
+    -6.05
+   ],
+   "yaw_deg": 270.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    36.0,
+    4.2,
+    20.45
+   ],
+   "yaw_deg": 270.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    24.8,
+    4.2,
+    30.0
+   ],
+   "yaw_deg": 180.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    4.55,
+    4.2,
+    30.0
+   ],
+   "yaw_deg": 180.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    -24.95,
+    4.2,
+    30.0
+   ],
+   "yaw_deg": 180.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    -36.0,
+    4.2,
+    -11.05
+   ],
+   "yaw_deg": 90.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "prop",
+   "asset": "banner_lion",
+   "path": "res://assets/props/banner_lion.gltf",
+   "pos": [
+    -36.0,
+    4.2,
+    -31.7
+   ],
+   "yaw_deg": 90.0,
+   "note": "origin at wall base: mount height already added"
+  },
+  {
+   "type": "rotate",
+   "node": "ANIM_spit",
+   "asset": "spit_roast",
+   "axis": "x",
+   "period_s": 4.0
+  },
+  {
+   "type": "sway",
+   "node": "ANIM_banner",
+   "asset": "banner_lion",
+   "amplitude_deg": 5.0,
+   "period_s": 5.0
+  },
+  {
+   "type": "sway",
+   "node": "ANIM_banner",
+   "asset": "banner_lion",
+   "amplitude_deg": 5.0,
+   "period_s": 5.0
+  },
+  {
+   "type": "flicker",
+   "lights": "LIGHT_fire*, LIGHT_forge*, LIGHT_*torch*",
+   "amount": 0.35,
+   "speed_hz": 8
+  },
+  {
+   "type": "smoke",
+   "name": "spit",
+   "pos": [
+    -22.5,
+    1.6,
+    21.0
+   ],
+   "height_m": 8.0,
+   "period_s": 5.0
+  },
+  {
+   "type": "smoke",
+   "name": "pot",
+   "pos": [
+    -27.0,
+    1.0,
+    4.0
+   ],
+   "height_m": 5.0,
+   "period_s": 5.0
+  },
+  {
+   "type": "smoke",
+   "name": "forge",
+   "pos": [
+    27.5,
+    3.6,
+    22.5
+   ],
+   "height_m": 7.0,
+   "period_s": 5.0
+  }
+ ],
+ "counts": {
+  "always:vaclav": 1,
+  "day:butcher": 4,
+  "day:merchant": 18,
+  "day:market_woman": 15,
+  "day:beggar": 7,
+  "always:guard": 4,
+  "always:beggar": 2,
+  "day:child_boy": 6,
+  "day:child_girl": 1,
+  "always:horse": 1,
+  "day:horse": 1,
+  "night:alchemist": 7,
+  "night:skeleton": 10,
+  "night:golem": 2,
+  "day:alchemist": 1,
+  "day:guard": 3
+ }
+}
