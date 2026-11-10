@@ -37,6 +37,8 @@ var grabbed: Node = null
 var throwing := 0.0
 var step_t := 0.0
 var walk_mode := false
+var jump_t := 0.0
+var combo := 0
 var shake := 0.0
 var focus: Dictionary = {}
 var input_enabled := true
@@ -142,6 +144,7 @@ func _physics_process(delta: float) -> void:
 	if dir.length() > 1.0:
 		dir = dir.normalized()
 	hurt_time = max(0.0, hurt_time - delta)
+	jump_t = max(0.0, jump_t - delta)
 	throwing = max(0.0, throwing - delta)
 	blocking = can_act and Input.is_action_pressed("block") and attacking <= 0.0 and dodge_time <= 0.0 and grabbed == null \
 		and Game.stamina > 1.0
@@ -170,6 +173,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, dir.z * speed, 30.0 * delta)
 	if can_act and Input.is_action_just_pressed("jump") and is_on_floor() and attacking <= 0.0 and grabbed == null:
 		velocity.y = JUMP
+		jump_t = 0.75
+		Chars.play(ap, "jump", 0.06, 1.15, true)
 	if can_act and Input.is_action_just_pressed("dodge") and dodge_time <= 0.0 and Game.stamina >= 25.0 and grabbed == null:
 		dodge_dir = dir.normalized() if dir.length() > 0.1 else -facing()
 		dodge_time = DODGE_TIME
@@ -200,6 +205,8 @@ func _physics_process(delta: float) -> void:
 		if attacking <= 0.0 and attack_queued and Game.stamina >= 10.0:
 			attack_queued = false
 			_start_attack()
+		elif attacking <= 0.0:
+			combo = 0
 	if grabbed and is_instance_valid(grabbed):
 		grabbed.hold_at(global_position + facing() * 0.85 + Vector3(0, 0.25, 0), model.rotation.y + PI)
 	elif grabbed:
@@ -222,10 +229,13 @@ func _start_attack() -> void:
 		return
 	Game.stamina -= 12.0
 	var spd := 1.25
-	attacking = Chars.length(ap, "attack") / spd * 0.85
+	# chained swings alternate forehand / backhand
+	var anim := "attack2" if combo % 2 == 1 and ap.has_animation("attack2") else "attack"
+	combo += 1
+	attacking = Chars.length(ap, anim) / spd * 0.85
 	attack_hit_at = attacking * 0.52
 	attack_done = false
-	Chars.play(ap, "attack", 0.08, spd, true)
+	Chars.play(ap, anim, 0.08, spd, true)
 	Sfx.play_at("swing", global_position + Vector3(0, 1.2, 0), -2.0)
 
 
@@ -324,7 +334,12 @@ func _animate(dir: Vector3, speed: float, sprinting: bool, delta: float) -> void
 	if blocking:
 		Chars.play(ap, "block", 0.15)
 	elif dodge_time > 0.0:
-		Chars.play(ap, "run", 0.05, 2.2)
+		if ap.has_animation("dodge"):
+			Chars.play(ap, "dodge", 0.04, Chars.length(ap, "dodge") / DODGE_TIME)
+		else:
+			Chars.play(ap, "run", 0.05, 2.2)
+	elif jump_t > 0.0 and not is_on_floor() and ap.has_animation("jump"):
+		pass
 	elif grabbed:
 		Chars.play(ap, "walk" if hv > 0.2 else "idle", 0.2, 1.2)
 	elif hv > 0.2:
@@ -347,7 +362,7 @@ func _update_focus() -> void:
 	var best := 1e9
 	if grabbed:
 		var w: Dictionary = world.nearest_window(global_position)
-		focus = {"label": "Throw out of the window!" if not w.is_empty() else "Throw", "kind": "throw"}
+		focus = {"label": w.get("label", "Throw out of the window!") if not w.is_empty() else "Throw", "kind": "throw"}
 		world.hud.set_prompt(focus["label"])
 		return
 	for t in world.attackable():

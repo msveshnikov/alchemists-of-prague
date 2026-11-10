@@ -55,7 +55,7 @@ func _ready() -> void:
 		veil.set_anchors_preset(Control.PRESET_FULL_RECT)
 		veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		b.add_child(veil)
-	var credit := UiKit.shadow_label("Vertical slice — Old Town Square · sounds & fonts: see assets/CREDITS.md", 16, Color(0.85, 0.78, 0.62))
+	var credit := UiKit.shadow_label("Prague 1357 — Old Town · Charles Bridge · Malá Strana · Vyšehrad · sounds & fonts: see assets/CREDITS.md", 16, Color(0.85, 0.78, 0.62))
 	credit.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
 	credit.offset_left = 16
 	credit.offset_top = -34

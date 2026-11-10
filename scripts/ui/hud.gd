@@ -5,6 +5,7 @@ var world: Node
 var hp_bar: TextureProgressBar
 var st_bar: TextureProgressBar
 var compass: Control
+var place_label: Label
 var compass_letters: Array = []
 var disc: TextureRect
 var clock_label: Label
@@ -188,10 +189,11 @@ func _daynight(root: Control) -> void:
 	var v := VBoxContainer.new()
 	pan.add_child(v)
 	var t1 := UiKit.label("Prague", 24, UiKit.INK)
+	place_label = t1
 	t1.add_theme_font_override("font", Game.FONT_GOTHIC)
 	t1.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(t1)
-	var t2 := UiKit.label("14th century", 17, UiKit.INK)
+	var t2 := UiKit.label("Prague, 1357", 17, UiKit.INK)
 	t2.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(t2)
 	clock_label = UiKit.label("Day · 12:00", 20, UiKit.INK)
@@ -281,6 +283,11 @@ func _refresh_slots() -> void:
 		var id: String = ["potion_health", "potion_stamina", "potion_antidote"][i]
 		potion_counts[i].text = str(Game.count(id))
 	gold_label.text = str(Game.gold)
+
+
+func set_place(text: String) -> void:
+	if place_label:
+		place_label.text = {"Old Town Square": "Old Town", "Charles Bridge": "Stone Bridge"}.get(text, text)
 
 
 func set_prompt(text: String) -> void:

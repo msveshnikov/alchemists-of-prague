@@ -1,21 +1,56 @@
 extends Node3D
-## The Old Town level: built at runtime from Task 3/4 JSON (layout + population), plus game systems.
+## Prague: one connected world — Old Town, Charles Bridge, Mala Strana, Vysehrad — built at runtime from
+## assets/levels/prague_layout.json + prague_population.json (blender/scripts/build_prague.py), plus the game systems.
+## The district under the player is named on the HUD; townsfolk and enemies are spawned around the player only.
 
-const LAYOUT := "res://assets/levels/old_town_layout.json"
-const POPULATION := "res://assets/levels/old_town_population.json"
+const LEVELS := {"old_town": "Old Town Square", "charles_bridge": "Charles Bridge", "mala_strana": "Malá Strana", "vysehrad": "Vyšehrad"}
+const CLOSED_ROADS := {
+	"powder_gate": "The Powder Gate road is barred — the plague-carts block it.",
+	"jewish_town": "The gate of the Jewish Town is shut for the night of mourning.",
+	"castle": "The castle guard crosses halberds: \"No one passes to the King without a summons.\"",
+}
+const FOG := {"old_town": 0.0045, "charles_bridge": 0.0022, "mala_strana": 0.003, "vysehrad": 0.0016}
+const WORLD := "prague"
+const SPAWN_R := 105.0         # population entries closer than this to the player are spawned...
+const DESPAWN_R := 150.0       # ...and removed again beyond this (unless fighting)
+const NEAR_ONLY := ["street_lantern", "barrel", "barrel_small", "crate", "crate_produce", "sack", "basket", "bench", "table",
+	"stool", "planter", "pottery", "bread_tray", "gravestone", "grave_cross", "training_dummy", "archery_target", "fence_wood",
+	"weapon_rack", "cart", "cooking_pot", "wall_torch", "hand_lantern", "boat_row", "rock_outcrop", "flag_pole", "tree",
+	"pine_tree", "jetty", "guard_booth", "bridge_statue", "garden_wall", "market_stall_bread", "market_stall_produce",
+	"market_stall_pottery", "market_stall_cloth", "market_stall_meat", "market_stall_weapons", "spit_roast", "anvil", "forge",
+	"blacksmith_shed", "watchtower_wood", "banner_lion", "boat_barge"]
+const ARRIVAL_LINES := {
+	"charles_bridge": "The stone bridge over the Vltava. Throw the alchemists' creatures over the parapet — the river keeps no secrets.",
+	"mala_strana": "Malá Strana, the Lesser Town below the castle. The tavern under the stairs has beds and beer.",
+	"vysehrad": "Vyšehrad, my home. The garrison trains on the ramparts; the old graves stir at night.",
+}
 const HOUSE_DIMS := {  # asset: [width, depth, upper-floor height, inner facade inset]
 	"house_burgher_a": [7.0, 12.0, 4.6, 0.5], "house_burgher_b": [6.5, 12.0, 4.6, 0.5], "house_burgher_c": [7.5, 12.0, 4.6, 0.5],
 	"house_burgher_d": [8.5, 12.0, 4.6, 0.5], "house_burgher_e": [6.0, 12.0, 4.6, 0.5], "house_burgher_f": [9.0, 12.0, 4.6, 0.5],
 	"house_gothic_tower": [8.0, 9.0, 3.6, 0.6],
+	"house_timber_a": [7.5, 11.0, 3.8, 0.45], "house_timber_b": [9.0, 11.0, 3.8, 0.45], "house_timber_c": [6.5, 11.0, 3.8, 0.45],
+	"house_timber_d": [8.0, 11.0, 3.8, 0.45],
 }
 const STOCK := {
 	"produce": ["bread", "herb", "mushroom", "meat"], "bread": ["bread", "meat"], "meat": ["meat", "bread"],
 	"pottery": ["potion_health", "potion_stamina", "potion_antidote", "quicksilver"],
 	"cloth": ["gloves", "ring", "potion_stamina"], "weapons": ["helmet", "chainmail", "gloves", "potion_health"],
+	"tavern": ["bread", "meat", "potion_stamina", "potion_health", "herb", "mushroom"],
 }
 
+var level := WORLD
+var district := ""         # part of the city the player is in (old_town, charles_bridge, mala_strana, vysehrad)
+var districts: Array = []
+var _district_t := 0.0
+var _stream_t := 0.0
+var _phase_serial := 0
+var killed := {}           # population id -> phase serial in which it died (no respawn until the next phase)
 var layout: Dictionary
 var population: Dictionary
+var ledges: Array = []     # throw spots over parapets / walls: {pos, out, label, water}
+var water_y := -INF        # river surface of this level (for splashes)
+var kill_y := -60.0        # anything below this has fallen off the world
+var _safe_pos := Vector3.ZERO
 var player: Player
 var hud: Node
 var day_night: DayNight
@@ -58,7 +93,7 @@ func _show_loading() -> void:
 	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	bg.modulate = Color(0.45, 0.4, 0.35)
 	_loading.add_child(bg)
-	var l := UiKit.title("Loading the Old Town...", 52, UiKit.PARCH)
+	var l := UiKit.title("Prague, Anno Domini 1357...", 52, UiKit.PARCH)
 	l.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	l.position.y -= 120
 	l.name = "Label"
@@ -71,18 +106,36 @@ func _set_loading(text: String) -> void:
 
 
 func _build() -> void:
-	layout = JSON.parse_string(FileAccess.get_file_as_string(LAYOUT))
-	population = JSON.parse_string(FileAccess.get_file_as_string(POPULATION))
+	level = WORLD
+	var args := OS.get_cmdline_user_args()
+	if "--layout" in args:          # debugging: load one of the old single-district levels instead
+		level = args[args.find("--layout") + 1]
+	layout = JSON.parse_string(FileAccess.get_file_as_string("res://assets/levels/%s_layout.json" % level))
+	population = JSON.parse_string(FileAccess.get_file_as_string("res://assets/levels/%s_population.json" % level))
 	for m in layout["markers"]:
 		markers_by_name[m["name"]] = m
+	districts = layout.get("districts", [])
+	var order := ["vysehrad", "mala_strana", "charles_bridge", "old_town"]   # first matching rectangle wins
+	districts.sort_custom(func(a, b): return order.find(a["id"]) < order.find(b["id"]))
+	kill_y = float(layout.get("kill_y", -60.0))
+	# saves from the time the districts were separate levels: move their position into the joined world
+	if not Game.pending_load.is_empty() and Game.pending_load.has("pos") and LEVELS.has(Game.location):
+		for d in districts:
+			if d["id"] == Game.location:
+				var o: Array = d["offset"]
+				var p: Array = Game.pending_load["pos"]
+				Game.pending_load["pos"] = [float(p[0]) + o[0], float(p[1]) + o[1], float(p[2]) + o[2]]
+	Game.location = WORLD
 	_build_environment()
+	_build_water()
+	_build_blockers()
 	var n := 0
 	var total: int = layout["instances"].size()
 	for inst in layout["instances"]:
 		_place(inst)
 		n += 1
 		if n % 40 == 0:
-			_set_loading("Raising the Old Town... %d%%" % int(100.0 * n / total))
+			_set_loading("Raising Prague... %d%%" % int(100.0 * n / total))
 			await get_tree().process_frame
 	for fx in population.get("fx", []):
 		if fx["type"] == "prop":
@@ -110,12 +163,20 @@ func _build() -> void:
 	else:
 		Game.touch_mode_changed.connect(_add_touch_controls, CONNECT_ONE_SHOT)
 	if Game.pending_load.is_empty():
-		if Game.touch:
-			hud.hint("Left thumb: move (push past the ring to sprint) · Right thumb: look · Tap a potion to drink · Bag: inventory · Menu: save & settings")
-		else:
-			hud.hint("WASD move · Shift sprint · LMB strike · RMB block · Q dodge · E interact · Tab inventory · T wait · F5 save")
-		Game.log_journal("I stand on the Old Town Square. By day the merchants trade; by night the alchemists' creatures walk.")
+		if Game.arrive_from == "":
+			if Game.touch:
+				hud.hint("Left thumb: move (push past the ring to sprint) · Right thumb: look · Tap a potion to drink · Bag: inventory · Menu: save & settings")
+			else:
+				hud.hint("WASD move · Shift sprint · LMB strike · RMB block · Q dodge · E interact · Tab inventory · T wait · F5 save")
+		if Game.visited.is_empty():
+			Game.log_journal("Karlova leads west to the stone bridge and Malá Strana beyond the Vltava; Melantrichova leads south and up to Vyšehrad.")
+	_update_district(true)
 	Game.pending_load = {}
+	Game.arrive_from = ""
+	if "--perf" in OS.get_cmdline_user_args():
+		var pp = load("res://scripts/perf_probe.gd").new()
+		pp.world = self
+		add_child(pp)
 	if Game.autotest:
 		var at = load("res://scripts/autotest.gd").new()
 		at.world = self
@@ -198,6 +259,18 @@ func _place(inst: Dictionary, extra := false) -> void:
 	node.position = Vector3(inst["pos"][0], inst["pos"][1], inst["pos"][2])
 	node.rotation.y = deg_to_rad(float(inst["yaw_deg"]))
 	var asset: String = inst["asset"]
+	var vis := 0.0
+	if asset in NEAR_ONLY:
+		vis = 85.0 if asset not in ["market_stall_bread", "market_stall_produce", "market_stall_pottery", "market_stall_cloth",
+			"market_stall_meat", "market_stall_weapons", "blacksmith_shed", "watchtower_wood", "guard_booth"] else 130.0
+	elif asset.begins_with("ground_"):
+		vis = 190.0
+	elif HOUSE_DIMS.has(asset) or asset in ["arch_passage", "tavern", "castle_stairs"]:
+		vis = 230.0
+	if vis > 0.0:
+		for gi in node.find_children("*", "GeometryInstance3D", true, false):
+			gi.visibility_range_end = vis
+			gi.visibility_range_end_margin = 12.0
 	if HOUSE_DIMS.has(asset):
 		houses[inst["id"]] = {"node": node, "asset": asset}
 	for l in node.find_children("LIGHT_*", "OmniLight3D", true, false):
@@ -290,10 +363,28 @@ func _register_interactables() -> void:
 						"action": func(): Game.say("The councillors have barred the portal. \"Come back when the dead stop walking!\""),
 						"enabled": func(): return not inside_house})
 			"exit":
-				var to: String = m.get("leads_to", "").replace("_", " ").capitalize()
-				interactables.append({"pos": v3(m["pos"]), "radius": 3.0, "kind": "exit", "label": "Road to " + to,
-					"action": func(): Game.say("The road to %s is closed for now — this chapter ends at the Old Town Square." % to),
-					"enabled": func(): return not inside_house})
+				var dest: String = m.get("leads_to", "")
+				var to: String = LEVELS.get(dest, dest.replace("_", " ").capitalize())
+				if LEVELS.has(dest):
+					interactables.append({"pos": v3(m["pos"]), "radius": 3.2, "kind": "exit", "label": "Road to " + to,
+						"action": func(): travel(dest), "enabled": func(): return not inside_house})
+				else:
+					interactables.append({"pos": v3(m["pos"]), "radius": 3.0, "kind": "exit", "label": "Road to " + to,
+						"action": func(): Game.say(CLOSED_ROADS.get(dest, "The road to %s is closed." % to)),
+						"enabled": func(): return not inside_house})
+			"ledge":
+				var yaw := deg_to_rad(float(m["yaw_deg"]))
+				var out := Vector3(sin(yaw), 0, cos(yaw))
+				var over_water := water_y > -INF and v3(m["pos"]).y > water_y
+				var lbl := "Throw him into the Vltava!" if owner_id.begins_with("bridge_span") or owner_id.begins_with("embankment") \
+					else ("Throw him off the walls!" if owner_id.begins_with("fortress") else "Throw him off the terrace!")
+				ledges.append({"pos": v3(m["pos"]), "out": out, "label": lbl, "water": over_water and not owner_id.begins_with("fortress")})
+			"inn":
+				var ip := v3(m["pos"])
+				interactables.append({"pos": ip - Vector3(1.0, 0, 0), "radius": 2.0, "kind": "trade", "label": "Tavern «At the Golden Tankard» — food & drink",
+					"action": func(): open_trade("", "tavern"), "enabled": func(): return not inside_house})
+				interactables.append({"pos": ip + Vector3(2.2, 0, 0), "radius": 2.0, "kind": "inn", "label": "Rent a bed (10 gold) — sleep and heal",
+					"action": func(): _rent_bed(), "enabled": func(): return not inside_house})
 			"customer":
 				var stall_id := owner_id
 				var stall_type := stall_id.split("#")[0].replace("market_stall_", "")
@@ -335,9 +426,15 @@ func _spawn_player() -> void:
 	var st: Dictionary = marker("MARK_player_start")
 	player.global_position = v3(st["pos"]) + Vector3(0, 0.1, 0)
 	player.yaw = deg_to_rad(st["yaw_deg"]) + PI
+	var arrive: Dictionary = marker("MARK_exit_" + Game.arrive_from) if Game.arrive_from != "" else {}
+	if not arrive.is_empty():
+		var ay := deg_to_rad(float(arrive["yaw_deg"]))
+		player.global_position = v3(arrive["pos"]) + Vector3(sin(ay), 0, cos(ay)) * 5.0 + Vector3(0, 0.15, 0)
+		player.yaw = ay + PI
 	if not Game.pending_load.is_empty() and Game.pending_load.has("pos"):
 		player.global_position = v3(Game.pending_load["pos"]) + Vector3(0, 0.2, 0)
 		player.yaw = float(Game.pending_load.get("yaw", 0.0))
+	_safe_pos = player.global_position
 	player.model.rotation.y = player.yaw + PI
 	player.died.connect(_on_player_died)
 
@@ -348,6 +445,7 @@ func player_radius() -> float:
 
 # ================================================================ population & schedule
 func _on_phase(is_night: bool) -> void:
+	_phase_serial += 1
 	_apply_schedule(is_night)
 	if hud:
 		hud.add_message("Night falls over Prague. Lock your doors." if is_night else "Dawn. The merchants open their stalls.",
@@ -357,27 +455,44 @@ func _on_phase(is_night: bool) -> void:
 			_restore_windows(h)
 
 
-func _apply_schedule(is_night: bool) -> void:
+func _apply_schedule(is_night: bool, phase_change := true) -> void:
+	var pp: Vector3 = player.global_position if player else Vector3.ZERO
 	for e in population["population"]:
 		if e["character"] == "vaclav":
 			continue
+		var id: String = e["id"]
 		var sched: String = e.get("schedule", "day")
 		var want := sched == "always" or (sched == "night") == is_night
-		var have: bool = spawned.has(e["id"]) and is_instance_valid(spawned[e["id"]])
-		if want and not have:
-			_spawn_entry(e)
-		elif not want and have:
-			var nd = spawned[e["id"]]
-			if nd is Enemy and nd.is_hostile() and nd.global_position.distance_to(player.global_position) < 25.0:
+		var have: bool = spawned.has(id) and is_instance_valid(spawned[id])
+		if have:
+			var nd = spawned[id]
+			var far: bool = nd.global_position.distance_to(pp) > DESPAWN_R
+			if want and not far:
+				continue
+			if nd is Enemy and nd.is_hostile() and nd.global_position.distance_to(pp) < 25.0:
 				continue  # don't vanish mid-fight
+			if nd.is_dead():
+				killed[id] = _phase_serial
 			_despawn(nd)
-			spawned.erase(e["id"])
+			spawned.erase(id)
+		elif want and killed.get(id, -1) != _phase_serial:
+			var ep: Array = e["pos"]
+			if Vector3(ep[0], ep[1], ep[2]).distance_to(pp) < SPAWN_R:
+				_spawn_entry(e)
+	if not phase_change:
+		return    # streaming tick: corpses stay where they fell (cleaned up after a minute or at dawn/dusk)
 	for e in enemies.duplicate():
 		if is_instance_valid(e) and e.is_dead() and e.spawn_id == "":
 			_despawn(e)
 
 
+var spawn_count := 0
+var sched_usec := 0
+var process_usec := 0
+
+
 func _spawn_entry(e: Dictionary) -> void:
+	spawn_count += 1
 	var ch: String = e["character"]
 	var p := v3(e["pos"])
 	var yaw := deg_to_rad(float(e.get("yaw_deg", 0)))
@@ -442,6 +557,8 @@ func alert(pos: Vector3, r: float) -> void:
 
 func on_enemy_killed(e: Enemy, by_fall: bool) -> void:
 	var def: Dictionary = e.def
+	if e.spawn_id != "":
+		killed[e.spawn_id] = _phase_serial
 	if e.kind == "guard":
 		Game.set_wanted(300.0)
 		Game.say("You killed a guard of the city!", Color(1, 0.3, 0.2))
@@ -451,8 +568,12 @@ func on_enemy_killed(e: Enemy, by_fall: bool) -> void:
 	if by_fall:
 		g = int(g * 1.5) + 10
 		Game.kills["defenestrated"] = Game.kills.get("defenestrated", 0) + 1
-		Game.say("DEFENESTRATED! A Prague tradition.", Color(1.0, 0.75, 0.3))
-		Game.log_journal("Threw a %s out of a window in the Old Town. Defenestrations so far: %d." % [def["name"].to_lower(), Game.kills["defenestrated"]])
+		var how: String = e.get_meta("thrown_from", "window")
+		Game.say({"window": "DEFENESTRATED! A Prague tradition.", "water": "Into the Vltava with him!",
+			"wall": "Over the walls of Vyšehrad!", "terrace": "DEFENESTRATED — from the terrace!"}.get(how, "DEFENESTRATED!"), Color(1.0, 0.75, 0.3))
+		var where: String = {"window": "out of a window", "water": "off the bridge into the Vltava", "wall": "off the walls of Vyšehrad",
+			"terrace": "off a terrace"}.get(how, "out of a window")
+		Game.log_journal("Threw a %s %s in %s. Defenestrations so far: %d." % [def["name"].to_lower(), where, district_name(district), Game.kills["defenestrated"]])
 	Game.add_gold(g)
 	Sfx.play("coin")
 	for item in def["loot"]:
@@ -674,7 +795,16 @@ func _loot_chest(hid: String) -> void:
 
 
 func nearest_window(pos: Vector3) -> Dictionary:
-	if not inside_house or not interiors.has(current_house):
+	if not inside_house:
+		var bl := {}
+		var bdl := 2.6
+		for l in ledges:
+			var dl: float = Vector2(pos.x - l["pos"].x, pos.z - l["pos"].z).length()
+			if dl < bdl and abs(pos.y - l["pos"].y) < 1.5:
+				bdl = dl
+				bl = l
+		return bl
+	if not interiors.has(current_house):
 		return {}
 	var best := {}
 	var bd := 2.4
@@ -687,6 +817,13 @@ func nearest_window(pos: Vector3) -> Dictionary:
 
 
 func defenestrate(target: Enemy, w: Dictionary) -> void:
+	if w.has("label"):   # a ledge: bridge parapet, embankment, rampart or terrace
+		var o: Vector3 = w["out"]
+		target.set_meta("thrown_from", "water" if w["water"] else ("wall" if String(w["label"]).contains("walls") else "terrace"))
+		target.thrown(w["pos"] + o * 0.6 + Vector3(0, 1.7, 0), o * 6.5 + Vector3(0, 3.6, 0), true, w["pos"].y - 2.5)
+		player.shake = 0.5
+		return
+	target.set_meta("thrown_from", "window")
 	var wn: Node3D = w["node"]
 	if wn is MeshInstance3D:
 		wn.mesh = null
@@ -738,6 +875,177 @@ func _restore_windows(hid: String) -> void:
 			w["node"].mesh = w["mesh"]
 
 
+
+# ================================================================ districts & world edge
+func district_at(p: Vector3) -> String:
+	for d in districts:
+		var r: Array = d["rect"]
+		if p.x >= r[0] and p.x <= r[2] and p.z >= r[1] and p.z <= r[3]:
+			return d["id"]
+	return district if district != "" else "old_town"
+
+
+func district_name(id: String) -> String:
+	for d in districts:
+		if d["id"] == id:
+			return d["name"]
+	return LEVELS.get(id, "Prague")
+
+
+func _update_district(force: bool) -> void:
+	if player == null:
+		return
+	var d := district_at(player.global_position)
+	if d == district and not force:
+		return
+	district = d
+	if hud and hud.has_method("set_place"):
+		hud.set_place(district_name(d))
+	var fog: float = FOG.get(d, 0.0045)
+	if env:
+		create_tween().tween_property(env, "fog_density", fog, 2.5)
+	if not Game.visited.has(d):
+		Game.visited[d] = true
+		if ARRIVAL_LINES.has(d):
+			Game.log_journal(ARRIVAL_LINES[d])
+		elif d == "old_town":
+			Game.log_journal("I stand on the Old Town Square. By day the merchants trade; by night the alchemists' creatures walk.")
+	elif not force and hud:
+		hud.add_message(district_name(d), Color(1.0, 0.9, 0.6))
+
+
+func _build_blockers() -> void:
+	for b in layout.get("blockers", []):
+		var sb := StaticBody3D.new()
+		var cs := CollisionShape3D.new()
+		var bs := BoxShape3D.new()
+		bs.size = Vector3(b["size"][0], b["size"][1], b["size"][2])
+		cs.shape = bs
+		sb.add_child(cs)
+		add_child(sb)
+		sb.position = Vector3(b["center"][0], b["center"][1], b["center"][2])
+
+
+# ================================================================ river, falls, travel, inn
+func _build_water() -> void:
+	for w in layout.get("water", []):
+		water_y = max(water_y, float(w["height"]))
+		_plane(w["rect"], float(w["height"]), _water_material())
+	for pl in layout.get("planes", []):
+		_plane(pl["rect"], float(pl["height"]), _mat(pl.get("material", "grass"), 0.08, Color(0.8, 0.85, 0.75)))
+
+
+func _plane(rect: Array, h: float, mat: Material) -> void:
+	var mi := MeshInstance3D.new()
+	var pm := PlaneMesh.new()
+	pm.size = Vector2(float(rect[2]) - float(rect[0]), float(rect[3]) - float(rect[1]))
+	mi.mesh = pm
+	mi.material_override = mat
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(mi)
+	mi.position = Vector3((float(rect[0]) + float(rect[2])) / 2.0, h, (float(rect[1]) + float(rect[3])) / 2.0)
+
+
+func _water_material() -> ShaderMaterial:
+	var m := ShaderMaterial.new()
+	m.shader = load("res://assets/shaders/water.gdshader")
+	return m
+
+
+## Falls below the world: the player climbs out (river) or is carried back; enemies are finished off by Enemy.
+func _check_falls() -> void:
+	if player.is_on_floor() and not inside_house and player.global_position.y > kill_y + 2.0:
+		_safe_pos = player.global_position
+	if player.global_position.y < kill_y and not player.dead:
+		var wet := water_y > -INF and player.global_position.y < water_y + 1.5
+		if wet:
+			_splash(Vector3(player.global_position.x, water_y, player.global_position.z))
+		player.global_position = _safe_pos + Vector3(0, 0.3, 0)
+		player.velocity = Vector3.ZERO
+		player.take_damage(12.0, player.global_position, "splash")
+		Game.say("You haul yourself out of the Vltava, soaked and freezing." if wet else "You climb back, bruised.", Color(0.7, 0.85, 1.0))
+
+
+func enemy_fell(e: Node3D) -> void:
+	if water_y > -INF and e.global_position.y < water_y + 2.0:
+		_splash(Vector3(e.global_position.x, water_y, e.global_position.z))
+		Sfx.play_at("potion_splash", e.global_position, 6.0, 0.6)
+
+
+func _splash(at: Vector3) -> void:
+	var p := GPUParticles3D.new()
+	p.one_shot = true
+	p.amount = 80
+	p.lifetime = 1.4
+	p.explosiveness = 0.95
+	var pm := ParticleProcessMaterial.new()
+	pm.direction = Vector3(0, 1, 0)
+	pm.spread = 35.0
+	pm.initial_velocity_min = 3.0
+	pm.initial_velocity_max = 7.0
+	pm.gravity = Vector3(0, -9.8, 0)
+	pm.scale_min = 0.6
+	pm.scale_max = 1.4
+	p.process_material = pm
+	var sm := SphereMesh.new()
+	sm.radius = 0.06
+	sm.height = 0.12
+	var m := StandardMaterial3D.new()
+	m.albedo_color = Color(0.8, 0.9, 0.95, 0.8)
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.roughness = 0.1
+	sm.material = m
+	p.draw_pass_1 = sm
+	add_child(p)
+	p.global_position = at
+	p.emitting = true
+	get_tree().create_timer(2.0).timeout.connect(p.queue_free)
+
+
+## Leave for another part of Prague: the level is rebuilt around the exit marker that leads back here.
+func travel(dest: String) -> void:
+	if not LEVELS.has(dest) or player.dead:
+		return
+	for e in enemies:
+		if is_instance_valid(e) and e.is_hostile() and e.global_position.distance_to(player.global_position) < 18.0:
+			Game.say("You cannot leave with enemies at your heels!", Color(1, 0.5, 0.4))
+			return
+	Sfx.play("door_open", -6.0, 0.8)
+	Game.arrive_from = level
+	Game.location = dest
+	Game.pending_load = {}
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+
+func _rent_bed() -> void:
+	if Game.gold < 10:
+		Game.say("Innkeeper: \"Ten groschen for the bed, knight. Coin first.\"")
+		return
+	for e in enemies:
+		if is_instance_valid(e) and e.is_hostile() and e.global_position.distance_to(player.global_position) < 30.0:
+			Game.say("You cannot rest with enemies nearby!", Color(1, 0.5, 0.4))
+			return
+	Game.add_gold(-10, true)
+	Sfx.play("coin")
+	Game.hp = Game.max_hp
+	Game.stamina = Game.max_stamina()
+	Game.poison_time = 0.0
+	Game.stats_changed.emit()
+	var target := 345.0 / 400.0 if day_night.is_night else 165.0 / 400.0
+	Game.time_of_day = target
+	day_night.apply(Game.time_of_day)
+	Game.say("You sleep in a lumpy bed above the taproom and wake refreshed.", Color(0.85, 0.85, 1.0))
+
+
+## Map tab: which plan image to show and how world X/Z map onto it.
+func map_info() -> Dictionary:
+	var mi: Dictionary = layout.get("map", {})
+	if mi.is_empty():
+		return {"image": "res://assets/ui/map.png", "center": Vector2(5.0, 8.0), "size": 230.0}
+	return {"image": mi["image"], "center": Vector2(mi["center"][0], mi["center"][1]), "size": float(mi["size"])}
+
+
 # ================================================================ UI flow
 func open_ui(ui: Control) -> void:
 	var cl := CanvasLayer.new()
@@ -769,7 +1077,8 @@ func open_trade(stall_id: String, stall_type: String) -> void:
 	ui.stall_type = stall_type
 	for id in spawned:
 		var nd = spawned[id]
-		if is_instance_valid(nd) and nd is Npc and nd.entry.get("stall", "") == stall_id:
+		if is_instance_valid(nd) and nd is Npc and ((stall_id != "" and nd.entry.get("stall", "") == stall_id) or
+				(stall_id == "" and nd.role == "innkeeper")):
 			ui.merchant = nd.character
 	open_ui(ui)
 
@@ -809,25 +1118,45 @@ func wait_until_next_phase() -> void:
 	Game.say("You wait until %s..." % ("dusk" if target < 0.5 else "dawn"), Color(0.8, 0.8, 1.0))
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not _ready_done:
-		return
-	if event.is_action_pressed("pause"):
-		if ui_stack.is_empty():
-			open_ui(load("res://scripts/ui/pause_ui.gd").new())
-		else:
-			var top = ui_stack.back().get_child(0)
+## Opening a window pauses the tree, and the world itself is pausable, so its _unhandled_input goes silent
+## while any window is open. Closing keys are therefore handled by this always-processing relay, in _input
+## (before the GUI), so a focused button cannot swallow Tab as focus navigation either.
+class UiInput extends Node:
+	var world: Node
+
+	func _input(event: InputEvent) -> void:
+		if world.ui_stack.is_empty() or event.is_echo():
+			return
+		var top: Control = world.ui_stack.back().get_child(0)
+		if event.is_action_pressed("pause") or (event.is_action_pressed("inventory") and world.is_inventory(top)):
+			get_viewport().set_input_as_handled()
 			if top.has_method("can_close") and not top.can_close():
 				return
-			close_ui()
+			world.close_ui()
+
+
+func is_inventory(ui: Node) -> bool:
+	return ui != null and ui.get_script() != null and ui.get_script().resource_path.ends_with("inventory_ui.gd")
+
+
+func _enter_tree() -> void:
+	var relay := UiInput.new()
+	relay.name = "UiInput"
+	relay.world = self
+	relay.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(relay)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not _ready_done or not ui_stack.is_empty():
+		return
+	if event.is_action_pressed("pause"):
+		open_ui(load("res://scripts/ui/pause_ui.gd").new())
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("inventory") and not player.dead:
-		if ui_stack.is_empty():
-			open_ui(load("res://scripts/ui/inventory_ui.gd").new())
-		elif ui_stack.back().get_child(0).get_script().resource_path.ends_with("inventory_ui.gd"):
-			close_ui()
+		open_ui(load("res://scripts/ui/inventory_ui.gd").new())
 		get_viewport().set_input_as_handled()
-	elif ui_stack.is_empty() and not player.dead:
+	elif not player.dead:
 		if event.is_action_pressed("quicksave"):
 			quicksave()
 		elif event.is_action_pressed("quickload"):
@@ -854,7 +1183,20 @@ func _process(delta: float) -> void:
 			Game.wanted_changed.emit(0.0)
 	# ambience & music
 	var night := day_night.night_amount()
-	var near_sq: float = clamp(1.0 - Vector2(player.global_position.x, player.global_position.z).length() / 60.0, 0.0, 1.0)
+	var near_sq: float = 0.45
+	if district == "old_town":
+		near_sq = clamp(1.0 - Vector2(player.global_position.x, player.global_position.z).length() / 60.0, 0.0, 1.0)
+	_check_falls()
+	_district_t -= delta
+	if _district_t <= 0.0:
+		_district_t = 0.5
+		_update_district(false)
+	_stream_t -= delta
+	if _stream_t <= 0.0 and not inside_house:
+		_stream_t = 1.0
+		var t0 := Time.get_ticks_usec()
+		_apply_schedule(day_night.is_night, false)
+		sched_usec = Time.get_ticks_usec() - t0
 	Sfx.ambience(0.0 if inside_house else (1.0 - night) * near_sq, night * (0.3 if inside_house else 1.0))
 	_music_cd -= delta
 	if _music_cd <= 0.0:

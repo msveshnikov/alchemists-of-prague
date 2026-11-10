@@ -29,14 +29,22 @@ func _ready() -> void:
 	_map_tab(tabs)
 	Game.inventory_changed.connect(_refresh)
 	_refresh()
-	if Game.touch:
-		var close := UiKit.button("Close", func(): world.close_ui(), 180)
-		close.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-		close.offset_left = -204
-		close.offset_right = -24
-		close.offset_top = 4
-		close.offset_bottom = 48
-		add_child(close)
+	var close := UiKit.button("Close", func(): world.close_ui(), 180)
+	close.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	close.offset_left = -204
+	close.offset_right = -24
+	close.offset_top = 4
+	close.offset_bottom = 48
+	close.focus_mode = Control.FOCUS_NONE
+	add_child(close)
+	if not Game.touch:
+		var hint := UiKit.label("Tab · I · Esc — close", 20, UiKit.PARCH)
+		hint.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+		hint.offset_left = -440
+		hint.offset_right = -220
+		hint.offset_top = 12
+		hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		add_child(hint)
 
 
 func _inventory_tab(tabs: TabContainer) -> void:
@@ -164,19 +172,36 @@ func _map_tab(tabs: TabContainer) -> void:
 	var c := Control.new()
 	c.name = "Map"
 	tabs.add_child(c)
+	var info: Dictionary = world.map_info() if world else {"image": "res://assets/ui/map.png", "center": Vector2(5, 8), "size": 230.0}
 	var img := TextureRect.new()
-	img.texture = UiKit.tex("map.png")
+	img.texture = load(info["image"])
 	img.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	img.set_anchors_preset(Control.PRESET_FULL_RECT)
 	c.add_child(img)
+	var marks: Array = []      # [control, u, v]: placed on the square map image whenever the tab resizes
+	if world:
+		var c0: Vector2 = info["center"]
+		for d in world.districts:
+			var r: Array = d["rect"]
+			var lbl := UiKit.shadow_label(d["name"], 26, UiKit.PARCH)
+			c.add_child(lbl)
+			marks.append([lbl, ((r[0] + r[2]) / 2.0 - c0.x) / float(info["size"]) + 0.5, ((r[1] + r[3]) / 2.0 - c0.y) / float(info["size"]) + 0.5])
+		c.resized.connect(func():
+			var s: float = min(c.size.x, c.size.y)
+			var ox := (c.size.x - s) / 2.0
+			var oy := (c.size.y - s) / 2.0
+			for mk in marks:
+				var ctl: Control = mk[0]
+				ctl.position = Vector2(ox + mk[1] * s - ctl.size.x / 2.0, oy + mk[2] * s - 16))
 	if world and world.player:
 		var dot := UiKit.title("✚", 40, UiKit.BLOOD)
 		c.add_child(dot)
-		# map render: ortho 230 m centred at (5, -8) Blender = Godot (5, *, 8); square image
+		# map render: square ortho plan of `size` metres centred on `center` (Godot X, Z)
 		var p: Vector3 = world.player.global_position
-		var u := (p.x - 5.0) / 230.0 + 0.5
-		var v := (p.z - 8.0) / 230.0 + 0.5
+		var mc: Vector2 = info["center"]
+		var u := (p.x - mc.x) / float(info["size"]) + 0.5
+		var v := (p.z - mc.y) / float(info["size"]) + 0.5
 		c.resized.connect(func():
 			var s: float = min(c.size.x, c.size.y)
 			var ox := (c.size.x - s) / 2.0

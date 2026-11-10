@@ -9,6 +9,21 @@ const LINES := [
 	"Stay off the streets after dark, if you value your skin.", "My cousin saw a clay giant on Celetna. Nobody believes him.",
 	"Buy something or move along!", "A copper for a poor soul?", "The guards are no use against what comes at night.",
 ]
+const LOCAL_LINES := {
+	"charles_bridge": ["The bridge was built to stand forever. King Charles laid the first stone at dawn, they say.",
+		"Mind the parapet, sir — the Vltava is cold in every season.", "Toll? No toll for a knight. For the alchemists — a swim."],
+	"mala_strana": ["The stairs go up to the castle. The guards up there are less friendly than the beer down here.",
+		"Try the Golden Tankard — the bed bugs are the most honest in Prague.", "The Lesser Town sleeps lightly since the dead woke."],
+	"vysehrad": ["Keep your guard up, Vaclav — your left side is always open.", "The old cemetery is restless. The canons pray all night.",
+		"From these walls you can see the whole of Prague. And what crawls in it."],
+}
+const ROLE_LINES := {
+	"innkeeper": "Innkeeper: \"Food, drink and a bed for ten groschen. Coin before you sleep!\"",
+	"npc_monk": "Monk: \"Pax tecum, knight. Pray with us — or fight for us, which is also a prayer.\"",
+	"knight_spar": "Knight: \"Not now, Vaclav — the captain is watching!\"",
+	"knight_captain": "Captain: \"Vaclav! The alchemists' dead come up out of the graveyard every night. Send them over the walls.\"",
+	"boatman": "Boatman: \"I ferry goods, not knights. And never at night.\"",
+}
 
 var world: Node
 var entry: Dictionary
@@ -67,6 +82,10 @@ func setup(p_world: Node, e: Dictionary) -> void:
 	if ap and ap.has_animation(anim):
 		ap.seek(randf() * Chars.length(ap, anim), true)
 	speed = float(e.get("speed_mps", 1.0))
+	if e.get("static", false):
+		collision_layer = 0
+		collision_mask = 0
+		set_physics_process(false)
 	if anim == "run":
 		speed = 1.9
 	for key in ["route", "route_points"]:
@@ -122,10 +141,14 @@ func take_hit(dmg: float, _attacker: Node) -> void:
 
 func talk() -> void:
 	talk_t = 3.0
-	var line: String = LINES[randi() % LINES.size()]
+	var pool: Array = LINES + LOCAL_LINES.get(world.district, []) + LOCAL_LINES.get(world.district, [])
+	var line: String = pool[randi() % pool.size()]
 	if role.begins_with("npc_beggar") or character == "beggar":
 		line = "Alms for the poor, noble sir... A single groschen?"
-	Game.say("%s: \"%s\"" % [display_name().capitalize(), line], Color(0.95, 0.88, 0.7))
+	if ROLE_LINES.has(role):
+		Game.say(ROLE_LINES[role], Color(0.95, 0.88, 0.7))
+	else:
+		Game.say("%s: \"%s\"" % [display_name().capitalize(), line], Color(0.95, 0.88, 0.7))
 	var to: Vector3 = world.player.global_position - global_position
 	model.rotation.y = atan2(to.x, to.z)
 	Chars.play(ap, "talk" if ap.has_animation("talk") else "idle", 0.2)

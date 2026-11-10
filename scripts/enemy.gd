@@ -185,6 +185,14 @@ func _die(by_fall: bool) -> void:
 func _physics_process(delta: float) -> void:
 	if state == S.GRABBED:
 		return
+	if global_position.y < world.kill_y:
+		if state != S.DEAD:
+			world.enemy_fell(self)
+			_die(state == S.THROWN)
+		velocity = Vector3.ZERO
+		visible = false
+		set_physics_process(false)
+		return
 	if state == S.THROWN:
 		_fly(delta)
 		return

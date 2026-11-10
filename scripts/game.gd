@@ -71,6 +71,9 @@ var kills := {"alchemist": 0, "skeleton": 0, "golem": 0, "defenestrated": 0}
 var journal: Array[String] = []
 var time_of_day := 0.93        # 0..1 of the day cycle (0 = noon key of the lighting cycle); 0.93 = mid-morning
 var pending_load := {}         # filled by load_game() before the world scene starts
+var location := "old_town"     # level being played: old_town, charles_bridge, mala_strana, vysehrad
+var arrive_from := ""          # level we just travelled from (spawn at its exit marker), "" = start marker / save
+var visited := {}              # level -> true
 var autotest := false
 ## Touch mode: on-screen controls instead of mouse look. On for phones/tablets (native or browser),
 ## and switched on by the first real screen touch anywhere else (e.g. a touchscreen laptop).
@@ -171,6 +174,9 @@ func new_game() -> void:
 	journal = ["Prague, Anno Domini 1357. The alchemists of the Old Town have raised the dead. Clear the square by night, trade by day."]
 	time_of_day = 0.93
 	pending_load = {}
+	location = "old_town"
+	arrive_from = ""
+	visited = {}
 
 
 func max_stamina() -> float:
@@ -314,7 +320,7 @@ func save_game(player_pos: Vector3, player_yaw: float, extra := {}) -> bool:
 		"version": 1, "gold": gold, "hp": hp, "stamina": stamina, "sword_level": sword_level, "inventory": inventory,
 		"equipment": equipment, "wanted": wanted, "looted": looted_houses, "kills": kills, "journal": journal,
 		"time_of_day": time_of_day, "pos": [player_pos.x, player_pos.y, player_pos.z], "yaw": player_yaw,
-		"poison": poison_time, "saved_at": Time.get_datetime_string_from_system(),
+		"poison": poison_time, "saved_at": Time.get_datetime_string_from_system(), "location": location, "visited": visited,
 	}
 	data.merge(extra)
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -350,6 +356,9 @@ func load_game() -> bool:
 	journal.assign(data.get("journal", journal))
 	time_of_day = float(data.get("time_of_day", 0.93))
 	poison_time = float(data.get("poison", 0))
+	location = String(data.get("location", "old_town"))
+	visited = data.get("visited", {})
+	arrive_from = ""
 	pending_load = data
 	return true
 

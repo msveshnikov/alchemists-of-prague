@@ -1,0 +1,7501 @@
+{
+ "level": "mala_strana",
+ "display": "Mala Strana",
+ "version": 1,
+ "coordinate_system": "Godot: +Y up, -Z = north on the plan (Blender +Y). Characters/house fronts face local +Z.",
+ "bounds": {
+  "x": [
+   -114.0,
+   131.0
+  ],
+  "z": [
+   -83.0,
+   36.7
+  ]
+ },
+ "water": [],
+ "planes": [],
+ "kill_y": -10.0,
+ "map": {
+  "center": [
+   10.0,
+   -20.0
+  ],
+  "size": 270.0,
+  "image": "res://assets/ui/map_mala_strana.png"
+ },
+ "instances": [
+  {
+   "id": "ground_cobble#00",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -104.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#01",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -104.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#02",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -104.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#03",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -104.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#04",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -104.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#05",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -88.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#06",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -88.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#07",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -88.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#08",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -88.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#09",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -88.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#10",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -72.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#11",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -72.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#12",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -72.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#13",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -72.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#14",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -72.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#15",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#16",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#17",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#18",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#19",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#20",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#21",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#22",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#23",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#24",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#25",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#26",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#27",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#28",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#29",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#30",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#31",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#32",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#33",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#34",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#35",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#36",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#37",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#38",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#39",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#40",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#41",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#42",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#43",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#44",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#45",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#46",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#47",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#48",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#49",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#50",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#51",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#52",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#53",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#54",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#55",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    72.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#56",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    72.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#57",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    72.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#58",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    72.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#59",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    72.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#60",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    88.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#61",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    88.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#62",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    88.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#63",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    88.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#64",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    88.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#65",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    104.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#66",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    104.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#67",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    104.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#68",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    104.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#69",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    104.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#70",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    120.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#71",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    120.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#72",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    120.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#73",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    120.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#74",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "ground",
+   "pos": [
+    120.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#75",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -104.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#76",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -104.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#77",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -104.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#78",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -88.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#79",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -88.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#80",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -88.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#81",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -72.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#82",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -72.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#83",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -72.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#84",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -56.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#85",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -56.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#86",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -56.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#87",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -40.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#88",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -40.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#89",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -40.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#90",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -24.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#91",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -24.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#92",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -24.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#93",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -8.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#94",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -8.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#95",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    -8.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#96",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    8.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#97",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    8.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#98",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    8.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#99",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    24.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#100",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    24.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#101",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    24.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#102",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    40.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#103",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    40.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#104",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    40.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#105",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    56.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#106",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    56.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#107",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    56.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#108",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    72.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#109",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    72.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#110",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    72.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#111",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    88.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#112",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    88.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#113",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    88.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#114",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    104.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#115",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    104.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#116",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    104.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#117",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    120.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#118",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    120.0,
+    8.0,
+    -57.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_cobble#119",
+   "asset": "ground_cobble",
+   "path": "res://assets/architecture/ground_cobble.gltf",
+   "group": "terrace",
+   "pos": [
+    120.0,
+    8.0,
+    -73.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#00",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_north",
+   "pos": [
+    -15.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#00",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "lower_north",
+   "pos": [
+    -7.75,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#00",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_north",
+   "pos": [
+    -0.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#00",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    0.65,
+    0.0,
+    -11.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#01",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_north",
+   "pos": [
+    4.4,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_a#00",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "lower_north",
+   "pos": [
+    18.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#01",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "lower_north",
+   "pos": [
+    25.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_a#01",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "lower_north",
+   "pos": [
+    32.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#01",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    34.0,
+    0.0,
+    -11.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#01",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_north",
+   "pos": [
+    40.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#02",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "lower_north",
+   "pos": [
+    47.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#02",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_north",
+   "pos": [
+    55.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#02",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    56.75,
+    0.0,
+    -11.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#02",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_north",
+   "pos": [
+    64.1,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#03",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_north",
+   "pos": [
+    72.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_a#02",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "lower_north",
+   "pos": [
+    80.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#03",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    82.0,
+    0.0,
+    -11.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#03",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_north",
+   "pos": [
+    88.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_a#03",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "lower_north",
+   "pos": [
+    96.35,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#04",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_north",
+   "pos": [
+    104.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#04",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    105.75,
+    0.0,
+    -11.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_a#04",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "lower_north",
+   "pos": [
+    111.25,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "tavern#00",
+   "asset": "tavern",
+   "path": "res://assets/architecture/tavern.gltf",
+   "group": "lower_south",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_c#03",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "lower_south",
+   "pos": [
+    111.75,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_d#04",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_south",
+   "pos": [
+    104.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_b#05",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_south",
+   "pos": [
+    96.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "wall_torch#05",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    94.85,
+    0.0,
+    11.7
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_d#05",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_south",
+   "pos": [
+    87.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_c#04",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "lower_south",
+   "pos": [
+    80.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_d#06",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_south",
+   "pos": [
+    73.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "wall_torch#06",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    71.85,
+    0.0,
+    11.7
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_b#06",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_south",
+   "pos": [
+    64.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_d#07",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_south",
+   "pos": [
+    56.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_b#07",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_south",
+   "pos": [
+    50.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "wall_torch#07",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    49.35,
+    0.0,
+    11.7
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_burgher_c#00",
+   "asset": "house_burgher_c",
+   "path": "res://assets/architecture/house_burgher_c.gltf",
+   "group": "lower_south",
+   "pos": [
+    30.25,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_d#08",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "lower_south",
+   "pos": [
+    22.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_b#08",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_south",
+   "pos": [
+    14.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "wall_torch#08",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    12.85,
+    0.0,
+    11.7
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_burgher_c#01",
+   "asset": "house_burgher_c",
+   "path": "res://assets/architecture/house_burgher_c.gltf",
+   "group": "lower_south",
+   "pos": [
+    5.75,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_c#05",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "lower_south",
+   "pos": [
+    -1.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_a#05",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "lower_south",
+   "pos": [
+    -8.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "wall_torch#09",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    -9.4,
+    0.0,
+    11.7
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_b#09",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "lower_south",
+   "pos": [
+    -15.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_a#06",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "square",
+   "pos": [
+    -56.25,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#10",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "square",
+   "pos": [
+    -48.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#09",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "square",
+   "pos": [
+    -39.5,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#10",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    -38.35,
+    0.0,
+    -26.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#11",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "square",
+   "pos": [
+    -31.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_a#07",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "square",
+   "pos": [
+    -23.75,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#12",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "square",
+   "pos": [
+    -24.5,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_c#06",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "square",
+   "pos": [
+    -32.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_b#13",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "square",
+   "pos": [
+    -40.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "wall_torch#11",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    -41.15,
+    0.0,
+    26.7
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_a#08",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "square",
+   "pos": [
+    -48.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_d#10",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "square",
+   "pos": [
+    -56.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "st_nicholas#00",
+   "asset": "st_nicholas",
+   "path": "res://assets/architecture/st_nicholas.gltf",
+   "group": "square",
+   "pos": [
+    -62.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "garden_wall#00",
+   "asset": "garden_wall",
+   "path": "res://assets/architecture/garden_wall.gltf",
+   "group": "square",
+   "pos": [
+    -63.0,
+    0.0,
+    -15.5
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "garden_wall#01",
+   "asset": "garden_wall",
+   "path": "res://assets/architecture/garden_wall.gltf",
+   "group": "square",
+   "pos": [
+    -63.0,
+    0.0,
+    15.5
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "bridge_tower_lesser#00",
+   "asset": "bridge_tower_lesser",
+   "path": "res://assets/architecture/bridge_tower_lesser.gltf",
+   "group": "lower_street",
+   "pos": [
+    121.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "castle_stairs#00",
+   "asset": "castle_stairs",
+   "path": "res://assets/architecture/castle_stairs.gltf",
+   "group": "stairs",
+   "pos": [
+    12.0,
+    0.0,
+    -19.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#00",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    0.9,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#01",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    -15.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#02",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    -31.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#03",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    -47.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#04",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    -63.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#05",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    -79.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#06",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    -95.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall_niche#00",
+   "asset": "retaining_wall_niche",
+   "path": "res://assets/architecture/retaining_wall_niche.gltf",
+   "group": "terrace",
+   "pos": [
+    23.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#07",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    39.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#08",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    55.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#09",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    71.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#10",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    87.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#11",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    103.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "retaining_wall#12",
+   "asset": "retaining_wall",
+   "path": "res://assets/architecture/retaining_wall.gltf",
+   "group": "terrace",
+   "pos": [
+    119.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#11",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "terrace",
+   "pos": [
+    -52.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#07",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "terrace",
+   "pos": [
+    -44.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_a#09",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "terrace",
+   "pos": [
+    -37.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#12",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    -36.6,
+    0.0,
+    -53.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#08",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "terrace",
+   "pos": [
+    -30.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#12",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "terrace",
+   "pos": [
+    -23.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#14",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "terrace",
+   "pos": [
+    -15.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#13",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    -13.85,
+    0.0,
+    -53.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_a#10",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "terrace",
+   "pos": [
+    -6.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#15",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "terrace",
+   "pos": [
+    1.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#13",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "terrace",
+   "pos": [
+    10.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#14",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    11.15,
+    0.0,
+    -53.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#16",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "terrace",
+   "pos": [
+    18.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#09",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "terrace",
+   "pos": [
+    26.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#14",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "terrace",
+   "pos": [
+    33.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#15",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    34.65,
+    0.0,
+    -53.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#17",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "terrace",
+   "pos": [
+    42.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#10",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "terrace",
+   "pos": [
+    49.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#18",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "terrace",
+   "pos": [
+    57.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#16",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    58.65,
+    0.0,
+    -53.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#11",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "terrace",
+   "pos": [
+    65.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#15",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "terrace",
+   "pos": [
+    72.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#19",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "terrace",
+   "pos": [
+    81.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#17",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    82.15,
+    0.0,
+    -53.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_d#16",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "terrace",
+   "pos": [
+    89.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#20",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "terrace",
+   "pos": [
+    98.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_c#12",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "terrace",
+   "pos": [
+    105.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "wall_torch#18",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    106.9,
+    0.0,
+    -53.7
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "house_timber_b#21",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "terrace",
+   "pos": [
+    107.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "gate_tower#00",
+   "asset": "gate_tower",
+   "path": "res://assets/architecture/gate_tower.gltf",
+   "group": "terrace",
+   "pos": [
+    -62.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "house_timber_c#13",
+   "asset": "house_timber_c",
+   "path": "res://assets/architecture/house_timber_c.gltf",
+   "group": "terrace",
+   "pos": [
+    118.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "street_lantern#00",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -40.0,
+    8.0,
+    -36.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#01",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -10.0,
+    8.0,
+    -36.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#02",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    30.0,
+    8.0,
+    -36.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#03",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    60.0,
+    8.0,
+    -36.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#04",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    90.0,
+    8.0,
+    -36.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "table#00",
+   "asset": "table",
+   "path": "res://assets/props/table.gltf",
+   "group": "tavern",
+   "pos": [
+    35.5,
+    0.0,
+    3.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "bench#00",
+   "asset": "bench",
+   "path": "res://assets/props/bench.gltf",
+   "group": "tavern",
+   "pos": [
+    35.5,
+    0.0,
+    1.9
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "bench#01",
+   "asset": "bench",
+   "path": "res://assets/props/bench.gltf",
+   "group": "tavern",
+   "pos": [
+    35.5,
+    0.0,
+    4.1
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "table#01",
+   "asset": "table",
+   "path": "res://assets/props/table.gltf",
+   "group": "tavern",
+   "pos": [
+    44.5,
+    0.0,
+    3.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "bench#02",
+   "asset": "bench",
+   "path": "res://assets/props/bench.gltf",
+   "group": "tavern",
+   "pos": [
+    44.5,
+    0.0,
+    1.9
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "bench#03",
+   "asset": "bench",
+   "path": "res://assets/props/bench.gltf",
+   "group": "tavern",
+   "pos": [
+    44.5,
+    0.0,
+    4.1
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "barrel#00",
+   "asset": "barrel",
+   "path": "res://assets/props/barrel.gltf",
+   "group": "street_props",
+   "pos": [
+    31.0,
+    0.0,
+    4.2
+   ],
+   "yaw_deg": 59.05
+  },
+  {
+   "id": "barrel_small#00",
+   "asset": "barrel_small",
+   "path": "res://assets/props/barrel_small.gltf",
+   "group": "street_props",
+   "pos": [
+    31.8,
+    0.0,
+    3.4
+   ],
+   "yaw_deg": 190.07
+  },
+  {
+   "id": "barrel#01",
+   "asset": "barrel",
+   "path": "res://assets/props/barrel.gltf",
+   "group": "street_props",
+   "pos": [
+    49.2,
+    0.0,
+    4.3
+   ],
+   "yaw_deg": 80.71
+  },
+  {
+   "id": "planter#00",
+   "asset": "planter",
+   "path": "res://assets/props/planter.gltf",
+   "group": "street_props",
+   "pos": [
+    52.0,
+    0.0,
+    4.6
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "planter#01",
+   "asset": "planter",
+   "path": "res://assets/props/planter.gltf",
+   "group": "street_props",
+   "pos": [
+    27.0,
+    0.0,
+    4.6
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "planter#02",
+   "asset": "planter",
+   "path": "res://assets/props/planter.gltf",
+   "group": "street_props",
+   "pos": [
+    70.0,
+    0.0,
+    -4.6
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "planter#03",
+   "asset": "planter",
+   "path": "res://assets/props/planter.gltf",
+   "group": "street_props",
+   "pos": [
+    -5.0,
+    0.0,
+    -4.6
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "crate#00",
+   "asset": "crate",
+   "path": "res://assets/props/crate.gltf",
+   "group": "street_props",
+   "pos": [
+    92.0,
+    0.0,
+    4.2
+   ],
+   "yaw_deg": 102.78
+  },
+  {
+   "id": "sack#00",
+   "asset": "sack",
+   "path": "res://assets/props/sack.gltf",
+   "group": "street_props",
+   "pos": [
+    93.0,
+    0.0,
+    3.6
+   ],
+   "yaw_deg": 312.26
+  },
+  {
+   "id": "market_stall_produce#00",
+   "asset": "market_stall_produce",
+   "path": "res://assets/props/market_stall_produce.gltf",
+   "group": "square",
+   "pos": [
+    -42.0,
+    0.0,
+    9.0
+   ],
+   "yaw_deg": 11.46
+  },
+  {
+   "id": "market_stall_bread#00",
+   "asset": "market_stall_bread",
+   "path": "res://assets/props/market_stall_bread.gltf",
+   "group": "square",
+   "pos": [
+    -34.0,
+    0.0,
+    -9.0
+   ],
+   "yaw_deg": 171.41
+  },
+  {
+   "id": "market_stall_pottery#00",
+   "asset": "market_stall_pottery",
+   "path": "res://assets/props/market_stall_pottery.gltf",
+   "group": "square",
+   "pos": [
+    -48.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 191.46
+  },
+  {
+   "id": "cart#00",
+   "asset": "cart",
+   "path": "res://assets/props/cart.gltf",
+   "group": "square",
+   "pos": [
+    -28.0,
+    0.0,
+    12.0
+   ],
+   "yaw_deg": 34.38
+  },
+  {
+   "id": "tree#00",
+   "asset": "tree",
+   "path": "res://assets/props/tree.gltf",
+   "group": "square",
+   "pos": [
+    -52.0,
+    0.0,
+    14.0
+   ],
+   "yaw_deg": 254.47
+  },
+  {
+   "id": "tree#01",
+   "asset": "tree",
+   "path": "res://assets/props/tree.gltf",
+   "group": "square",
+   "pos": [
+    -24.0,
+    0.0,
+    -13.0
+   ],
+   "yaw_deg": 129.2
+  },
+  {
+   "id": "bench#04",
+   "asset": "bench",
+   "path": "res://assets/props/bench.gltf",
+   "group": "square",
+   "pos": [
+    -30.0,
+    0.0,
+    2.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "bench#05",
+   "asset": "bench",
+   "path": "res://assets/props/bench.gltf",
+   "group": "square",
+   "pos": [
+    -50.0,
+    0.0,
+    -2.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "street_lantern#05",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -10.0,
+    0.0,
+    4.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#06",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    8.0,
+    0.0,
+    -4.2
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "street_lantern#07",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    26.0,
+    0.0,
+    4.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#08",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    44.0,
+    0.0,
+    -4.2
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "street_lantern#09",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    62.0,
+    0.0,
+    4.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#10",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    80.0,
+    0.0,
+    -4.2
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "street_lantern#11",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    98.0,
+    0.0,
+    4.2
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#12",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -26.0,
+    0.0,
+    -16.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "street_lantern#13",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -26.0,
+    0.0,
+    16.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#14",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -56.0,
+    0.0,
+    -14.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "street_lantern#15",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -56.0,
+    0.0,
+    14.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "castle_hill#00",
+   "asset": "castle_hill",
+   "path": "res://assets/architecture/castle_hill.gltf",
+   "group": "backdrop",
+   "pos": [
+    -40.0,
+    10.0,
+    -330.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "city_backdrop#00",
+   "asset": "city_backdrop",
+   "path": "res://assets/architecture/city_backdrop.gltf",
+   "group": "backdrop",
+   "pos": [
+    420.0,
+    0.0,
+    20.0
+   ],
+   "yaw_deg": 270.0
+  }
+ ],
+ "markers": [
+  {
+   "name": "MARK_window_0@house_timber_b#00",
+   "kind": "window",
+   "pos": [
+    -15.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#00",
+   "kind": "window",
+   "pos": [
+    -15.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#00",
+   "kind": "window",
+   "pos": [
+    -15.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_door@house_timber_b#00",
+   "kind": "door",
+   "pos": [
+    -15.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#00",
+   "kind": "interior",
+   "pos": [
+    -15.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#00",
+   "kind": "window",
+   "pos": [
+    -7.75,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#00"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#00",
+   "kind": "window",
+   "pos": [
+    -7.75,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#00"
+  },
+  {
+   "name": "MARK_door@house_timber_c#00",
+   "kind": "door",
+   "pos": [
+    -7.75,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#00"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#00",
+   "kind": "interior",
+   "pos": [
+    -7.75,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#00",
+   "kind": "window",
+   "pos": [
+    -0.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#00",
+   "kind": "window",
+   "pos": [
+    -0.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#00",
+   "kind": "window",
+   "pos": [
+    -0.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_door@house_timber_d#00",
+   "kind": "door",
+   "pos": [
+    -0.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#00",
+   "kind": "interior",
+   "pos": [
+    -0.5,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#01",
+   "kind": "window",
+   "pos": [
+    4.4,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#01"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#01",
+   "kind": "window",
+   "pos": [
+    4.4,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#01"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#01",
+   "kind": "window",
+   "pos": [
+    4.4,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#01"
+  },
+  {
+   "name": "MARK_door@house_timber_b#01",
+   "kind": "door",
+   "pos": [
+    4.4,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#01"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#01",
+   "kind": "interior",
+   "pos": [
+    4.4,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#01"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#00",
+   "kind": "window",
+   "pos": [
+    18.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#00"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#00",
+   "kind": "window",
+   "pos": [
+    18.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#00"
+  },
+  {
+   "name": "MARK_door@house_timber_a#00",
+   "kind": "door",
+   "pos": [
+    18.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#00"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#00",
+   "kind": "interior",
+   "pos": [
+    18.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#01",
+   "kind": "window",
+   "pos": [
+    25.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#01"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#01",
+   "kind": "window",
+   "pos": [
+    25.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#01"
+  },
+  {
+   "name": "MARK_door@house_timber_c#01",
+   "kind": "door",
+   "pos": [
+    25.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#01"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#01",
+   "kind": "interior",
+   "pos": [
+    25.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#01"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#01",
+   "kind": "window",
+   "pos": [
+    32.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#01"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#01",
+   "kind": "window",
+   "pos": [
+    32.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#01"
+  },
+  {
+   "name": "MARK_door@house_timber_a#01",
+   "kind": "door",
+   "pos": [
+    32.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#01"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#01",
+   "kind": "interior",
+   "pos": [
+    32.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#01"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#01",
+   "kind": "window",
+   "pos": [
+    40.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#01",
+   "kind": "window",
+   "pos": [
+    40.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#01",
+   "kind": "window",
+   "pos": [
+    40.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_door@house_timber_d#01",
+   "kind": "door",
+   "pos": [
+    40.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#01",
+   "kind": "interior",
+   "pos": [
+    40.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#02",
+   "kind": "window",
+   "pos": [
+    47.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#02"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#02",
+   "kind": "window",
+   "pos": [
+    47.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#02"
+  },
+  {
+   "name": "MARK_door@house_timber_c#02",
+   "kind": "door",
+   "pos": [
+    47.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#02"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#02",
+   "kind": "interior",
+   "pos": [
+    47.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#02"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#02",
+   "kind": "window",
+   "pos": [
+    55.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#02"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#02",
+   "kind": "window",
+   "pos": [
+    55.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#02"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#02",
+   "kind": "window",
+   "pos": [
+    55.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#02"
+  },
+  {
+   "name": "MARK_door@house_timber_b#02",
+   "kind": "door",
+   "pos": [
+    55.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#02"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#02",
+   "kind": "interior",
+   "pos": [
+    55.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#02"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#02",
+   "kind": "window",
+   "pos": [
+    64.1,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#02"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#02",
+   "kind": "window",
+   "pos": [
+    64.1,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#02"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#02",
+   "kind": "window",
+   "pos": [
+    64.1,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#02"
+  },
+  {
+   "name": "MARK_door@house_timber_d#02",
+   "kind": "door",
+   "pos": [
+    64.1,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#02"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#02",
+   "kind": "interior",
+   "pos": [
+    64.1,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#02"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#03",
+   "kind": "window",
+   "pos": [
+    72.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#03"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#03",
+   "kind": "window",
+   "pos": [
+    72.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#03"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#03",
+   "kind": "window",
+   "pos": [
+    72.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#03"
+  },
+  {
+   "name": "MARK_door@house_timber_b#03",
+   "kind": "door",
+   "pos": [
+    72.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#03"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#03",
+   "kind": "interior",
+   "pos": [
+    72.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#03"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#02",
+   "kind": "window",
+   "pos": [
+    80.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#02"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#02",
+   "kind": "window",
+   "pos": [
+    80.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#02"
+  },
+  {
+   "name": "MARK_door@house_timber_a#02",
+   "kind": "door",
+   "pos": [
+    80.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#02"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#02",
+   "kind": "interior",
+   "pos": [
+    80.85,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#02"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#03",
+   "kind": "window",
+   "pos": [
+    88.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#03"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#03",
+   "kind": "window",
+   "pos": [
+    88.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#03"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#03",
+   "kind": "window",
+   "pos": [
+    88.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#03"
+  },
+  {
+   "name": "MARK_door@house_timber_d#03",
+   "kind": "door",
+   "pos": [
+    88.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#03"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#03",
+   "kind": "interior",
+   "pos": [
+    88.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#03"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#03",
+   "kind": "window",
+   "pos": [
+    96.35,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#03"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#03",
+   "kind": "window",
+   "pos": [
+    96.35,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#03"
+  },
+  {
+   "name": "MARK_door@house_timber_a#03",
+   "kind": "door",
+   "pos": [
+    96.35,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#03"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#03",
+   "kind": "interior",
+   "pos": [
+    96.35,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#03"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#04",
+   "kind": "window",
+   "pos": [
+    104.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#04"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#04",
+   "kind": "window",
+   "pos": [
+    104.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#04"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#04",
+   "kind": "window",
+   "pos": [
+    104.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#04"
+  },
+  {
+   "name": "MARK_door@house_timber_b#04",
+   "kind": "door",
+   "pos": [
+    104.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#04"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#04",
+   "kind": "interior",
+   "pos": [
+    104.6,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#04"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#04",
+   "kind": "window",
+   "pos": [
+    111.25,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#04"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#04",
+   "kind": "window",
+   "pos": [
+    111.25,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#04"
+  },
+  {
+   "name": "MARK_door@house_timber_a#04",
+   "kind": "door",
+   "pos": [
+    111.25,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#04"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#04",
+   "kind": "interior",
+   "pos": [
+    111.25,
+    0.0,
+    -10.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#04"
+  },
+  {
+   "name": "MARK_window_0@tavern#00",
+   "kind": "window",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "tavern#00"
+  },
+  {
+   "name": "MARK_window_1@tavern#00",
+   "kind": "window",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "tavern#00"
+  },
+  {
+   "name": "MARK_window_2@tavern#00",
+   "kind": "window",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "tavern#00"
+  },
+  {
+   "name": "MARK_window_3@tavern#00",
+   "kind": "window",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "tavern#00"
+  },
+  {
+   "name": "MARK_door@tavern#00",
+   "kind": "door",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "tavern#00"
+  },
+  {
+   "name": "MARK_interior@tavern#00",
+   "kind": "interior",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "tavern#00"
+  },
+  {
+   "name": "MARK_innkeeper@tavern#00",
+   "kind": "npc_slot",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "tavern#00"
+  },
+  {
+   "name": "MARK_inn@tavern#00",
+   "kind": "inn",
+   "pos": [
+    40.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "tavern#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#03",
+   "kind": "window",
+   "pos": [
+    111.75,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#03"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#03",
+   "kind": "window",
+   "pos": [
+    111.75,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#03"
+  },
+  {
+   "name": "MARK_door@house_timber_c#03",
+   "kind": "door",
+   "pos": [
+    111.75,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#03"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#03",
+   "kind": "interior",
+   "pos": [
+    111.75,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#03"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#04",
+   "kind": "window",
+   "pos": [
+    104.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#04"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#04",
+   "kind": "window",
+   "pos": [
+    104.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#04"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#04",
+   "kind": "window",
+   "pos": [
+    104.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#04"
+  },
+  {
+   "name": "MARK_door@house_timber_d#04",
+   "kind": "door",
+   "pos": [
+    104.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#04"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#04",
+   "kind": "interior",
+   "pos": [
+    104.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#04"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#05",
+   "kind": "window",
+   "pos": [
+    96.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#05"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#05",
+   "kind": "window",
+   "pos": [
+    96.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#05"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#05",
+   "kind": "window",
+   "pos": [
+    96.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#05"
+  },
+  {
+   "name": "MARK_door@house_timber_b#05",
+   "kind": "door",
+   "pos": [
+    96.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#05"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#05",
+   "kind": "interior",
+   "pos": [
+    96.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#05"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#05",
+   "kind": "window",
+   "pos": [
+    87.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#05"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#05",
+   "kind": "window",
+   "pos": [
+    87.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#05"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#05",
+   "kind": "window",
+   "pos": [
+    87.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#05"
+  },
+  {
+   "name": "MARK_door@house_timber_d#05",
+   "kind": "door",
+   "pos": [
+    87.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#05"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#05",
+   "kind": "interior",
+   "pos": [
+    87.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#05"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#04",
+   "kind": "window",
+   "pos": [
+    80.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#04"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#04",
+   "kind": "window",
+   "pos": [
+    80.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#04"
+  },
+  {
+   "name": "MARK_door@house_timber_c#04",
+   "kind": "door",
+   "pos": [
+    80.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#04"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#04",
+   "kind": "interior",
+   "pos": [
+    80.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#04"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#06",
+   "kind": "window",
+   "pos": [
+    73.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#06"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#06",
+   "kind": "window",
+   "pos": [
+    73.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#06"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#06",
+   "kind": "window",
+   "pos": [
+    73.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#06"
+  },
+  {
+   "name": "MARK_door@house_timber_d#06",
+   "kind": "door",
+   "pos": [
+    73.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#06"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#06",
+   "kind": "interior",
+   "pos": [
+    73.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#06"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#06",
+   "kind": "window",
+   "pos": [
+    64.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#06"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#06",
+   "kind": "window",
+   "pos": [
+    64.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#06"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#06",
+   "kind": "window",
+   "pos": [
+    64.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#06"
+  },
+  {
+   "name": "MARK_door@house_timber_b#06",
+   "kind": "door",
+   "pos": [
+    64.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#06"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#06",
+   "kind": "interior",
+   "pos": [
+    64.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#06"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#07",
+   "kind": "window",
+   "pos": [
+    56.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#07"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#07",
+   "kind": "window",
+   "pos": [
+    56.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#07"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#07",
+   "kind": "window",
+   "pos": [
+    56.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#07"
+  },
+  {
+   "name": "MARK_door@house_timber_d#07",
+   "kind": "door",
+   "pos": [
+    56.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#07"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#07",
+   "kind": "interior",
+   "pos": [
+    56.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#07"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#07",
+   "kind": "window",
+   "pos": [
+    50.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#07"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#07",
+   "kind": "window",
+   "pos": [
+    50.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#07"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#07",
+   "kind": "window",
+   "pos": [
+    50.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#07"
+  },
+  {
+   "name": "MARK_door@house_timber_b#07",
+   "kind": "door",
+   "pos": [
+    50.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#07"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#07",
+   "kind": "interior",
+   "pos": [
+    50.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#07"
+  },
+  {
+   "name": "MARK_window_0@house_burgher_c#00",
+   "kind": "window",
+   "pos": [
+    30.25,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#00"
+  },
+  {
+   "name": "MARK_window_1@house_burgher_c#00",
+   "kind": "window",
+   "pos": [
+    30.25,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#00"
+  },
+  {
+   "name": "MARK_window_2@house_burgher_c#00",
+   "kind": "window",
+   "pos": [
+    30.25,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#00"
+  },
+  {
+   "name": "MARK_door@house_burgher_c#00",
+   "kind": "door",
+   "pos": [
+    30.25,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#00"
+  },
+  {
+   "name": "MARK_interior@house_burgher_c#00",
+   "kind": "interior",
+   "pos": [
+    30.25,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#08",
+   "kind": "window",
+   "pos": [
+    22.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#08"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#08",
+   "kind": "window",
+   "pos": [
+    22.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#08"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#08",
+   "kind": "window",
+   "pos": [
+    22.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#08"
+  },
+  {
+   "name": "MARK_door@house_timber_d#08",
+   "kind": "door",
+   "pos": [
+    22.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#08"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#08",
+   "kind": "interior",
+   "pos": [
+    22.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#08"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#08",
+   "kind": "window",
+   "pos": [
+    14.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#08"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#08",
+   "kind": "window",
+   "pos": [
+    14.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#08"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#08",
+   "kind": "window",
+   "pos": [
+    14.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#08"
+  },
+  {
+   "name": "MARK_door@house_timber_b#08",
+   "kind": "door",
+   "pos": [
+    14.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#08"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#08",
+   "kind": "interior",
+   "pos": [
+    14.0,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#08"
+  },
+  {
+   "name": "MARK_window_0@house_burgher_c#01",
+   "kind": "window",
+   "pos": [
+    5.75,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#01"
+  },
+  {
+   "name": "MARK_window_1@house_burgher_c#01",
+   "kind": "window",
+   "pos": [
+    5.75,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#01"
+  },
+  {
+   "name": "MARK_window_2@house_burgher_c#01",
+   "kind": "window",
+   "pos": [
+    5.75,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#01"
+  },
+  {
+   "name": "MARK_door@house_burgher_c#01",
+   "kind": "door",
+   "pos": [
+    5.75,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#01"
+  },
+  {
+   "name": "MARK_interior@house_burgher_c#01",
+   "kind": "interior",
+   "pos": [
+    5.75,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_burgher_c#01"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#05",
+   "kind": "window",
+   "pos": [
+    -1.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#05"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#05",
+   "kind": "window",
+   "pos": [
+    -1.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#05"
+  },
+  {
+   "name": "MARK_door@house_timber_c#05",
+   "kind": "door",
+   "pos": [
+    -1.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#05"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#05",
+   "kind": "interior",
+   "pos": [
+    -1.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#05"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#05",
+   "kind": "window",
+   "pos": [
+    -8.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#05"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#05",
+   "kind": "window",
+   "pos": [
+    -8.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#05"
+  },
+  {
+   "name": "MARK_door@house_timber_a#05",
+   "kind": "door",
+   "pos": [
+    -8.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#05"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#05",
+   "kind": "interior",
+   "pos": [
+    -8.25,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#05"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#09",
+   "kind": "window",
+   "pos": [
+    -15.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#09"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#09",
+   "kind": "window",
+   "pos": [
+    -15.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#09"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#09",
+   "kind": "window",
+   "pos": [
+    -15.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#09"
+  },
+  {
+   "name": "MARK_door@house_timber_b#09",
+   "kind": "door",
+   "pos": [
+    -15.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#09"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#09",
+   "kind": "interior",
+   "pos": [
+    -15.5,
+    0.0,
+    10.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#09"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#06",
+   "kind": "window",
+   "pos": [
+    -56.25,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#06"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#06",
+   "kind": "window",
+   "pos": [
+    -56.25,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#06"
+  },
+  {
+   "name": "MARK_door@house_timber_a#06",
+   "kind": "door",
+   "pos": [
+    -56.25,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#06"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#06",
+   "kind": "interior",
+   "pos": [
+    -56.25,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#06"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#10",
+   "kind": "window",
+   "pos": [
+    -48.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#10"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#10",
+   "kind": "window",
+   "pos": [
+    -48.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#10"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#10",
+   "kind": "window",
+   "pos": [
+    -48.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#10"
+  },
+  {
+   "name": "MARK_door@house_timber_b#10",
+   "kind": "door",
+   "pos": [
+    -48.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#10"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#10",
+   "kind": "interior",
+   "pos": [
+    -48.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#10"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#09",
+   "kind": "window",
+   "pos": [
+    -39.5,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#09"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#09",
+   "kind": "window",
+   "pos": [
+    -39.5,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#09"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#09",
+   "kind": "window",
+   "pos": [
+    -39.5,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#09"
+  },
+  {
+   "name": "MARK_door@house_timber_d#09",
+   "kind": "door",
+   "pos": [
+    -39.5,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#09"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#09",
+   "kind": "interior",
+   "pos": [
+    -39.5,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#09"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#11",
+   "kind": "window",
+   "pos": [
+    -31.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#11"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#11",
+   "kind": "window",
+   "pos": [
+    -31.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#11"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#11",
+   "kind": "window",
+   "pos": [
+    -31.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#11"
+  },
+  {
+   "name": "MARK_door@house_timber_b#11",
+   "kind": "door",
+   "pos": [
+    -31.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#11"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#11",
+   "kind": "interior",
+   "pos": [
+    -31.0,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#11"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#07",
+   "kind": "window",
+   "pos": [
+    -23.75,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#07"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#07",
+   "kind": "window",
+   "pos": [
+    -23.75,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#07"
+  },
+  {
+   "name": "MARK_door@house_timber_a#07",
+   "kind": "door",
+   "pos": [
+    -23.75,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#07"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#07",
+   "kind": "interior",
+   "pos": [
+    -23.75,
+    0.0,
+    -25.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#07"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#12",
+   "kind": "window",
+   "pos": [
+    -24.5,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#12"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#12",
+   "kind": "window",
+   "pos": [
+    -24.5,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#12"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#12",
+   "kind": "window",
+   "pos": [
+    -24.5,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#12"
+  },
+  {
+   "name": "MARK_door@house_timber_b#12",
+   "kind": "door",
+   "pos": [
+    -24.5,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#12"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#12",
+   "kind": "interior",
+   "pos": [
+    -24.5,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#12"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#06",
+   "kind": "window",
+   "pos": [
+    -32.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#06"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#06",
+   "kind": "window",
+   "pos": [
+    -32.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#06"
+  },
+  {
+   "name": "MARK_door@house_timber_c#06",
+   "kind": "door",
+   "pos": [
+    -32.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#06"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#06",
+   "kind": "interior",
+   "pos": [
+    -32.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_c#06"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#13",
+   "kind": "window",
+   "pos": [
+    -40.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#13"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#13",
+   "kind": "window",
+   "pos": [
+    -40.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#13"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#13",
+   "kind": "window",
+   "pos": [
+    -40.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#13"
+  },
+  {
+   "name": "MARK_door@house_timber_b#13",
+   "kind": "door",
+   "pos": [
+    -40.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#13"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#13",
+   "kind": "interior",
+   "pos": [
+    -40.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#13"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#08",
+   "kind": "window",
+   "pos": [
+    -48.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#08"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#08",
+   "kind": "window",
+   "pos": [
+    -48.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#08"
+  },
+  {
+   "name": "MARK_door@house_timber_a#08",
+   "kind": "door",
+   "pos": [
+    -48.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#08"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#08",
+   "kind": "interior",
+   "pos": [
+    -48.25,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#08"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#10",
+   "kind": "window",
+   "pos": [
+    -56.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#10"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#10",
+   "kind": "window",
+   "pos": [
+    -56.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#10"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#10",
+   "kind": "window",
+   "pos": [
+    -56.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#10"
+  },
+  {
+   "name": "MARK_door@house_timber_d#10",
+   "kind": "door",
+   "pos": [
+    -56.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#10"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#10",
+   "kind": "interior",
+   "pos": [
+    -56.0,
+    0.0,
+    25.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#10"
+  },
+  {
+   "name": "MARK_gate_front@bridge_tower_lesser#00",
+   "kind": "gate",
+   "pos": [
+    121.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "bridge_tower_lesser#00"
+  },
+  {
+   "name": "MARK_gate_back@bridge_tower_lesser#00",
+   "kind": "gate",
+   "pos": [
+    121.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "bridge_tower_lesser#00"
+  },
+  {
+   "name": "MARK_stairs_bottom@castle_stairs#00",
+   "kind": "poi",
+   "pos": [
+    12.0,
+    0.0,
+    -19.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "castle_stairs#00"
+  },
+  {
+   "name": "MARK_stairs_top@castle_stairs#00",
+   "kind": "poi",
+   "pos": [
+    12.0,
+    0.0,
+    -19.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "castle_stairs#00"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#00",
+   "kind": "ledge",
+   "pos": [
+    0.9,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#00"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#01",
+   "kind": "ledge",
+   "pos": [
+    -15.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#01"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#02",
+   "kind": "ledge",
+   "pos": [
+    -31.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#02"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#03",
+   "kind": "ledge",
+   "pos": [
+    -47.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#03"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#04",
+   "kind": "ledge",
+   "pos": [
+    -63.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#04"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#05",
+   "kind": "ledge",
+   "pos": [
+    -79.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#05"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#06",
+   "kind": "ledge",
+   "pos": [
+    -95.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#06"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall_niche#00",
+   "kind": "ledge",
+   "pos": [
+    23.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall_niche#00"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#07",
+   "kind": "ledge",
+   "pos": [
+    39.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#07"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#08",
+   "kind": "ledge",
+   "pos": [
+    55.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#08"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#09",
+   "kind": "ledge",
+   "pos": [
+    71.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#09"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#10",
+   "kind": "ledge",
+   "pos": [
+    87.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#10"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#11",
+   "kind": "ledge",
+   "pos": [
+    103.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#11"
+  },
+  {
+   "name": "MARK_ledge@retaining_wall#12",
+   "kind": "ledge",
+   "pos": [
+    119.1,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "retaining_wall#12"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#11",
+   "kind": "window",
+   "pos": [
+    -52.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#11"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#11",
+   "kind": "window",
+   "pos": [
+    -52.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#11"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#11",
+   "kind": "window",
+   "pos": [
+    -52.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#11"
+  },
+  {
+   "name": "MARK_door@house_timber_d#11",
+   "kind": "door",
+   "pos": [
+    -52.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#11"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#11",
+   "kind": "interior",
+   "pos": [
+    -52.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#11"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#07",
+   "kind": "window",
+   "pos": [
+    -44.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#07"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#07",
+   "kind": "window",
+   "pos": [
+    -44.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#07"
+  },
+  {
+   "name": "MARK_door@house_timber_c#07",
+   "kind": "door",
+   "pos": [
+    -44.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#07"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#07",
+   "kind": "interior",
+   "pos": [
+    -44.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#07"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#09",
+   "kind": "window",
+   "pos": [
+    -37.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#09"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#09",
+   "kind": "window",
+   "pos": [
+    -37.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#09"
+  },
+  {
+   "name": "MARK_door@house_timber_a#09",
+   "kind": "door",
+   "pos": [
+    -37.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#09"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#09",
+   "kind": "interior",
+   "pos": [
+    -37.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#09"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#08",
+   "kind": "window",
+   "pos": [
+    -30.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#08"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#08",
+   "kind": "window",
+   "pos": [
+    -30.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#08"
+  },
+  {
+   "name": "MARK_door@house_timber_c#08",
+   "kind": "door",
+   "pos": [
+    -30.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#08"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#08",
+   "kind": "interior",
+   "pos": [
+    -30.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#08"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#12",
+   "kind": "window",
+   "pos": [
+    -23.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#12"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#12",
+   "kind": "window",
+   "pos": [
+    -23.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#12"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#12",
+   "kind": "window",
+   "pos": [
+    -23.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#12"
+  },
+  {
+   "name": "MARK_door@house_timber_d#12",
+   "kind": "door",
+   "pos": [
+    -23.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#12"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#12",
+   "kind": "interior",
+   "pos": [
+    -23.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#12"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#14",
+   "kind": "window",
+   "pos": [
+    -15.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#14"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#14",
+   "kind": "window",
+   "pos": [
+    -15.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#14"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#14",
+   "kind": "window",
+   "pos": [
+    -15.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#14"
+  },
+  {
+   "name": "MARK_door@house_timber_b#14",
+   "kind": "door",
+   "pos": [
+    -15.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#14"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#14",
+   "kind": "interior",
+   "pos": [
+    -15.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#14"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#10",
+   "kind": "window",
+   "pos": [
+    -6.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#10"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#10",
+   "kind": "window",
+   "pos": [
+    -6.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#10"
+  },
+  {
+   "name": "MARK_door@house_timber_a#10",
+   "kind": "door",
+   "pos": [
+    -6.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#10"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#10",
+   "kind": "interior",
+   "pos": [
+    -6.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_a#10"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#15",
+   "kind": "window",
+   "pos": [
+    1.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#15"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#15",
+   "kind": "window",
+   "pos": [
+    1.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#15"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#15",
+   "kind": "window",
+   "pos": [
+    1.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#15"
+  },
+  {
+   "name": "MARK_door@house_timber_b#15",
+   "kind": "door",
+   "pos": [
+    1.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#15"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#15",
+   "kind": "interior",
+   "pos": [
+    1.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#15"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#13",
+   "kind": "window",
+   "pos": [
+    10.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#13"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#13",
+   "kind": "window",
+   "pos": [
+    10.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#13"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#13",
+   "kind": "window",
+   "pos": [
+    10.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#13"
+  },
+  {
+   "name": "MARK_door@house_timber_d#13",
+   "kind": "door",
+   "pos": [
+    10.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#13"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#13",
+   "kind": "interior",
+   "pos": [
+    10.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#13"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#16",
+   "kind": "window",
+   "pos": [
+    18.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#16"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#16",
+   "kind": "window",
+   "pos": [
+    18.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#16"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#16",
+   "kind": "window",
+   "pos": [
+    18.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#16"
+  },
+  {
+   "name": "MARK_door@house_timber_b#16",
+   "kind": "door",
+   "pos": [
+    18.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#16"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#16",
+   "kind": "interior",
+   "pos": [
+    18.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#16"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#09",
+   "kind": "window",
+   "pos": [
+    26.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#09"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#09",
+   "kind": "window",
+   "pos": [
+    26.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#09"
+  },
+  {
+   "name": "MARK_door@house_timber_c#09",
+   "kind": "door",
+   "pos": [
+    26.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#09"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#09",
+   "kind": "interior",
+   "pos": [
+    26.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#09"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#14",
+   "kind": "window",
+   "pos": [
+    33.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#14"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#14",
+   "kind": "window",
+   "pos": [
+    33.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#14"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#14",
+   "kind": "window",
+   "pos": [
+    33.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#14"
+  },
+  {
+   "name": "MARK_door@house_timber_d#14",
+   "kind": "door",
+   "pos": [
+    33.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#14"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#14",
+   "kind": "interior",
+   "pos": [
+    33.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#14"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#17",
+   "kind": "window",
+   "pos": [
+    42.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#17"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#17",
+   "kind": "window",
+   "pos": [
+    42.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#17"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#17",
+   "kind": "window",
+   "pos": [
+    42.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#17"
+  },
+  {
+   "name": "MARK_door@house_timber_b#17",
+   "kind": "door",
+   "pos": [
+    42.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#17"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#17",
+   "kind": "interior",
+   "pos": [
+    42.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#17"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#10",
+   "kind": "window",
+   "pos": [
+    49.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#10"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#10",
+   "kind": "window",
+   "pos": [
+    49.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#10"
+  },
+  {
+   "name": "MARK_door@house_timber_c#10",
+   "kind": "door",
+   "pos": [
+    49.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#10"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#10",
+   "kind": "interior",
+   "pos": [
+    49.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#10"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#18",
+   "kind": "window",
+   "pos": [
+    57.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#18"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#18",
+   "kind": "window",
+   "pos": [
+    57.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#18"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#18",
+   "kind": "window",
+   "pos": [
+    57.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#18"
+  },
+  {
+   "name": "MARK_door@house_timber_b#18",
+   "kind": "door",
+   "pos": [
+    57.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#18"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#18",
+   "kind": "interior",
+   "pos": [
+    57.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#18"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#11",
+   "kind": "window",
+   "pos": [
+    65.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#11"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#11",
+   "kind": "window",
+   "pos": [
+    65.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#11"
+  },
+  {
+   "name": "MARK_door@house_timber_c#11",
+   "kind": "door",
+   "pos": [
+    65.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#11"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#11",
+   "kind": "interior",
+   "pos": [
+    65.25,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#11"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#15",
+   "kind": "window",
+   "pos": [
+    72.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#15"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#15",
+   "kind": "window",
+   "pos": [
+    72.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#15"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#15",
+   "kind": "window",
+   "pos": [
+    72.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#15"
+  },
+  {
+   "name": "MARK_door@house_timber_d#15",
+   "kind": "door",
+   "pos": [
+    72.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#15"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#15",
+   "kind": "interior",
+   "pos": [
+    72.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#15"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#19",
+   "kind": "window",
+   "pos": [
+    81.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#19"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#19",
+   "kind": "window",
+   "pos": [
+    81.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#19"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#19",
+   "kind": "window",
+   "pos": [
+    81.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#19"
+  },
+  {
+   "name": "MARK_door@house_timber_b#19",
+   "kind": "door",
+   "pos": [
+    81.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#19"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#19",
+   "kind": "interior",
+   "pos": [
+    81.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#19"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#16",
+   "kind": "window",
+   "pos": [
+    89.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#16"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#16",
+   "kind": "window",
+   "pos": [
+    89.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#16"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#16",
+   "kind": "window",
+   "pos": [
+    89.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#16"
+  },
+  {
+   "name": "MARK_door@house_timber_d#16",
+   "kind": "door",
+   "pos": [
+    89.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#16"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#16",
+   "kind": "interior",
+   "pos": [
+    89.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_d#16"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#20",
+   "kind": "window",
+   "pos": [
+    98.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#20"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#20",
+   "kind": "window",
+   "pos": [
+    98.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#20"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#20",
+   "kind": "window",
+   "pos": [
+    98.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#20"
+  },
+  {
+   "name": "MARK_door@house_timber_b#20",
+   "kind": "door",
+   "pos": [
+    98.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#20"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#20",
+   "kind": "interior",
+   "pos": [
+    98.0,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#20"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#12",
+   "kind": "window",
+   "pos": [
+    105.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#12"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#12",
+   "kind": "window",
+   "pos": [
+    105.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#12"
+  },
+  {
+   "name": "MARK_door@house_timber_c#12",
+   "kind": "door",
+   "pos": [
+    105.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#12"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#12",
+   "kind": "interior",
+   "pos": [
+    105.75,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_c#12"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#21",
+   "kind": "window",
+   "pos": [
+    107.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#21"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#21",
+   "kind": "window",
+   "pos": [
+    107.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#21"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#21",
+   "kind": "window",
+   "pos": [
+    107.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#21"
+  },
+  {
+   "name": "MARK_door@house_timber_b#21",
+   "kind": "door",
+   "pos": [
+    107.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#21"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#21",
+   "kind": "interior",
+   "pos": [
+    107.5,
+    0.0,
+    -52.5
+   ],
+   "yaw_deg": 0.0,
+   "owner": "house_timber_b#21"
+  },
+  {
+   "name": "MARK_gate_front@gate_tower#00",
+   "kind": "gate",
+   "pos": [
+    -62.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "gate_tower#00"
+  },
+  {
+   "name": "MARK_gate_back@gate_tower#00",
+   "kind": "gate",
+   "pos": [
+    -62.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "gate_tower#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_c#13",
+   "kind": "window",
+   "pos": [
+    118.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "house_timber_c#13"
+  },
+  {
+   "name": "MARK_window_1@house_timber_c#13",
+   "kind": "window",
+   "pos": [
+    118.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "house_timber_c#13"
+  },
+  {
+   "name": "MARK_door@house_timber_c#13",
+   "kind": "door",
+   "pos": [
+    118.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "house_timber_c#13"
+  },
+  {
+   "name": "MARK_interior@house_timber_c#13",
+   "kind": "interior",
+   "pos": [
+    118.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "house_timber_c#13"
+  },
+  {
+   "name": "MARK_merchant@market_stall_produce#00",
+   "kind": "merchant",
+   "pos": [
+    -42.0,
+    0.0,
+    9.0
+   ],
+   "yaw_deg": 11.5,
+   "owner": "market_stall_produce#00"
+  },
+  {
+   "name": "MARK_customer@market_stall_produce#00",
+   "kind": "customer",
+   "pos": [
+    -42.0,
+    0.0,
+    9.0
+   ],
+   "yaw_deg": 11.5,
+   "owner": "market_stall_produce#00"
+  },
+  {
+   "name": "MARK_merchant@market_stall_bread#00",
+   "kind": "merchant",
+   "pos": [
+    -34.0,
+    0.0,
+    -9.0
+   ],
+   "yaw_deg": 171.4,
+   "owner": "market_stall_bread#00"
+  },
+  {
+   "name": "MARK_customer@market_stall_bread#00",
+   "kind": "customer",
+   "pos": [
+    -34.0,
+    0.0,
+    -9.0
+   ],
+   "yaw_deg": 171.4,
+   "owner": "market_stall_bread#00"
+  },
+  {
+   "name": "MARK_merchant@market_stall_pottery#00",
+   "kind": "merchant",
+   "pos": [
+    -48.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 191.5,
+   "owner": "market_stall_pottery#00"
+  },
+  {
+   "name": "MARK_customer@market_stall_pottery#00",
+   "kind": "customer",
+   "pos": [
+    -48.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 191.5,
+   "owner": "market_stall_pottery#00"
+  },
+  {
+   "name": "MARK_player_start",
+   "kind": "player",
+   "pos": [
+    96.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "name": "MARK_exit_charles_bridge",
+   "kind": "exit",
+   "pos": [
+    110.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 270.0,
+   "leads_to": "charles_bridge"
+  },
+  {
+   "name": "MARK_exit_castle",
+   "kind": "exit",
+   "pos": [
+    -52.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 90.0,
+   "leads_to": "castle"
+  },
+  {
+   "name": "MARK_spawn_alchemist_00",
+   "kind": "spawn",
+   "pos": [
+    0.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "alchemist",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_alchemist_01",
+   "kind": "spawn",
+   "pos": [
+    62.0,
+    8.0,
+    -40.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "alchemist",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_02",
+   "kind": "spawn",
+   "pos": [
+    -40.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_03",
+   "kind": "spawn",
+   "pos": [
+    -37.0,
+    0.0,
+    -4.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_04",
+   "kind": "spawn",
+   "pos": [
+    -43.0,
+    0.0,
+    4.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_golem_05",
+   "kind": "spawn",
+   "pos": [
+    72.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "golem",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_06",
+   "kind": "spawn",
+   "pos": [
+    14.0,
+    8.0,
+    -39.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_alchemist_07",
+   "kind": "spawn",
+   "pos": [
+    40.0,
+    0.0,
+    -1.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "alchemist",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_08",
+   "kind": "spawn",
+   "pos": [
+    90.0,
+    0.0,
+    -2.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_wander_00",
+   "kind": "wander",
+   "pos": [
+    90.0,
+    0.0,
+    -1.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_01",
+   "kind": "wander",
+   "pos": [
+    60.0,
+    0.0,
+    1.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_02",
+   "kind": "wander",
+   "pos": [
+    25.0,
+    0.0,
+    -1.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_03",
+   "kind": "wander",
+   "pos": [
+    -10.0,
+    0.0,
+    1.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_04",
+   "kind": "wander",
+   "pos": [
+    -30.0,
+    0.0,
+    -6.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_05",
+   "kind": "wander",
+   "pos": [
+    -50.0,
+    0.0,
+    6.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_06",
+   "kind": "wander",
+   "pos": [
+    -30.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_07",
+   "kind": "wander",
+   "pos": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_08",
+   "kind": "wander",
+   "pos": [
+    50.0,
+    0.0,
+    -1.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_patrol_terrace_0",
+   "kind": "patrol",
+   "pos": [
+    -40.0,
+    8.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "terrace",
+   "index": 0
+  },
+  {
+   "name": "MARK_patrol_terrace_1",
+   "kind": "patrol",
+   "pos": [
+    20.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "terrace",
+   "index": 1
+  },
+  {
+   "name": "MARK_patrol_terrace_2",
+   "kind": "patrol",
+   "pos": [
+    80.0,
+    8.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "terrace",
+   "index": 2
+  },
+  {
+   "name": "MARK_patrol_terrace_3",
+   "kind": "patrol",
+   "pos": [
+    20.0,
+    8.0,
+    -41.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "terrace",
+   "index": 3
+  }
+ ],
+ "lighting": {
+  "note": "Azimuth measured from Blender +Y (= Godot -Z, north on the level plan) towards +X (east). Lamp/window factors multiply the per-light energy and per-material emission from the glTF assets. Fire, forge and coal lights are always on.",
+  "keys": [
+   {
+    "frame": 0,
+    "sun_elevation_deg": 58,
+    "sun_azimuth_deg_from_north": 200,
+    "sun_energy": 4.5,
+    "sun_color": [
+     1.0,
+     0.93,
+     0.82
+    ],
+    "sky_zenith": [
+     0.32,
+     0.48,
+     0.78
+    ],
+    "sky_horizon": [
+     0.78,
+     0.82,
+     0.86
+    ],
+    "sky_strength": 1.0,
+    "lamp_factor": 0.0,
+    "window_emission_factor": 0.0,
+    "moon_factor": 0.0
+   },
+   {
+    "frame": 90,
+    "sun_elevation_deg": 24,
+    "sun_azimuth_deg_from_north": 245,
+    "sun_energy": 3.6,
+    "sun_color": [
+     1.0,
+     0.8,
+     0.55
+    ],
+    "sky_zenith": [
+     0.3,
+     0.42,
+     0.7
+    ],
+    "sky_horizon": [
+     0.95,
+     0.78,
+     0.55
+    ],
+    "sky_strength": 0.9,
+    "lamp_factor": 0.0,
+    "window_emission_factor": 0.0,
+    "moon_factor": 0.0
+   },
+   {
+    "frame": 150,
+    "sun_elevation_deg": 3,
+    "sun_azimuth_deg_from_north": 265,
+    "sun_energy": 1.0,
+    "sun_color": [
+     1.0,
+     0.5,
+     0.28
+    ],
+    "sky_zenith": [
+     0.14,
+     0.17,
+     0.35
+    ],
+    "sky_horizon": [
+     0.85,
+     0.45,
+     0.28
+    ],
+    "sky_strength": 0.6,
+    "lamp_factor": 1.2,
+    "window_emission_factor": 0.8,
+    "moon_factor": 0.2
+   },
+   {
+    "frame": 200,
+    "sun_elevation_deg": 42,
+    "sun_azimuth_deg_from_north": 60,
+    "sun_energy": 0.45,
+    "sun_color": [
+     0.55,
+     0.65,
+     1.0
+    ],
+    "sky_zenith": [
+     0.02,
+     0.035,
+     0.085
+    ],
+    "sky_horizon": [
+     0.06,
+     0.08,
+     0.15
+    ],
+    "sky_strength": 1.2,
+    "lamp_factor": 2.5,
+    "window_emission_factor": 1.2,
+    "moon_factor": 1.0
+   },
+   {
+    "frame": 300,
+    "sun_elevation_deg": 42,
+    "sun_azimuth_deg_from_north": 70,
+    "sun_energy": 0.45,
+    "sun_color": [
+     0.55,
+     0.65,
+     1.0
+    ],
+    "sky_zenith": [
+     0.02,
+     0.035,
+     0.085
+    ],
+    "sky_horizon": [
+     0.06,
+     0.08,
+     0.15
+    ],
+    "sky_strength": 1.2,
+    "lamp_factor": 2.5,
+    "window_emission_factor": 1.2,
+    "moon_factor": 1.0
+   },
+   {
+    "frame": 350,
+    "sun_elevation_deg": 3,
+    "sun_azimuth_deg_from_north": 100,
+    "sun_energy": 1.0,
+    "sun_color": [
+     1.0,
+     0.62,
+     0.45
+    ],
+    "sky_zenith": [
+     0.16,
+     0.2,
+     0.38
+    ],
+    "sky_horizon": [
+     0.9,
+     0.6,
+     0.5
+    ],
+    "sky_strength": 0.6,
+    "lamp_factor": 0.5,
+    "window_emission_factor": 0.5,
+    "moon_factor": 0.2
+   },
+   {
+    "frame": 400,
+    "sun_elevation_deg": 58,
+    "sun_azimuth_deg_from_north": 200,
+    "sun_energy": 4.5,
+    "sun_color": [
+     1.0,
+     0.93,
+     0.82
+    ],
+    "sky_zenith": [
+     0.32,
+     0.48,
+     0.78
+    ],
+    "sky_horizon": [
+     0.78,
+     0.82,
+     0.86
+    ],
+    "sky_strength": 1.0,
+    "lamp_factor": 0.0,
+    "window_emission_factor": 0.0,
+    "moon_factor": 0.0
+   }
+  ],
+  "cycle_frames": 400,
+  "suggested_cycle_seconds": 1200,
+  "presets": {
+   "day": {
+    "frame": 0,
+    "sun_elevation_deg": 58,
+    "sun_azimuth_deg_from_north": 200,
+    "sun_energy": 4.5,
+    "sun_color": [
+     1.0,
+     0.93,
+     0.82
+    ],
+    "sky_zenith": [
+     0.32,
+     0.48,
+     0.78
+    ],
+    "sky_horizon": [
+     0.78,
+     0.82,
+     0.86
+    ],
+    "sky_strength": 1.0,
+    "lamp_factor": 0.0,
+    "window_emission_factor": 0.0,
+    "moon_factor": 0.0
+   },
+   "dusk": {
+    "frame": 150,
+    "sun_elevation_deg": 3,
+    "sun_azimuth_deg_from_north": 265,
+    "sun_energy": 1.0,
+    "sun_color": [
+     1.0,
+     0.5,
+     0.28
+    ],
+    "sky_zenith": [
+     0.14,
+     0.17,
+     0.35
+    ],
+    "sky_horizon": [
+     0.85,
+     0.45,
+     0.28
+    ],
+    "sky_strength": 0.6,
+    "lamp_factor": 1.2,
+    "window_emission_factor": 0.8,
+    "moon_factor": 0.2
+   },
+   "night": {
+    "frame": 200,
+    "sun_elevation_deg": 42,
+    "sun_azimuth_deg_from_north": 60,
+    "sun_energy": 0.45,
+    "sun_color": [
+     0.55,
+     0.65,
+     1.0
+    ],
+    "sky_zenith": [
+     0.02,
+     0.035,
+     0.085
+    ],
+    "sky_horizon": [
+     0.06,
+     0.08,
+     0.15
+    ],
+    "sky_strength": 1.2,
+    "lamp_factor": 2.5,
+    "window_emission_factor": 1.2,
+    "moon_factor": 1.0
+   }
+  }
+ }
+}

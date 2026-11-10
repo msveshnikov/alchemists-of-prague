@@ -25,3 +25,7 @@
 
 ## Результат
 - blender/scene_old_town.blend, assets/levels/old_town_population.json, рендеры день/ночь (renders/scene/), README.md, report_task4.md.
+
+## Прогон 2
+- Население трёх новых уровней (стража, торговцы, трактирщица, рыцари, монахи, лодочники, телеги; ночью — враги), эффекты,
+  рендеры день/ночь и сравнение с артами. JSON: assets/levels/<L>_population.json. Отчёт: report_task4.md, «Прогон 2».

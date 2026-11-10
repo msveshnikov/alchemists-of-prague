@@ -241,46 +241,240 @@ def sword_attack(base, T=0.9):
     return [(0, base), (0.3, wind), (0.45, strike), (0.62, follow), (1, base)], T
 
 
+# ----------------------------------------------------------------------------- hero detail helpers (run 2)
+def belt_ring(B, s, z, rx, ry, mat, h=0.05, tilt=0.0, bones=("hips", "spine"), y=0.0, segs=18):
+    """Belt ring; `tilt` lowers the +X (character's left) side by tilt*x metres per metre (a hanging sword belt)."""
+    mb = B.part(list(bones), 3)
+    top, bot = [], []
+    for k in range(segs):
+        a = 2 * PI * k / segs
+        x, yy = rx * s * math.cos(a), ry * s * math.sin(a) + y * s
+        zz = z * s - tilt * x
+        bot.append(mb._v((x, yy, zz - h * s / 2)))
+        top.append(mb._v((x, yy, zz + h * s / 2)))
+    for k in range(segs):
+        q = (k + 1) % segs
+        mb._quad_idx([bot[k], bot[q], top[q], top[k]], mat, "world", True, False)
+    return mb
+
+
+def skirt_panels(B, s, mat, z_top, z_hem, r_top, r_hem, slits=(), jag=0.0, seed=0, rings=6, segs=28, bones=None,
+                 inner=None, thick=0.008):
+    """Two-sided skirt (outer + inner shell) open at the given slits [(angle_deg, half_width_deg)], jagged hem.
+    Angle 0 = character's left (+X), -90 = front (-Y)."""
+    rnd = random.Random(seed)
+    mb = B.part(bones or ["hips", "thigh.L", "thigh.R", "shin.L", "shin.R"], 2.5)
+
+    def cut(a_deg):
+        for c, w in slits:
+            d = (a_deg - c + 180) % 360 - 180
+            if abs(d) < w:
+                return True
+        return False
+    hem_off = [rnd.uniform(-jag, jag * 0.35) for _ in range(segs + 1)]
+    hem_off[-1] = hem_off[0]
+    for layer in (0, 1):
+        grid = []
+        for r in range(rings):
+            t = r / (rings - 1)
+            z = (z_top + (z_hem - z_top) * t) * s
+            rx = (r_top[0] + (r_hem[0] - r_top[0]) * t ** 0.8) * s - layer * thick
+            ry = (r_top[1] + (r_hem[1] - r_top[1]) * t ** 0.8) * s - layer * thick
+            row = []
+            for k in range(segs + 1):
+                a = 2 * PI * k / segs
+                zz = z + (hem_off[k] * s if r == rings - 1 else 0.0)
+                row.append(mb._v((rx * math.cos(a), ry * math.sin(a), zz)))
+            grid.append(row)
+        for r in range(rings - 1):
+            for k in range(segs):
+                am = math.degrees(2 * PI * (k + 0.5) / segs)
+                if cut(am):
+                    continue
+                q = [grid[r][k], grid[r + 1][k], grid[r + 1][k + 1], grid[r][k + 1]]
+                if layer:
+                    q = list(reversed(q))
+                mb._quad_idx(q, inner if (inner and layer) else mat, "world", True, False)
+    return mb
+
+
+def hero_head(B, j, s):
+    """Vaclav's head after concept/characters/vaclav.png: lean face, cheekbones, strong brow, short dark beard and
+    moustache, loose shoulder-length dark hair."""
+    hc = j["head"] + V((0, -0.012 * s, 0.1 * s))
+    mb = B.part(["chest", "neck", "head"], 5)
+    loft(mb, [j["neck"] - V((0, 0, 0.03 * s)), j["head"] + V((0, 0, 0.03 * s))], [0.058 * s, 0.052 * s], "M_Skin", segs=12)
+    mb = B.part(["head"], 4)
+    mb.sphere(hc + V((0, 0.004, 0.006)), (0.084 * s, 0.097 * s, 0.11 * s), "M_Skin", segs=18, rings=12)        # cranium
+    mb.sphere(hc + V((0, -0.03 * s, -0.058 * s)), (0.06 * s, 0.072 * s, 0.056 * s), "M_Skin", segs=14, rings=8)  # jaw
+    mb.sphere(hc + V((0, -0.058 * s, -0.098 * s)), (0.026 * s, 0.03 * s, 0.022 * s), "M_Skin", segs=10, rings=6)  # chin
+    for sx in (-1, 1):
+        mb.sphere(hc + V((sx * 0.045 * s, -0.06 * s, -0.004 * s)), (0.021 * s, 0.022 * s, 0.017 * s), "M_Skin", segs=10, rings=6)
+        mb.sphere(hc + V((sx * 0.0315 * s, -0.08 * s, 0.017 * s)), (0.0125 * s, 0.007 * s, 0.0068 * s), "M_EyeWhite", segs=10, rings=6)
+        mb.sphere(hc + V((sx * 0.0315 * s, -0.0858 * s, 0.017 * s)), (0.0055 * s, 0.003 * s, 0.0055 * s), "M_EyeDark", segs=8, rings=5)
+        mb.sphere(hc + V((sx * 0.0315 * s, -0.0805 * s, 0.0245 * s)), (0.0135 * s, 0.0075 * s, 0.004 * s), "M_Skin", segs=8, rings=4)
+        loft(mb, [hc + V((sx * 0.012 * s, -0.0905 * s, 0.031 * s)), hc + V((sx * 0.033 * s, -0.093 * s, 0.036 * s)),
+                  hc + V((sx * 0.054 * s, -0.082 * s, 0.035 * s))], [0.0055 * s, 0.0065 * s, 0.004 * s], "M_HairDark", segs=6)
+        mb.sphere(hc + V((sx * 0.084 * s, 0.002, -0.004 * s)), (0.012 * s, 0.022 * s, 0.03 * s), "M_Skin", segs=8, rings=5)
+    loft(mb, [hc + V((0, -0.083 * s, 0.03 * s)), hc + V((0, -0.093 * s, 0.03 * s))], [0.028 * s, 0.03 * s], "M_Skin", segs=10)
+    loft(mb, [hc + V((0, -0.093 * s, 0.022 * s)), hc + V((0, -0.111 * s, -0.012 * s)), hc + V((0, -0.115 * s, -0.026 * s))],
+         [0.009 * s, 0.013 * s, 0.014 * s], "M_Skin", segs=8)
+    mb.sphere(hc + V((0, -0.108 * s, -0.03 * s)), (0.017 * s, 0.013 * s, 0.011 * s), "M_Skin", segs=8, rings=5)
+    mb.box(hc + V((-0.019 * s, -0.096 * s, -0.056 * s)), hc + V((0.019 * s, -0.087 * s, -0.05 * s)), "M_Lips")
+
+    def beard_keep(x, y, z):
+        jaw = z < -0.18 and y < 0.45 and (z < -0.5 or abs(x) > 0.55 or y > -0.3)
+        mouth = abs(x) < 0.3 and -0.62 < z < -0.18 and y < -0.55
+        return not (jaw and not mouth)
+    mb.sphere(hc + V((0, -0.024 * s, -0.05 * s)), (0.066 * s, 0.081 * s, 0.072 * s), "M_HairDark", segs=40, rings=22,
+              skip=beard_keep, noise=0.015, seed=7)
+    mb.sphere(hc + V((0, -0.06 * s, -0.1 * s)), (0.031 * s, 0.033 * s, 0.026 * s), "M_HairDark", segs=12, rings=8, noise=0.06, seed=8)
+    for sx in (-1, 1):
+        loft(mb, [hc + V((0, -0.101 * s, -0.041 * s)), hc + V((sx * 0.018 * s, -0.098 * s, -0.045 * s)),
+                  hc + V((sx * 0.027 * s, -0.09 * s, -0.062 * s))], [0.006 * s, 0.006 * s, 0.004 * s], "M_HairDark", segs=6)
+    mb.sphere(hc + V((0, 0.008 * s, 0.012 * s)), (0.093 * s, 0.106 * s, 0.12 * s), "M_HairDark", segs=18, rings=12,
+              skip=lambda x, y, z: not (z > 0.55 or (y > -0.3 and z > -0.45) or (y > 0.15 and z > -0.98)), noise=0.04, seed=11)
+    rnd = random.Random(23)
+    for k in range(16):
+        a = -PI * 0.95 + k * (PI * 1.9 / 15)
+        r0 = V((math.sin(a) * 0.08 * s, -math.cos(a) * 0.09 * s, 0.07 * s)) + hc
+        out = V((math.sin(a), -math.cos(a), 0)).normalized()
+        front = abs(a) < 0.75
+        if front:
+            r0 = r0 + V((0, 0.012 * s, 0.035 * s))
+        L = (0.045 if front else 0.13 + 0.03 * rnd.random()) * s
+        if abs(a) < 1.5 and not front:
+            L *= 0.6                                              # shorter over the temples, ears stay free
+        r1 = r0 + out * 0.03 * s + V((0, 0, -L * 0.45))
+        r2 = r0 + out * (0.038 if not front else 0.025) * s + V((0, 0.0, -L))
+        if front:
+            r2 = r2 + V((0.04 * s * (1 if a > 0 else -1), 0.0, 0.0))
+        loft(mb, [r0, r1, r2], [0.024 * s, 0.019 * s, 0.005 * s], "M_HairDark", segs=6, noise=0.1, seed=k)
+    return hc
+
+
+def hero_hood(B, hc, s):
+    """Lowered hood: thick cowl bunched around the neck and spread over the shoulders + the hood bag at the back."""
+    mb = B.part(["neck", "chest", "head", "shoulder.L", "shoulder.R"], 3)
+    loft(mb, [V((0, 0.012 * s, 1.6 * s)), V((0, 0.01 * s, 1.53 * s)), V((0, 0.01 * s, 1.45 * s)), V((0, 0.01 * s, 1.36 * s))],
+         [(0.072 * s, 0.07 * s), (0.118 * s, 0.1 * s), (0.205 * s, 0.145 * s), (0.25 * s, 0.17 * s)], "M_RobeBrown", segs=18,
+         cap0=False, cap1=False, noise=0.05, seed=31)
+    loft(mb, [V((0, 0.0, 1.6 * s)), V((0, -0.005 * s, 1.53 * s))], [(0.082 * s, 0.08 * s), (0.125 * s, 0.11 * s)],
+         "M_RobeBrown", segs=18, cap0=False, cap1=False, noise=0.08, seed=32)
+    mb = B.part(["chest", "neck"], 3)
+    mb.sphere(V((0, 0.13 * s, 1.47 * s)), (0.12 * s, 0.07 * s, 0.11 * s), "M_RobeBrown", segs=12, rings=8, noise=0.08, seed=33)
+    mb.sphere(V((0, 0.16 * s, 1.36 * s)), (0.09 * s, 0.05 * s, 0.08 * s), "M_RobeBrown", segs=10, rings=6, noise=0.1, seed=34)
+    mb = B.part(["neck", "chest"], 3)
+    loft(mb, [V((0, -0.002 * s, 1.53 * s)), V((0, -0.002 * s, 1.47 * s))], [(0.07 * s, 0.068 * s), (0.1 * s, 0.09 * s)],
+         "M_Chainmail", segs=16, cap0=False, cap1=False)
+
+
+def longsword(mb, length=0.98):
+    """Longsword along local -Z from the grip centre: fullered blade, drooping guard, wrapped grip, wheel pommel."""
+    L = length
+    blade = [(-0.026, 0.0), (0.026, 0.0), (0.021, -L * 0.8), (0.0, -L), (-0.021, -L * 0.8)]
+    mb.prism([(x, z - 0.075) for x, z in blade], -0.0055, 0.0055, "M_Steel")
+    for yy in (-0.0062, 0.0062):
+        f = [(-0.0065, -0.09), (0.0065, -0.09), (0.004, -L * 0.62), (-0.004, -L * 0.62)]
+        mb.face([(x, yy, z) for x, z in (f if yy > 0 else list(reversed(f)))], "M_Iron")
+    mb.box((-0.03, -0.012, -0.085), (0.03, 0.012, -0.065), "M_Iron")
+    for sx in (-1, 1):
+        mb.rod((0, 0, -0.075), (sx * 0.12, 0, -0.088), 0.012, "M_Iron", segs=6, r1=0.009)
+        mb.sphere((sx * 0.122, 0, -0.089), 0.014, "M_Iron", segs=6, rings=4)
+    mb.rod((0, 0, -0.065), (0, 0, 0.1), 0.0165, "M_LeatherDark", segs=8)
+    for k in range(5):
+        z = -0.05 + k * 0.032
+        mb.rod((0, 0, z), (0, 0, z + 0.012), 0.0185, "M_LeatherC", segs=8)
+    with mb.at((0, 0, 0.125), rot_x=PI / 2):
+        mb.cyl((0, 0, -0.012), 0.034, 0.024, "M_Iron", segs=14)
+    mb.sphere((0, 0, 0.125), (0.014, 0.02, 0.014), "M_Brass", segs=8, rings=4)
+
+
+def round_shield(mb, r=0.36):
+    mb.cyl((0, 0, -0.016), r, 0.032, "M_WoodDark", segs=32, cap=True, smooth=False)
+    mb.face([(r * 0.985 * math.cos(2 * PI * k / 32), r * 0.985 * math.sin(2 * PI * k / 32), 0.0175) for k in range(32)], "M_Shield", uv="fit")
+    mb.torus(r, 0.017, "M_Iron", segs=32, tsegs=6)
+    for k in range(16):
+        a = 2 * PI * (k + 0.5) / 16
+        mb.sphere((r * 0.93 * math.cos(a), r * 0.93 * math.sin(a), 0.02), 0.009, "M_Iron", segs=6, rings=3)
+    mb.sphere((0, 0, 0.018), (0.085, 0.085, 0.06), "M_Steel", segs=16, rings=6, z_cut=0.016)
+    mb.torus(0.088, 0.008, "M_Iron", segs=16, tsegs=4)
+    mb.rod((-0.1, 0, -0.03), (0.1, 0, -0.03), 0.014, "M_LeatherC", segs=6)
+    mb.rod((0, -0.12, -0.03), (0, 0.12, -0.03), 0.012, "M_LeatherC", segs=6)
+
+
 def build_vaclav():
     H = 1.8
     s = H / 1.8
-    root, col, arm, j = start("vaclav", H)
+    root, col, arm, j = start("vaclav", H, width=1.05)
     base = {"upper_arm.R": (-8, 4, 0), "forearm.R": (-38, 0, 0), "hand.R": (5, 0, 0),
             "upper_arm.L": (-18, -8, 0), "forearm.L": (-55, 0, -20)}
     set_base(arm, base)
     B = C.Body("vaclav", arm, col)
-    # held: longsword (right), round shield (left forearm)
-    held(B, arm, "hand.R", "WEAPON_sword", lambda mb: sword_mesh(mb, 0.98), grip_of(arm, "R"), rot_to((-0.05, -0.55, -0.83)))
+    held(B, arm, "hand.R", "WEAPON_sword", lambda mb: longsword(mb, 0.98), grip_of(arm, "R"), rot_to((-0.05, -0.55, -0.83)))
     fh, ft = posed_points(arm, "forearm.L")
-    sc = fh.lerp(ft, 0.55) + V((0.09, -0.03, 0))
-
-    def shield(mb):
-        mb.cyl((0, 0, -0.015), 0.33, 0.03, "M_WoodDark", segs=24, cap=True, smooth=False)
-        mb.face([(0.32 * math.cos(2 * PI * k / 24), 0.32 * math.sin(2 * PI * k / 24), 0.017) for k in range(24)], "M_Tabard", uv="fit")
-        mb.torus(0.33, 0.018, "M_Iron", segs=24, tsegs=5)
-        mb.sphere((0, 0, 0.02), (0.07, 0.07, 0.05), "M_Steel", segs=10, rings=5, z_cut=0.015)
-        mb.rod((-0.08, 0, -0.03), (0.08, 0, -0.03), 0.012, "M_LeatherC", segs=5)
+    sc = fh.lerp(ft, 0.55) + V((0.1, -0.035, 0))
     mb = B.separate("WEAPON_shield", ["forearm.L"], 6)
     mb.push(posed_to_rest(arm, "forearm.L") @ Matrix.Translation(sc) @ (V((0.75, -0.66, 0.0))).to_track_quat("Z", "Y").to_matrix().to_4x4())
-    shield(mb)
+    round_shield(mb)
     mb.pop()
-    # body
-    legs(B, j, s, "M_WoolBrown", boots="M_LeatherC", boot_top=0.05)
-    torso(B, s, "M_Chainmail")
-    skirt(B, s, "M_Chainmail", 1.02, 0.44, (0.165, 0.115), (0.2, 0.16), jag=0.02, seed=2)
-    torso(B, s, "M_ClothRed", grow=0.012, z_from=1.0, z_to=1.46, cap=False)
-    skirt(B, s, "M_ClothRed", 1.02, 0.5, (0.18, 0.13), (0.23, 0.19), jag=0.06, seed=3)
-    decal(B, s, 1.13, 1.42, 0.11, -0.142, "M_Tabard")
-    decal(B, s, 1.13, 1.42, 0.11, 0.142, "M_Tabard", back=True)
-    band(B, s, 1.04, 0.178, 0.13, "M_LeatherC", 0.055)
-    band(B, s, 1.0, 0.185, 0.14, "M_LeatherDark", 0.035)
-    arms(B, j, s, "M_Chainmail", "M_LeatherC", cuff="M_LeatherC")
-    cape(B, s, "M_RobeBrown", 1.56, 1.33, (0.085, 0.08), (0.23, 0.165), jag=0.03)
-    hc = head(B, j, s, "M_Skin", hair="M_HairDark", beard="M_HairDark", hair_style="long")
-    # scabbard on the left hip
+    # legs: dark wool hose, tall riding boots with a turned-down cuff
+    legs(B, j, s, "M_RobeDark", boots="M_LeatherC", boot_top=0.04)
+    for k, X in enumerate(("L", "R")):
+        knee, ank = j[f"knee.{X}"], j[f"ankle.{X}"]
+        mb = B.part([f"thigh.{X}", f"shin.{X}"], 5)
+        loft(mb, [knee.lerp(ank, -0.04), knee.lerp(ank, 0.12)], [(0.07 * s, 0.069 * s), (0.068 * s, 0.067 * s)], "M_LeatherDark",
+             segs=12, cap0=False, cap1=False, noise=0.05, seed=40 + k)
+    # mail hauberk, padded tunic hem below it
+    torso(B, s, "M_Chainmail", w=1.06)
+    skirt_panels(B, s, "M_Chainmail", 1.02, 0.5, (0.17, 0.12), (0.205, 0.165), slits=((-90, 9), (90, 9)), jag=0.015, seed=2)
+    skirt_panels(B, s, "M_WoolBrown", 0.62, 0.42, (0.198, 0.158), (0.215, 0.175), slits=((-90, 7),), jag=0.03, seed=4)
+    # surcoat: sleeveless, split front and back, ragged hem
+    torso(B, s, "M_ClothRed", w=1.06, grow=0.013, z_from=1.0, z_to=1.46, cap=False)
+    skirt_panels(B, s, "M_ClothRed", 1.02, 0.47, (0.185, 0.135), (0.245, 0.2), slits=((-90, 14), (90, 12)), jag=0.07, seed=3,
+                 inner="M_WoolBrown")
+    decal(B, s, 1.1, 1.43, 0.12, -0.144, "M_Tabard")
+    decal(B, s, 1.1, 1.43, 0.12, 0.144, "M_Tabard", back=True)
+    # belts: broad waist belt with brass buckle, sword belt slung low to the left hip, pouch
+    belt_ring(B, s, 1.045, 0.186, 0.137, "M_LeatherC", 0.055)
+    mb = B.part(["hips", "spine"], 3)
+    mb.box(V((-0.032 * s, -0.152 * s, 1.02 * s)), V((0.032 * s, -0.138 * s, 1.07 * s)), "M_Brass")
+    belt_ring(B, s, 0.98, 0.19, 0.145, "M_LeatherDark", 0.04, tilt=0.25)
+    mb = B.part(["hips", "thigh.R"], 4)
+    mb.sphere(V((-0.17 * s, -0.06 * s, 0.94 * s)), (0.035 * s, 0.05 * s, 0.06 * s), "M_LeatherC", segs=10, rings=6, noise=0.06, seed=5)
+    # arms: mail half-sleeves to the elbow over padded sleeves, long leather gauntlets
+    arms(B, j, s, "M_Chainmail", "M_LeatherC", r=1.08, forearm_mat="M_WoolBrown", cuff="M_LeatherC")
+    for X in ("L", "R"):
+        a, e, w = j[f"arm.{X}"], j[f"elbow.{X}"], j[f"wrist.{X}"]
+        mb = B.part([f"upper_arm.{X}", f"forearm.{X}"], 5)
+        loft(mb, [e + (a - e).normalized() * 0.03 * s, e + (w - e).normalized() * 0.03 * s], [0.06 * s, 0.056 * s], "M_Chainmail",
+             segs=12, cap0=False, cap1=False, jag=0.012)
+        mb = B.part([f"forearm.{X}", f"hand.{X}"], 5)
+        loft(mb, [e.lerp(w, 0.5), w + (w - e).normalized() * 0.005 * s], [0.052 * s, 0.06 * s], "M_LeatherC",
+             segs=12, cap0=False, cap1=False)
+    hc = hero_head(B, j, s)
+    hero_hood(B, hc, s)
+    # scabbard on the left hip, hanging from the sword belt
     mb = B.part(["hips", "thigh.L"], 4)
-    loft(mb, [V((0.2, 0.02, 1.0)), V((0.24, 0.1, 0.45))], [0.03, 0.022], "M_LeatherDark", segs=6)
+    loft(mb, [V((0.2, 0.03, 0.96)), V((0.235, 0.09, 0.62)), V((0.25, 0.13, 0.42))], [0.032, 0.026, 0.02], "M_LeatherDark", segs=8)
+    mb.box(V((0.19, 0.0, 0.93)), V((0.215, 0.06, 0.96)), "M_Iron")
     B.build()
+    crouch = add(base, {"thigh.L": (-45, 0, 0), "thigh.R": (-40, 0, 0), "shin.L": (80, 0, 0), "shin.R": (75, 0, 0),
+                        "foot.L": (-30, 0, 0), "foot.R": (-30, 0, 0), "spine": (18, 0, 0), "upper_arm.R": (-30, 10, 0),
+                        "_loc": {"hips": (0, 0, -0.22)}})
+    air = add(base, {"thigh.L": (-55, 0, 0), "thigh.R": (-20, 0, 0), "shin.L": (70, 0, 0), "shin.R": (45, 0, 0),
+                     "spine": (5, 0, 0), "upper_arm.R": (-40, 20, 0), "upper_arm.L": (-40, -25, 0), "_loc": {"hips": (0, 0, 0.02)}})
+    tuck = add(base, {"thigh.L": (-80, 0, 0), "thigh.R": (-75, 0, 0), "shin.L": (110, 0, 0), "shin.R": (105, 0, 0),
+                      "spine": (40, 0, 0), "chest": (15, 0, 0), "head": (25, 0, 0), "upper_arm.R": (-60, 15, 0),
+                      "upper_arm.L": (-70, -15, 0), "forearm.L": (-30, 0, -40), "_loc": {"hips": (0, -0.1, -0.45)}})
+    lunge = add(base, {"thigh.L": (-50, 0, 0), "shin.L": (60, 0, 0), "thigh.R": (25, 0, 0), "shin.R": (20, 0, 0),
+                       "spine": (30, 0, 0), "chest": (10, 0, 0), "upper_arm.L": (-60, -10, 0), "forearm.L": (-30, 0, -30),
+                       "_loc": {"hips": (0, -0.12, -0.25)}})
+    bwind = add(base, {"upper_arm.R": (-95, -50, 0), "forearm.R": (-70, 0, 0), "hand.R": (0, 0, 40), "chest": (0, 0, 35),
+                       "spine": (-4, 0, 0), "hips": (0, 0, 12), "thigh.L": (8, 0, 0), "thigh.R": (-12, 0, 0)})
+    bstrike = add(base, {"upper_arm.R": (-75, 45, 0), "forearm.R": (-10, 0, 0), "hand.R": (0, 0, -30), "chest": (8, 0, -35),
+                         "spine": (10, 0, 0), "hips": (0, 0, -12), "thigh.R": (-30, 0, 0), "shin.R": (25, 0, 0),
+                         "_loc": {"hips": (0, -0.06, -0.05)}})
     acts = base_human_actions(arm, base, H, attack=sword_attack(base), extra={
         "block": (lambda t: add(base, {"upper_arm.L": (-55, -15, 0), "forearm.L": (-35, 0, -35), "spine": (8 + math.sin(2 * PI * t), 0, 0),
                                        "thigh.L": (-10, 0, 0), "thigh.R": (-6, 0, 0), "shin.L": (16, 0, 0), "shin.R": (12, 0, 0),
@@ -296,10 +490,17 @@ def build_vaclav():
                               "spine": (30, 0, 0), "thigh.L": (-35, 0, 0), "shin.L": (25, 0, 0), "thigh.R": (20, 0, 0),
                               "_loc": {"hips": (0, -0.1, -0.05)}})),
             (1, base)]), 1.5),
+        "jump": (seq([(0, base), (0.18, crouch), (0.4, air), (0.8, air), (1, base)]), 0.9),
+        "dodge": (seq([(0, base), (0.2, lunge), (0.55, tuck), (0.85, lunge), (1, base)]), 0.5),
+        "attack2": (seq([(0, base), (0.3, bwind), (0.5, bstrike), (0.7, add(bstrike, {"chest": (0, 0, -8)})), (1, base)]), 0.85),
     })
-    INFO["vaclav"] = dict(h=H, acts=acts, desc="Рыцарь Вацлав из Вышеграда: кольчуга, красное сюрко с белым львом, капюшон-оплечье, "
-                          "кожаные перчатки и сапоги, длинный меч в правой руке, круглый щит со львом на левой.",
-                          parts="WEAPON_sword (hand.R), WEAPON_shield (forearm.L)")
+    INFO["vaclav"] = dict(h=H, acts=acts, desc="Рыцарь Вацлав из Вышеграда (по vaclav.png): худощавое лицо со скулами, короткая тёмная "
+                          "борода и усы, тёмные волосы до плеч; опущенный капюшон-оплечье и кольчужный воротник; кольчуга с "
+                          "полурукавами поверх стёганых рукавов; красное сюрко без рукавов с разрезами и рваным подолом, белый "
+                          "коронованный лев с двумя хвостами; широкий ремень с латунной пряжкой и низкая перевязь меча; "
+                          "длинные кожаные перчатки с раструбами; высокие сапоги с отворотами; круглый щит из досок со львом, "
+                          "железным ободом, заклёпками и умбоном; длинный меч с долом и дисковым навершием.",
+                          parts="WEAPON_sword (hand.R), WEAPON_shield (forearm.L); jump, dodge, attack2 (второй удар комбо)")
     return root
 
 
@@ -794,6 +995,150 @@ def build_child(name, girl):
     return root
 
 
+# ============================================================================= run 2: Vysehrad / river characters
+def build_knight():
+    """Knight of the Vysehrad garrison: mail coif + nasal helm, red lion surcoat, sword and round shield."""
+    H = 1.82
+    s = H / 1.8
+    root, col, arm, j = start("knight", H, width=1.04)
+    base = {"upper_arm.R": (-8, 4, 0), "forearm.R": (-38, 0, 0), "hand.R": (5, 0, 0),
+            "upper_arm.L": (-18, -8, 0), "forearm.L": (-55, 0, -20)}
+    set_base(arm, base)
+    B = C.Body("knight", arm, col)
+    held(B, arm, "hand.R", "WEAPON_sword", lambda mb: longsword(mb, 0.92), grip_of(arm, "R"), rot_to((-0.05, -0.55, -0.83)))
+    fh, ft = posed_points(arm, "forearm.L")
+    sc = fh.lerp(ft, 0.55) + V((0.1, -0.035, 0))
+    mb = B.separate("WEAPON_shield", ["forearm.L"], 6)
+    mb.push(posed_to_rest(arm, "forearm.L") @ Matrix.Translation(sc) @ (V((0.75, -0.66, 0.0))).to_track_quat("Z", "Y").to_matrix().to_4x4())
+    round_shield(mb, 0.33)
+    mb.pop()
+    legs(B, j, s, "M_Chainmail", boots="M_LeatherDark", boot_top=0.45)
+    torso(B, s, "M_Chainmail", w=1.05)
+    skirt_panels(B, s, "M_Chainmail", 1.02, 0.5, (0.17, 0.12), (0.205, 0.165), slits=((-90, 9),), jag=0.015, seed=72)
+    torso(B, s, "M_ClothRed", w=1.05, grow=0.013, z_from=1.0, z_to=1.46, cap=False)
+    skirt_panels(B, s, "M_ClothRed", 1.02, 0.52, (0.185, 0.135), (0.23, 0.19), slits=((-90, 12), (90, 10)), jag=0.03, seed=73,
+                 inner="M_WoolBrown")
+    decal(B, s, 1.1, 1.43, 0.12, -0.144, "M_Tabard")
+    decal(B, s, 1.1, 1.43, 0.12, 0.144, "M_Tabard", back=True)
+    belt_ring(B, s, 1.045, 0.186, 0.137, "M_LeatherDark", 0.05)
+    belt_ring(B, s, 0.98, 0.19, 0.145, "M_LeatherDark", 0.035, tilt=0.25)
+    arms(B, j, s, "M_Chainmail", "M_LeatherDark", r=1.06, cuff="M_LeatherDark")
+    hc = head(B, j, s, "M_Skin", hair=None, beard="M_HairBrown", hair_style="short")
+    mb = B.part(["head", "neck"], 4)          # mail coif framing the face
+    mb.sphere(hc + V((0, 0.01 * s, 0.0)), (0.1 * s, 0.112 * s, 0.128 * s), "M_Chainmail", segs=18, rings=12,
+              skip=lambda x, y, z: (y < -0.45 and -0.62 < z < 0.4 and abs(x) < 0.62) or z < -0.85, noise=0.01, seed=3)
+    mb = B.part(["neck", "chest"], 3)
+    loft(mb, [V((0, 0.005 * s, 1.6 * s)), V((0, 0.005 * s, 1.5 * s)), V((0, 0.005 * s, 1.42 * s))],
+         [(0.09 * s, 0.085 * s), (0.17 * s, 0.13 * s), (0.22 * s, 0.15 * s)], "M_Chainmail", segs=16, cap0=False, cap1=False)
+    mb = B.part(["head"], 4)                 # conical nasal helm
+    loft(mb, [hc + V((0, 0.008 * s, 0.025 * s)), hc + V((0, 0.008 * s, 0.09 * s)), hc + V((0, 0.0, 0.17 * s))],
+         [(0.106 * s, 0.118 * s), (0.094 * s, 0.104 * s), (0.008 * s, 0.008 * s)], "M_Steel", segs=16)
+    loft(mb, [hc + V((0, 0.008 * s, 0.02 * s)), hc + V((0, 0.008 * s, 0.04 * s))], [(0.11 * s, 0.122 * s)] * 2, "M_Iron",
+         segs=16, cap0=False, cap1=False)
+    mb.box(hc + V((-0.009 * s, -0.128 * s, -0.035 * s)), hc + V((0.009 * s, -0.112 * s, 0.035 * s)), "M_Iron")
+    mb = B.part(["hips", "thigh.L"], 4)
+    loft(mb, [V((0.2, 0.03, 0.96)), V((0.235, 0.09, 0.62)), V((0.25, 0.13, 0.45))], [0.03, 0.025, 0.02], "M_LeatherDark", segs=8)
+    B.build()
+    guard_up = add(base, {"upper_arm.L": (-55, -15, 0), "forearm.L": (-35, 0, -35), "thigh.L": (-14, 0, 0), "shin.L": (18, 0, 0),
+                          "thigh.R": (8, 0, 0), "upper_arm.R": (-60, 20, 0), "forearm.R": (-60, 0, 0), "_loc": {"hips": (0, 0, -0.05)}})
+    keys, T = sword_attack(base)
+    cut = keys[2][1]
+    spar = seq([(0, guard_up), (0.25, keys[1][1]), (0.38, cut), (0.5, guard_up), (0.62, add(guard_up, {"spine": (6, 0, 0)})),
+                (0.75, add(guard_up, {"upper_arm.L": (-75, -25, 0), "chest": (0, 0, 15), "_loc": {"hips": (0, 0.06, -0.06)}})),
+                (1, guard_up)])
+    acts = base_human_actions(arm, base, H, attack=(keys, T), extra={
+        "talk": (talk_fn(base), 2.0), "spar": (spar, 2.4),
+        "block": (lambda t: add(guard_up, {"spine": (math.sin(2 * PI * t) * 2, 0, 0)}), 1.0)})
+    INFO["knight"] = dict(h=H, acts=acts, desc="Рыцарь гарнизона Вышеграда: кольчужный капюшон и конический шлем с наносником, "
+                          "кольчуга с ног до головы, красное сюрко со львом, меч и круглый щит.",
+                          parts="WEAPON_sword (hand.R), WEAPON_shield (forearm.L); spar = учебный поединок (цикл)")
+    return root
+
+
+def build_monk():
+    """Canon of the Vysehrad chapter: brown habit with hood down, tonsure, rope belt, book held to the chest."""
+    H = 1.76
+    s = H / 1.8
+    root, col, arm, j = start("monk", H, width=0.98)
+    base = {"upper_arm.L": (-22, 6, 0), "upper_arm.R": (-22, -6, 0), "forearm.L": (-80, 0, -40), "forearm.R": (-80, 0, 40),
+            "head": (6, 0, 0)}
+    set_base(arm, base)
+    B = C.Body("monk", arm, col)
+    gl, gr = grip_of(arm, "L"), grip_of(arm, "R")
+    mb = B.separate("HELD_book", ["hand.L"], 6)
+    mb.push(posed_to_rest(arm, "hand.L") @ Matrix.Translation(gl.lerp(gr, 0.5) + V((0, -0.05, 0.04))))
+    mb.box((-0.11, -0.03, -0.14), (0.11, 0.03, 0.14), {"-y": "M_ClothRed", "+y": "M_ClothRed", "-x": "M_Linen", "+x": "M_ClothRed",
+                                                        "-z": "M_Linen", "+z": "M_Linen"})
+    mb.box((-0.115, -0.035, -0.02), (-0.09, 0.035, 0.02), "M_Brass")
+    mb.pop()
+    legs(B, j, s, "M_RobeBrown", r=0.95, bare_feet="M_LeatherC")
+    torso(B, s, "M_RobeBrown", w=1.0, belly=0.02)
+    skirt(B, s, "M_RobeBrown", 1.04, 0.05, (0.18, 0.14), (0.28, 0.25), jag=0.015, rings=6, seed=81)
+    arms(B, j, s, "M_RobeBrown", "M_Skin", r=1.15)
+    for X in ("L", "R"):                                        # wide sleeves
+        e, w = j[f"elbow.{X}"], j[f"wrist.{X}"]
+        mb = B.part([f"forearm.{X}"], 5)
+        loft(mb, [e, w + (w - e).normalized() * 0.02 * s], [0.06 * s, 0.085 * s], "M_RobeBrown", segs=12, cap0=False, cap1=False)
+    belt_ring(B, s, 1.04, 0.19, 0.155, "M_Rope", 0.022)
+    mb = B.part(["hips", "thigh.R"], 3)
+    loft(mb, [V((-0.12, -0.13, 1.03)), V((-0.13, -0.15, 0.75)), V((-0.12, -0.15, 0.55))], [0.012, 0.011, 0.01], "M_Rope", segs=5)
+    hc = head(B, j, s, "M_Skin", hair="M_HairGrey", hair_style="short")
+    mb = B.part(["head"], 4)                                     # tonsure: bare crown over the hair cap
+    mb.sphere(hc + V((0, 0.004 * s, 0.03 * s)), (0.088 * s, 0.1 * s, 0.11 * s), "M_Skin", segs=14, rings=10,
+              skip=lambda x, y, z: z < 0.72)
+    mb = B.part(["neck", "chest", "head"], 3)                    # hood lying on the shoulders
+    loft(mb, [V((0, 0.02 * s, 1.56 * s)), V((0, 0.04 * s, 1.48 * s)), V((0, 0.05 * s, 1.38 * s))],
+         [(0.1 * s, 0.09 * s), (0.18 * s, 0.14 * s), (0.22 * s, 0.16 * s)], "M_RobeBrown", segs=16, cap0=False, cap1=False, noise=0.04)
+    mb.sphere(V((0, 0.15 * s, 1.42 * s)), (0.12 * s, 0.06 * s, 0.13 * s), "M_RobeBrown", segs=12, rings=8, noise=0.06, seed=2)
+    B.build()
+
+    def pray(t):
+        ph = 2 * PI * t
+        return add(base, {"head": (10 + 4 * math.sin(ph), 0, 0), "spine": (4 + 2 * math.sin(ph), 0, 0)})
+    acts = base_human_actions(arm, base, H, extra={"talk": (talk_fn(base), 2.0), "pray": (pray, 4.0)})
+    INFO["monk"] = dict(h=H, acts=acts, desc="Монах-каноник Вышеграда: коричневая ряса с опущенным капюшоном, тонзура, седина, "
+                        "верёвочный пояс, широкие рукава, книга в красном переплёте у груди.", parts="HELD_book (hand.L); pray (цикл)")
+    return root
+
+
+def build_boatman():
+    """Vltava boatman: linen shirt, rolled sleeves, leather jerkin, straw hat, punting pole."""
+    H = 1.76
+    s = H / 1.8
+    root, col, arm, j = start("boatman", H, width=1.04)
+    base = {"upper_arm.R": (-40, 10, 0), "forearm.R": (-60, 0, 0), "upper_arm.L": (-60, -15, 0), "forearm.L": (-35, 0, 0)}
+    set_base(arm, base)
+    B = C.Body("boatman", arm, col)
+    g = grip_of(arm, "R")
+    mb = B.separate("HELD_pole", ["hand.R"], 6)
+    mb.push(posed_to_rest(arm, "hand.R") @ Matrix.Translation(g) @ rot_to((0.08, 0.25, -1.0)))
+    mb.rod((0, 0, -2.6), (0, 0, 1.2), 0.022, "M_WoodLight", segs=8)
+    mb.pop()
+    legs(B, j, s, "M_WoolBrown", r=1.02, boots="M_LeatherC", boot_top=0.55)
+    torso(B, s, "M_Linen", w=1.04)
+    torso(B, s, "M_LeatherC", w=1.04, grow=0.012, z_from=1.06, z_to=1.44, cap=False)
+    skirt(B, s, "M_Linen", 1.02, 0.82, (0.18, 0.13), (0.2, 0.15))
+    belt_ring(B, s, 1.04, 0.187, 0.14, "M_Rope", 0.025)
+    arms(B, j, s, "M_Linen", "M_Skin", r=1.08, forearm_mat="M_Skin")
+    hc = head(B, j, s, "M_Skin", hair="M_HairBrown", beard="M_HairBrown", hair_style="short")
+    mb = B.part(["head"], 4)                                     # straw hat
+    loft(mb, [hc + V((0, 0.0, 0.05 * s)), hc + V((0, 0.0, 0.065 * s))], [(0.2 * s, 0.21 * s), (0.19 * s, 0.2 * s)], "M_Burlap", segs=18)
+    loft(mb, [hc + V((0, 0.0, 0.06 * s)), hc + V((0, 0.0, 0.15 * s)), hc + V((0, 0.0, 0.17 * s))],
+         [(0.1 * s, 0.11 * s), (0.08 * s, 0.085 * s), (0.02 * s, 0.02 * s)], "M_Burlap", segs=14)
+    B.build()
+
+    def punt(t):
+        ph = 2 * PI * t
+        k = 0.5 - 0.5 * math.cos(ph)
+        return add(base, {"upper_arm.R": (-40 + 35 * k, 0, 0), "upper_arm.L": (-60 + 40 * k, 0, 0), "forearm.R": (-60 + 30 * k, 0, 0),
+                          "spine": (8 + 18 * k, 0, 0), "thigh.L": (-15 * k, 0, 0), "shin.L": (20 * k, 0, 0), "thigh.R": (10 * k, 0, 0),
+                          "_loc": {"hips": (0, 0.03 * k, -0.04 * k)}})
+    acts = base_human_actions(arm, base, H, extra={"talk": (talk_fn(base), 2.0), "work": (punt, 3.0)})
+    INFO["boatman"] = dict(h=H, acts=acts, desc="Лодочник с Влтавы: соломенная шляпа, льняная рубаха с закатанными рукавами, "
+                           "кожаный жилет, верёвочный пояс, шест.", parts="HELD_pole (hand.R); work = отталкивается шестом (цикл)")
+    return root
+
+
 # ============================================================================= horse
 HORSE_J = {
     "pelvis": (0, 0.75, 1.33), "chest_b": (0, 0.05, 1.36), "withers": (0, -0.62, 1.45),
@@ -993,12 +1338,12 @@ CHARS = {
     "vaclav": build_vaclav, "alchemist": build_alchemist, "golem": build_golem, "skeleton": build_skeleton,
     "butcher": build_butcher, "market_woman": build_market_woman, "merchant": build_merchant, "guard": build_guard,
     "beggar": build_beggar, "child_boy": lambda: build_child("child_boy", False), "child_girl": lambda: build_child("child_girl", True),
-    "horse": build_horse,
+    "horse": build_horse, "knight": build_knight, "monk": build_monk, "boatman": build_boatman,
 }
-STRIPS = {"vaclav": ["walk", "run", "attack", "block", "throw", "death"], "alchemist": ["walk", "attack"],
+STRIPS = {"vaclav": ["walk", "run", "attack", "attack2", "block", "dodge", "jump", "throw", "death"], "alchemist": ["walk", "attack"],
           "golem": ["walk", "attack"], "skeleton": ["walk", "attack"], "guard": ["walk", "attack"], "horse": ["walk", "pull"],
           "butcher": ["work"], "market_woman": ["walk"], "merchant": ["talk"], "beggar": ["beg"], "child_boy": ["run"],
-          "child_girl": ["walk"]}
+          "child_girl": ["walk"], "knight": ["spar", "attack"], "monk": ["pray", "walk"], "boatman": ["work"]}
 
 
 def main():

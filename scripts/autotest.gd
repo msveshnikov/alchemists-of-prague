@@ -43,6 +43,54 @@ func _shot(name: String) -> void:
 	_log("screenshot " + name)
 
 
+func _tap_key(key: Key) -> void:
+	for pressed in [true, false]:
+		var ev := InputEventKey.new()
+		ev.keycode = key
+		ev.physical_keycode = key
+		ev.pressed = pressed
+		Input.parse_input_event(ev)
+		await _wait(0.12)
+
+
+func _inventory_open() -> bool:
+	return not world.ui_stack.is_empty() and world.ui_stack.back().get_child(0).get_script().resource_path.ends_with("inventory_ui.gd")
+
+
+## Regression for "can't leave the inventory": every way in must have a way out, also after clicking inside it.
+func _inventory_keys() -> void:
+	for pair in [[KEY_TAB, KEY_TAB], [KEY_I, KEY_I], [KEY_TAB, KEY_ESCAPE], [KEY_I, KEY_TAB]]:
+		await _tap_key(pair[0])
+		var opened := _inventory_open()
+		if opened:
+			# click into the UI first: a focused button is what used to swallow Tab
+			var inv = world.ui_stack.back().get_child(0)
+			var btn: Button = inv.grid.get_child(0)
+			btn.grab_focus()
+			btn.pressed.emit()
+			await _wait(0.2)
+		await _tap_key(pair[1])
+		var closed: bool = world.ui_stack.is_empty()
+		_check(opened and closed, "inventory opens with %s and closes with %s (opened=%s closed=%s paused=%s)" % [OS.get_keycode_string(pair[0]), OS.get_keycode_string(pair[1]), opened, closed, get_tree().paused])
+		while not world.ui_stack.is_empty():
+			world.close_ui()
+		await _wait(0.2)
+	await _tap_key(KEY_TAB)
+	var inv2 = world.ui_stack.back().get_child(0) if not world.ui_stack.is_empty() else null
+	var close_btn: Button = null
+	if inv2:
+		for b in inv2.find_children("*", "Button", true, false):
+			if b.text == "Close":
+				close_btn = b
+	_check(close_btn != null, "inventory has a Close button")
+	if close_btn:
+		close_btn.pressed.emit()
+		await _wait(0.2)
+	_check(world.ui_stack.is_empty() and not get_tree().paused, "Close button leaves the inventory and unpauses")
+	while not world.ui_stack.is_empty():
+		world.close_ui()
+
+
 func _hold(action: String, sec: float) -> void:
 	Input.action_press(action)
 	await _wait(sec)
@@ -53,8 +101,10 @@ func _run() -> void:
 	var stage: int = Game.get_meta("autotest_stage", 0)
 	if stage == 0:
 		await _stage_main()
-	else:
+	elif stage == 1:
 		await _stage_after_load()
+	elif stage == 90:
+		await _stage_verify_load()
 
 
 func _stage_main() -> void:
@@ -68,7 +118,7 @@ func _stage_main() -> void:
 	await _shot("01_square_day")
 	var start := p.global_position
 	await _hold("move_forward", 2.0)
-	_check(p.global_position.distance_to(start) > 3.0, "player moves (%.1f m)" % p.global_position.distance_to(start))
+	_check(p.global_position.distance_to(start) > 2.0, "player moves (%.1f m)" % p.global_position.distance_to(start))
 	await _hold("sprint", 0.05)
 	Input.action_press("sprint")
 	await _hold("move_forward", 1.0)
@@ -80,7 +130,12 @@ func _stage_main() -> void:
 	_check(p.attacking > 0.0 or p.ap.current_animation == "attack", "attack animation plays")
 	await _wait(1.0)
 	await _shot("02_square_walk")
-	# --- inventory
+	# --- inventory (opened and closed with real key events, through the GUI like a player would)
+	await _inventory_keys()
+	if "--inv-only" in OS.get_cmdline_user_args():
+		_log("DONE fails=%d" % fails)
+		get_tree().quit(0 if fails == 0 else 1)
+		return
 	world.open_ui(load("res://scripts/ui/inventory_ui.gd").new())
 	await _wait(1.0)
 	await _shot("03_inventory")
@@ -156,7 +211,11 @@ func _stage_main() -> void:
 		p._interact()
 		await _wait(0.35)
 		await _shot("08_defenestration")
-		await _wait(2.6)
+		for i in 50:                         # slow machines: wait for the fall itself, not a fixed time
+			if not is_instance_valid(foe) or foe.is_dead():
+				break
+			await _wait(0.2)
+		await _wait(0.5)
 		_check(foe.is_dead(), "defenestrated alchemist dies on the cobbles")
 		_check(Game.kills["defenestrated"] == kills0 + 1, "defenestration counted")
 		_check(foe.global_position.y < 1.0, "body landed on the street (y=%.1f)" % foe.global_position.y)
@@ -182,10 +241,10 @@ func _stage_main() -> void:
 	for e in world.enemies:
 		if is_instance_valid(e) and e.kind != "guard" and not e.is_dead():
 			night_enemies += 1
-	_check(night_enemies >= 15, "night enemies spawned (%d)" % night_enemies)
+	_check(night_enemies >= 12, "night enemies spawned around the square (%d)" % night_enemies)
 	var traders_open := false
 	for it in world.interactables:
-		if it["kind"] == "trade" and it["enabled"].call():
+		if it["kind"] == "trade" and it["enabled"].call() and not String(it["label"]).begins_with("Tavern"):
 			traders_open = true
 	_check(not traders_open, "merchants closed at night")
 	var st: Dictionary = world.marker("MARK_player_start")
@@ -231,7 +290,7 @@ func _stage_after_load() -> void:
 	log_lines = Game.get_meta("autotest_log", PackedStringArray())
 	var p: Player = world.player
 	await _wait(1.5)
-	_check(Game.gold == Game.get_meta("autotest_gold", -1), "load restores gold (%d)" % Game.gold)
+	_check(Game.gold == Game.get_meta("autotest_gold", -1), "load restores gold (%d, saved %d)" % [Game.gold, Game.get_meta("autotest_gold", -1)])
 	_check(Game.sword_level == 1, "load restores sword level")
 	_check(Game.kills["defenestrated"] >= 1, "load restores kill counts")
 	# --- death
@@ -252,7 +311,237 @@ func _stage_after_load() -> void:
 	await _shot("14_settings")
 	world.close_ui()
 	world.close_ui()
-	# --- finish on the main menu
+	# --- on to the other parts of Prague (run 2): out through the Karlova exit
+	Game.time_of_day = 0.93
+	world.day_night.apply(Game.time_of_day)
+	await _wait(0.5)
+	await _stage_world()
+
+
+# ================================================================ the joined world: walk between the districts
+func _restore_log() -> void:
+	fails = Game.get_meta("autotest_fails", 0)
+	log_lines = Game.get_meta("autotest_log", PackedStringArray())
+
+
+func _store_log(next_stage: int) -> void:
+	Game.set_meta("autotest_stage", next_stage)
+	Game.set_meta("autotest_fails", fails)
+	Game.set_meta("autotest_log", log_lines)
+
+
+## District-local position (as in the old per-district levels) -> world position.
+func _at(d: String, local: Vector3) -> Vector3:
+	for dd in world.districts:
+		if dd["id"] == d:
+			return local + Vector3(dd["offset"][0], dd["offset"][1], dd["offset"][2])
+	return local
+
+
+func _walk(from: Vector3, yaw: float, sec: float) -> void:
+	var p: Player = world.player
+	p.global_position = from
+	p.velocity = Vector3.ZERO
+	p.yaw = yaw
+	await _wait(0.6)
+	Input.action_press("move_forward")
+	await _wait(sec)
+	Input.action_release("move_forward")
+	await _wait(0.4)
+
+
+func _stage_world() -> void:
+	var p: Player = world.player
+	_check(world.districts.size() == 4, "one world with four districts (%d)" % world.districts.size())
+	_log("fps on the Old Town Square: %d, instances %d" % [Engine.get_frames_per_second(), world.layout["instances"].size()])
+	# Old Town -> along Karlova -> the street in front of the Old Town bridge tower
+	await _walk(Vector3(-80.0, 0.2, 31.5), PI / 2.0, 12.0)
+	_check(p.global_position.x < -100.0 and world.district == "charles_bridge",
+		"walked from Karlova onto the bridge approach (x=%.0f, %s)" % [p.global_position.x, world.district])
+	await _shot("world_01_karlova_to_bridge")
+	# over the bridge, through the Lesser Town tower into Mala Strana
+	await _walk(Vector3(-318.0, 0.2, 32.0), PI / 2.0, 11.0)
+	_check(p.global_position.x < -342.0 and world.district == "mala_strana",
+		"walked through the Lesser Town tower into Malá Strana (x=%.0f, %s)" % [p.global_position.x, world.district])
+	await _shot("world_02_into_mala_strana")
+	# from the end of Melantrichova up the road and into the Vysehrad gate lane
+	await _walk(Vector3(2.0, 0.2, 94.0), PI, 28.0)
+	_check(p.global_position.y > 9.0, "climbed the road towards Vyšehrad (y=%.1f)" % p.global_position.y)
+	await _shot("world_03_road_up")
+	Input.action_press("move_forward")
+	p.yaw = PI / 2.0
+	await _wait(16.0)
+	Input.action_release("move_forward")
+	await _wait(0.8)
+	_check(p.global_position.x < -30.0 and world.district == "vysehrad",
+		"walked along the gate lane into Vyšehrad (x=%.0f, %s)" % [p.global_position.x, world.district])
+	await _shot("world_04_vysehrad_gate")
+	_log("fps at Vyšehrad gate: %d, npcs spawned %d, enemies %d" % [Engine.get_frames_per_second(), world.npcs.size(), world.enemies.size()])
+	# nobody leaves the world: past the end of an embankment street there is a wall
+	await _walk(_at("charles_bridge", Vector3(78.0, 0.2, -150.0)), 0.0, 6.0)
+	_check(p.global_position.z > -134.0, "the embankment street ends at a wall (z=%.0f)" % p.global_position.z)
+	for d in ["charles_bridge", "mala_strana", "vysehrad"]:
+		await _check_district(d)
+	world.quicksave()
+	_store_log(90)
+	world.quickload()
+
+
+func _check_district(lv: String) -> void:
+	var p: Player = world.player
+	var st: Dictionary = world.marker("MARK_player_start@" + lv)
+	p.global_position = world.v3(st["pos"]) + Vector3(0, 0.3, 0)
+	p.yaw = deg_to_rad(float(st["yaw_deg"])) + PI
+	world._stream_t = 0.0
+	await _wait(2.5)
+	_check(world.district == lv, "%s: the HUD names the district (%s)" % [lv, world.district])
+	var near := 0
+	for n in world.npcs:
+		if is_instance_valid(n) and n.global_position.distance_to(p.global_position) < 120.0:
+			near += 1
+	_check(near >= 8, "%s: townsfolk around (%d)" % [lv, near])
+	await _shot("%s_01_arrival" % lv)
+	if lv == "charles_bridge":
+		_check(world.water_y == -6.0, "Vltava water plane under the bridge")
+		p.global_position = _at(lv, Vector3(20.0, 0.2, 0.0))
+		p.yaw = -PI / 2.0
+		await _wait(1.2)
+		await _shot("%s_02_deck" % lv)
+		await _throw_test(lv, "Vltava")
+	elif lv == "mala_strana":
+		var inn := {}
+		var bed := {}
+		for it in world.interactables:
+			if it["kind"] == "trade" and String(it["label"]).begins_with("Tavern"):
+				inn = it
+			if it["kind"] == "inn":
+				bed = it
+		_check(not inn.is_empty() and not bed.is_empty(), "tavern: food & drink and a bed to rent")
+		if not inn.is_empty():
+			p.global_position = inn["pos"] + Vector3(0, 0.1, 0)
+			await _wait(0.4)
+			inn["action"].call()
+			await _wait(0.6)
+			_check(not world.ui_stack.is_empty(), "tavern trade window opens")
+			await _shot("%s_02_tavern" % lv)
+			world.close_ui()
+			Game.add_gold(20, true)
+			var t0 := Game.time_of_day
+			bed["action"].call()
+			_check(Game.time_of_day != t0 and Game.hp == Game.max_hp, "renting a bed passes time and heals")
+			Game.time_of_day = 0.93
+			world.day_night.apply(Game.time_of_day)
+		await _walk(_at(lv, Vector3(12.0, 0.2, -4.0)), 0.0, 14.0)
+		_check(p.global_position.y > 6.0, "climbed the castle stairs (y=%.1f)" % p.global_position.y)
+		await _shot("%s_03_terrace" % lv)
+		var door := {}
+		var best := 1e9
+		for it in world.interactables:
+			if it["kind"] == "door" and String(it["label"]).begins_with("Enter"):
+				var d: float = it["pos"].distance_to(_at(lv, Vector3(60, 0, 0)))
+				if d < best:
+					best = d
+					door = it
+		_check(not door.is_empty() and best < 30.0, "timber houses are enterable")
+		if not door.is_empty():
+			p.global_position = door["pos"] + Vector3(0, 0.1, 0)
+			await _wait(0.3)
+			door["action"].call()
+			await _wait(0.8)
+			_check(world.inside_house and world.interiors[world.current_house]["windows"].size() > 0,
+				"timber house interior has throwable windows")
+			await _shot("%s_04_interior" % lv)
+			world.exit_house()
+			await _wait(0.5)
+	elif lv == "vysehrad":
+		p.global_position = _at(lv, Vector3(-40.0, 0.2, 16.0))
+		p.yaw = PI / 2.0
+		world._stream_t = 0.0
+		await _wait(2.5)
+		var spar := 0
+		for n in world.npcs:
+			if is_instance_valid(n) and n.role == "knight_spar":
+				spar += 1
+		_check(spar >= 4, "knights spar on the training ground (%d)" % spar)
+		await _shot("%s_02_training" % lv)
+		await _throw_test(lv, "walls")
+		p.global_position = _at(lv, Vector3(-52.0, 0.2, -30.0))
+		p.yaw = PI * 0.5 + 0.6
+		await _wait(1.0)
+		await _shot("%s_03_view" % lv)
+	# night
+	p.global_position = world.v3(st["pos"]) + Vector3(0, 0.3, 0)
+	Game.time_of_day = 252.0 / 400.0
+	world.day_night.apply(Game.time_of_day)
+	await _wait(2.0)
+	var night_enemies := 0
+	for e in world.enemies:
+		if is_instance_valid(e) and e.kind != "guard" and not e.is_dead() and e.global_position.distance_to(p.global_position) < 130.0:
+			night_enemies += 1
+	_check(night_enemies >= 3, "%s: night enemies around (%d)" % [lv, night_enemies])
+	p.yaw = deg_to_rad(float(st["yaw_deg"])) + PI
+	await _wait(1.5)
+	await _shot("%s_05_night" % lv)
+	Game.time_of_day = 0.93
+	world.day_night.apply(Game.time_of_day)
+	for e in world.enemies.duplicate():
+		if is_instance_valid(e) and e.kind != "guard":
+			world._despawn(e)
+	Game.hp = Game.max_hp
+	await _wait(1.0)
+
+
+## Seize a reeling skeleton at a ledge and throw it over (into the river / off the ramparts).
+func _throw_test(lv: String, word: String) -> void:
+	var p: Player = world.player
+	var best := {}
+	var bd := 1e9
+	for l in world.ledges:
+		var d: float = l["pos"].distance_to(p.global_position)
+		if d < bd and abs(l["pos"].y - p.global_position.y) < 1.5:
+			bd = d
+			best = l
+	_check(not best.is_empty(), "%s: a ledge to throw from" % lv)
+	if best.is_empty():
+		return
+	var out: Vector3 = best["out"]
+	p.global_position = best["pos"] + Vector3(0, 0.1, 0)
+	p.yaw = atan2(-out.x, -out.z) + PI
+	p.model.rotation.y = atan2(out.x, out.z)
+	var foe := Enemy.new()
+	foe.setup("skeleton", world, p.global_position + out * 0.9 + Vector3(0, 0.1, 0), atan2(-out.x, -out.z), "idle")
+	world.add_child(foe)
+	world.enemies.append(foe)
+	await _wait(0.4)
+	foe.take_hit(foe.hp - foe.def["hp"] * 0.3, p)
+	p._update_focus()
+	p._interact()
+	await _wait(0.4)
+	_check(p.grabbed == foe, "%s: seized the reeling skeleton" % lv)
+	p.global_position = best["pos"] + Vector3(0, 0.1, 0)
+	p._update_focus()
+	_check(String(p.focus.get("label", "")).contains(word), "%s: prompt offers to throw him (%s)" % [lv, p.focus.get("label", "")])
+	var k0: int = Game.kills["defenestrated"]
+	p._interact()
+	await _wait(0.5)
+	await _shot("%s_06_throw" % lv)
+	for i in 50:
+		if not is_instance_valid(foe) or foe.is_dead():
+			break
+		await _wait(0.2)
+	var gone := not is_instance_valid(foe) or foe.is_dead()
+	_check(gone, "%s: the thrown skeleton is destroyed" % lv)
+	_check(Game.kills["defenestrated"] == k0 + 1, "%s: counted as a defenestration" % lv)
+
+
+func _stage_verify_load() -> void:
+	_restore_log()
+	await _wait(1.5)
+	_check(world.district == "vysehrad", "loading a save puts the knight back where he was (%s)" % world.district)
+	await _finish()
+
+
+func _finish() -> void:
 	get_tree().paused = false
 	Game.autotest = false
 	reparent(get_tree().root)

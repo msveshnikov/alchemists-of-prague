@@ -2,7 +2,7 @@ class_name Chars
 extends RefCounted
 ## Helpers for the character glTFs from Task 2 (face +Z, animations idle/walk/run/attack/hit/death/...).
 
-const LOOPS := ["idle", "walk", "run", "block", "talk", "beg", "work", "flail", "pull", "cast"]
+const LOOPS := ["idle", "walk", "run", "block", "talk", "beg", "work", "flail", "pull", "cast", "spar", "pray"]
 
 static var _scenes := {}
 static var _looped := {}

@@ -35,6 +35,9 @@ func register_light(l: OmniLight3D) -> void:
 	lamps.append({"light": l, "base": l.light_energy, "always": always})
 	l.shadow_enabled = false
 	l.light_specular = 0.3
+	l.distance_fade_enabled = true      # the joined city has hundreds of lamps: only nearby ones cost anything
+	l.distance_fade_begin = 60.0
+	l.distance_fade_length = 20.0
 
 
 func register_glow(m: BaseMaterial3D) -> void:

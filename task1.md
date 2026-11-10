@@ -30,3 +30,9 @@
 
 ## Результат
 - props_list.md, .blend файлы (blender/), экспорт в glTF, превью-рендеры каждого ассета (renders/previews/).
+
+## Прогон 2: Карлов мост, Мала Страна, Вышеград
+- Входные данные: concept/locations/charles_bridge_day/night.png, mala_strana_day/night.png, vysehrad_day/night.png.
+- То же для трёх локаций: список объектов (props_list.md, раздел «Прогон 2»), ассеты в том же стиле и масштабе, emissive и свет,
+  экспорт в assets/architecture и assets/props, превью. Мост и стены — модульные; новые точки броска — `MARK_ledge`.
+- Скрипт: blender/scripts/build_locations.py. Отчёт: report_task1.md, раздел «Прогон 2».

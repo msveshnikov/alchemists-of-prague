@@ -1,0 +1,619 @@
+{
+ "level": "vysehrad",
+ "version": 1,
+ "coordinate_system": "Godot coordinates (same as vysehrad_layout.json). Characters face local +Z.",
+ "schedule": {
+  "day": "visible/active by day",
+  "night": "spawned at dusk (enemies)",
+  "always": "day and night"
+ },
+ "population": [
+  {
+   "id": "skeleton#00",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    0.0,
+    0.0,
+    -22.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "skeleton#01",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    4.0,
+    0.0,
+    -26.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "skeleton#02",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    -3.0,
+    0.0,
+    -28.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "skeleton#03",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    46.0,
+    0.0,
+    -22.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "skeleton#04",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    48.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "skeleton#05",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    45.0,
+    0.0,
+    -38.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "alchemist#00",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "night",
+   "animation": "cast",
+   "pos": [
+    8.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "alchemist#01",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "night",
+   "animation": "cast",
+   "pos": [
+    -32.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "golem#00",
+   "character": "golem",
+   "path": "res://assets/characters/golem.gltf",
+   "role": "enemy_golem",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    -30.0,
+    0.0,
+    14.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "alchemist#02",
+   "character": "alchemist",
+   "path": "res://assets/characters/alchemist.gltf",
+   "role": "enemy_alchemist",
+   "schedule": "night",
+   "animation": "cast",
+   "pos": [
+    30.0,
+    0.0,
+    30.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "skeleton#06",
+   "character": "skeleton",
+   "path": "res://assets/characters/skeleton.gltf",
+   "role": "enemy_skeleton",
+   "schedule": "night",
+   "animation": "idle",
+   "pos": [
+    -40.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "knight#00",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "trader_weapons",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    20.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 0.0,
+   "stall": "market_stall_weapons#00"
+  },
+  {
+   "id": "market_woman#00",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "customer",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    20.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 0.0,
+   "stall": "market_stall_weapons#00"
+  },
+  {
+   "id": "butcher#00",
+   "character": "butcher",
+   "path": "res://assets/characters/butcher.gltf",
+   "role": "blacksmith",
+   "schedule": "day",
+   "animation": "work",
+   "pos": [
+    44.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "monk#00",
+   "character": "monk",
+   "path": "res://assets/characters/monk.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    2.0,
+    0.0,
+    -18.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_00",
+    "MARK_wander_01",
+    "MARK_wander_02",
+    "MARK_wander_03",
+    "MARK_wander_04"
+   ]
+  },
+  {
+   "id": "monk#01",
+   "character": "monk",
+   "path": "res://assets/characters/monk.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    14.0,
+    0.0,
+    -22.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_01",
+    "MARK_wander_02",
+    "MARK_wander_03",
+    "MARK_wander_04",
+    "MARK_wander_00"
+   ]
+  },
+  {
+   "id": "market_woman#01",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    14.0,
+    0.0,
+    -42.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_02",
+    "MARK_wander_03",
+    "MARK_wander_04",
+    "MARK_wander_00",
+    "MARK_wander_01"
+   ]
+  },
+  {
+   "id": "monk#02",
+   "character": "monk",
+   "path": "res://assets/characters/monk.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    -2.0,
+    0.0,
+    -42.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_03",
+    "MARK_wander_04",
+    "MARK_wander_00",
+    "MARK_wander_01",
+    "MARK_wander_02"
+   ]
+  },
+  {
+   "id": "monk#03",
+   "character": "monk",
+   "path": "res://assets/characters/monk.gltf",
+   "role": "wanderer",
+   "schedule": "day",
+   "animation": "walk",
+   "pos": [
+    -4.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_wander_04",
+    "MARK_wander_00",
+    "MARK_wander_01",
+    "MARK_wander_02",
+    "MARK_wander_03"
+   ]
+  },
+  {
+   "id": "knight#01",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "knight_spar",
+   "schedule": "day",
+   "animation": "spar",
+   "pos": [
+    -41.2,
+    0.0,
+    6.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "knight#02",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "knight_spar",
+   "schedule": "day",
+   "animation": "spar",
+   "pos": [
+    -38.8,
+    0.0,
+    6.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "knight#03",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "knight_spar",
+   "schedule": "day",
+   "animation": "spar",
+   "pos": [
+    -33.2,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "knight#04",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "knight_spar",
+   "schedule": "day",
+   "animation": "spar",
+   "pos": [
+    -30.8,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "knight#05",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "knight_spar",
+   "schedule": "day",
+   "animation": "spar",
+   "pos": [
+    -47.2,
+    0.0,
+    -10.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "knight#06",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "knight_spar",
+   "schedule": "day",
+   "animation": "spar",
+   "pos": [
+    -44.8,
+    0.0,
+    -10.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "knight#07",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "knight",
+   "schedule": "day",
+   "animation": "idle",
+   "pos": [
+    -48.0,
+    0.0,
+    20.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "knight#08",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "knight_captain",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    -24.5,
+    0.0,
+    -19.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "guard#00",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "npc_guard",
+   "schedule": "always",
+   "animation": "idle",
+   "pos": [
+    53.0,
+    0.0,
+    -4.5
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "guard#01",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "npc_guard",
+   "schedule": "always",
+   "animation": "idle",
+   "pos": [
+    53.0,
+    0.0,
+    4.5
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "knight#09",
+   "character": "knight",
+   "path": "res://assets/characters/knight.gltf",
+   "role": "npc_knight_gate",
+   "schedule": "always",
+   "animation": "idle",
+   "pos": [
+    70.0,
+    0.0,
+    -5.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "guard#02",
+   "character": "guard",
+   "path": "res://assets/characters/guard.gltf",
+   "role": "patrol",
+   "schedule": "always",
+   "animation": "walk",
+   "pos": [
+    50.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0,
+   "route": [
+    "MARK_patrol_walls_0",
+    "MARK_patrol_walls_1",
+    "MARK_patrol_walls_2",
+    "MARK_patrol_walls_3",
+    "MARK_patrol_walls_4",
+    "MARK_patrol_walls_5"
+   ],
+   "speed_mps": 1.1
+  },
+  {
+   "id": "monk#04",
+   "character": "monk",
+   "path": "res://assets/characters/monk.gltf",
+   "role": "npc_monk",
+   "schedule": "day",
+   "animation": "pray",
+   "pos": [
+    6.0,
+    0.0,
+    -26.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "monk#05",
+   "character": "monk",
+   "path": "res://assets/characters/monk.gltf",
+   "role": "npc_monk",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    30.0,
+    0.0,
+    -8.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "monk#06",
+   "character": "monk",
+   "path": "res://assets/characters/monk.gltf",
+   "role": "npc_monk",
+   "schedule": "always",
+   "animation": "pray",
+   "pos": [
+    16.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "child_boy#00",
+   "character": "child_boy",
+   "path": "res://assets/characters/child_boy.gltf",
+   "role": "npc_child_boy",
+   "schedule": "day",
+   "animation": "run",
+   "pos": [
+    10.0,
+    0.0,
+    10.0
+   ],
+   "yaw_deg": 0.0,
+   "route_points": [
+    [
+     10.0,
+     0.0,
+     10.0
+    ],
+    [
+     -6.0,
+     0.0,
+     4.0
+    ],
+    [
+     4.0,
+     0.0,
+     -6.0
+    ]
+   ]
+  },
+  {
+   "id": "market_woman#02",
+   "character": "market_woman",
+   "path": "res://assets/characters/market_woman.gltf",
+   "role": "npc_market_woman",
+   "schedule": "day",
+   "animation": "talk",
+   "pos": [
+    12.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 114.6
+  }
+ ],
+ "fx": [
+  {
+   "type": "smoke",
+   "name": "forge",
+   "pos": [
+    44.0,
+    3.6,
+    24.0
+   ],
+   "height_m": 7.0,
+   "period_s": 5.0
+  },
+  {
+   "type": "sway",
+   "node": "ANIM_banner",
+   "amplitude_deg": 5.0,
+   "period_s": 5.0
+  },
+  {
+   "type": "smoke",
+   "pos": [
+    44.0,
+    3.6,
+    24.0
+   ]
+  }
+ ],
+ "counts": {
+  "night:skeleton": 7,
+  "night:alchemist": 3,
+  "night:golem": 1,
+  "day:knight": 9,
+  "day:market_woman": 3,
+  "day:butcher": 1,
+  "day:monk": 6,
+  "always:guard": 3,
+  "always:knight": 1,
+  "always:monk": 1,
+  "day:child_boy": 1
+ }
+}

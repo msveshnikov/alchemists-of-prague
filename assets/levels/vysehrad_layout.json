@@ -1,0 +1,3788 @@
+{
+ "level": "vysehrad",
+ "display": "Vysehrad",
+ "version": 1,
+ "coordinate_system": "Godot: +Y up, -Z = north on the plan (Blender +Y). Characters/house fronts face local +Z.",
+ "bounds": {
+  "x": [
+   -76.0,
+   138.0
+  ],
+  "z": [
+   -68.0,
+   68.0
+  ]
+ },
+ "water": [
+  {
+   "height": -40.0,
+   "rect": [
+    -1600.0,
+    -1200.0,
+    -68.0,
+    1600.0
+   ]
+  }
+ ],
+ "planes": [
+  {
+   "height": -38.5,
+   "rect": [
+    -68.0,
+    -1200.0,
+    1600.0,
+    1600.0
+   ],
+   "material": "grass"
+  },
+  {
+   "height": -38.5,
+   "rect": [
+    -1600.0,
+    900.0,
+    -68.0,
+    1600.0
+   ],
+   "material": "grass"
+  }
+ ],
+ "kill_y": -22.0,
+ "map": {
+  "center": [
+   30.0,
+   0.0
+  ],
+  "size": 220.0,
+  "image": "res://assets/ui/map_vysehrad.png"
+ },
+ "instances": [
+  {
+   "id": "ground_grass#00",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#01",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#02",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#03",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#04",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#05",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#06",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#07",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -56.0,
+    0.0,
+    -56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#08",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#09",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#00",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#01",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#02",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#10",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#11",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#12",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -40.0,
+    0.0,
+    -56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#13",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#14",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#03",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#04",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#05",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#15",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#16",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#17",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -24.0,
+    0.0,
+    -56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#18",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#19",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#20",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#21",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#22",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#23",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#24",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#25",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    -8.0,
+    0.0,
+    -56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#26",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#27",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#28",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#29",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#30",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#31",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#32",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#33",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    8.0,
+    0.0,
+    -56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#34",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#35",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#36",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#37",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#38",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#39",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#40",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#41",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    24.0,
+    0.0,
+    -56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#42",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#43",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#44",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#45",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#46",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#47",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#48",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#49",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    40.0,
+    0.0,
+    -56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#50",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#51",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#52",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#53",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#54",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#55",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#56",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_grass#57",
+   "asset": "ground_grass",
+   "path": "res://assets/architecture/ground_grass.gltf",
+   "group": "ground",
+   "pos": [
+    56.0,
+    0.0,
+    -56.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#06",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "road",
+   "pos": [
+    72.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#07",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "road",
+   "pos": [
+    88.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#08",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "road",
+   "pos": [
+    104.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "ground_dirt#09",
+   "asset": "ground_dirt",
+   "path": "res://assets/architecture/ground_dirt.gltf",
+   "group": "road",
+   "pos": [
+    120.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_parapet#00",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    42.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "fortress_parapet#01",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    30.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "fortress_parapet#02",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "fortress_parapet#03",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    6.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "fortress_parapet#04",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    -6.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "fortress_parapet#05",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    -18.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "fortress_parapet#06",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "fortress_parapet#07",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    -42.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "fortress_parapet#08",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -50.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_parapet#09",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -38.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_parapet#10",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -26.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_parapet#11",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -14.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_parapet#12",
+   "asset": "fortress_parapet",
+   "path": "res://assets/architecture/fortress_parapet.gltf",
+   "group": "walls",
+   "pos": [
+    -2.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#00",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    10.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#01",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    22.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#02",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    34.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#03",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    46.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#04",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    52.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#05",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    -50.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#06",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    -38.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#07",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    -26.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#08",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    -14.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#09",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    -2.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#10",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    10.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#11",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    22.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#12",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    34.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#13",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    46.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#14",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    11.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_wall#15",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    23.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_wall#16",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    35.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_wall#17",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    47.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_wall#18",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    -11.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_wall#19",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    -23.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_wall#20",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    -35.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_wall#21",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    -47.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_tower#00",
+   "asset": "fortress_tower",
+   "path": "res://assets/architecture/fortress_tower.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_tower#01",
+   "asset": "fortress_tower",
+   "path": "res://assets/architecture/fortress_tower.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_tower#02",
+   "asset": "fortress_tower",
+   "path": "res://assets/architecture/fortress_tower.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_tower#03",
+   "asset": "fortress_tower",
+   "path": "res://assets/architecture/fortress_tower.gltf",
+   "group": "walls",
+   "pos": [
+    -60.0,
+    0.0,
+    50.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "gate_tower#00",
+   "asset": "gate_tower",
+   "path": "res://assets/architecture/gate_tower.gltf",
+   "group": "walls",
+   "pos": [
+    60.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fortress_wall#22",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    70.0,
+    0.0,
+    -8.4
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#23",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    70.0,
+    0.0,
+    8.4
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#24",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    82.0,
+    0.0,
+    -8.4
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#25",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    82.0,
+    0.0,
+    8.4
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#26",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    94.0,
+    0.0,
+    -8.4
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#27",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    94.0,
+    0.0,
+    8.4
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#28",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    106.0,
+    0.0,
+    -8.4
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#29",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    106.0,
+    0.0,
+    8.4
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_wall#30",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    118.0,
+    0.0,
+    -8.4
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "fortress_wall#31",
+   "asset": "fortress_wall",
+   "path": "res://assets/architecture/fortress_wall.gltf",
+   "group": "road",
+   "pos": [
+    118.0,
+    0.0,
+    8.4
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "fortress_tower#04",
+   "asset": "fortress_tower",
+   "path": "res://assets/architecture/fortress_tower.gltf",
+   "group": "road",
+   "pos": [
+    128.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "street_lantern#00",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    76.0,
+    0.0,
+    -4.8
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "street_lantern#01",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    90.0,
+    0.0,
+    4.8
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "street_lantern#02",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    104.0,
+    0.0,
+    -4.8
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "street_lantern#03",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    116.0,
+    0.0,
+    4.8
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "cliff_rock_a#00",
+   "asset": "cliff_rock_a",
+   "path": "res://assets/architecture/cliff_rock_a.gltf",
+   "group": "cliff",
+   "pos": [
+    -61.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "cliff_rock_b#00",
+   "asset": "cliff_rock_b",
+   "path": "res://assets/architecture/cliff_rock_b.gltf",
+   "group": "cliff",
+   "pos": [
+    -61.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "cliff_rock_b#01",
+   "asset": "cliff_rock_b",
+   "path": "res://assets/architecture/cliff_rock_b.gltf",
+   "group": "cliff",
+   "pos": [
+    -66.0,
+    0.0,
+    -58.0
+   ],
+   "yaw_deg": 225.0
+  },
+  {
+   "id": "cliff_rock_a#01",
+   "asset": "cliff_rock_a",
+   "path": "res://assets/architecture/cliff_rock_a.gltf",
+   "group": "cliff",
+   "pos": [
+    -36.0,
+    0.0,
+    -51.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "cliff_rock_a#02",
+   "asset": "cliff_rock_a",
+   "path": "res://assets/architecture/cliff_rock_a.gltf",
+   "group": "cliff",
+   "pos": [
+    10.0,
+    0.0,
+    -51.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "cliff_rock_a#03",
+   "asset": "cliff_rock_a",
+   "path": "res://assets/architecture/cliff_rock_a.gltf",
+   "group": "cliff",
+   "pos": [
+    -36.0,
+    0.0,
+    51.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "cliff_rock_b#02",
+   "asset": "cliff_rock_b",
+   "path": "res://assets/architecture/cliff_rock_b.gltf",
+   "group": "cliff",
+   "pos": [
+    10.0,
+    0.0,
+    51.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "cliff_rock_a#04",
+   "asset": "cliff_rock_a",
+   "path": "res://assets/architecture/cliff_rock_a.gltf",
+   "group": "cliff",
+   "pos": [
+    46.0,
+    0.0,
+    51.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "cliff_rock_a#05",
+   "asset": "cliff_rock_a",
+   "path": "res://assets/architecture/cliff_rock_a.gltf",
+   "group": "cliff",
+   "pos": [
+    -66.0,
+    0.0,
+    58.0
+   ],
+   "yaw_deg": 315.0
+  },
+  {
+   "id": "rotunda#00",
+   "asset": "rotunda",
+   "path": "res://assets/architecture/rotunda.gltf",
+   "group": "church",
+   "pos": [
+    6.0,
+    0.0,
+    -33.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "basilica#00",
+   "asset": "basilica",
+   "path": "res://assets/architecture/basilica.gltf",
+   "group": "church",
+   "pos": [
+    30.0,
+    0.0,
+    -10.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "gravestone#00",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    2.34,
+    0.0,
+    -18.522
+   ],
+   "yaw_deg": 5.07
+  },
+  {
+   "id": "gravestone#01",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    16.717,
+    0.0,
+    -20.272
+   ],
+   "yaw_deg": 349.99
+  },
+  {
+   "id": "gravestone#02",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    3.839,
+    0.0,
+    -42.55
+   ],
+   "yaw_deg": 10.54
+  },
+  {
+   "id": "grave_cross#00",
+   "asset": "grave_cross",
+   "path": "res://assets/props/grave_cross.gltf",
+   "group": "cemetery",
+   "pos": [
+    16.178,
+    0.0,
+    -39.185
+   ],
+   "yaw_deg": 5.82
+  },
+  {
+   "id": "gravestone#03",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    15.912,
+    0.0,
+    -17.968
+   ],
+   "yaw_deg": 5.9
+  },
+  {
+   "id": "gravestone#04",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    -5.154,
+    0.0,
+    -36.924
+   ],
+   "yaw_deg": 350.74
+  },
+  {
+   "id": "gravestone#05",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    -4.229,
+    0.0,
+    -33.574
+   ],
+   "yaw_deg": 3.79
+  },
+  {
+   "id": "grave_cross#01",
+   "asset": "grave_cross",
+   "path": "res://assets/props/grave_cross.gltf",
+   "group": "cemetery",
+   "pos": [
+    13.566,
+    0.0,
+    -25.043
+   ],
+   "yaw_deg": 357.14
+  },
+  {
+   "id": "gravestone#06",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    -4.357,
+    0.0,
+    -39.019
+   ],
+   "yaw_deg": 9.41
+  },
+  {
+   "id": "grave_cross#02",
+   "asset": "grave_cross",
+   "path": "res://assets/props/grave_cross.gltf",
+   "group": "cemetery",
+   "pos": [
+    14.266,
+    0.0,
+    -38.551
+   ],
+   "yaw_deg": 8.6
+  },
+  {
+   "id": "gravestone#07",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    15.692,
+    0.0,
+    -42.575
+   ],
+   "yaw_deg": 5.65
+  },
+  {
+   "id": "gravestone#08",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    7.05,
+    0.0,
+    -43.219
+   ],
+   "yaw_deg": 353.83
+  },
+  {
+   "id": "gravestone#09",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    -5.51,
+    0.0,
+    -38.27
+   ],
+   "yaw_deg": 5.74
+  },
+  {
+   "id": "gravestone#10",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    0.018,
+    0.0,
+    -29.152
+   ],
+   "yaw_deg": 6.46
+  },
+  {
+   "id": "gravestone#11",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    13.241,
+    0.0,
+    -26.23
+   ],
+   "yaw_deg": 3.49
+  },
+  {
+   "id": "gravestone#12",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    16.214,
+    0.0,
+    -18.373
+   ],
+   "yaw_deg": 348.77
+  },
+  {
+   "id": "gravestone#13",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    -1.015,
+    0.0,
+    -29.144
+   ],
+   "yaw_deg": 2.56
+  },
+  {
+   "id": "gravestone#14",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    17.547,
+    0.0,
+    -33.878
+   ],
+   "yaw_deg": 0.57
+  },
+  {
+   "id": "gravestone#15",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    50.376,
+    0.0,
+    -21.949
+   ],
+   "yaw_deg": 94.46
+  },
+  {
+   "id": "gravestone#16",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    49.032,
+    0.0,
+    -36.368
+   ],
+   "yaw_deg": 95.88
+  },
+  {
+   "id": "gravestone#17",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    47.35,
+    0.0,
+    -39.279
+   ],
+   "yaw_deg": 97.14
+  },
+  {
+   "id": "gravestone#18",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    50.216,
+    0.0,
+    -32.081
+   ],
+   "yaw_deg": 92.87
+  },
+  {
+   "id": "grave_cross#03",
+   "asset": "grave_cross",
+   "path": "res://assets/props/grave_cross.gltf",
+   "group": "cemetery",
+   "pos": [
+    49.386,
+    0.0,
+    -23.828
+   ],
+   "yaw_deg": 98.45
+  },
+  {
+   "id": "grave_cross#04",
+   "asset": "grave_cross",
+   "path": "res://assets/props/grave_cross.gltf",
+   "group": "cemetery",
+   "pos": [
+    53.614,
+    0.0,
+    -32.451
+   ],
+   "yaw_deg": 82.07
+  },
+  {
+   "id": "gravestone#19",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    53.07,
+    0.0,
+    -33.241
+   ],
+   "yaw_deg": 91.86
+  },
+  {
+   "id": "gravestone#20",
+   "asset": "gravestone",
+   "path": "res://assets/props/gravestone.gltf",
+   "group": "cemetery",
+   "pos": [
+    47.363,
+    0.0,
+    -17.577
+   ],
+   "yaw_deg": 78.74
+  },
+  {
+   "id": "grave_cross#05",
+   "asset": "grave_cross",
+   "path": "res://assets/props/grave_cross.gltf",
+   "group": "cemetery",
+   "pos": [
+    51.54,
+    0.0,
+    -28.84
+   ],
+   "yaw_deg": 99.57
+  },
+  {
+   "id": "grave_cross#06",
+   "asset": "grave_cross",
+   "path": "res://assets/props/grave_cross.gltf",
+   "group": "cemetery",
+   "pos": [
+    49.366,
+    0.0,
+    -28.322
+   ],
+   "yaw_deg": 87.48
+  },
+  {
+   "id": "garden_wall#00",
+   "asset": "garden_wall",
+   "path": "res://assets/architecture/garden_wall.gltf",
+   "group": "cemetery",
+   "pos": [
+    -4.0,
+    0.0,
+    -13.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "garden_wall#01",
+   "asset": "garden_wall",
+   "path": "res://assets/architecture/garden_wall.gltf",
+   "group": "cemetery",
+   "pos": [
+    4.0,
+    0.0,
+    -13.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "garden_wall#02",
+   "asset": "garden_wall",
+   "path": "res://assets/architecture/garden_wall.gltf",
+   "group": "cemetery",
+   "pos": [
+    12.0,
+    0.0,
+    -13.5
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "pine_tree#00",
+   "asset": "pine_tree",
+   "path": "res://assets/props/pine_tree.gltf",
+   "group": "trees",
+   "pos": [
+    -2.0,
+    0.0,
+    -46.0
+   ],
+   "yaw_deg": 171.27
+  },
+  {
+   "id": "pine_tree#01",
+   "asset": "pine_tree",
+   "path": "res://assets/props/pine_tree.gltf",
+   "group": "trees",
+   "pos": [
+    20.0,
+    0.0,
+    -46.0
+   ],
+   "yaw_deg": 322.86
+  },
+  {
+   "id": "pine_tree#02",
+   "asset": "pine_tree",
+   "path": "res://assets/props/pine_tree.gltf",
+   "group": "trees",
+   "pos": [
+    50.0,
+    0.0,
+    -44.0
+   ],
+   "yaw_deg": 111.4
+  },
+  {
+   "id": "pine_tree#03",
+   "asset": "pine_tree",
+   "path": "res://assets/props/pine_tree.gltf",
+   "group": "trees",
+   "pos": [
+    54.0,
+    0.0,
+    -18.0
+   ],
+   "yaw_deg": 85.52
+  },
+  {
+   "id": "pine_tree#04",
+   "asset": "pine_tree",
+   "path": "res://assets/props/pine_tree.gltf",
+   "group": "trees",
+   "pos": [
+    -52.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 20.58
+  },
+  {
+   "id": "pine_tree#05",
+   "asset": "pine_tree",
+   "path": "res://assets/props/pine_tree.gltf",
+   "group": "trees",
+   "pos": [
+    46.0,
+    0.0,
+    10.0
+   ],
+   "yaw_deg": 111.47
+  },
+  {
+   "id": "pine_tree#06",
+   "asset": "pine_tree",
+   "path": "res://assets/props/pine_tree.gltf",
+   "group": "trees",
+   "pos": [
+    -10.0,
+    0.0,
+    42.0
+   ],
+   "yaw_deg": 86.68
+  },
+  {
+   "id": "tree#00",
+   "asset": "tree",
+   "path": "res://assets/props/tree.gltf",
+   "group": "trees",
+   "pos": [
+    24.0,
+    0.0,
+    30.0
+   ],
+   "yaw_deg": 85.06
+  },
+  {
+   "id": "tree#01",
+   "asset": "tree",
+   "path": "res://assets/props/tree.gltf",
+   "group": "trees",
+   "pos": [
+    -8.0,
+    0.0,
+    -6.0
+   ],
+   "yaw_deg": 200.89
+  },
+  {
+   "id": "fence_wood#00",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    30.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#01",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    26.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#02",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    22.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#03",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#04",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    14.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#05",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    10.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#06",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    2.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#07",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    -2.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#08",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    -6.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#09",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    -10.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "fence_wood#10",
+   "asset": "fence_wood",
+   "path": "res://assets/props/fence_wood.gltf",
+   "group": "training",
+   "pos": [
+    -13.0,
+    0.0,
+    -14.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "archery_target#00",
+   "asset": "archery_target",
+   "path": "res://assets/props/archery_target.gltf",
+   "group": "training",
+   "pos": [
+    -54.0,
+    0.0,
+    28.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "archery_target#01",
+   "asset": "archery_target",
+   "path": "res://assets/props/archery_target.gltf",
+   "group": "training",
+   "pos": [
+    -54.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "archery_target#02",
+   "asset": "archery_target",
+   "path": "res://assets/props/archery_target.gltf",
+   "group": "training",
+   "pos": [
+    -54.0,
+    0.0,
+    6.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "training_dummy#00",
+   "asset": "training_dummy",
+   "path": "res://assets/props/training_dummy.gltf",
+   "group": "training",
+   "pos": [
+    -40.0,
+    0.0,
+    12.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "training_dummy#01",
+   "asset": "training_dummy",
+   "path": "res://assets/props/training_dummy.gltf",
+   "group": "training",
+   "pos": [
+    -34.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "training_dummy#02",
+   "asset": "training_dummy",
+   "path": "res://assets/props/training_dummy.gltf",
+   "group": "training",
+   "pos": [
+    -44.0,
+    0.0,
+    -4.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "training_dummy#03",
+   "asset": "training_dummy",
+   "path": "res://assets/props/training_dummy.gltf",
+   "group": "training",
+   "pos": [
+    -30.0,
+    0.0,
+    -6.0
+   ],
+   "yaw_deg": 90.0
+  },
+  {
+   "id": "weapon_rack#00",
+   "asset": "weapon_rack",
+   "path": "res://assets/props/weapon_rack.gltf",
+   "group": "training",
+   "pos": [
+    -24.0,
+    0.0,
+    -12.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "watchtower_wood#00",
+   "asset": "watchtower_wood",
+   "path": "res://assets/props/watchtower_wood.gltf",
+   "group": "training",
+   "pos": [
+    -24.0,
+    0.0,
+    -22.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "barrel#00",
+   "asset": "barrel",
+   "path": "res://assets/props/barrel.gltf",
+   "group": "training",
+   "pos": [
+    -18.0,
+    0.0,
+    32.0
+   ],
+   "yaw_deg": 118.76
+  },
+  {
+   "id": "barrel#01",
+   "asset": "barrel",
+   "path": "res://assets/props/barrel.gltf",
+   "group": "training",
+   "pos": [
+    -17.0,
+    0.0,
+    30.8
+   ],
+   "yaw_deg": 12.94
+  },
+  {
+   "id": "bench#00",
+   "asset": "bench",
+   "path": "res://assets/props/bench.gltf",
+   "group": "training",
+   "pos": [
+    -20.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "id": "house_timber_a#00",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "houses",
+   "pos": [
+    36.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_b#00",
+   "asset": "house_timber_b",
+   "path": "res://assets/architecture/house_timber_b.gltf",
+   "group": "houses",
+   "pos": [
+    28.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_a#01",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "houses",
+   "pos": [
+    19.75,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "wall_torch#00",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    18.6,
+    0.0,
+    42.7
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_d#00",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "houses",
+   "pos": [
+    12.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_a#02",
+   "asset": "house_timber_a",
+   "path": "res://assets/architecture/house_timber_a.gltf",
+   "group": "houses",
+   "pos": [
+    4.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "house_timber_d#01",
+   "asset": "house_timber_d",
+   "path": "res://assets/architecture/house_timber_d.gltf",
+   "group": "houses",
+   "pos": [
+    -2.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "wall_torch#01",
+   "asset": "wall_torch",
+   "path": "res://assets/props/wall_torch.gltf",
+   "group": "lights",
+   "pos": [
+    -3.15,
+    0.0,
+    42.7
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "market_stall_weapons#00",
+   "asset": "market_stall_weapons",
+   "path": "res://assets/props/market_stall_weapons.gltf",
+   "group": "market",
+   "pos": [
+    20.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "blacksmith_shed#00",
+   "asset": "blacksmith_shed",
+   "path": "res://assets/props/blacksmith_shed.gltf",
+   "group": "market",
+   "pos": [
+    44.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "forge#00",
+   "asset": "forge",
+   "path": "res://assets/props/forge.gltf",
+   "group": "market",
+   "pos": [
+    44.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 360.0
+  },
+  {
+   "id": "anvil#00",
+   "asset": "anvil",
+   "path": "res://assets/props/anvil.gltf",
+   "group": "market",
+   "pos": [
+    44.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 180.0
+  },
+  {
+   "id": "flag_pole#00",
+   "asset": "flag_pole",
+   "path": "res://assets/props/flag_pole.gltf",
+   "group": "flags",
+   "pos": [
+    52.0,
+    0.0,
+    -8.0
+   ],
+   "yaw_deg": 2.56
+  },
+  {
+   "id": "flag_pole#01",
+   "asset": "flag_pole",
+   "path": "res://assets/props/flag_pole.gltf",
+   "group": "flags",
+   "pos": [
+    52.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 344.32
+  },
+  {
+   "id": "flag_pole#02",
+   "asset": "flag_pole",
+   "path": "res://assets/props/flag_pole.gltf",
+   "group": "flags",
+   "pos": [
+    -10.0,
+    0.0,
+    -40.0
+   ],
+   "yaw_deg": 2.3
+  },
+  {
+   "id": "street_lantern#04",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    40.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 139.81
+  },
+  {
+   "id": "street_lantern#05",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    16.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 91.85
+  },
+  {
+   "id": "street_lantern#06",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -6.0,
+    0.0,
+    8.0
+   ],
+   "yaw_deg": 281.92
+  },
+  {
+   "id": "street_lantern#07",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    -6.0,
+    0.0,
+    -20.0
+   ],
+   "yaw_deg": 281.77
+  },
+  {
+   "id": "street_lantern#08",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    30.0,
+    0.0,
+    28.0
+   ],
+   "yaw_deg": 152.06
+  },
+  {
+   "id": "street_lantern#09",
+   "asset": "street_lantern",
+   "path": "res://assets/props/street_lantern.gltf",
+   "group": "lights",
+   "pos": [
+    0.0,
+    0.0,
+    28.0
+   ],
+   "yaw_deg": 220.01
+  },
+  {
+   "id": "castle_hill#00",
+   "asset": "castle_hill",
+   "path": "res://assets/architecture/castle_hill.gltf",
+   "group": "backdrop",
+   "pos": [
+    -330.0,
+    -40.0,
+    -560.0
+   ],
+   "yaw_deg": 14.32
+  },
+  {
+   "id": "city_backdrop#00",
+   "asset": "city_backdrop",
+   "path": "res://assets/architecture/city_backdrop.gltf",
+   "group": "backdrop",
+   "pos": [
+    140.0,
+    -38.0,
+    -430.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "bridge_far#00",
+   "asset": "bridge_far",
+   "path": "res://assets/architecture/bridge_far.gltf",
+   "group": "backdrop",
+   "pos": [
+    -190.0,
+    -34.0,
+    -330.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "id": "city_backdrop#01",
+   "asset": "city_backdrop",
+   "path": "res://assets/architecture/city_backdrop.gltf",
+   "group": "backdrop",
+   "pos": [
+    -560.0,
+    -36.0,
+    -250.0
+   ],
+   "yaw_deg": 90.0
+  }
+ ],
+ "markers": [
+  {
+   "name": "MARK_ledge@fortress_parapet#00",
+   "kind": "ledge",
+   "pos": [
+    -60.0,
+    0.0,
+    42.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "fortress_parapet#00"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#01",
+   "kind": "ledge",
+   "pos": [
+    -60.0,
+    0.0,
+    30.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "fortress_parapet#01"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#02",
+   "kind": "ledge",
+   "pos": [
+    -60.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "fortress_parapet#02"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#03",
+   "kind": "ledge",
+   "pos": [
+    -60.0,
+    0.0,
+    6.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "fortress_parapet#03"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#04",
+   "kind": "ledge",
+   "pos": [
+    -60.0,
+    0.0,
+    -6.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "fortress_parapet#04"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#05",
+   "kind": "ledge",
+   "pos": [
+    -60.0,
+    0.0,
+    -18.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "fortress_parapet#05"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#06",
+   "kind": "ledge",
+   "pos": [
+    -60.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "fortress_parapet#06"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#07",
+   "kind": "ledge",
+   "pos": [
+    -60.0,
+    0.0,
+    -42.0
+   ],
+   "yaw_deg": 270.0,
+   "owner": "fortress_parapet#07"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#08",
+   "kind": "ledge",
+   "pos": [
+    -50.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "fortress_parapet#08"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#09",
+   "kind": "ledge",
+   "pos": [
+    -38.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "fortress_parapet#09"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#10",
+   "kind": "ledge",
+   "pos": [
+    -26.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "fortress_parapet#10"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#11",
+   "kind": "ledge",
+   "pos": [
+    -14.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "fortress_parapet#11"
+  },
+  {
+   "name": "MARK_ledge@fortress_parapet#12",
+   "kind": "ledge",
+   "pos": [
+    -2.0,
+    0.0,
+    -50.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "fortress_parapet#12"
+  },
+  {
+   "name": "MARK_gate_front@gate_tower#00",
+   "kind": "gate",
+   "pos": [
+    60.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 90.0,
+   "owner": "gate_tower#00"
+  },
+  {
+   "name": "MARK_gate_back@gate_tower#00",
+   "kind": "gate",
+   "pos": [
+    60.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 90.0,
+   "owner": "gate_tower#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#00",
+   "kind": "window",
+   "pos": [
+    36.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#00"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#00",
+   "kind": "window",
+   "pos": [
+    36.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#00"
+  },
+  {
+   "name": "MARK_door@house_timber_a#00",
+   "kind": "door",
+   "pos": [
+    36.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#00"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#00",
+   "kind": "interior",
+   "pos": [
+    36.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_b#00",
+   "kind": "window",
+   "pos": [
+    28.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_window_1@house_timber_b#00",
+   "kind": "window",
+   "pos": [
+    28.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_window_2@house_timber_b#00",
+   "kind": "window",
+   "pos": [
+    28.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_door@house_timber_b#00",
+   "kind": "door",
+   "pos": [
+    28.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_interior@house_timber_b#00",
+   "kind": "interior",
+   "pos": [
+    28.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_b#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#01",
+   "kind": "window",
+   "pos": [
+    19.75,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#01"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#01",
+   "kind": "window",
+   "pos": [
+    19.75,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#01"
+  },
+  {
+   "name": "MARK_door@house_timber_a#01",
+   "kind": "door",
+   "pos": [
+    19.75,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#01"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#01",
+   "kind": "interior",
+   "pos": [
+    19.75,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#01"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#00",
+   "kind": "window",
+   "pos": [
+    12.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#00",
+   "kind": "window",
+   "pos": [
+    12.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#00",
+   "kind": "window",
+   "pos": [
+    12.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_door@house_timber_d#00",
+   "kind": "door",
+   "pos": [
+    12.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#00",
+   "kind": "interior",
+   "pos": [
+    12.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#00"
+  },
+  {
+   "name": "MARK_window_0@house_timber_a#02",
+   "kind": "window",
+   "pos": [
+    4.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#02"
+  },
+  {
+   "name": "MARK_window_1@house_timber_a#02",
+   "kind": "window",
+   "pos": [
+    4.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#02"
+  },
+  {
+   "name": "MARK_door@house_timber_a#02",
+   "kind": "door",
+   "pos": [
+    4.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#02"
+  },
+  {
+   "name": "MARK_interior@house_timber_a#02",
+   "kind": "interior",
+   "pos": [
+    4.25,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_a#02"
+  },
+  {
+   "name": "MARK_window_0@house_timber_d#01",
+   "kind": "window",
+   "pos": [
+    -2.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_window_1@house_timber_d#01",
+   "kind": "window",
+   "pos": [
+    -2.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_window_2@house_timber_d#01",
+   "kind": "window",
+   "pos": [
+    -2.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_door@house_timber_d#01",
+   "kind": "door",
+   "pos": [
+    -2.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_interior@house_timber_d#01",
+   "kind": "interior",
+   "pos": [
+    -2.0,
+    0.0,
+    41.5
+   ],
+   "yaw_deg": 180.0,
+   "owner": "house_timber_d#01"
+  },
+  {
+   "name": "MARK_merchant@market_stall_weapons#00",
+   "kind": "merchant",
+   "pos": [
+    20.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "market_stall_weapons#00"
+  },
+  {
+   "name": "MARK_customer@market_stall_weapons#00",
+   "kind": "customer",
+   "pos": [
+    20.0,
+    0.0,
+    18.0
+   ],
+   "yaw_deg": 0.0,
+   "owner": "market_stall_weapons#00"
+  },
+  {
+   "name": "MARK_forge@blacksmith_shed#00",
+   "kind": "slot",
+   "pos": [
+    44.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "blacksmith_shed#00"
+  },
+  {
+   "name": "MARK_anvil@blacksmith_shed#00",
+   "kind": "slot",
+   "pos": [
+    44.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "blacksmith_shed#00"
+  },
+  {
+   "name": "MARK_smith@blacksmith_shed#00",
+   "kind": "smith",
+   "pos": [
+    44.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "blacksmith_shed#00"
+  },
+  {
+   "name": "MARK_smith@anvil#00",
+   "kind": "smith",
+   "pos": [
+    44.0,
+    0.0,
+    24.0
+   ],
+   "yaw_deg": 180.0,
+   "owner": "anvil#00"
+  },
+  {
+   "name": "MARK_player_start",
+   "kind": "player",
+   "pos": [
+    100.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 270.0
+  },
+  {
+   "name": "MARK_exit_old_town",
+   "kind": "exit",
+   "pos": [
+    116.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 270.0,
+   "leads_to": "old_town"
+  },
+  {
+   "name": "MARK_spawn_skeleton_00",
+   "kind": "spawn",
+   "pos": [
+    0.0,
+    0.0,
+    -22.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_01",
+   "kind": "spawn",
+   "pos": [
+    4.0,
+    0.0,
+    -26.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_02",
+   "kind": "spawn",
+   "pos": [
+    -3.0,
+    0.0,
+    -28.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_03",
+   "kind": "spawn",
+   "pos": [
+    46.0,
+    0.0,
+    -22.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_04",
+   "kind": "spawn",
+   "pos": [
+    48.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_05",
+   "kind": "spawn",
+   "pos": [
+    45.0,
+    0.0,
+    -38.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_alchemist_06",
+   "kind": "spawn",
+   "pos": [
+    8.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "alchemist",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_alchemist_07",
+   "kind": "spawn",
+   "pos": [
+    -32.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "alchemist",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_golem_08",
+   "kind": "spawn",
+   "pos": [
+    -30.0,
+    0.0,
+    14.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "golem",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_alchemist_09",
+   "kind": "spawn",
+   "pos": [
+    30.0,
+    0.0,
+    30.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "alchemist",
+   "time": "night"
+  },
+  {
+   "name": "MARK_spawn_skeleton_10",
+   "kind": "spawn",
+   "pos": [
+    -40.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 180.0,
+   "enemy": "skeleton",
+   "time": "night"
+  },
+  {
+   "name": "MARK_patrol_walls_0",
+   "kind": "patrol",
+   "pos": [
+    50.0,
+    0.0,
+    -0.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "walls",
+   "index": 0
+  },
+  {
+   "name": "MARK_patrol_walls_1",
+   "kind": "patrol",
+   "pos": [
+    10.0,
+    0.0,
+    4.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "walls",
+   "index": 1
+  },
+  {
+   "name": "MARK_patrol_walls_2",
+   "kind": "patrol",
+   "pos": [
+    -6.0,
+    0.0,
+    -10.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "walls",
+   "index": 2
+  },
+  {
+   "name": "MARK_patrol_walls_3",
+   "kind": "patrol",
+   "pos": [
+    20.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "walls",
+   "index": 3
+  },
+  {
+   "name": "MARK_patrol_walls_4",
+   "kind": "patrol",
+   "pos": [
+    40.0,
+    0.0,
+    -30.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "walls",
+   "index": 4
+  },
+  {
+   "name": "MARK_patrol_walls_5",
+   "kind": "patrol",
+   "pos": [
+    40.0,
+    0.0,
+    10.0
+   ],
+   "yaw_deg": 0.0,
+   "route": "walls",
+   "index": 5
+  },
+  {
+   "name": "MARK_wander_00",
+   "kind": "wander",
+   "pos": [
+    2.0,
+    0.0,
+    -18.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_01",
+   "kind": "wander",
+   "pos": [
+    14.0,
+    0.0,
+    -22.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_02",
+   "kind": "wander",
+   "pos": [
+    14.0,
+    0.0,
+    -42.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_03",
+   "kind": "wander",
+   "pos": [
+    -2.0,
+    0.0,
+    -42.0
+   ],
+   "yaw_deg": 0.0
+  },
+  {
+   "name": "MARK_wander_04",
+   "kind": "wander",
+   "pos": [
+    -4.0,
+    0.0,
+    -24.0
+   ],
+   "yaw_deg": 0.0
+  }
+ ],
+ "lighting": {
+  "note": "Azimuth measured from Blender +Y (= Godot -Z, north on the level plan) towards +X (east). Lamp/window factors multiply the per-light energy and per-material emission from the glTF assets. Fire, forge and coal lights are always on.",
+  "keys": [
+   {
+    "frame": 0,
+    "sun_elevation_deg": 58,
+    "sun_azimuth_deg_from_north": 200,
+    "sun_energy": 4.5,
+    "sun_color": [
+     1.0,
+     0.93,
+     0.82
+    ],
+    "sky_zenith": [
+     0.32,
+     0.48,
+     0.78
+    ],
+    "sky_horizon": [
+     0.78,
+     0.82,
+     0.86
+    ],
+    "sky_strength": 1.0,
+    "lamp_factor": 0.0,
+    "window_emission_factor": 0.0,
+    "moon_factor": 0.0
+   },
+   {
+    "frame": 90,
+    "sun_elevation_deg": 24,
+    "sun_azimuth_deg_from_north": 245,
+    "sun_energy": 3.6,
+    "sun_color": [
+     1.0,
+     0.8,
+     0.55
+    ],
+    "sky_zenith": [
+     0.3,
+     0.42,
+     0.7
+    ],
+    "sky_horizon": [
+     0.95,
+     0.78,
+     0.55
+    ],
+    "sky_strength": 0.9,
+    "lamp_factor": 0.0,
+    "window_emission_factor": 0.0,
+    "moon_factor": 0.0
+   },
+   {
+    "frame": 150,
+    "sun_elevation_deg": 3,
+    "sun_azimuth_deg_from_north": 265,
+    "sun_energy": 1.0,
+    "sun_color": [
+     1.0,
+     0.5,
+     0.28
+    ],
+    "sky_zenith": [
+     0.14,
+     0.17,
+     0.35
+    ],
+    "sky_horizon": [
+     0.85,
+     0.45,
+     0.28
+    ],
+    "sky_strength": 0.6,
+    "lamp_factor": 1.2,
+    "window_emission_factor": 0.8,
+    "moon_factor": 0.2
+   },
+   {
+    "frame": 200,
+    "sun_elevation_deg": 42,
+    "sun_azimuth_deg_from_north": 60,
+    "sun_energy": 0.45,
+    "sun_color": [
+     0.55,
+     0.65,
+     1.0
+    ],
+    "sky_zenith": [
+     0.02,
+     0.035,
+     0.085
+    ],
+    "sky_horizon": [
+     0.06,
+     0.08,
+     0.15
+    ],
+    "sky_strength": 1.2,
+    "lamp_factor": 2.5,
+    "window_emission_factor": 1.2,
+    "moon_factor": 1.0
+   },
+   {
+    "frame": 300,
+    "sun_elevation_deg": 42,
+    "sun_azimuth_deg_from_north": 70,
+    "sun_energy": 0.45,
+    "sun_color": [
+     0.55,
+     0.65,
+     1.0
+    ],
+    "sky_zenith": [
+     0.02,
+     0.035,
+     0.085
+    ],
+    "sky_horizon": [
+     0.06,
+     0.08,
+     0.15
+    ],
+    "sky_strength": 1.2,
+    "lamp_factor": 2.5,
+    "window_emission_factor": 1.2,
+    "moon_factor": 1.0
+   },
+   {
+    "frame": 350,
+    "sun_elevation_deg": 3,
+    "sun_azimuth_deg_from_north": 100,
+    "sun_energy": 1.0,
+    "sun_color": [
+     1.0,
+     0.62,
+     0.45
+    ],
+    "sky_zenith": [
+     0.16,
+     0.2,
+     0.38
+    ],
+    "sky_horizon": [
+     0.9,
+     0.6,
+     0.5
+    ],
+    "sky_strength": 0.6,
+    "lamp_factor": 0.5,
+    "window_emission_factor": 0.5,
+    "moon_factor": 0.2
+   },
+   {
+    "frame": 400,
+    "sun_elevation_deg": 58,
+    "sun_azimuth_deg_from_north": 200,
+    "sun_energy": 4.5,
+    "sun_color": [
+     1.0,
+     0.93,
+     0.82
+    ],
+    "sky_zenith": [
+     0.32,
+     0.48,
+     0.78
+    ],
+    "sky_horizon": [
+     0.78,
+     0.82,
+     0.86
+    ],
+    "sky_strength": 1.0,
+    "lamp_factor": 0.0,
+    "window_emission_factor": 0.0,
+    "moon_factor": 0.0
+   }
+  ],
+  "cycle_frames": 400,
+  "suggested_cycle_seconds": 1200,
+  "presets": {
+   "day": {
+    "frame": 0,
+    "sun_elevation_deg": 58,
+    "sun_azimuth_deg_from_north": 200,
+    "sun_energy": 4.5,
+    "sun_color": [
+     1.0,
+     0.93,
+     0.82
+    ],
+    "sky_zenith": [
+     0.32,
+     0.48,
+     0.78
+    ],
+    "sky_horizon": [
+     0.78,
+     0.82,
+     0.86
+    ],
+    "sky_strength": 1.0,
+    "lamp_factor": 0.0,
+    "window_emission_factor": 0.0,
+    "moon_factor": 0.0
+   },
+   "dusk": {
+    "frame": 150,
+    "sun_elevation_deg": 3,
+    "sun_azimuth_deg_from_north": 265,
+    "sun_energy": 1.0,
+    "sun_color": [
+     1.0,
+     0.5,
+     0.28
+    ],
+    "sky_zenith": [
+     0.14,
+     0.17,
+     0.35
+    ],
+    "sky_horizon": [
+     0.85,
+     0.45,
+     0.28
+    ],
+    "sky_strength": 0.6,
+    "lamp_factor": 1.2,
+    "window_emission_factor": 0.8,
+    "moon_factor": 0.2
+   },
+   "night": {
+    "frame": 200,
+    "sun_elevation_deg": 42,
+    "sun_azimuth_deg_from_north": 60,
+    "sun_energy": 0.45,
+    "sun_color": [
+     0.55,
+     0.65,
+     1.0
+    ],
+    "sky_zenith": [
+     0.02,
+     0.035,
+     0.085
+    ],
+    "sky_horizon": [
+     0.06,
+     0.08,
+     0.15
+    ],
+    "sky_strength": 1.2,
+    "lamp_factor": 2.5,
+    "window_emission_factor": 1.2,
+    "moon_factor": 1.0
+   }
+  }
+ }
+}

@@ -447,31 +447,14 @@ def _ellipse(xs, ys, cx, cy, rx, ry, ang=0.0):
 
 
 def lion_mask(xs, ys):
-    """Rampant heraldic lion with double tail, facing viewer's left. Coords in [0,1], y down."""
-    m = _ellipse(xs, ys, 0.52, 0.50, 0.11, 0.21, -0.35)          # torso
-    m |= _ellipse(xs, ys, 0.45, 0.30, 0.13, 0.11, 0.2)           # mane
-    m |= _ellipse(xs, ys, 0.36, 0.27, 0.08, 0.06, -0.2)          # muzzle
-    m |= _polyline(xs, ys, [(0.30, 0.31), (0.27, 0.34)], 0.018)  # jaw/tongue
-    m |= _polyline(xs, ys, [(0.44, 0.40), (0.33, 0.36), (0.24, 0.30)], 0.035)  # fore leg up
-    m |= _polyline(xs, ys, [(0.24, 0.30), (0.20, 0.26)], 0.02)
-    m |= _polyline(xs, ys, [(0.46, 0.48), (0.35, 0.50), (0.27, 0.46)], 0.032)  # fore leg 2
-    m |= _polyline(xs, ys, [(0.27, 0.46), (0.22, 0.44)], 0.018)
-    m |= _polyline(xs, ys, [(0.55, 0.66), (0.47, 0.76), (0.42, 0.88)], 0.045)  # hind leg
-    m |= _polyline(xs, ys, [(0.42, 0.88), (0.34, 0.90)], 0.025)
-    m |= _polyline(xs, ys, [(0.60, 0.64), (0.66, 0.76), (0.62, 0.90)], 0.04)  # hind leg 2
-    m |= _polyline(xs, ys, [(0.62, 0.90), (0.70, 0.92)], 0.022)
-    tail = [(0.63, 0.66), (0.74, 0.60), (0.80, 0.48), (0.78, 0.36), (0.72, 0.28)]
-    m |= _polyline(xs, ys, tail, 0.018)
-    m |= _polyline(xs, ys, [(0.80, 0.48), (0.86, 0.40), (0.86, 0.30), (0.82, 0.24)], 0.016)
-    m |= _circle(xs, ys, 0.72, 0.26, 0.03) | _circle(xs, ys, 0.82, 0.22, 0.028)
-    return m
+    """Rampant crowned Bohemian lion (white parts), see lib_heraldry.py. Coords in [0,1], y down."""
+    import lib_heraldry
+    return lib_heraldry.lion_masks(xs, ys)["body"]
 
 
 def crown_mask(xs, ys):
-    m = (ys > 0.15) & (ys < 0.19) & (xs > 0.37) & (xs < 0.53)
-    for cx in (0.38, 0.45, 0.52):
-        m |= _polyline(xs, ys, [(cx, 0.17), (cx, 0.11)], 0.012) & (ys < 0.19)
-    return m
+    import lib_heraldry
+    return lib_heraldry.lion_masks(xs, ys)["gold"]
 
 
 def tex_banner(size=1024, seed=161):
