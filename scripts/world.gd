@@ -177,6 +177,10 @@ func _build() -> void:
 		var pp = load("res://scripts/perf_probe.gd").new()
 		pp.world = self
 		add_child(pp)
+	if "--cinematic" in OS.get_cmdline_user_args():   # scripted trailer camera (record with --write-movie)
+		var cine = load("res://scripts/cinematic.gd").new()
+		cine.world = self
+		add_child(cine)
 	if Game.autotest:
 		var at = load("res://scripts/autotest.gd").new()
 		at.world = self

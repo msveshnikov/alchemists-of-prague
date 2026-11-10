@@ -10,3 +10,6 @@
 __pycache__/
 renders/previews/_frames/
 /.playwright-mcp/
+
+# Trailer videos (tens to hundreds of MB) — rendered with scripts/cinematic.gd + tools/edit_trailer.py, shared outside git
+renders/trailer/
