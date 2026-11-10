@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://crk8fs38cmvcu"
 path.s3tc="res://.godot/imported/clay_pale.png-8e75c9801dc9043f4edd037fa138e99d.s3tc.ctex"
+path.etc2="res://.godot/imported/clay_pale.png-8e75c9801dc9043f4edd037fa138e99d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/clay_pale.png"
-dest_files=["res://.godot/imported/clay_pale.png-8e75c9801dc9043f4edd037fa138e99d.s3tc.ctex"]
+dest_files=["res://.godot/imported/clay_pale.png-8e75c9801dc9043f4edd037fa138e99d.s3tc.ctex", "res://.godot/imported/clay_pale.png-8e75c9801dc9043f4edd037fa138e99d.etc2.ctex"]
 
 [params]
 

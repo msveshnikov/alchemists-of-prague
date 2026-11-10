@@ -8,6 +8,8 @@
 
 ## Играть (Task 5)
 
+**▶ В браузере (ПК или телефон): https://severance.lol/4/** · **Android APK: https://severance.lol/4/AlchemistsOfPrague.apk**
+
 - Билд: `build/windows/AlchemistsOfPrague.exe` (Windows, всё внутри).
 - Из исходников: открыть папку в Godot 4.7.2 и нажать F5.
 
@@ -26,6 +28,19 @@
 | T | ждать до заката или рассвета |
 | F5 / F9 | быстрое сохранение / загрузка |
 | Esc | пауза |
+
+**Сенсорное управление** включается само на телефонах (APK и мобильный браузер) и после первого касания экрана:
+левый палец — плавающий стик (вытянуть за внешнее кольцо — спринт), правый палец — обзор;
+кнопки «Strike» (тянуть с неё — тоже обзор), «Block» (удерживать), «Dodge», «Jump», «Use» (мигает, когда есть с чем взаимодействовать);
+вверху справа «Wait», «Bag» (инвентарь), «Menu» (пауза: сохранение и настройки). Чтобы выпить зелье, коснитесь его слота на HUD.
+Код: `scripts/ui/touch_controls.gd`. На ПК можно проверить с аргументом `-- --touch`.
+
+Экспорт: пресеты `Web` и `Android` в `export_presets.cfg` (на вебе и Android рендерер Compatibility, текстуры S3TC+ETC2, APK подписан debug-ключом, arm64).
+```
+godot --headless --path . --export-release "Web" build/web/index.html
+godot --headless --path . --export-debug "Android" build/android/AlchemistsOfPrague.apk
+scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/www/severance/4/
+```
 
 Совет: в первом доме на площади прячется алхимик — раньте его, схватите (E) и выбросьте в окно (E).
 Автотест: `godot --path . -- --autotest` → `renders/game/`.

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://pbsa24etpxeb"
 path.s3tc="res://.godot/imported/apron_bloody_n.png-f5b45e94ba61f1e4dbda9722d810a03a.s3tc.ctex"
+path.etc2="res://.godot/imported/apron_bloody_n.png-f5b45e94ba61f1e4dbda9722d810a03a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/apron_bloody_n.png"
-dest_files=["res://.godot/imported/apron_bloody_n.png-f5b45e94ba61f1e4dbda9722d810a03a.s3tc.ctex"]
+dest_files=["res://.godot/imported/apron_bloody_n.png-f5b45e94ba61f1e4dbda9722d810a03a.s3tc.ctex", "res://.godot/imported/apron_bloody_n.png-f5b45e94ba61f1e4dbda9722d810a03a.etc2.ctex"]
 
 [params]
 

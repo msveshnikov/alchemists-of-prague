@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2qgi6k5k0bqm"
 path.s3tc="res://.godot/imported/plaster_rose_n.png-cc7a30f245a3e357722bfd7571af7662.s3tc.ctex"
+path.etc2="res://.godot/imported/plaster_rose_n.png-cc7a30f245a3e357722bfd7571af7662.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/plaster_rose_n.png"
-dest_files=["res://.godot/imported/plaster_rose_n.png-cc7a30f245a3e357722bfd7571af7662.s3tc.ctex"]
+dest_files=["res://.godot/imported/plaster_rose_n.png-cc7a30f245a3e357722bfd7571af7662.s3tc.ctex", "res://.godot/imported/plaster_rose_n.png-cc7a30f245a3e357722bfd7571af7662.etc2.ctex"]
 
 [params]
 

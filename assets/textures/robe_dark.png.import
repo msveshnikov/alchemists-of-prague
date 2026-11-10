@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c81lqwng8io67"
 path.s3tc="res://.godot/imported/robe_dark.png-d4497750158efcdc2f07d65ac778166d.s3tc.ctex"
+path.etc2="res://.godot/imported/robe_dark.png-d4497750158efcdc2f07d65ac778166d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/robe_dark.png"
-dest_files=["res://.godot/imported/robe_dark.png-d4497750158efcdc2f07d65ac778166d.s3tc.ctex"]
+dest_files=["res://.godot/imported/robe_dark.png-d4497750158efcdc2f07d65ac778166d.s3tc.ctex", "res://.godot/imported/robe_dark.png-d4497750158efcdc2f07d65ac778166d.etc2.ctex"]
 
 [params]
 

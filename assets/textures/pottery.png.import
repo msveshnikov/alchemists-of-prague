@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgxanuap8yn1c"
 path.s3tc="res://.godot/imported/pottery.png-ef0d95badec7233ef650c08c2bea04c3.s3tc.ctex"
+path.etc2="res://.godot/imported/pottery.png-ef0d95badec7233ef650c08c2bea04c3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/pottery.png"
-dest_files=["res://.godot/imported/pottery.png-ef0d95badec7233ef650c08c2bea04c3.s3tc.ctex"]
+dest_files=["res://.godot/imported/pottery.png-ef0d95badec7233ef650c08c2bea04c3.s3tc.ctex", "res://.godot/imported/pottery.png-ef0d95badec7233ef650c08c2bea04c3.etc2.ctex"]
 
 [params]
 

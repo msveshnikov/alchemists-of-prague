@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://blp6whskv4ehp"
 path.s3tc="res://.godot/imported/coals_emit.png-b2e25ab71d947366eb6c0872f7e22241.s3tc.ctex"
+path.etc2="res://.godot/imported/coals_emit.png-b2e25ab71d947366eb6c0872f7e22241.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/coals_emit.png"
-dest_files=["res://.godot/imported/coals_emit.png-b2e25ab71d947366eb6c0872f7e22241.s3tc.ctex"]
+dest_files=["res://.godot/imported/coals_emit.png-b2e25ab71d947366eb6c0872f7e22241.s3tc.ctex", "res://.godot/imported/coals_emit.png-b2e25ab71d947366eb6c0872f7e22241.etc2.ctex"]
 
 [params]
 

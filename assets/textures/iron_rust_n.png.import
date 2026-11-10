@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0ehd17kuymkd"
 path.s3tc="res://.godot/imported/iron_rust_n.png-d824540e30e2f1ad4017342dae96b291.s3tc.ctex"
+path.etc2="res://.godot/imported/iron_rust_n.png-d824540e30e2f1ad4017342dae96b291.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/iron_rust_n.png"
-dest_files=["res://.godot/imported/iron_rust_n.png-d824540e30e2f1ad4017342dae96b291.s3tc.ctex"]
+dest_files=["res://.godot/imported/iron_rust_n.png-d824540e30e2f1ad4017342dae96b291.s3tc.ctex", "res://.godot/imported/iron_rust_n.png-d824540e30e2f1ad4017342dae96b291.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://clryd6vwhe7e8"
 path.s3tc="res://.godot/imported/stone_wall_rough_n.png-29e3d3e245c0a4562a0bc0031fa3e162.s3tc.ctex"
+path.etc2="res://.godot/imported/stone_wall_rough_n.png-29e3d3e245c0a4562a0bc0031fa3e162.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/stone_wall_rough_n.png"
-dest_files=["res://.godot/imported/stone_wall_rough_n.png-29e3d3e245c0a4562a0bc0031fa3e162.s3tc.ctex"]
+dest_files=["res://.godot/imported/stone_wall_rough_n.png-29e3d3e245c0a4562a0bc0031fa3e162.s3tc.ctex", "res://.godot/imported/stone_wall_rough_n.png-29e3d3e245c0a4562a0bc0031fa3e162.etc2.ctex"]
 
 [params]
 

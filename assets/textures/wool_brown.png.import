@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhr5ywjfi6pjs"
 path.s3tc="res://.godot/imported/wool_brown.png-5a75241f2fae2cedcc995fa580b1a766.s3tc.ctex"
+path.etc2="res://.godot/imported/wool_brown.png-5a75241f2fae2cedcc995fa580b1a766.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/wool_brown.png"
-dest_files=["res://.godot/imported/wool_brown.png-5a75241f2fae2cedcc995fa580b1a766.s3tc.ctex"]
+dest_files=["res://.godot/imported/wool_brown.png-5a75241f2fae2cedcc995fa580b1a766.s3tc.ctex", "res://.godot/imported/wool_brown.png-5a75241f2fae2cedcc995fa580b1a766.etc2.ctex"]
 
 [params]
 

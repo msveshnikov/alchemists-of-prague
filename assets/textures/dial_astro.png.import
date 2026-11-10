@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwjenuhs2juax"
 path.s3tc="res://.godot/imported/dial_astro.png-523f28699b0b78de7d8032548b8cc61d.s3tc.ctex"
+path.etc2="res://.godot/imported/dial_astro.png-523f28699b0b78de7d8032548b8cc61d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/dial_astro.png"
-dest_files=["res://.godot/imported/dial_astro.png-523f28699b0b78de7d8032548b8cc61d.s3tc.ctex"]
+dest_files=["res://.godot/imported/dial_astro.png-523f28699b0b78de7d8032548b8cc61d.s3tc.ctex", "res://.godot/imported/dial_astro.png-523f28699b0b78de7d8032548b8cc61d.etc2.ctex"]
 
 [params]
 

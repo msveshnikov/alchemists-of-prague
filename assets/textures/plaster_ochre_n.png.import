@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3r5knylvm5j7"
 path.s3tc="res://.godot/imported/plaster_ochre_n.png-31d4656b92df989971a9e8cf40e61068.s3tc.ctex"
+path.etc2="res://.godot/imported/plaster_ochre_n.png-31d4656b92df989971a9e8cf40e61068.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/plaster_ochre_n.png"
-dest_files=["res://.godot/imported/plaster_ochre_n.png-31d4656b92df989971a9e8cf40e61068.s3tc.ctex"]
+dest_files=["res://.godot/imported/plaster_ochre_n.png-31d4656b92df989971a9e8cf40e61068.s3tc.ctex", "res://.godot/imported/plaster_ochre_n.png-31d4656b92df989971a9e8cf40e61068.etc2.ctex"]
 
 [params]
 

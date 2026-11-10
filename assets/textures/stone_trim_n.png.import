@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://l1joppab8at6"
 path.s3tc="res://.godot/imported/stone_trim_n.png-d56cee5568f2c5b59baca933b19e8c24.s3tc.ctex"
+path.etc2="res://.godot/imported/stone_trim_n.png-d56cee5568f2c5b59baca933b19e8c24.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/stone_trim_n.png"
-dest_files=["res://.godot/imported/stone_trim_n.png-d56cee5568f2c5b59baca933b19e8c24.s3tc.ctex"]
+dest_files=["res://.godot/imported/stone_trim_n.png-d56cee5568f2c5b59baca933b19e8c24.s3tc.ctex", "res://.godot/imported/stone_trim_n.png-d56cee5568f2c5b59baca933b19e8c24.etc2.ctex"]
 
 [params]
 

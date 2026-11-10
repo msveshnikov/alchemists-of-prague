@@ -9,3 +9,4 @@
 *.blend1
 __pycache__/
 renders/previews/_frames/
+/.playwright-mcp/

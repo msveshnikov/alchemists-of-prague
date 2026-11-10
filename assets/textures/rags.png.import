@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bujvl1qfkwngv"
 path.s3tc="res://.godot/imported/rags.png-4522c0e34811cd9814fab84b56101748.s3tc.ctex"
+path.etc2="res://.godot/imported/rags.png-4522c0e34811cd9814fab84b56101748.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/rags.png"
-dest_files=["res://.godot/imported/rags.png-4522c0e34811cd9814fab84b56101748.s3tc.ctex"]
+dest_files=["res://.godot/imported/rags.png-4522c0e34811cd9814fab84b56101748.s3tc.ctex", "res://.godot/imported/rags.png-4522c0e34811cd9814fab84b56101748.etc2.ctex"]
 
 [params]
 

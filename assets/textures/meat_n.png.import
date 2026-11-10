@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg2d31k0tya7h"
 path.s3tc="res://.godot/imported/meat_n.png-cba1e02e2ad7e95b097fcc43500da96a.s3tc.ctex"
+path.etc2="res://.godot/imported/meat_n.png-cba1e02e2ad7e95b097fcc43500da96a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/meat_n.png"
-dest_files=["res://.godot/imported/meat_n.png-cba1e02e2ad7e95b097fcc43500da96a.s3tc.ctex"]
+dest_files=["res://.godot/imported/meat_n.png-cba1e02e2ad7e95b097fcc43500da96a.s3tc.ctex", "res://.godot/imported/meat_n.png-cba1e02e2ad7e95b097fcc43500da96a.etc2.ctex"]
 
 [params]
 

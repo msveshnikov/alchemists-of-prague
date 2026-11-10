@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://i1dy0spyp3ot"
 path.s3tc="res://.godot/imported/horse_coat.png-c3238843719f91d00150cbe6d954cdaf.s3tc.ctex"
+path.etc2="res://.godot/imported/horse_coat.png-c3238843719f91d00150cbe6d954cdaf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/horse_coat.png"
-dest_files=["res://.godot/imported/horse_coat.png-c3238843719f91d00150cbe6d954cdaf.s3tc.ctex"]
+dest_files=["res://.godot/imported/horse_coat.png-c3238843719f91d00150cbe6d954cdaf.s3tc.ctex", "res://.godot/imported/horse_coat.png-c3238843719f91d00150cbe6d954cdaf.etc2.ctex"]
 
 [params]
 

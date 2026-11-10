@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://l3mut7rl6oax"
 path.s3tc="res://.godot/imported/golem_letters_emit.png-92485c32cb6a56b4fb77d12f79c749b1.s3tc.ctex"
+path.etc2="res://.godot/imported/golem_letters_emit.png-92485c32cb6a56b4fb77d12f79c749b1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/golem_letters_emit.png"
-dest_files=["res://.godot/imported/golem_letters_emit.png-92485c32cb6a56b4fb77d12f79c749b1.s3tc.ctex"]
+dest_files=["res://.godot/imported/golem_letters_emit.png-92485c32cb6a56b4fb77d12f79c749b1.s3tc.ctex", "res://.godot/imported/golem_letters_emit.png-92485c32cb6a56b4fb77d12f79c749b1.etc2.ctex"]
 
 [params]
 

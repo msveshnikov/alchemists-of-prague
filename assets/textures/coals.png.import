@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ygs1jgx2gwqg"
 path.s3tc="res://.godot/imported/coals.png-41dd3c39500131ea26bfd2ce9f281103.s3tc.ctex"
+path.etc2="res://.godot/imported/coals.png-41dd3c39500131ea26bfd2ce9f281103.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/coals.png"
-dest_files=["res://.godot/imported/coals.png-41dd3c39500131ea26bfd2ce9f281103.s3tc.ctex"]
+dest_files=["res://.godot/imported/coals.png-41dd3c39500131ea26bfd2ce9f281103.s3tc.ctex", "res://.godot/imported/coals.png-41dd3c39500131ea26bfd2ce9f281103.etc2.ctex"]
 
 [params]
 

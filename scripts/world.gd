@@ -104,15 +104,33 @@ func _build() -> void:
 	_loading.get_parent().queue_free()
 	_loading = null
 	_ready_done = true
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Game.capture_mouse()
+	if Game.touch:
+		_add_touch_controls()
+	else:
+		Game.touch_mode_changed.connect(_add_touch_controls, CONNECT_ONE_SHOT)
 	if Game.pending_load.is_empty():
-		hud.hint("WASD move · Shift sprint · LMB strike · RMB block · Q dodge · E interact · Tab inventory · T wait · F5 save")
+		if Game.touch:
+			hud.hint("Left thumb: move (push past the ring to sprint) · Right thumb: look · Tap a potion to drink · Bag: inventory · Menu: save & settings")
+		else:
+			hud.hint("WASD move · Shift sprint · LMB strike · RMB block · Q dodge · E interact · Tab inventory · T wait · F5 save")
 		Game.log_journal("I stand on the Old Town Square. By day the merchants trade; by night the alchemists' creatures walk.")
 	Game.pending_load = {}
 	if Game.autotest:
 		var at = load("res://scripts/autotest.gd").new()
 		at.world = self
 		add_child(at)
+
+
+var touch_controls: CanvasLayer = null
+
+
+func _add_touch_controls() -> void:
+	if touch_controls != null:
+		return
+	touch_controls = load("res://scripts/ui/touch_controls.gd").new()
+	touch_controls.world = self
+	add_child(touch_controls)
 
 
 func _build_environment() -> void:
@@ -742,7 +760,7 @@ func close_ui() -> void:
 	if ui_stack.is_empty():
 		get_tree().paused = false
 		if not player.dead:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			Game.capture_mouse()
 
 
 func open_trade(stall_id: String, stall_type: String) -> void:

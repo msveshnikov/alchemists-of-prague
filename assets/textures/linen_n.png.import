@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bacqaqbsm7pa2"
 path.s3tc="res://.godot/imported/linen_n.png-80294e73c58af80ab7d94f1aa86d5ff9.s3tc.ctex"
+path.etc2="res://.godot/imported/linen_n.png-80294e73c58af80ab7d94f1aa86d5ff9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/linen_n.png"
-dest_files=["res://.godot/imported/linen_n.png-80294e73c58af80ab7d94f1aa86d5ff9.s3tc.ctex"]
+dest_files=["res://.godot/imported/linen_n.png-80294e73c58af80ab7d94f1aa86d5ff9.s3tc.ctex", "res://.godot/imported/linen_n.png-80294e73c58af80ab7d94f1aa86d5ff9.etc2.ctex"]
 
 [params]
 

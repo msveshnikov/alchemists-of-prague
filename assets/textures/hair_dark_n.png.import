@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ulvl3qgoqojs"
 path.s3tc="res://.godot/imported/hair_dark_n.png-4b4b8516af528fd7231a62b6d4ef9880.s3tc.ctex"
+path.etc2="res://.godot/imported/hair_dark_n.png-4b4b8516af528fd7231a62b6d4ef9880.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/hair_dark_n.png"
-dest_files=["res://.godot/imported/hair_dark_n.png-4b4b8516af528fd7231a62b6d4ef9880.s3tc.ctex"]
+dest_files=["res://.godot/imported/hair_dark_n.png-4b4b8516af528fd7231a62b6d4ef9880.s3tc.ctex", "res://.godot/imported/hair_dark_n.png-4b4b8516af528fd7231a62b6d4ef9880.etc2.ctex"]
 
 [params]
 

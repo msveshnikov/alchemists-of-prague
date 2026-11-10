@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://8w4cc85io2gr"
 path.s3tc="res://.godot/imported/hair_grey_n.png-e8646d1af45c3de39034459805e640cc.s3tc.ctex"
+path.etc2="res://.godot/imported/hair_grey_n.png-e8646d1af45c3de39034459805e640cc.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/hair_grey_n.png"
-dest_files=["res://.godot/imported/hair_grey_n.png-e8646d1af45c3de39034459805e640cc.s3tc.ctex"]
+dest_files=["res://.godot/imported/hair_grey_n.png-e8646d1af45c3de39034459805e640cc.s3tc.ctex", "res://.godot/imported/hair_grey_n.png-e8646d1af45c3de39034459805e640cc.etc2.ctex"]
 
 [params]
 

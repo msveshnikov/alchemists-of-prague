@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqhcv46eefqq4"
 path.s3tc="res://.godot/imported/canvas_striped_n.png-63b477adc55264b0ae87209fa13a105f.s3tc.ctex"
+path.etc2="res://.godot/imported/canvas_striped_n.png-63b477adc55264b0ae87209fa13a105f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/canvas_striped_n.png"
-dest_files=["res://.godot/imported/canvas_striped_n.png-63b477adc55264b0ae87209fa13a105f.s3tc.ctex"]
+dest_files=["res://.godot/imported/canvas_striped_n.png-63b477adc55264b0ae87209fa13a105f.s3tc.ctex", "res://.godot/imported/canvas_striped_n.png-63b477adc55264b0ae87209fa13a105f.etc2.ctex"]
 
 [params]
 

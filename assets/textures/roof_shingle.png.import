@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://nmu1a62dd5f0"
 path.s3tc="res://.godot/imported/roof_shingle.png-0431f05fc9df0b600399c510616e8489.s3tc.ctex"
+path.etc2="res://.godot/imported/roof_shingle.png-0431f05fc9df0b600399c510616e8489.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/roof_shingle.png"
-dest_files=["res://.godot/imported/roof_shingle.png-0431f05fc9df0b600399c510616e8489.s3tc.ctex"]
+dest_files=["res://.godot/imported/roof_shingle.png-0431f05fc9df0b600399c510616e8489.s3tc.ctex", "res://.godot/imported/roof_shingle.png-0431f05fc9df0b600399c510616e8489.etc2.ctex"]
 
 [params]
 

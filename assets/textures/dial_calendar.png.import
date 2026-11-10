@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxlyk8jpr1our"
 path.s3tc="res://.godot/imported/dial_calendar.png-cd60bb2f664e9d737b4d0bb232b305af.s3tc.ctex"
+path.etc2="res://.godot/imported/dial_calendar.png-cd60bb2f664e9d737b4d0bb232b305af.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/dial_calendar.png"
-dest_files=["res://.godot/imported/dial_calendar.png-cd60bb2f664e9d737b4d0bb232b305af.s3tc.ctex"]
+dest_files=["res://.godot/imported/dial_calendar.png-cd60bb2f664e9d737b4d0bb232b305af.s3tc.ctex", "res://.godot/imported/dial_calendar.png-cd60bb2f664e9d737b4d0bb232b305af.etc2.ctex"]
 
 [params]
 

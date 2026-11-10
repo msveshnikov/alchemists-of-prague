@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bw5qmcne2d6sj"
 path.s3tc="res://.godot/imported/mantle_red.png-e32a9624f0d193dcf9a54e6a72f25da3.s3tc.ctex"
+path.etc2="res://.godot/imported/mantle_red.png-e32a9624f0d193dcf9a54e6a72f25da3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/mantle_red.png"
-dest_files=["res://.godot/imported/mantle_red.png-e32a9624f0d193dcf9a54e6a72f25da3.s3tc.ctex"]
+dest_files=["res://.godot/imported/mantle_red.png-e32a9624f0d193dcf9a54e6a72f25da3.s3tc.ctex", "res://.godot/imported/mantle_red.png-e32a9624f0d193dcf9a54e6a72f25da3.etc2.ctex"]
 
 [params]
 

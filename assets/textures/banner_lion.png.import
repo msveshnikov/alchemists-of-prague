@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://pw64m7ca1fq0"
 path.s3tc="res://.godot/imported/banner_lion.png-d3925867a459c189484ef7831675ae41.s3tc.ctex"
+path.etc2="res://.godot/imported/banner_lion.png-d3925867a459c189484ef7831675ae41.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/banner_lion.png"
-dest_files=["res://.godot/imported/banner_lion.png-d3925867a459c189484ef7831675ae41.s3tc.ctex"]
+dest_files=["res://.godot/imported/banner_lion.png-d3925867a459c189484ef7831675ae41.s3tc.ctex", "res://.godot/imported/banner_lion.png-d3925867a459c189484ef7831675ae41.etc2.ctex"]
 
 [params]
 

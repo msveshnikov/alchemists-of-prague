@@ -29,6 +29,14 @@ func _ready() -> void:
 	_map_tab(tabs)
 	Game.inventory_changed.connect(_refresh)
 	_refresh()
+	if Game.touch:
+		var close := UiKit.button("Close", func(): world.close_ui(), 180)
+		close.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+		close.offset_left = -204
+		close.offset_right = -24
+		close.offset_top = 4
+		close.offset_bottom = 48
+		add_child(close)
 
 
 func _inventory_tab(tabs: TabContainer) -> void:

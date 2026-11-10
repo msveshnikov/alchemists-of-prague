@@ -72,6 +72,10 @@ var journal: Array[String] = []
 var time_of_day := 0.93        # 0..1 of the day cycle (0 = noon key of the lighting cycle); 0.93 = mid-morning
 var pending_load := {}         # filled by load_game() before the world scene starts
 var autotest := false
+## Touch mode: on-screen controls instead of mouse look. On for phones/tablets (native or browser),
+## and switched on by the first real screen touch anywhere else (e.g. a touchscreen laptop).
+var touch := false
+signal touch_mode_changed
 
 var settings := {
 	"master": 0.8, "music": 0.55, "sfx": 0.85, "mouse_sens": 0.22, "invert_y": false, "fullscreen": false,
@@ -83,6 +87,8 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	autotest = "--autotest" in OS.get_cmdline_user_args() or "--autotest" in OS.get_cmdline_args()
 	_setup_input()
+	if OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios") or "--touch" in OS.get_cmdline_user_args():
+		enable_touch()
 	load_settings()
 	apply_settings()
 
@@ -120,6 +126,30 @@ func _setup_input() -> void:
 	_key("quicksave", [KEY_F5])
 	_key("quickload", [KEY_F9])
 	_key("wait", [KEY_T])
+
+
+func _input(event: InputEvent) -> void:
+	if not touch and event is InputEventScreenTouch:
+		enable_touch()
+
+
+func enable_touch() -> void:
+	if touch:
+		return
+	touch = true
+	# Touches are emulated as left-mouse clicks for the GUI; they must not also swing the sword / raise the shield.
+	for a in ["attack", "block"]:
+		for ev in InputMap.action_get_events(a):
+			if ev is InputEventMouseButton:
+				InputMap.action_erase_event(a, ev)
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	touch_mode_changed.emit()
+
+
+## Gameplay mouse mode: captured mouse-look on desktop, free pointer in touch mode.
+func capture_mouse() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if touch else Input.MOUSE_MODE_CAPTURED
 
 
 # ---------------------------------------------------------------- state helpers
@@ -349,7 +379,7 @@ func apply_settings() -> void:
 			AudioServer.set_bus_name(idx, name)
 			AudioServer.set_bus_send(idx, "Master")
 		AudioServer.set_bus_volume_db(idx, linear_to_db(max(0.0001, float(bus[name]))))
-	if not autotest:
+	if not autotest and not OS.has_feature("web") and not OS.has_feature("mobile"):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if settings["fullscreen"] else DisplayServer.WINDOW_MODE_WINDOWED)
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if settings["vsync"] else DisplayServer.VSYNC_DISABLED)
 	get_tree().root.scaling_3d_scale = float(settings["render_scale"])

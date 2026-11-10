@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://crw6l17f0enc8"
 path.s3tc="res://.godot/imported/robe_brown_n.png-6b14f94b325aeb69e263b3e0cd07b157.s3tc.ctex"
+path.etc2="res://.godot/imported/robe_brown_n.png-6b14f94b325aeb69e263b3e0cd07b157.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/robe_brown_n.png"
-dest_files=["res://.godot/imported/robe_brown_n.png-6b14f94b325aeb69e263b3e0cd07b157.s3tc.ctex"]
+dest_files=["res://.godot/imported/robe_brown_n.png-6b14f94b325aeb69e263b3e0cd07b157.s3tc.ctex", "res://.godot/imported/robe_brown_n.png-6b14f94b325aeb69e263b3e0cd07b157.etc2.ctex"]
 
 [params]
 

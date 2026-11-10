@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://3k0vq46a8iss"
 path.s3tc="res://.godot/imported/merchant_coat_n.png-31f9400fc33e06a3905e22e8b5858270.s3tc.ctex"
+path.etc2="res://.godot/imported/merchant_coat_n.png-31f9400fc33e06a3905e22e8b5858270.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/merchant_coat_n.png"
-dest_files=["res://.godot/imported/merchant_coat_n.png-31f9400fc33e06a3905e22e8b5858270.s3tc.ctex"]
+dest_files=["res://.godot/imported/merchant_coat_n.png-31f9400fc33e06a3905e22e8b5858270.s3tc.ctex", "res://.godot/imported/merchant_coat_n.png-31f9400fc33e06a3905e22e8b5858270.etc2.ctex"]
 
 [params]
 

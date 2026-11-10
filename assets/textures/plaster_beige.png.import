@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs83vsg8aqltj"
 path.s3tc="res://.godot/imported/plaster_beige.png-40321018d5a12e1d152f72412c48c15c.s3tc.ctex"
+path.etc2="res://.godot/imported/plaster_beige.png-40321018d5a12e1d152f72412c48c15c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/plaster_beige.png"
-dest_files=["res://.godot/imported/plaster_beige.png-40321018d5a12e1d152f72412c48c15c.s3tc.ctex"]
+dest_files=["res://.godot/imported/plaster_beige.png-40321018d5a12e1d152f72412c48c15c.s3tc.ctex", "res://.godot/imported/plaster_beige.png-40321018d5a12e1d152f72412c48c15c.etc2.ctex"]
 
 [params]
 

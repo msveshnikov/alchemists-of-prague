@@ -284,7 +284,7 @@ func _refresh_slots() -> void:
 
 
 func set_prompt(text: String) -> void:
-	prompt.text = ("[E]  " + text) if text != "" else ""
+	prompt.text = ((("" if Game.touch else "[E]  ") + text) if text != "" else "")
 
 
 func add_message(text: String, color := Color(0.95, 0.9, 0.8)) -> void:

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnibiud44qr5"
 path.s3tc="res://.godot/imported/cloth_green_n.png-284b2ab962f1835a12963c65fee33af6.s3tc.ctex"
+path.etc2="res://.godot/imported/cloth_green_n.png-284b2ab962f1835a12963c65fee33af6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/cloth_green_n.png"
-dest_files=["res://.godot/imported/cloth_green_n.png-284b2ab962f1835a12963c65fee33af6.s3tc.ctex"]
+dest_files=["res://.godot/imported/cloth_green_n.png-284b2ab962f1835a12963c65fee33af6.s3tc.ctex", "res://.godot/imported/cloth_green_n.png-284b2ab962f1835a12963c65fee33af6.etc2.ctex"]
 
 [params]
 

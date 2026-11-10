@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dock3k2iv6e4n"
 path.s3tc="res://.godot/imported/clay_golem_n.png-5c76649caabdc3fab5b90efe6064b87e.s3tc.ctex"
+path.etc2="res://.godot/imported/clay_golem_n.png-5c76649caabdc3fab5b90efe6064b87e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/clay_golem_n.png"
-dest_files=["res://.godot/imported/clay_golem_n.png-5c76649caabdc3fab5b90efe6064b87e.s3tc.ctex"]
+dest_files=["res://.godot/imported/clay_golem_n.png-5c76649caabdc3fab5b90efe6064b87e.s3tc.ctex", "res://.godot/imported/clay_golem_n.png-5c76649caabdc3fab5b90efe6064b87e.etc2.ctex"]
 
 [params]
 

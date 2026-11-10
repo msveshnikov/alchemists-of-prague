@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfvq56y804x51"
 path.s3tc="res://.godot/imported/iron_n.png-bc5946c8dbe058c438d90dcbaa083520.s3tc.ctex"
+path.etc2="res://.godot/imported/iron_n.png-bc5946c8dbe058c438d90dcbaa083520.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/iron_n.png"
-dest_files=["res://.godot/imported/iron_n.png-bc5946c8dbe058c438d90dcbaa083520.s3tc.ctex"]
+dest_files=["res://.godot/imported/iron_n.png-bc5946c8dbe058c438d90dcbaa083520.s3tc.ctex", "res://.godot/imported/iron_n.png-bc5946c8dbe058c438d90dcbaa083520.etc2.ctex"]
 
 [params]
 

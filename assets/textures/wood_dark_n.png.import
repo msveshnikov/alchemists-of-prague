@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5b6h5yqk840r"
 path.s3tc="res://.godot/imported/wood_dark_n.png-b1cea34c9c566cf1713722439ee5851a.s3tc.ctex"
+path.etc2="res://.godot/imported/wood_dark_n.png-b1cea34c9c566cf1713722439ee5851a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/wood_dark_n.png"
-dest_files=["res://.godot/imported/wood_dark_n.png-b1cea34c9c566cf1713722439ee5851a.s3tc.ctex"]
+dest_files=["res://.godot/imported/wood_dark_n.png-b1cea34c9c566cf1713722439ee5851a.s3tc.ctex", "res://.godot/imported/wood_dark_n.png-b1cea34c9c566cf1713722439ee5851a.etc2.ctex"]
 
 [params]
 
