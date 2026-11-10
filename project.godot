@@ -14,7 +14,7 @@ config/name="Alchemists of Prague"
 config/description="Action-RPG in medieval Prague: Old Town Square vertical slice."
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://assets/ui/icons/sword_1.png"
+config/icon="res://icon.svg"
 
 [autoload]
 

@@ -79,6 +79,7 @@ scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/w
 prague/
 ├─ README.md                      ← этот файл
 ├─ project.godot, export_presets.cfg   проект Godot 4.7 и пресет экспорта Windows
+├─ icon.svg                       иконка игры (колба с Тынским храмом на закате); растровые варианты — assets/ui/app_icon/
 ├─ scenes/                         main_menu.tscn, game.tscn
 ├─ scripts/                        GDScript игры (game, sfx, world, day_night, player, enemy, npc, potion, autotest, perf_probe, ui/)
 ├─ build/windows|web|android/      билды (.gdignore)
@@ -100,6 +101,7 @@ prague/
 │  ├─ characters/*.gltf|.bin      15 персонажей со скелетом и анимациями (+ рыцарь, монах, лодочник)
 │  ├─ textures/*.png              общие текстуры всех glTF (альбедо + *_n нормали)
 │  ├─ audio/ fonts/ ui/            звуки и музыка, шрифты, UI-текстуры и иконки (Task 5)
+│  │  └─ ui/app_icon/             иконка приложения: .ico (Windows), 192 + адаптивные слои 432 (Android), 144/180/512 (PWA)
 │  ├─ levels/
 │  │  ├─ prague_layout.json       ЕДИНЫЙ МИР: 1303 инстанса, маркеры, районы, вода, границы, свет, карта
 │  │  ├─ prague_population.json   193 персонажа всех районов: расписание, роли, маршруты, эффекты

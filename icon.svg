@@ -1,1 +1,108 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="124" height="124" x="2" y="2" fill="#363d52" stroke="#212532" stroke-width="4" rx="14"/><g fill="#fff" transform="translate(12.322 12.322)scale(.101)"><path d="M105 673v33q407 354 814 0v-33z"/><path fill="#478cbf" d="m105 673 152 14q12 1 15 14l4 67 132 10 8-61q2-11 15-15h162q13 4 15 15l8 61 132-10 4-67q3-13 15-14l152-14V427q30-39 56-81-35-59-83-108-43 20-82 47-40-37-88-64 7-51 8-102-59-28-123-42-26 43-46 89-49-7-98 0-20-46-46-89-64 14-123 42 1 51 8 102-48 27-88 64-39-27-82-47-48 49-83 108 26 42 56 81zm0 33v39c0 276 813 276 814 0v-39l-134 12-5 69q-2 10-14 13l-162 11q-12 0-16-11l-10-65H446l-10 65q-4 11-16 11l-162-11q-12-3-14-13l-5-69z"/><path d="M483 600c0 34 58 34 58 0v-86c0-34-58-34-58 0z"/><circle cx="725" cy="526" r="90"/><circle cx="299" cy="526" r="90"/></g><g fill="#414042" transform="translate(12.322 12.322)scale(.101)"><circle cx="307" cy="532" r="60"/><circle cx="717" cy="532" r="60"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Alchemists of Prague app icon: Prague at sunset distilled inside an alchemist's flask -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="58%" r="70%">
+      <stop offset="0" stop-color="#5a2a1e"/>
+      <stop offset=".55" stop-color="#2a1513"/>
+      <stop offset="1" stop-color="#120a0b"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbe3a0"/>
+      <stop offset=".45" stop-color="#d9a648"/>
+      <stop offset="1" stop-color="#8a5a1e"/>
+    </linearGradient>
+    <linearGradient id="goldH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9a6826"/>
+      <stop offset=".5" stop-color="#f8dc94"/>
+      <stop offset="1" stop-color="#9a6826"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0" y1="110" x2="0" y2="462" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2a1838"/>
+      <stop offset=".35" stop-color="#7a2e3a"/>
+      <stop offset=".62" stop-color="#d0602c"/>
+      <stop offset=".74" stop-color="#f6ae4c"/>
+      <stop offset="1" stop-color="#f6ae4c"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff2c0"/>
+      <stop offset=".45" stop-color="#ffd27a"/>
+      <stop offset="1" stop-color="#ffb04a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffb04a" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#ffb04a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c25a30"/>
+      <stop offset=".5" stop-color="#6a2a2c"/>
+      <stop offset="1" stop-color="#2a1420"/>
+    </linearGradient>
+    <clipPath id="flask">
+      <path d="M218 110V187.3A140 140 0 1 0 294 187.3V110Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Tile -->
+  <rect width="512" height="512" rx="104" fill="url(#bg)"/>
+  <rect x="16" y="16" width="480" height="480" rx="90" fill="none" stroke="url(#gold)" stroke-width="6" opacity=".9"/>
+  <rect x="28" y="28" width="456" height="456" rx="80" fill="none" stroke="#d9a648" stroke-width="2" opacity=".45"/>
+
+  <!-- Warm glow behind the flask -->
+  <circle cx="256" cy="320" r="210" fill="url(#halo)"/>
+
+  <!-- Scene inside the flask -->
+  <g clip-path="url(#flask)">
+    <rect x="100" y="100" width="312" height="380" fill="url(#sky)"/>
+    <circle cx="256" cy="300" r="110" fill="url(#halo)"/>
+    <circle cx="256" cy="304" r="44" fill="url(#sun)"/>
+    <!-- distant hills and roofs -->
+    <path fill="#8a3a2c" opacity=".75" d="M100 372Q150 352 190 362T260 356T330 360T412 354V480H100Z"/>
+    <path fill="#4e2224" d="M100 392L120 392 126 376 134 392 150 392 150 378 164 366 178 378 178 392 188 392 194 364 200 392H320L326 368 332 392 344 392 344 380 358 368 372 380 372 392 382 392 388 372 396 392H412V480H100Z"/>
+    <!-- Tyn Church: twin spired towers -->
+    <g fill="#1c1016">
+      <path d="M234 334L256 314 278 334V410H234Z"/>
+      <path d="M205 268H237V410H205Z"/>
+      <path d="M203 268L221 186 239 268Z"/>
+      <path d="M200 276L205 238 210 276Z"/>
+      <path d="M232 276L237 238 242 276Z"/>
+      <path d="M275 268H307V410H275Z"/>
+      <path d="M273 268L291 186 309 268Z"/>
+      <path d="M270 276L275 238 280 276Z"/>
+      <path d="M302 276L307 238 312 276Z"/>
+    </g>
+    <g fill="#ffbe5c">
+      <rect x="217" y="300" width="8" height="18" rx="4"/>
+      <rect x="287" y="300" width="8" height="18" rx="4"/>
+      <rect x="252" y="348" width="8" height="16" rx="4"/>
+    </g>
+    <!-- Charles Bridge over the Vltava -->
+    <path fill="url(#river)" d="M100 410H412V480H100Z"/>
+    <path fill="#24141a" d="M100 404H412V426H392A16 14 0 0 0 360 426H332A16 14 0 0 0 300 426H272A16 14 0 0 0 240 426H212A16 14 0 0 0 180 426H152A16 14 0 0 0 120 426H100Z"/>
+    <g fill="#ffd690" opacity=".7">
+      <rect x="236" y="436" width="40" height="3" rx="1.5"/>
+      <rect x="226" y="446" width="60" height="3" rx="1.5"/>
+      <rect x="242" y="456" width="28" height="3" rx="1.5"/>
+    </g>
+  </g>
+
+  <!-- Glass: outline, rim, highlights -->
+  <path d="M218 110V187.3A140 140 0 1 0 294 187.3V110Z" fill="none" stroke="#1a0e0c" stroke-width="20" stroke-linejoin="round"/>
+  <path d="M218 110V187.3A140 140 0 1 0 294 187.3V110Z" fill="none" stroke="url(#gold)" stroke-width="11" stroke-linejoin="round"/>
+  <rect x="200" y="88" width="112" height="28" rx="10" fill="url(#goldH)" stroke="#1a0e0c" stroke-width="4"/>
+  <rect x="210" y="95" width="92" height="5" rx="2.5" fill="#fff4cf" opacity=".6"/>
+  <path d="M164 262A108 108 0 0 1 206 214" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".38"/>
+  <path d="M232 128V176" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".3"/>
+
+  <!-- Alchemical vapour -->
+  <path d="M256 86C238 70 268 56 252 40" fill="none" stroke="#f3cf7e" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+  <path d="M276 84C292 72 270 62 284 50" fill="none" stroke="#f3cf7e" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+
+  <!-- Sparkles -->
+  <g fill="#fbe3a0">
+    <path d="M110 150L116 168 134 174 116 180 110 198 104 180 86 174 104 168Z"/>
+    <path d="M406 206L410 218 422 222 410 226 406 238 402 226 390 222 402 218Z"/>
+    <path d="M394 104L397 112 405 115 397 118 394 126 391 118 383 115 391 112Z" opacity=".8"/>
+    <circle cx="140" cy="410" r="4" opacity=".6"/>
+    <circle cx="380" cy="420" r="3" opacity=".5"/>
+  </g>
+</svg>
