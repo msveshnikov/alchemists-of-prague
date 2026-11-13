@@ -93,6 +93,21 @@ python tools/seal_world.py --check                                  # «leaked i
 На встроенной графике (Intel UHD 620) — 6–10 кадров в секунду, как и у прежнего отдельного Старого города;
 на дискретной видеокарте и в браузере на Compatibility — заметно быстрее.
 
+## Делать игры так же: плагин `game-pipeline` для Claude Code
+
+Весь пайплайн этой игры упакован в скилл `game-pipeline` ([plugins/game-pipeline](plugins/game-pipeline/)):
+концепт-доки и промпты, концепт-арт через ChatGPT во встроенном браузере Claude desktop, шаблоны task1–task5,
+соглашения Blender (всё через Python), архитектура Godot (уровень из JSON, UI кодом, автотест), билды и выкладка.
+Установка в Claude Code:
+
+```
+/plugin marketplace add msveshnikov/alchemists-of-prague
+/plugin install game-pipeline@alchemists-of-prague
+```
+
+Без плагинов можно просто скопировать папку `plugins/game-pipeline/skills/game-pipeline` в `~/.claude/skills/`.
+Дальше достаточно написать Claude «давай сделаем игру …» или «сделай task3», и скилл подхватится сам.
+
 ## Структура
 
 ```

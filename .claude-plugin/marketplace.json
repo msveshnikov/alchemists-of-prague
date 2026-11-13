@@ -1,0 +1,16 @@
+{
+  "name": "alchemists-of-prague",
+  "owner": {
+    "name": "Max Sveshnikov"
+  },
+  "metadata": {
+    "description": "Claude Code plugins from the Alchemists of Prague game project"
+  },
+  "plugins": [
+    {
+      "name": "game-pipeline",
+      "source": "./plugins/game-pipeline",
+      "description": "Concept art (ChatGPT) -> Blender (Python) -> Godot 4 -> shipped Windows/Web/Android builds, with task1-5 templates."
+    }
+  ]
+}

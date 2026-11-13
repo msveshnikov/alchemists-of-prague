@@ -1,0 +1,11 @@
+{
+  "name": "game-pipeline",
+  "version": "1.0.0",
+  "description": "Make 3D games with Claude Code the Alchemists of Prague way: ChatGPT concept art in the built-in browser, Blender driven by Python for every asset and level, Godot 4 game with Windows/Web/Android builds, task1-5 templates, ship after every task.",
+  "author": {
+    "name": "Max Sveshnikov"
+  },
+  "homepage": "https://github.com/msveshnikov/alchemists-of-prague",
+  "repository": "https://github.com/msveshnikov/alchemists-of-prague",
+  "keywords": ["gamedev", "godot", "blender", "concept-art", "chatgpt", "pipeline"]
+}

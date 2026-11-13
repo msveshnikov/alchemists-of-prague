@@ -5,6 +5,10 @@
 (Windows, Web, Android; команды в README) и выложить Web + APK на https://severance.lol/4/
 (`scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/www/severance/4/`), затем открыть страницу и проверить.
 
+## Скилл пайплайна
+Общий для всех игр пайплайн лежит в `plugins/game-pipeline/skills/game-pipeline/`: концепт, ChatGPT, task1–5, Blender, Godot, выкладка.
+Улучшения рабочего процесса, найденные здесь, переносить туда, а не только в этот файл.
+
 ## Референс-арты через ChatGPT (встроенный браузер)
 
 Референс- и концепт-арты (персонажи, районы, пропсы, настроение сцены) можно заказывать у ChatGPT
