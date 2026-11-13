@@ -172,41 +172,55 @@ func _map_tab(tabs: TabContainer) -> void:
 	var c := Control.new()
 	c.name = "Map"
 	tabs.add_child(c)
-	var info: Dictionary = world.map_info() if world else {"image": "res://assets/ui/map.png", "center": Vector2(5, 8), "size": 230.0}
+	var info: Dictionary = world.map_info() if world else {"image": "res://assets/ui/map.png", "rect": Rect2(-110, -107, 230, 230)}
+	var area: Rect2 = info["rect"]      # world X/Z covered by the image; image top = north (-Z)
 	var img := TextureRect.new()
 	img.texture = load(info["image"])
 	img.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	img.set_anchors_preset(Control.PRESET_FULL_RECT)
 	c.add_child(img)
-	var marks: Array = []      # [control, u, v]: placed on the square map image whenever the tab resizes
+	# Where the image actually lands inside the tab (keep-aspect, centred), and world X/Z -> tab pixels.
+	var img_box := func() -> Rect2:
+		var ts: Vector2 = img.texture.get_size()
+		var k: float = min(c.size.x / ts.x, c.size.y / ts.y)
+		return Rect2((c.size - ts * k) / 2.0, ts * k)
+	var to_px := func(x: float, z: float) -> Vector2:
+		var b: Rect2 = img_box.call()
+		return b.position + Vector2((x - area.position.x) / area.size.x, (z - area.position.y) / area.size.y) * b.size
+	var marks: Array = []      # [label, world x, world z]
 	if world:
-		var c0: Vector2 = info["center"]
 		for d in world.districts:
 			var r: Array = d["rect"]
 			var lbl := UiKit.shadow_label(d["name"], 26, UiKit.PARCH)
 			c.add_child(lbl)
-			marks.append([lbl, ((r[0] + r[2]) / 2.0 - c0.x) / float(info["size"]) + 0.5, ((r[1] + r[3]) / 2.0 - c0.y) / float(info["size"]) + 0.5])
-		c.resized.connect(func():
-			var s: float = min(c.size.x, c.size.y)
-			var ox := (c.size.x - s) / 2.0
-			var oy := (c.size.y - s) / 2.0
-			for mk in marks:
-				var ctl: Control = mk[0]
-				ctl.position = Vector2(ox + mk[1] * s - ctl.size.x / 2.0, oy + mk[2] * s - 16))
+			marks.append([lbl, (r[0] + r[2]) / 2.0, (r[1] + r[3]) / 2.0])
+	var marker: Control = null
 	if world and world.player:
-		var dot := UiKit.title("✚", 40, UiKit.BLOOD)
-		c.add_child(dot)
-		# map render: square ortho plan of `size` metres centred on `center` (Godot X, Z)
-		var p: Vector3 = world.player.global_position
-		var mc: Vector2 = info["center"]
-		var u := (p.x - mc.x) / float(info["size"]) + 0.5
-		var v := (p.z - mc.y) / float(info["size"]) + 0.5
-		c.resized.connect(func():
-			var s: float = min(c.size.x, c.size.y)
-			var ox := (c.size.x - s) / 2.0
-			var oy := (c.size.y - s) / 2.0
-			dot.position = Vector2(ox + u * s - 14, oy + v * s - 26))
+		# player arrow: drawn at the exact world position, pointing where the hero faces
+		marker = Control.new()
+		marker.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		marker.draw.connect(func():
+			var pts := PackedVector2Array([Vector2(17, 0), Vector2(-10, 11), Vector2(-5, 0), Vector2(-10, -11)])
+			marker.draw_circle(Vector2.ZERO, 15.0, Color(0, 0, 0, 0.35))
+			marker.draw_colored_polygon(pts, UiKit.BLOOD)
+			marker.draw_polyline(pts + PackedVector2Array([pts[0]]), UiKit.PARCH, 2.0, true))
+		c.add_child(marker)
+	var place := func():
+		var me := Vector2(-1e6, -1e6)
+		if marker:
+			var p: Vector3 = world.player.global_position
+			var f: Vector3 = world.player.facing()
+			me = to_px.call(p.x, p.z)
+			marker.position = me
+			marker.rotation = atan2(f.z, f.x)
+		for mk in marks:
+			var ctl: Control = mk[0]
+			ctl.position = to_px.call(mk[1], mk[2]) - Vector2(ctl.size.x / 2.0, 16)
+			# a district name sitting on top of the hero fades so the arrow stays readable
+			ctl.modulate.a = 0.3 if Rect2(ctl.position, ctl.size).grow(14).has_point(me) else 1.0
+	c.resized.connect(place)
+	c.visibility_changed.connect(place)
 
 
 func _refresh() -> void:

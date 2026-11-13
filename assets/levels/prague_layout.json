@@ -188,12 +188,18 @@
  ],
  "kill_y": -5.5,
  "map": {
+  "rect": [
+   -590.0,
+   -205.0,
+   160.0,
+   295.0
+  ],
+  "image": "res://assets/ui/map_prague_painted.png",
   "center": [
    -210.0,
    45.0
   ],
-  "size": 800.0,
-  "image": "res://assets/ui/map_prague.png"
+  "size": 800.0
  },
  "instances": [
   {

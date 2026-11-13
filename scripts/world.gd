@@ -1124,12 +1124,18 @@ func _rent_bed() -> void:
 	Game.say("You sleep in a lumpy bed above the taproom and wake refreshed.", Color(0.85, 0.85, 1.0))
 
 
-## Map tab: which plan image to show and how world X/Z map onto it.
+## Map tab: which plan image to show and the world X/Z rectangle it covers.
+## "rect" = Rect2(x0, z0, width, depth): image left/top edge = x0/z0 (north is up), right/bottom = x0+w / z0+d.
+## Layouts give either "rect": [x0, z0, x1, z1] (painted map) or a square "center" + "size" (ortho plan render).
 func map_info() -> Dictionary:
 	var mi: Dictionary = layout.get("map", {})
 	if mi.is_empty():
-		return {"image": "res://assets/ui/map.png", "center": Vector2(5.0, 8.0), "size": 230.0}
-	return {"image": mi["image"], "center": Vector2(mi["center"][0], mi["center"][1]), "size": float(mi["size"])}
+		mi = {"image": "res://assets/ui/map.png", "center": [5.0, 8.0], "size": 230.0}
+	if mi.has("rect"):
+		var r: Array = mi["rect"]
+		return {"image": mi["image"], "rect": Rect2(r[0], r[1], r[2] - r[0], r[3] - r[1])}
+	var s := float(mi["size"])
+	return {"image": mi["image"], "rect": Rect2(mi["center"][0] - s / 2.0, mi["center"][1] - s / 2.0, s, s)}
 
 
 # ================================================================ UI flow

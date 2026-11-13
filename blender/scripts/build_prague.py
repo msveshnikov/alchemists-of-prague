@@ -46,6 +46,9 @@ WATER = [{"height": -6.0, "rect": [-328.0, -1500.0, -184.0, 1500.0]}]
 PLANES = [{"height": -0.4, "rect": [-1500.0, -1500.0, -328.0, 1500.0], "material": "grass"},
           {"height": -0.4, "rect": [-184.0, -1500.0, 1500.0, 1500.0], "material": "grass"}]
 MAP = dict(center=(-210.0, -45.0), size=800.0)          # Blender centre; Godot centre = (x, -y)
+# Painted map = crop of the 1600 px plan render, px (40, 300)-(1540, 1300) at 0.5 m/px -> Godot X/Z rectangle.
+# If the plan or the world bounds change, re-crop, repaint (AGENTS.md) and update this.
+MAP_PAINTED_RECT = (-590.0, -205.0, 160.0, 295.0)
 
 CUR = {"d": "old_town", "off": V((0, 0, 0))}
 _IN = [False]
@@ -293,7 +296,10 @@ def main():
         "coordinate_system": "Godot: +Y up, -Z = north on the plan (Blender +Y). Characters/house fronts face local +Z.",
         "bounds": {"x": [min(xs) - 10, max(xs) + 10], "z": [min(zs) - 10, max(zs) + 10]},
         "districts": districts, "water": WATER, "planes": PLANES, "blockers": blockers(), "kill_y": -5.5,
-        "map": {"center": [MAP["center"][0], -MAP["center"][1]], "size": MAP["size"], "image": "res://assets/ui/map_prague.png"},
+        # Map tab: hand-painted map (concept_art/map/, made from a crop of the plan render, then aligned to it).
+        # "rect" = Godot [x0, z0, x1, z1] covered by the image; "center"/"size" describe the raw plan render.
+        "map": {"rect": list(MAP_PAINTED_RECT), "image": "res://assets/ui/map_prague_painted.png",
+                "center": [MAP["center"][0], -MAP["center"][1]], "size": MAP["size"]},
         "instances": BW.LAYOUT, "markers": BW.MARKERS, "lighting": BW.lighting_presets(),
     }
     with open(os.path.join(G.PROJECT, "assets", "levels", "prague_layout.json"), "w", encoding="utf-8") as f:
