@@ -1,8 +1,0 @@
-<!doctype html><meta charset="utf-8"><title>hop</title><body>converting…<script>
-// Reads ?f=<file> from this server and hands it to chatgpt.com through the URL fragment of a static page
-// (robots.txt), where it is moved into localStorage. The fragment never reaches ChatGPT's servers.
-const f = new URLSearchParams(location.search).get('f') || 'image.jpg';
-fetch(f).then(r => r.blob())
-  .then(b => new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(b); }))
-  .then(d => { document.body.textContent = 'size ' + d.length; location.href = 'https://chatgpt.com/robots.txt#claudefile=' + encodeURIComponent(f) + '|' + d; });
-</script>
