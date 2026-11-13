@@ -95,17 +95,19 @@ python tools/seal_world.py --check                                  # «leaked i
 
 ## Делать игры так же: плагин `game-pipeline` для Claude Code
 
-Весь пайплайн этой игры упакован в скилл `game-pipeline` ([plugins/game-pipeline](plugins/game-pipeline/)):
+Весь пайплайн этой игры упакован в скилл `game-pipeline`, он живёт в отдельном репозитории
+[msveshnikov/claude-game-pipeline](https://github.com/msveshnikov/claude-game-pipeline):
 концепт-доки и промпты, концепт-арт через ChatGPT во встроенном браузере Claude desktop, шаблоны task1–task5,
 соглашения Blender (всё через Python), архитектура Godot (уровень из JSON, UI кодом, автотест), билды и выкладка.
 Установка в Claude Code:
 
 ```
-/plugin marketplace add msveshnikov/alchemists-of-prague
-/plugin install game-pipeline@alchemists-of-prague
+/plugin marketplace add msveshnikov/claude-game-pipeline
+/plugin install game-pipeline@claude-game-pipeline
 ```
 
-Без плагинов можно просто скопировать папку `plugins/game-pipeline/skills/game-pipeline` в `~/.claude/skills/`.
+Старые команды с `alchemists-of-prague` тоже работают: маркетплейс этого репозитория ссылается на новый.
+Без плагинов можно скопировать папку `skills/game-pipeline` из того репозитория в `~/.claude/skills/`.
 Дальше достаточно написать Claude «давай сделаем игру …» или «сделай task3», и скилл подхватится сам.
 
 ## Структура

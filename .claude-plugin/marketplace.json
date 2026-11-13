@@ -9,7 +9,10 @@
   "plugins": [
     {
       "name": "game-pipeline",
-      "source": "./plugins/game-pipeline",
+      "source": {
+        "source": "github",
+        "repo": "msveshnikov/claude-game-pipeline"
+      },
       "description": "Concept art (ChatGPT) -> Blender (Python) -> Godot 4 -> shipped Windows/Web/Android builds, with task1-5 templates."
     }
   ]
