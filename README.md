@@ -27,6 +27,8 @@
 
 **▶ В браузере (ПК или телефон): https://severance.lol/4/** · **Android APK: https://severance.lol/4/AlchemistsOfPrague.apk**
 
+**⬇ Скачать (Windows .exe и Android .apk): https://github.com/msveshnikov/alchemists-of-prague/releases/latest**
+
 - Билд: `build/windows/AlchemistsOfPrague.exe` (Windows, всё внутри).
 - Из исходников: открыть папку в Godot 4.7.2 и нажать F5.
 
@@ -59,7 +61,10 @@ godot --headless --path . --export-release "Windows Desktop" build/windows/Alche
 godot --headless --path . --export-release "Web" build/web/index.html
 godot --headless --path . --export-debug "Android" build/android/AlchemistsOfPrague.apk
 scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/www/severance/4/
+gh release create vX.Y build/windows/AlchemistsOfPrague.exe build/android/AlchemistsOfPrague.apk --title "..." --notes "..."
 ```
+Релизы на GitHub (exe + APK для скачивания): https://github.com/msveshnikov/alchemists-of-prague/releases —
+при новом релизе поднимать `version/code` и `version/name` Android-пресета.
 
 Совет: в первом доме на площади прячется алхимик — раньте его, схватите (E) и выбросьте в окно (E).
 На Карловом мосту ослабленного врага можно выбросить через парапет во Влтаву, на Вышеграде — со стены в пропасть.
