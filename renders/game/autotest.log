@@ -2,7 +2,7 @@ start: houses=257 enemies=8 npcs=55 interactables=323
 PASS level built from layout JSON (houses > 100)
 PASS day population spawned (npcs > 30)
 screenshot skipped (headless) 01_square_day
-PASS player moves (5.4 m)
+PASS player moves (6.6 m)
 PASS attack animation plays
 screenshot skipped (headless) 02_square_walk
 PASS inventory opens with Tab and closes with Tab (opened=true closed=true paused=false)
@@ -39,10 +39,10 @@ PASS merchants closed at night
 screenshot skipped (headless) 10_square_night
 PASS enemies notice the player at night (6 hostile)
 screenshot skipped (headless) 11_night_fight
-PASS enemies deal damage (hp 0)
+PASS enemies deal damage (hp 13)
 PASS game saved to disk
 reloading save...
-FAIL load restores gold (484, saved 340)
+PASS load restores gold (348, saved 348)
 PASS load restores sword level
 PASS load restores kill counts
 PASS player can die
@@ -51,16 +51,16 @@ screenshot skipped (headless) 12_death
 screenshot skipped (headless) 13_pause
 screenshot skipped (headless) 14_settings
 PASS one world with four districts (4)
-fps on the Old Town Square: 102, instances 1303
-PASS walked from Karlova onto the bridge approach (x=-102, charles_bridge)
+fps on the Old Town Square: 140, instances 1303
+PASS walked from Karlova onto the bridge approach (x=-121, charles_bridge)
 screenshot skipped (headless) world_01_karlova_to_bridge
-PASS walked through the Lesser Town tower into Malá Strana (x=-352, mala_strana)
+PASS walked through the Lesser Town tower into Malá Strana (x=-355, mala_strana)
 screenshot skipped (headless) world_02_into_mala_strana
 PASS climbed the road towards Vyšehrad (y=10.0)
 screenshot skipped (headless) world_03_road_up
 PASS walked along the gate lane into Vyšehrad (x=-52, vysehrad)
 screenshot skipped (headless) world_04_vysehrad_gate
-fps at Vyšehrad gate: 131, npcs spawned 13, enemies 3
+fps at Vyšehrad gate: 145, npcs spawned 13, enemies 3
 PASS the embankment street ends at a wall (z=-127)
 PASS charles_bridge: the HUD names the district (charles_bridge)
 PASS charles_bridge: townsfolk around (18)
@@ -105,4 +105,4 @@ PASS vysehrad: night enemies around (11)
 screenshot skipped (headless) vysehrad_05_night
 PASS loading a save puts the knight back where he was (vysehrad)
 screenshot skipped (headless) 15_main_menu
-DONE fails=1
+DONE fails=0

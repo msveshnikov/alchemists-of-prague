@@ -269,11 +269,21 @@ func _stage_main() -> void:
 	await _shot("11_night_fight")
 	_check(Game.hp < Game.max_hp, "enemies deal damage (hp %d)" % Game.hp)
 	Game.hp = Game.max_hp
+	# the skeletons can kill the hero here; a dead hero can't save (quicksave() refuses), so bring him back first
+	if p.dead:
+		_log("hero fell in the night fight, reviving before the save")
+		await _wait(3.0)                     # let the death screen open (2.6 s) so it can be closed
+		while not world.ui_stack.is_empty():
+			world.close_ui()
+		p.revive()
 	# --- save & load
 	Game.time_of_day = 0.2
 	world.day_night.apply(Game.time_of_day)
 	p.global_position = Vector3(st["pos"][0], 0.1, st["pos"][2])
 	await _wait(0.5)
+	# remove any save from an earlier run, so "saved to disk" (and the gold check after loading) can't pass on a stale file
+	if Game.has_save():
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(Game.SAVE_PATH))
 	world.quicksave()
 	_check(Game.has_save(), "game saved to disk")
 	Game.set_meta("autotest_stage", 1)
