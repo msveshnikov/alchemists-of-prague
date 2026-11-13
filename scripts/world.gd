@@ -71,6 +71,9 @@ var ui_stack: Array = []
 var _loading: Control
 var _music_cd := 0.0
 var _ready_done := false
+var _field := PackedByteArray()   # prague_seal.json "field": 1 = beyond the town walls, the player may not stand there
+var _field_info := {}
+var _town_pos := Vector3.INF      # last spot of the player that was not in the field
 var hidden_tiles := {}     # ground tiles beyond the town walls (prague_seal.json): not placed, the meadow shows instead
 var river: Node3D
 
@@ -540,9 +543,22 @@ func _spawn_entry(e: Dictionary) -> void:
 		enemies.append(en)
 		node = en
 	else:
+		var cart_node: Node3D = null
+		if e.has("cart"):
+			# the cart horse's marker was exported at the cart's centre: the horse spawned inside the cart's collision
+			# and was pushed up onto the cart bed, hanging a metre in the air. Stand it between the shafts instead.
+			cart_node = get_node_or_null(String(e["cart"]).replace("#", "_"))
+			if cart_node:
+				e = e.duplicate()
+				var hitch := cart_node.global_position + cart_node.global_basis * Vector3(0, 0, 3.0)
+				e["pos"] = [hitch.x, cart_node.global_position.y, hitch.z]
+				e["yaw_deg"] = cart_node.rotation_degrees.y
 		var npc := Npc.new()
 		add_child(npc)
 		npc.setup(self, e)
+		if cart_node:
+			for b in cart_node.find_children("*", "PhysicsBody3D", true, false):
+				npc.add_collision_exception_with(b)
 		npcs.append(npc)
 		node = npc
 		if not npc.role.begins_with("trader") and npc.role not in ["cook", "blacksmith", "cart_driver", "cart_horse"]:
@@ -956,6 +972,15 @@ func _build_seal() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SEAL_FILE))
 	for id in data.get("hidden_tiles", []):
 		hidden_tiles[id] = true
+	var fm: Dictionary = data.get("field", {})
+	if not fm.is_empty():
+		_field_info = fm
+		_field.resize(int(fm["nx"]) * int(fm["nz"]))
+		var runs: Array = fm["runs"]
+		for k in range(0, runs.size(), 3):
+			var base := int(runs[k]) * int(fm["nx"]) + int(runs[k + 1])
+			for j in int(runs[k + 2]):
+				_field[base + j] = 1
 	var mats := {"stone": _mat("stone_wall_rough", 0.4, Color(0.92, 0.9, 0.86)), "cap": _mat("roof_tiles", 0.6),
 		"trim": _mat("stone_trim", 0.5), "wood": _mat("wood_door", 0.5), "iron": _mat("iron", 1.0, Color(0.35, 0.35, 0.36))}
 	var root := Node3D.new()
@@ -1036,6 +1061,25 @@ func _water_material() -> ShaderMaterial:
 	var m := ShaderMaterial.new()
 	m.shader = load("res://assets/shaders/water.gdshader")
 	return m
+
+
+## Backstop for the town walls: whatever gap the player squeezes through, he cannot step onto the field beyond
+## (cells from tools/seal_world.py). Called by the player after every move; acts like an invisible wall.
+func keep_in_town(p: CharacterBody3D) -> void:
+	if _field.is_empty() or inside_house:
+		return
+	var gp := p.global_position
+	var c: float = _field_info["cell"]
+	var ix := int(floor((gp.x - float(_field_info["x0"])) / c))
+	var iz := int(floor((gp.z - float(_field_info["z0"])) / c))
+	var nx: int = _field_info["nx"]
+	var bad := ix >= 0 and iz >= 0 and ix < nx and iz < int(_field_info["nz"]) and _field[iz * nx + ix] == 1
+	if not bad:
+		_town_pos = gp
+	elif _town_pos != Vector3.INF:
+		p.global_position = Vector3(_town_pos.x, gp.y, _town_pos.z)
+		p.velocity.x = 0.0
+		p.velocity.z = 0.0
 
 
 ## Falls below the world: the player climbs out (river) or is carried back; enemies are finished off by Enemy.

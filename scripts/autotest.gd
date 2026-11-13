@@ -119,6 +119,7 @@ func _stage_main() -> void:
 	var start := p.global_position
 	await _hold("move_forward", 2.0)
 	_check(p.global_position.distance_to(start) > 2.0, "player moves (%.1f m)" % p.global_position.distance_to(start))
+	await _npc_sanity()
 	await _hold("sprint", 0.05)
 	Input.action_press("sprint")
 	await _hold("move_forward", 1.0)
@@ -390,11 +391,73 @@ func _stage_world() -> void:
 	# nobody leaves the world: past the end of an embankment street there is a wall
 	await _walk(_at("charles_bridge", Vector3(78.0, 0.2, -150.0)), 0.0, 6.0)
 	_check(p.global_position.z > -134.0, "the embankment street ends at a wall (z=%.0f)" % p.global_position.z)
+	await _field_backstop()
 	for d in ["charles_bridge", "mala_strana", "vysehrad"]:
 		await _check_district(d)
 	world.quicksave()
 	_store_log(90)
 	world.quickload()
+
+
+## Regressions: townsfolk marching on the spot, the cart horse hanging on its cart, cart horses flying off at the turn.
+func _npc_sanity() -> void:
+	var on_spot := 0
+	var horses := 0
+	var driver: Npc = null
+	for n in world.npcs:
+		if not is_instance_valid(n):
+			continue
+		if n.anim in ["walk", "run", "pull"] and n.route.size() < 2 and n.role != "carter":
+			on_spot += 1
+		if n.character == "horse":
+			horses += 1
+			if n.role == "cart_driver" and driver == null:
+				driver = n
+	_check(on_spot == 0, "no townsfolk walk on the spot (%d)" % on_spot)
+	if driver:
+		# put the cart horse at the last stretch of its street, so it has to turn round with the cart
+		var last: Vector3 = driver.route[driver.route.size() - 1]
+		var prev: Vector3 = driver.route[driver.route.size() - 2]
+		var d := (last - prev).normalized()
+		driver.global_position = last - d * 2.0 + Vector3(0, 0.3, 0)
+		driver.model.rotation.y = atan2(d.x, d.z)
+		driver.route_i = driver.route.size() - 1
+		driver.route_dir = 1
+		await _wait(9.0)
+		var back := (driver.route[driver.route.size() - 2] as Vector3) - last
+		var heading := Vector3(sin(driver.model.rotation.y), 0, cos(driver.model.rotation.y))
+		_check(heading.dot(back.normalized()) > 0.7, "cart horse turned round at the end of its street")
+		_check(driver.global_position.y < driver.home.y + 0.6 and driver.cart.global_position.y < driver.home.y + 0.6,
+			"cart horse and cart stay on the ground (y=%.2f, cart %.2f)" % [driver.global_position.y, driver.cart.global_position.y])
+		_check(driver.global_position.distance_to(driver.cart.global_position) > 2.5, "horse does not walk into its cart")
+	for n in world.npcs:
+		if is_instance_valid(n) and n.character == "horse":
+			_check(n.is_on_floor() and n.global_position.y < n.home.y + 0.6,
+				"horse %s stands on the ground (y=%.2f, home %.2f)" % [n.entry["id"], n.global_position.y, n.home.y])
+
+
+## Whatever gap the player finds in the town walls, he cannot stand on the field beyond them.
+func _field_backstop() -> void:
+	var p: Player = world.player
+	var fi: Dictionary = world._field_info
+	if fi.is_empty():
+		_check(false, "field mask loaded from prague_seal.json")
+		return
+	var here := p.global_position
+	var best := -1
+	var best_d := INF
+	for i in world._field.size():
+		if world._field[i] == 1:
+			var q := Vector3(float(fi["x0"]) + (i % int(fi["nx"]) + 0.5) * float(fi["cell"]), 0, float(fi["z0"]) + (i / int(fi["nx"]) + 0.5) * float(fi["cell"]))
+			var dd := Vector2(q.x - here.x, q.z - here.z).length()
+			if dd < best_d:
+				best_d = dd
+				best = i
+	var fp := Vector3(float(fi["x0"]) + (best % int(fi["nx"]) + 0.5) * float(fi["cell"]), here.y + 0.5, float(fi["z0"]) + (best / int(fi["nx"]) + 0.5) * float(fi["cell"]))
+	p.global_position = fp
+	await _wait(0.3)
+	var d2 := Vector2(p.global_position.x - fp.x, p.global_position.z - fp.z).length()
+	_check(d2 > 0.5, "stepping onto the field beyond the walls is undone (%.1f m back)" % d2)
 
 
 func _check_district(lv: String) -> void:

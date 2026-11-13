@@ -191,6 +191,8 @@ func _physics_process(delta: float) -> void:
 		Game.stamina -= 25.0
 		Sfx.play("cloth")
 	move_and_slide()
+	if world:
+		world.keep_in_town(self)
 	# facing
 	var face_dir := Vector3.ZERO
 	if attacking > 0.0 or blocking:

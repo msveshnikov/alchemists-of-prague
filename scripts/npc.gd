@@ -46,6 +46,13 @@ var talk_t := 0.0
 var cart: Node3D
 var trot: AudioStreamPlayer3D
 var schedule := "day"
+var stuck_t := 0.0           # time spent pushing against something on the route without getting anywhere
+var last_pos := Vector3.ZERO
+var turn_t := -1.0           # cart driver: >= 0 while swinging horse + cart round at the end of the route
+var turn_pivot := Vector3.ZERO
+var turn_from := 0.0
+var turn_sign := 1.0
+var leader: Npc              # carter: the cart horse he walks beside
 
 
 func setup(p_world: Node, e: Dictionary) -> void:
@@ -102,9 +109,27 @@ func setup(p_world: Node, e: Dictionary) -> void:
 		var cs2: PackedScene = load("res://assets/props/cart.gltf")
 		cart = cs2.instantiate()
 		world.add_child(cart)
+		# the horse must never collide with its own cart: on the turn the cart swung into the horse, the horse was
+		# pushed up onto it, the cart followed the horse's height, and the pair climbed into the sky
+		for b in cart.find_children("*", "PhysicsBody3D", true, false):
+			add_collision_exception_with(b)
+		_place_cart()
 		trot = Sfx.loop_at("horse_trot", self, -4.0, 5.0)
-	if role == "carter":
-		ping_pong = true
+	if route.size() < 2 and anim in ["walk", "run", "pull"] and role != "carter":
+		anim = "idle"            # a walker with nowhere to go stood marching on the spot
+		Chars.play(ap, anim)
+	last_pos = position
+
+
+func _exit_tree() -> void:
+	if is_instance_valid(cart):
+		cart.queue_free()
+
+
+func _place_cart() -> void:
+	var back := Vector3(-sin(model.rotation.y), 0.0, -cos(model.rotation.y))
+	cart.global_position = global_position + back * 3.0
+	cart.rotation.y = model.rotation.y
 
 
 func is_dead() -> bool:
@@ -171,6 +196,8 @@ func _physics_process(delta: float) -> void:
 		model.rotation.y = atan2(away.x, away.z)
 		Chars.play(ap, "run", 0.15, 1.5)
 		move_and_slide()
+		if cart:
+			_place_cart()
 		return
 	if talk_t > 0.0:
 		talk_t -= delta
@@ -178,17 +205,17 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0
 		move_and_slide()
 		return
+	if role == "carter" and _walk_beside_cart(delta):
+		return
+	if turn_t >= 0.0:
+		_turn_cart(delta)
+		return
 	if route.size() > 1:
 		var tgt: Vector3 = route[route_i]
 		var to := tgt - global_position
 		to.y = 0
 		if to.length() < 0.5:
-			if ping_pong:
-				if route_i + route_dir >= route.size() or route_i + route_dir < 0:
-					route_dir = -route_dir
-				route_i += route_dir
-			else:
-				route_i = (route_i + 1) % route.size()
+			_next_waypoint()
 		else:
 			var d := to.normalized()
 			velocity.x = d.x * speed
@@ -197,13 +224,86 @@ func _physics_process(delta: float) -> void:
 			var a := anim if anim in ["walk", "run", "pull"] else "walk"
 			Chars.play(ap, a, 0.25, speed / ({"walk": 1.12, "run": 1.9, "pull": 1.0}.get(a, 1.0)))
 		move_and_slide()
+		# blocked by a stall, a cart or the player: don't march on the spot, take the next leg of the route
+		var moved := Vector2(global_position.x - last_pos.x, global_position.z - last_pos.z).length()
+		stuck_t = stuck_t + delta if moved < speed * delta * 0.25 else max(0.0, stuck_t - delta)
+		last_pos = global_position
+		if stuck_t > 1.5:
+			stuck_t = 0.0
+			_next_waypoint()
 		if cart:
-			var back := -model.global_basis.z.normalized()
-			cart.global_position = global_position + back * 3.0
-			cart.rotation.y = model.rotation.y
+			_place_cart()
 		return
 	velocity.x = 0
 	velocity.z = 0
 	model.rotation.y = lerp_angle(model.rotation.y, home_yaw, min(1.0, delta * 3.0))
 	Chars.play(ap, anim, 0.3)
 	move_and_slide()
+
+
+func _next_waypoint() -> void:
+	if ping_pong:
+		if route_i + route_dir >= route.size() or route_i + route_dir < 0:
+			route_dir = -route_dir
+			if cart:              # end of the street: swing horse and cart round together instead of walking into it
+				turn_t = 0.0
+				var back := Vector3(-sin(model.rotation.y), 0.0, -cos(model.rotation.y))
+				turn_pivot = global_position + back * 1.5
+				turn_from = model.rotation.y
+				var to: Vector3 = route[route_i + route_dir] - global_position
+				turn_sign = 1.0 if back.cross(Vector3(to.x, 0.0, to.z)).y >= 0.0 else -1.0
+		route_i += route_dir
+	else:
+		route_i = (route_i + 1) % route.size()
+
+
+const TURN_TIME := 4.0
+
+
+func _turn_cart(delta: float) -> void:
+	turn_t += delta
+	var k: float = min(1.0, turn_t / TURN_TIME)
+	var yaw: float = turn_from + turn_sign * PI * k
+	var fwd := Vector3(sin(yaw), 0.0, cos(yaw))
+	var y := global_position.y
+	global_position = Vector3(turn_pivot.x, y, turn_pivot.z) + fwd * 1.5
+	model.rotation.y = yaw
+	velocity = Vector3.ZERO
+	Chars.play(ap, "pull" if ap.has_animation("pull") else "walk", 0.25, 0.6)
+	_place_cart()
+	last_pos = global_position
+	if k >= 1.0:
+		turn_t = -1.0
+
+
+## The carter walks at the horse's head, on its left; idle while the horse stands. Returns false with no horse near.
+func _walk_beside_cart(delta: float) -> bool:
+	if not is_instance_valid(leader):
+		leader = null
+		for n in world.npcs:
+			if is_instance_valid(n) and n != self and n.role == "cart_driver" and n.home.distance_to(home) < 3.0:
+				leader = n
+		if leader == null:
+			return false
+	if leader.dead:
+		return false
+	var lyaw: float = leader.model.rotation.y
+	var side := Vector3(cos(lyaw), 0.0, -sin(lyaw))
+	var fwd := Vector3(sin(lyaw), 0.0, cos(lyaw))
+	var spot: Vector3 = leader.global_position + side * 1.1 + fwd * 0.6
+	var to := spot - global_position
+	to.y = 0.0
+	var dist := to.length()
+	if dist > 6.0:
+		global_position = Vector3(spot.x, leader.global_position.y, spot.z)
+		dist = 0.0
+	var v := Vector3.ZERO
+	if dist > 0.05:
+		v = to.normalized() * min(dist / max(delta, 0.001), max(leader.speed * 1.6, dist * 2.0))
+	velocity.x = v.x
+	velocity.z = v.z
+	move_and_slide()
+	var moving: bool = leader.velocity.length() > 0.2 or leader.turn_t >= 0.0
+	model.rotation.y = lerp_angle(model.rotation.y, lyaw, min(1.0, delta * 5.0))
+	Chars.play(ap, "walk" if moving else "idle", 0.25, max(0.6, leader.speed / 1.12) if moving else 1.0)
+	return true

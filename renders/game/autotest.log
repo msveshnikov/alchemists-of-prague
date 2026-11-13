@@ -1,108 +1,115 @@
 start: houses=257 enemies=8 npcs=55 interactables=323
 PASS level built from layout JSON (houses > 100)
 PASS day population spawned (npcs > 30)
-screenshot skipped (headless) 01_square_day
-PASS player moves (6.6 m)
+screenshot 01_square_day
+PASS player moves (3.6 m)
+PASS no townsfolk walk on the spot (0)
+PASS cart horse turned round at the end of its street
+PASS cart horse and cart stay on the ground (y=-0.20, cart -0.20)
+PASS horse does not walk into its cart
+PASS horse horse#00 stands on the ground (y=-0.20, home 0.00)
+PASS horse horse#01 stands on the ground (y=-0.20, home 0.00)
 PASS attack animation plays
-screenshot skipped (headless) 02_square_walk
+screenshot 02_square_walk
 PASS inventory opens with Tab and closes with Tab (opened=true closed=true paused=false)
 PASS inventory opens with I and closes with I (opened=true closed=true paused=false)
 PASS inventory opens with Tab and closes with Escape (opened=true closed=true paused=false)
 PASS inventory opens with I and closes with Tab (opened=true closed=true paused=false)
 PASS inventory has a Close button
 PASS Close button leaves the inventory and unpauses
-screenshot skipped (headless) 03_inventory
+screenshot 03_inventory
 PASS a trader is open for business by day
 PASS buying deducts gold (30 -> 24)
-screenshot skipped (headless) 04_trade
-screenshot skipped (headless) 05_smith
+screenshot 04_trade
+screenshot 05_smith
 PASS smith upgrades the sword
-screenshot skipped (headless) 06_house_door
+screenshot 06_house_door
 PASS entered a house interior
 PASS interior has throwable windows (2)
-screenshot skipped (headless) 07_interior
+screenshot 07_interior
 PASS first house hides an alchemist
 PASS wounded alchemist can be seized
 PASS prompt offers to seize the enemy
 PASS player holds the enemy
 PASS prompt offers to throw out of the window
-screenshot skipped (headless) 08_defenestration
+screenshot 08_defenestration
 PASS defenestrated alchemist dies on the cobbles
 PASS defenestration counted
 PASS body landed on the street (y=0.0)
 PASS chest looted for gold
 PASS left the house
-screenshot skipped (headless) 09_body_on_street
+screenshot 09_body_on_street
 PASS night falls
 PASS night enemies spawned around the square (17)
 PASS merchants closed at night
-screenshot skipped (headless) 10_square_night
+screenshot 10_square_night
 PASS enemies notice the player at night (6 hostile)
-screenshot skipped (headless) 11_night_fight
-PASS enemies deal damage (hp 13)
+screenshot 11_night_fight
+PASS enemies deal damage (hp 22)
 PASS game saved to disk
 reloading save...
-PASS load restores gold (348, saved 348)
+PASS load restores gold (343, saved 343)
 PASS load restores sword level
 PASS load restores kill counts
 PASS player can die
 PASS death screen shown
-screenshot skipped (headless) 12_death
-screenshot skipped (headless) 13_pause
-screenshot skipped (headless) 14_settings
+screenshot 12_death
+screenshot 13_pause
+screenshot 14_settings
 PASS one world with four districts (4)
-fps on the Old Town Square: 140, instances 1303
-PASS walked from Karlova onto the bridge approach (x=-121, charles_bridge)
-screenshot skipped (headless) world_01_karlova_to_bridge
+fps on the Old Town Square: 1, instances 1303
+PASS walked from Karlova onto the bridge approach (x=-119, charles_bridge)
+screenshot world_01_karlova_to_bridge
 PASS walked through the Lesser Town tower into Malá Strana (x=-355, mala_strana)
-screenshot skipped (headless) world_02_into_mala_strana
+screenshot world_02_into_mala_strana
 PASS climbed the road towards Vyšehrad (y=10.0)
-screenshot skipped (headless) world_03_road_up
-PASS walked along the gate lane into Vyšehrad (x=-52, vysehrad)
-screenshot skipped (headless) world_04_vysehrad_gate
-fps at Vyšehrad gate: 145, npcs spawned 13, enemies 3
+screenshot world_03_road_up
+PASS walked along the gate lane into Vyšehrad (x=-50, vysehrad)
+screenshot world_04_vysehrad_gate
+fps at Vyšehrad gate: 11, npcs spawned 13, enemies 3
 PASS the embankment street ends at a wall (z=-127)
+PASS stepping onto the field beyond the walls is undone (2.3 m back)
 PASS charles_bridge: the HUD names the district (charles_bridge)
 PASS charles_bridge: townsfolk around (18)
-screenshot skipped (headless) charles_bridge_01_arrival
+screenshot charles_bridge_01_arrival
 PASS Vltava water plane under the bridge
-screenshot skipped (headless) charles_bridge_02_deck
+screenshot charles_bridge_02_deck
 PASS charles_bridge: a ledge to throw from
 PASS charles_bridge: seized the reeling skeleton
 PASS charles_bridge: prompt offers to throw him (Throw him into the Vltava!)
-screenshot skipped (headless) charles_bridge_06_throw
+screenshot charles_bridge_06_throw
 PASS charles_bridge: the thrown skeleton is destroyed
 PASS charles_bridge: counted as a defenestration
 PASS charles_bridge: night enemies around (4)
-screenshot skipped (headless) charles_bridge_05_night
+screenshot charles_bridge_05_night
 PASS mala_strana: the HUD names the district (mala_strana)
 PASS mala_strana: townsfolk around (16)
-screenshot skipped (headless) mala_strana_01_arrival
+screenshot mala_strana_01_arrival
 PASS tavern: food & drink and a bed to rent
 PASS tavern trade window opens
-screenshot skipped (headless) mala_strana_02_tavern
+screenshot mala_strana_02_tavern
 PASS renting a bed passes time and heals
 PASS climbed the castle stairs (y=8.0)
-screenshot skipped (headless) mala_strana_03_terrace
+screenshot mala_strana_03_terrace
 PASS timber houses are enterable
 PASS timber house interior has throwable windows
-screenshot skipped (headless) mala_strana_04_interior
+screenshot mala_strana_04_interior
 PASS mala_strana: night enemies around (12)
-screenshot skipped (headless) mala_strana_05_night
+screenshot mala_strana_05_night
 PASS vysehrad: the HUD names the district (vysehrad)
 PASS vysehrad: townsfolk around (11)
-screenshot skipped (headless) vysehrad_01_arrival
+screenshot vysehrad_01_arrival
 PASS knights spar on the training ground (6)
-screenshot skipped (headless) vysehrad_02_training
+screenshot vysehrad_02_training
 PASS vysehrad: a ledge to throw from
 PASS vysehrad: seized the reeling skeleton
 PASS vysehrad: prompt offers to throw him (Throw him off the walls!)
-screenshot skipped (headless) vysehrad_06_throw
+screenshot vysehrad_06_throw
 PASS vysehrad: the thrown skeleton is destroyed
 PASS vysehrad: counted as a defenestration
-screenshot skipped (headless) vysehrad_03_view
+screenshot vysehrad_03_view
 PASS vysehrad: night enemies around (11)
-screenshot skipped (headless) vysehrad_05_night
+screenshot vysehrad_05_night
 PASS loading a save puts the knight back where he was (vysehrad)
-screenshot skipped (headless) 15_main_menu
+screenshot 15_main_menu
 DONE fails=0

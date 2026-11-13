@@ -33,7 +33,9 @@ def build_bridge_tower(name="bridge_tower", lesser=False):
         wall_with_openings(mb, gate["xa"] - 0.45, gate["xb"] + 0.45, 0.0, BA.opening_top(gate) + 0.45, y0, y1, [gate], "M_TrimDark")
     mb.box((gate["xa"], -D / 2, -0.05), (gate["xb"], D / 2, 0.0), "M_Cobble")
     # plinth + string courses + corner buttresses
-    mb.box((-W / 2 - 0.25, -D / 2 - 0.25, 0), (W / 2 + 0.25, D / 2 + 0.25, 1.0), {"+z": "M_TrimDark", "-y": S, "+y": S, "-x": S, "+x": S, "-z": S})
+    # (two halves: the plinth must not run through the gate passage, or the road looks flooded waist-high)
+    for x0, x1 in ((-W / 2 - 0.25, gate["xa"] - 0.02), (gate["xb"] + 0.02, W / 2 + 0.25)):
+        mb.box((x0, -D / 2 - 0.25, 0), (x1, D / 2 + 0.25, 1.0), {"+z": "M_TrimDark", "-y": S, "+y": S, "-x": S, "+x": S, "-z": S})
     for z in (9.5, 16.0, 22.0):
         mb.box((-W / 2 - 0.12, -D / 2 - 0.15, z), (W / 2 + 0.12, D / 2 + 0.15, z + 0.3), "M_TrimDark")
     for cx in (-W / 2, W / 2):
