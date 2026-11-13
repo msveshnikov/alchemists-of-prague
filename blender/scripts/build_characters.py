@@ -14,6 +14,7 @@ from mathutils import Matrix, Vector  # noqa: E402
 
 import lib_geo as G  # noqa: E402
 import lib_char as C  # noqa: E402
+import lib_gait as GT  # noqa: E402
 from lib_char import add, loft, seq  # noqa: E402
 from lib_geo import MB  # noqa: E402
 
@@ -221,8 +222,8 @@ def rot_to(direction, roll_hint=V((1, 0, 0))):
 
 
 # ============================================================================= characters
-def base_human_actions(arm, base, H, extra=None, attack=None, gait=None, heavy=0.0, flail=True, girth=1.0):
-    spec = {"scale": H / 1.8, "girth": girth, "heavy": heavy, "flail": flail, "gait": gait or {}}
+def base_human_actions(arm, base, H, extra=None, attack=None, gait=None, heavy=0.0, flail=True, girth=1.0, loco=None):
+    spec = {"scale": H / 1.8, "girth": girth, "heavy": heavy, "flail": flail, "gait": gait or {}, "loco": loco}
     if attack:
         spec["attack"] = attack
     if extra:
@@ -459,23 +460,19 @@ def build_vaclav():
     loft(mb, [V((0.2, 0.03, 0.96)), V((0.235, 0.09, 0.62)), V((0.25, 0.13, 0.42))], [0.032, 0.026, 0.02], "M_LeatherDark", segs=8)
     mb.box(V((0.19, 0.0, 0.93)), V((0.215, 0.06, 0.96)), "M_Iron")
     B.build()
-    crouch = add(base, {"thigh.L": (-45, 0, 0), "thigh.R": (-40, 0, 0), "shin.L": (80, 0, 0), "shin.R": (75, 0, 0),
-                        "foot.L": (-30, 0, 0), "foot.R": (-30, 0, 0), "spine": (18, 0, 0), "upper_arm.R": (-30, 10, 0),
-                        "_loc": {"hips": (0, 0, -0.22)}})
-    air = add(base, {"thigh.L": (-55, 0, 0), "thigh.R": (-20, 0, 0), "shin.L": (70, 0, 0), "shin.R": (45, 0, 0),
-                     "spine": (5, 0, 0), "upper_arm.R": (-40, 20, 0), "upper_arm.L": (-40, -25, 0), "_loc": {"hips": (0, 0, 0.02)}})
-    tuck = add(base, {"thigh.L": (-80, 0, 0), "thigh.R": (-75, 0, 0), "shin.L": (110, 0, 0), "shin.R": (105, 0, 0),
-                      "spine": (40, 0, 0), "chest": (15, 0, 0), "head": (25, 0, 0), "upper_arm.R": (-60, 15, 0),
-                      "upper_arm.L": (-70, -15, 0), "forearm.L": (-30, 0, -40), "_loc": {"hips": (0, -0.1, -0.45)}})
-    lunge = add(base, {"thigh.L": (-50, 0, 0), "shin.L": (60, 0, 0), "thigh.R": (25, 0, 0), "shin.R": (20, 0, 0),
-                       "spine": (30, 0, 0), "chest": (10, 0, 0), "upper_arm.L": (-60, -10, 0), "forearm.L": (-30, 0, -30),
-                       "_loc": {"hips": (0, -0.12, -0.25)}})
     bwind = add(base, {"upper_arm.R": (-95, -50, 0), "forearm.R": (-70, 0, 0), "hand.R": (0, 0, 40), "chest": (0, 0, 35),
                        "spine": (-4, 0, 0), "hips": (0, 0, 12), "thigh.L": (8, 0, 0), "thigh.R": (-12, 0, 0)})
     bstrike = add(base, {"upper_arm.R": (-75, 45, 0), "forearm.R": (-10, 0, 0), "hand.R": (0, 0, -30), "chest": (8, 0, -35),
                          "spine": (10, 0, 0), "hips": (0, 0, -12), "thigh.R": (-30, 0, 0), "shin.R": (25, 0, 0),
                          "_loc": {"hips": (0, -0.06, -0.05)}})
-    acts = base_human_actions(arm, base, H, attack=sword_attack(base), extra={
+    # foot-planted IK locomotion and hero moves (lib_gait); the old sine gait made the feet float and slide
+    Jt = GT.joints_tuple(j)
+    loco = {}
+    for gname in ("walk", "run", "sprint"):
+        g = GT.Gait(Jt, base, GT.GAITS[gname], s)
+        loco[gname] = (g.pose, GT.GAITS[gname]["T"])
+    loco.update(GT.hero_moves(Jt, base, s))     # dodge (roll), dodge_back, jump: keyed every frame too
+    acts = base_human_actions(arm, base, H, attack=sword_attack(base), loco=loco, extra={
         "block": (lambda t: add(base, {"upper_arm.L": (-55, -15, 0), "forearm.L": (-35, 0, -35), "spine": (8 + math.sin(2 * PI * t), 0, 0),
                                        "thigh.L": (-10, 0, 0), "thigh.R": (-6, 0, 0), "shin.L": (16, 0, 0), "shin.R": (12, 0, 0),
                                        "upper_arm.R": (-10, 12, 0), "_loc": {"hips": (0, 0, -0.04)}}), 1.0),
@@ -490,8 +487,6 @@ def build_vaclav():
                               "spine": (30, 0, 0), "thigh.L": (-35, 0, 0), "shin.L": (25, 0, 0), "thigh.R": (20, 0, 0),
                               "_loc": {"hips": (0, -0.1, -0.05)}})),
             (1, base)]), 1.5),
-        "jump": (seq([(0, base), (0.18, crouch), (0.4, air), (0.8, air), (1, base)]), 0.9),
-        "dodge": (seq([(0, base), (0.2, lunge), (0.55, tuck), (0.85, lunge), (1, base)]), 0.5),
         "attack2": (seq([(0, base), (0.3, bwind), (0.5, bstrike), (0.7, add(bstrike, {"chest": (0, 0, -8)})), (1, base)]), 0.85),
     })
     INFO["vaclav"] = dict(h=H, acts=acts, desc="Рыцарь Вацлав из Вышеграда (по vaclav.png): худощавое лицо со скулами, короткая тёмная "
@@ -1350,6 +1345,7 @@ def main():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
     only = argv[argv.index("--only") + 1].split(",") if "--only" in argv else None
     render = "--no-render" not in argv
+    out_dir = argv[argv.index("--out") + 1] if "--out" in argv else None
     G.reset_scene()
     bpy.context.scene.render.fps = C.FPS
     roots = []
@@ -1361,6 +1357,12 @@ def main():
     bpy.context.view_layer.update()
     anim_kw = dict(export_animations=True, export_animation_mode="NLA_TRACKS", export_skins=True, export_force_sampling=True,
                    export_morph=False)
+    if out_dir:
+        anim_kw["export_texture_dir"] = "../textures"
+        for r in roots:
+            G.export_asset(r, out_dir, anim_kw)
+        print("DONE preview export")
+        return
     for r in roots:
         G.export_asset(r, OUT, anim_kw)
     import json

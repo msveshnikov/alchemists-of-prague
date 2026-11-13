@@ -9,8 +9,13 @@ const SPRINT := 5.6
 const WALK := 1.5
 const BLOCK_SPEED := 1.4
 const JUMP := 4.4
-const DODGE_SPEED := 9.0
-const DODGE_TIME := 0.32
+const DODGE_SPEED := 6.5         # roll: 0.5 s x 6.5 m/s ~ 3.3 m (the old 0.32 s was too short to show a roll)
+const DODGE_TIME := 0.5
+const DODGE_IFRAMES := 0.35      # invulnerable for the first part of the roll, as before
+# ground speeds the locomotion clips are authored for (lib_gait.py): played at 1x the feet don't slide
+const ANIM_WALK := 1.5
+const ANIM_RUN := 3.4
+const ANIM_SPRINT := 5.6
 const ATTACK_RANGE := 2.3
 const ATTACK_ARC := 0.35          # cos of half-angle (~70 deg)
 
@@ -31,6 +36,7 @@ var attack_queued := false
 var blocking := false
 var dodge_time := 0.0
 var dodge_dir := Vector3.ZERO
+var dodge_back := false
 var hurt_time := 0.0
 var dead := false
 var grabbed: Node = null
@@ -176,8 +182,11 @@ func _physics_process(delta: float) -> void:
 		jump_t = 0.75
 		Chars.play(ap, "jump", 0.06, 1.15, true)
 	if can_act and Input.is_action_just_pressed("dodge") and dodge_time <= 0.0 and Game.stamina >= 25.0 and grabbed == null:
-		dodge_dir = dir.normalized() if dir.length() > 0.1 else -facing()
+		dodge_back = dir.length() <= 0.1
+		dodge_dir = -facing() if dodge_back else dir.normalized()
 		dodge_time = DODGE_TIME
+		var da := "dodge_back" if dodge_back and ap.has_animation("dodge_back") else "dodge"
+		Chars.play(ap, da, 0.04, Chars.length(ap, da) / DODGE_TIME, true)
 		attacking = 0.0
 		Game.stamina -= 25.0
 		Sfx.play("cloth")
@@ -257,7 +266,7 @@ func _deal_hit() -> void:
 
 
 func take_damage(amount: float, from_pos: Vector3, kind := "melee") -> void:
-	if dead or dodge_time > 0.0:
+	if dead or dodge_time > DODGE_TIME - DODGE_IFRAMES:
 		return
 	var to := (from_pos - global_position)
 	to.y = 0
@@ -334,8 +343,9 @@ func _animate(dir: Vector3, speed: float, sprinting: bool, delta: float) -> void
 	if blocking:
 		Chars.play(ap, "block", 0.15)
 	elif dodge_time > 0.0:
-		if ap.has_animation("dodge"):
-			Chars.play(ap, "dodge", 0.04, Chars.length(ap, "dodge") / DODGE_TIME)
+		var da := "dodge_back" if dodge_back and ap.has_animation("dodge_back") else "dodge"
+		if ap.has_animation(da):
+			Chars.play(ap, da, 0.04, Chars.length(ap, da) / DODGE_TIME)
 		else:
 			Chars.play(ap, "run", 0.05, 2.2)
 	elif jump_t > 0.0 and not is_on_floor() and ap.has_animation("jump"):
@@ -344,15 +354,17 @@ func _animate(dir: Vector3, speed: float, sprinting: bool, delta: float) -> void
 		Chars.play(ap, "walk" if hv > 0.2 else "idle", 0.2, 1.2)
 	elif hv > 0.2:
 		if speed <= WALK + 0.01:
-			Chars.play(ap, "walk", 0.2, hv / 1.12)
+			Chars.play(ap, "walk", 0.2, hv / ANIM_WALK)
+		elif sprinting and hv > (ANIM_RUN + ANIM_SPRINT) * 0.5 and ap.has_animation("sprint"):
+			Chars.play(ap, "sprint", 0.25, hv / ANIM_SPRINT)
 		else:
-			Chars.play(ap, "run", 0.2, hv / 2.57)
+			Chars.play(ap, "run", 0.2, hv / ANIM_RUN)
 	else:
 		Chars.play(ap, "idle", 0.25)
 	if hv > 0.3 and is_on_floor():
 		step_t -= delta * hv
 		if step_t <= 0.0:
-			step_t = 1.25 if hv < 4.0 else 1.6
+			step_t = 0.69 if hv < 2.5 else (1.06 if hv < 4.5 else 1.63)   # = step length of walk/run/sprint
 			Sfx.play_at("step", global_position, -9.0 if not sprinting else -6.0, 0.9 if world.inside_house else 1.0)
 
 

@@ -371,12 +371,16 @@ def human_actions(arm, base, spec):
 
     T = spec.get("idle_s", 2.5)
     make_action(arm, "idle", T, idle); made["idle"] = T
-    T = g.get("walk_T", 1.0)
-    make_action(arm, "walk", T, lambda t: walk_pose(t, base=base, heavy=heavy, **g.get("walk", {}))); made["walk"] = T
-    T = g.get("run_T", 0.66)
-    run = dict(A=38, K=100, arm=38, bob=0.05, lean=12, sway=7, elbow=70)
-    run.update(g.get("run", {}))
-    make_action(arm, "run", T, lambda t: walk_pose(t, base=base, heavy=heavy, **run)); made["run"] = T
+    if spec.get("loco"):     # foot-planted IK locomotion (lib_gait): {name: (fn, seconds)}, keyed every frame
+        for an, (fn, T) in spec["loco"].items():
+            make_action(arm, an, T, fn, step=1); made[an] = T
+    else:
+        T = g.get("walk_T", 1.0)
+        make_action(arm, "walk", T, lambda t: walk_pose(t, base=base, heavy=heavy, **g.get("walk", {}))); made["walk"] = T
+        T = g.get("run_T", 0.66)
+        run = dict(A=38, K=100, arm=38, bob=0.05, lean=12, sway=7, elbow=70)
+        run.update(g.get("run", {}))
+        make_action(arm, "run", T, lambda t: walk_pose(t, base=base, heavy=heavy, **run)); made["run"] = T
 
     flinch = add(base, {"spine": (-14, 0, 6), "chest": (-10, 0, 0), "head": (-18, 0, 0), "upper_arm.L": (-20, -10, 0),
                         "upper_arm.R": (-20, 10, 0), "forearm.L": (-40, 0, 0), "forearm.R": (-40, 0, 0),
