@@ -11,6 +11,7 @@ const CLOSED_ROADS := {
 }
 const FOG := {"old_town": 0.0045, "charles_bridge": 0.0022, "mala_strana": 0.003, "vysehrad": 0.0016}
 const WORLD := "prague"
+const SEAL_FILE := "res://assets/levels/prague_seal.json"
 const SPAWN_R := 105.0         # population entries closer than this to the player are spawned...
 const DESPAWN_R := 150.0       # ...and removed again beyond this (unless fighting)
 const NEAR_ONLY := ["street_lantern", "barrel", "barrel_small", "crate", "crate_produce", "sack", "basket", "bench", "table",
@@ -70,6 +71,8 @@ var ui_stack: Array = []
 var _loading: Control
 var _music_cd := 0.0
 var _ready_done := false
+var hidden_tiles := {}     # ground tiles beyond the town walls (prague_seal.json): not placed, the meadow shows instead
+var river: Node3D
 
 
 func _ready() -> void:
@@ -129,9 +132,12 @@ func _build() -> void:
 	_build_environment()
 	_build_water()
 	_build_blockers()
+	_build_seal()
 	var n := 0
 	var total: int = layout["instances"].size()
 	for inst in layout["instances"]:
+		if hidden_tiles.has(inst["id"]):
+			continue
 		_place(inst)
 		n += 1
 		if n % 40 == 0:
@@ -143,6 +149,10 @@ func _build() -> void:
 			n += 1
 		elif fx["type"] == "smoke":
 			_smoke(Vector3(fx["pos"][0], fx["pos"][1], fx["pos"][2]))
+	if water_y > -INF and level == WORLD:
+		river = load("res://scripts/river.gd").new()
+		add_child(river)
+		river.setup(self)
 	_set_loading("Waking the townsfolk...")
 	await get_tree().process_frame
 	_register_interactables()
@@ -177,6 +187,14 @@ func _build() -> void:
 		var pp = load("res://scripts/perf_probe.gd").new()
 		pp.world = self
 		add_child(pp)
+	if "--reach" in OS.get_cmdline_user_args():       # reachability map of the world (renders/world/reach.png)
+		var rp = load("res://scripts/reach_probe.gd").new()
+		rp.world = self
+		add_child(rp)
+	if "--tour" in OS.get_cmdline_user_args():        # screenshots at given spots (renders/game/tour_N.png)
+		var st = load("res://scripts/shot_tour.gd").new()
+		st.world = self
+		add_child(st)
 	if "--cinematic" in OS.get_cmdline_user_args():   # scripted trailer camera (record with --write-movie)
 		var cine = load("res://scripts/cinematic.gd").new()
 		cine.world = self
@@ -928,6 +946,70 @@ func _build_blockers() -> void:
 		sb.add_child(cs)
 		add_child(sb)
 		sb.position = Vector3(b["center"][0], b["center"][1], b["center"][2])
+
+
+## Stone walls that close the alleys and street ends between the districts and the empty land around them
+## (assets/levels/prague_seal.json, made by tools/seal_world.py). Narrow ones get a barred plank gate.
+func _build_seal() -> void:
+	if level != WORLD or "--no-seal" in OS.get_cmdline_user_args() or not FileAccess.file_exists(SEAL_FILE):
+		return
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SEAL_FILE))
+	for id in data.get("hidden_tiles", []):
+		hidden_tiles[id] = true
+	var mats := {"stone": _mat("stone_wall_rough", 0.4, Color(0.92, 0.9, 0.86)), "cap": _mat("roof_tiles", 0.6),
+		"trim": _mat("stone_trim", 0.5), "wood": _mat("wood_door", 0.5), "iron": _mat("iron", 1.0, Color(0.35, 0.35, 0.36))}
+	var root := Node3D.new()
+	root.name = "SealWalls"
+	add_child(root)
+	for w in data.get("walls", []):
+		_seal_wall(root, Vector3(w["a"][0], w["y"], w["a"][1]), Vector3(w["b"][0], w["y"], w["b"][1]), mats)
+
+
+func _seal_wall(root: Node3D, a: Vector3, b: Vector3, mats: Dictionary) -> void:
+	const H := 3.1          # stone up to here (from 0.4 below the floor), then the tiled coping
+	const T := 0.7
+	var length := a.distance_to(b)
+	var wall := Node3D.new()
+	root.add_child(wall)
+	wall.position = (a + b) / 2.0
+	wall.rotation.y = atan2(b.x - a.x, b.z - a.z)            # local +Z runs along the wall
+	var parts: Array = [[Vector3(0, H / 2.0 - 0.4, 0), Vector3(T, H, length), "stone"],
+		[Vector3(0, H - 0.4 + 0.06, 0), Vector3(T + 0.16, 0.12, length + 0.1), "trim"]]
+	if length > 7.0:          # buttresses on long stretches
+		var n := int(length / 4.5)
+		for k in range(1, n):
+			parts.append([Vector3(0, H / 2.0 - 0.6, -length / 2.0 + k * length / n), Vector3(T + 0.5, H - 0.4, 0.8), "stone"])
+	if length >= 1.8 and length <= 5.5:   # a courtyard gate, barred for good
+		var gl: float = min(length - 0.7, 2.6)
+		parts.append([Vector3(0, 1.05 - 0.02, 0), Vector3(T + 0.1, 2.1, gl), "wood"])
+		for y in [0.45, 1.6]:
+			parts.append([Vector3(0, y, 0), Vector3(T + 0.14, 0.09, gl + 0.04), "iron"])
+		parts.append([Vector3(0, 2.18, 0), Vector3(T + 0.12, 0.16, gl + 0.3), "trim"])
+	for p in parts:
+		var mi := MeshInstance3D.new()
+		var bm := BoxMesh.new()
+		bm.size = p[1]
+		mi.mesh = bm
+		mi.material_override = mats[p[2]]
+		mi.position = p[0]
+		mi.visibility_range_end = 200.0
+		wall.add_child(mi)
+	var cap := MeshInstance3D.new()
+	var pm := PrismMesh.new()
+	pm.size = Vector3(T + 0.3, 0.42, length + 0.1)
+	cap.mesh = pm
+	cap.material_override = mats["cap"]
+	cap.position = Vector3(0, H - 0.4 + 0.12 + 0.21, 0)
+	cap.visibility_range_end = 200.0
+	wall.add_child(cap)
+	var sb := StaticBody3D.new()
+	var cs := CollisionShape3D.new()
+	var bs := BoxShape3D.new()
+	bs.size = Vector3(T + 0.1, 6.0, length)     # taller than it looks: no jumping or climbing over
+	cs.shape = bs
+	sb.add_child(cs)
+	sb.position = Vector3(0, 2.6, 0)
+	wall.add_child(sb)
 
 
 # ================================================================ river, falls, travel, inn

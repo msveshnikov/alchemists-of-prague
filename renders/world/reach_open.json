@@ -1,0 +1,15 @@
+{
+ "by_district": {
+  "charles_bridge": 24394,
+  "mala_strana": 22797,
+  "old_town": 60648,
+  "vysehrad": 16706
+ },
+ "cell": 1.0,
+ "nx": 824,
+ "nz": 424,
+ "outside_rects": 12624,
+ "reachable": 125971,
+ "x0": -622.0,
+ "z0": -162.0
+}

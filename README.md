@@ -68,6 +68,24 @@ scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/w
 дефенестрация, торговля, ночь, сохранение, а затем пешком по всему миру: Karlova → мост → Мала Страна, дорога на Вышеград,
 броски с моста и стен, таверна, лестница, ночь в каждом районе).
 Замер скорости: `godot --path . scenes/game.tscn -- --perf`; один район отдельно (отладка): `-- --layout old_town`.
+Скриншоты по точкам: `-- --tour x,z,yaw[,pitch[,y]] cam,px,py,pz,tx,ty,tz ...` (`--tour-night` — ночью) → `renders/game/tour_N.png`.
+
+**Границы мира.** Игрок не может уйти из четырёх районов в пустое поле: переулки между домами и концы улиц закрыты
+каменными стенами (в узких — заколоченные дощатые ворота), районы разделены Влтавой. Стены не рисуются вручную, их
+находит `tools/seal_world.py`: проба `--reach` строит по физике карту клеток, куда можно дойти, всё рядом с контентом
+(двери, фонари, лавки, горожане, маршруты патрулей) считается городом, всё дальше 22 м — полем, а минимальный разрез
+между ними даёт самые узкие проходы. Результат — `assets/levels/prague_seal.json` (47 стен ≈ 200 м и 222 плитки
+мостовой за стенами, которые игра не ставит — там виден луг). После пересборки мира в Blender:
+```
+godot --headless --path . scenes/game.tscn -- --reach --no-seal    # открытый мир → renders/world/reach_open.*
+python tools/seal_world.py                                          # → assets/levels/prague_seal.json (+ seal_preview.png)
+godot --headless --path . scenes/game.tscn -- --reach --reach-jump  # проверка уже закрытого мира, с прыжками
+python tools/seal_world.py --check                                  # «leaked into the field 0» = выйти нельзя
+```
+
+**Река** (`scripts/river.gd`): у обеих набережных пришвартованы ~20 лодок и барж, а через средние арки моста
+вверх и вниз по течению ходят 12 судов — плоскодонки, грузовые баржи и большие парусные баржи с полосатым парусом
+(мачту опускают, проходя под мостом). На корме лодочник с шестом, на барже ночью горит фонарь.
 
 **Производительность**: горожане и враги появляются в радиусе ~105 м от игрока, мелкие объекты и фонари вдали скрываются.
 На встроенной графике (Intel UHD 620) — 6–10 кадров в секунду, как и у прежнего отдельного Старого города;
@@ -81,7 +99,7 @@ prague/
 ├─ project.godot, export_presets.cfg   проект Godot 4.7 и пресет экспорта Windows
 ├─ icon.svg                       иконка игры (колба с Тынским храмом на закате); растровые варианты — assets/ui/app_icon/
 ├─ scenes/                         main_menu.tscn, game.tscn
-├─ scripts/                        GDScript игры (game, sfx, world, day_night, player, enemy, npc, potion, autotest, perf_probe, ui/)
+├─ scripts/                        GDScript игры (game, sfx, world, river, day_night, player, enemy, npc, potion, autotest, perf_probe, reach_probe, shot_tour, ui/)
 ├─ build/windows|web|android/      билды (.gdignore)
 ├─ task1.md … task5.md            задачи (срез «Староместская площадь» + раздел «Прогон 2»)
 ├─ report_task1.md … report_task5.md   отчёты по задачам
