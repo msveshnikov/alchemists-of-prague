@@ -1,61 +1,70 @@
-# Алхимики Праги — ассеты и игра (Староместская площадь, Карлов мост, Мала Страна, Вышеград)
+# Alchemists of Prague — assets and game (Old Town Square, Charles Bridge, Malá Strana, Vyšehrad)
 
-Экшен-RPG в средневековой Праге (стиль Gothic 1–2) на Godot 4.7. Task 1–5 пройдены дважды: сначала вертикальный срез —
-Староместская площадь, затем (прогон 2) Карлов мост, Мала Страна и Вышеград. После этого все четыре части собраны
-в **один открытый мир** (`build_prague.py`).
+An action RPG set in medieval Prague (in the spirit of Gothic 1–2), built with Godot 4.7. Tasks 1–5 were completed twice:
+first as a vertical slice (Old Town Square), then (run 2) Charles Bridge, Malá Strana and Vyšehrad. After that all four
+parts were merged into **one open world** (`build_prague.py`).
 
-**Единый мир**: все четыре части Праги связаны улицами и мостом, без экранов загрузки. Влтава отделяет Малую Страну,
-город ограничен рекой, стенами и закрытыми воротами. Название района — на табличке HUD, карта — Tab → Map.
+![Old Town Square at night: Týn Church, lit windows, market stalls](renders/scene/square_wide_night.png)
 
-| Откуда | Куда идти | Куда попадёте |
-|---|---|---|
-| Староместская площадь | улицей **Karlova** на запад | к Староместской мостовой башне и на **Карлов мост** |
-| Карлов мост | через весь мост и Малостранскую башню | в **Малую Страну** (Mostecká → площадь → лестница к Граду) |
-| Староместская площадь | улицей **Melantrichova** на юг и вверх по дороге между стенами | к воротам **Вышеграда** |
-
-Что нового:
-- единый мир из четырёх районов: переходы пешком, без загрузок; граница мира — река, стены, закрытые ворота;
-- Влтава; броски врагов с моста в реку, со стен Вышеграда в пропасть и с террасы Малой Страны;
-- таверна с ночлегом, рыцари на ристалище, монахи, лодочники;
-- переделанный Вацлав: лицо, капюшон, сюрко, щит, меч; прыжок, уход, двойной удар; новый чешский лев на гербах;
-- исправлен баг: из инвентаря нельзя было выйти (теперь Tab / I / Esc / Close).
-
-Всё сгенерировано Python-скриптами в Blender 5.2: модели, текстуры, риги, анимации, раскладка уровня.
-Любой файл пересобирается одной командой (см. «Пересборка»).
-
-## Играть (Task 5)
-
-**▶ В браузере (ПК или телефон): https://severance.lol/4/** · **Android APK: https://severance.lol/4/AlchemistsOfPrague.apk**
-
-**⬇ Скачать (Windows .exe и Android .apk): https://github.com/msveshnikov/alchemists-of-prague/releases/latest**
-
-- Билд: `build/windows/AlchemistsOfPrague.exe` (Windows, всё внутри).
-- Из исходников: открыть папку в Godot 4.7.2 и нажать F5.
-
-| Клавиша | Действие |
+| | |
 |---|---|
-| W A S D | движение |
-| Shift | спринт |
-| Caps Lock | шаг / бег |
-| Space | прыжок |
-| Q / Alt | уклонение |
-| Левая кнопка мыши | удар (клик ещё раз — комбо) |
-| Правая кнопка мыши | блок щитом |
-| E / F | войти в дом · торговать · кузнец · сундук · таверна и ночлег · говорить · **схватить шатающегося врага** · **выбросить его в окно / с моста / со стены** |
-| 1 / 2 / 3 | лечение / бодрость / противоядие |
-| Tab / I | инвентарь (Персонаж, Журнал, Карта); Tab, I, Esc или кнопка Close — закрыть |
-| T | ждать до заката или рассвета |
-| F5 / F9 | быстрое сохранение / загрузка |
-| Esc | пауза |
+| ![In game: Old Town Square by day](renders/game/01_square_day.png) | ![In game: a night street in Malá Strana](renders/game/mala_strana_05_night.png) |
 
-**Сенсорное управление** включается само на телефонах (APK и мобильный браузер) и после первого касания экрана:
-левый палец — плавающий стик (вытянуть за внешнее кольцо — спринт), правый палец — обзор;
-кнопки «Strike» (тянуть с неё — тоже обзор), «Block» (удерживать), «Dodge», «Jump», «Use» (мигает, когда есть с чем взаимодействовать);
-вверху справа «Wait», «Bag» (инвентарь), «Menu» (пауза: сохранение и настройки). Чтобы выпить зелье, коснитесь его слота на HUD.
-Код: `scripts/ui/touch_controls.gd`. На ПК можно проверить с аргументом `-- --touch`.
+**One world**: all four parts of Prague are connected by streets and the bridge, with no loading screens. The Vltava
+separates Malá Strana; the city is bounded by the river, walls and locked gates. The district name is shown on a HUD
+plaque, the map is under Tab → Map.
 
-Экспорт: пресеты `Windows Desktop`, `Web` и `Android` в `export_presets.cfg` (на вебе и Android рендерер Compatibility,
-текстуры S3TC+ETC2, APK подписан debug-ключом, arm64). В билд попадают только `assets/levels/prague_*.json`.
+| From | Which way | Where you end up |
+|---|---|---|
+| Old Town Square | west along **Karlova** street | the Old Town Bridge Tower and **Charles Bridge** |
+| Charles Bridge | across the whole bridge and through the Malá Strana tower | **Malá Strana** (Mostecká → square → stairs up to the Castle) |
+| Old Town Square | south along **Melantrichova**, then up the road between the walls | the gates of **Vyšehrad** |
+
+What's new:
+- one world of four districts: walk between them, no loading; the world is bounded by the river, walls and locked gates;
+- the Vltava; throw enemies off the bridge into the river, off the Vyšehrad walls into the abyss and off the Malá Strana terrace;
+- a tavern where you can sleep, knights at the tiltyard, monks, boatmen;
+- reworked Václav: face, hood, surcoat, shield, sword; jump, dodge, double strike; a new Czech lion on the coats of arms;
+- bug fix: the inventory could not be closed (now Tab / I / Esc / Close).
+
+Everything is generated by Python scripts in Blender 5.2: models, textures, rigs, animations, level layout.
+Any file can be rebuilt with a single command (see "Rebuilding").
+
+## Play (Task 5)
+
+**▶ In the browser (PC or phone): https://severance.lol/4/** · **Android APK: https://severance.lol/4/AlchemistsOfPrague.apk**
+
+**⬇ Download (Windows .exe and Android .apk): https://github.com/msveshnikov/alchemists-of-prague/releases/latest**
+
+- Build: `build/windows/AlchemistsOfPrague.exe` (Windows, self-contained).
+- From source: open this folder in Godot 4.7.2 and press F5.
+
+| Key | Action |
+|---|---|
+| W A S D | move |
+| Shift | sprint |
+| Caps Lock | walk / run |
+| Space | jump |
+| Q / Alt | dodge |
+| Left mouse button | strike (click again for a combo) |
+| Right mouse button | block with the shield |
+| E / F | enter a house · trade · blacksmith · chest · tavern and sleeping · talk · **grab a staggering enemy** · **throw them out of a window / off the bridge / off the wall** |
+| 1 / 2 / 3 | healing / stamina / antidote |
+| Tab / I | inventory (Character, Journal, Map); close with Tab, I, Esc or the Close button |
+| T | wait until dusk or dawn |
+| F5 / F9 | quick save / quick load |
+| Esc | pause |
+
+**Touch controls** turn on automatically on phones (APK and mobile browser) and after the first touch on the screen:
+left finger is a floating stick (drag past the outer ring to sprint), right finger looks around;
+buttons "Strike" (dragging from it also looks around), "Block" (hold), "Dodge", "Jump", "Use" (blinks when there is
+something to interact with); top right are "Wait", "Bag" (inventory) and "Menu" (pause: saving and settings).
+To drink a potion, tap its slot on the HUD.
+Code: `scripts/ui/touch_controls.gd`. On a PC you can test it with the `-- --touch` argument.
+
+Export: the `Windows Desktop`, `Web` and `Android` presets in `export_presets.cfg` (Web and Android use the
+Compatibility renderer, S3TC+ETC2 textures, the APK is signed with a debug key, arm64). Only `assets/levels/prague_*.json`
+go into the build.
 ```
 godot --headless --path . --export-release "Windows Desktop" build/windows/AlchemistsOfPrague.exe
 godot --headless --path . --export-release "Web" build/web/index.html
@@ -63,206 +72,206 @@ godot --headless --path . --export-debug "Android" build/android/AlchemistsOfPra
 scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/www/severance/4/
 gh release create vX.Y build/windows/AlchemistsOfPrague.exe build/android/AlchemistsOfPrague.apk --title "..." --notes "..."
 ```
-Релизы на GitHub (exe + APK для скачивания): https://github.com/msveshnikov/alchemists-of-prague/releases —
-при новом релизе поднимать `version/code` и `version/name` Android-пресета.
+GitHub releases (exe + APK downloads): https://github.com/msveshnikov/alchemists-of-prague/releases —
+bump `version/code` and `version/name` of the Android preset for every new release.
 
-Совет: в первом доме на площади прячется алхимик — раньте его, схватите (E) и выбросьте в окно (E).
-На Карловом мосту ослабленного врага можно выбросить через парапет во Влтаву, на Вышеграде — со стены в пропасть.
-В таверне Малой Страны за 10 грошей можно выспаться и вылечиться.
-Автотест: `godot --path . -- --autotest` → `renders/game/` (70 проверок: площадь, инвентарь с клавиатуры, бой, дома,
-дефенестрация, торговля, ночь, сохранение, а затем пешком по всему миру: Karlova → мост → Мала Страна, дорога на Вышеград,
-броски с моста и стен, таверна, лестница, ночь в каждом районе).
-Замер скорости: `godot --path . scenes/game.tscn -- --perf`; один район отдельно (отладка): `-- --layout old_town`.
-Скриншоты по точкам: `-- --tour x,z,yaw[,pitch[,y]] cam,px,py,pz,tx,ty,tz ...` (`--tour-night` — ночью) → `renders/game/tour_N.png`.
+Tip: an alchemist is hiding in the first house on the square — wound him, grab him (E) and throw him out of the window (E).
+On Charles Bridge a weakened enemy can be thrown over the parapet into the Vltava, at Vyšehrad off the wall into the abyss.
+In the Malá Strana tavern you can sleep and heal for 10 groschen.
+Autotest: `godot --path . -- --autotest` → `renders/game/` (70 checks: the square, keyboard inventory, combat, houses,
+defenestration, trading, night, saving, and then on foot across the whole world: Karlova → bridge → Malá Strana, the road
+to Vyšehrad, throws off the bridge and walls, the tavern, the stairs, night in every district).
+Performance probe: `godot --path . scenes/game.tscn -- --perf`; a single district on its own (debugging): `-- --layout old_town`.
+Screenshots at given points: `-- --tour x,z,yaw[,pitch[,y]] cam,px,py,pz,tx,ty,tz ...` (`--tour-night` for night) → `renders/game/tour_N.png`.
 
-**Границы мира.** Игрок не может уйти из четырёх районов в пустое поле: переулки между домами и концы улиц закрыты
-каменными стенами (в узких — заколоченные дощатые ворота), районы разделены Влтавой. Стены не рисуются вручную, их
-находит `tools/seal_world.py`: проба `--reach` строит по физике карту клеток, куда можно дойти, всё рядом с контентом
-(двери, фонари, лавки, горожане, маршруты патрулей) считается городом, всё дальше 22 м — полем, а минимальный разрез
-между ними даёт самые узкие проходы. Результат — `assets/levels/prague_seal.json` (47 стен ≈ 200 м и 222 плитки
-мостовой за стенами, которые игра не ставит — там виден луг). Там же лежит маска «поля» (`field`): клетки за линией
-стен, на которые герой не может ступить ни через какую щель (`world.keep_in_town`, действует как невидимая стена).
-Пробу можно запускать с шагом 0,5 м (`--reach-step 0.5`): она находит щели уже метра. После пересборки мира в Blender:
+**World bounds.** The player cannot walk out of the four districts into the empty field: alleys between houses and street
+ends are closed off with stone walls (narrow ones with boarded-up wooden gates), and the districts are separated by the
+Vltava. The walls are not placed by hand; `tools/seal_world.py` finds them: the `--reach` probe uses physics to build a
+grid of reachable cells, everything near content (doors, lanterns, stalls, townsfolk, patrol routes) counts as town,
+everything farther than 22 m counts as field, and a minimum cut between them yields the narrowest passages. The result is
+`assets/levels/prague_seal.json` (47 walls ≈ 200 m, plus 222 paving tiles beyond the walls that the game does not place,
+so a meadow shows there). It also contains the "field" mask (`field`): cells beyond the wall line that the hero cannot
+reach through any gap (`world.keep_in_town`, acts as an invisible wall). The probe can run with a 0.5 m step
+(`--reach-step 0.5`): it then finds gaps as narrow as a metre. After rebuilding the world in Blender:
 ```
-godot --headless --path . scenes/game.tscn -- --reach --no-seal    # открытый мир → renders/world/reach_open.*
+godot --headless --path . scenes/game.tscn -- --reach --no-seal    # open world → renders/world/reach_open.*
 python tools/seal_world.py                                          # → assets/levels/prague_seal.json (+ seal_preview.png)
-godot --headless --path . scenes/game.tscn -- --reach --reach-jump  # проверка уже закрытого мира, с прыжками
-python tools/seal_world.py --check                                  # «leaked into the field 0» = выйти нельзя
+godot --headless --path . scenes/game.tscn -- --reach --reach-jump  # check the sealed world, with jumping
+python tools/seal_world.py --check                                  # "leaked into the field 0" = no way out
 ```
 
-**Река** (`scripts/river.gd`): у обеих набережных пришвартованы ~20 лодок и барж, а через средние арки моста
-вверх и вниз по течению ходят 12 судов — плоскодонки, грузовые баржи и большие парусные баржи с полосатым парусом
-(мачту опускают, проходя под мостом). На корме лодочник с шестом, на барже ночью горит фонарь.
+**The river** (`scripts/river.gd`): ~20 boats and barges are moored along both embankments, and 12 vessels travel up and
+down the river through the middle arches of the bridge — punts, cargo barges and large sailing barges with a striped sail
+(the mast is lowered when passing under the bridge). A boatman with a pole stands at the stern; barges carry a lantern at night.
 
-**Производительность**: горожане и враги появляются в радиусе ~105 м от игрока, мелкие объекты и фонари вдали скрываются.
-На встроенной графике (Intel UHD 620) — 6–10 кадров в секунду, как и у прежнего отдельного Старого города;
-на дискретной видеокарте и в браузере на Compatibility — заметно быстрее.
+**Performance**: townsfolk and enemies spawn within ~105 m of the player, small objects and lanterns are hidden at a distance.
+On integrated graphics (Intel UHD 620) it runs at 6–10 fps, same as the former standalone Old Town;
+on a discrete GPU and in the browser with Compatibility it is noticeably faster.
 
-## Делать игры так же: плагин `game-pipeline` для Claude Code
+## Make games the same way: the `game-pipeline` plugin for Claude Code
 
-Весь пайплайн этой игры упакован в скилл `game-pipeline`, он живёт в отдельном репозитории
+The whole pipeline of this game is packaged as the `game-pipeline` skill, which lives in a separate repository,
 [msveshnikov/claude-game-pipeline](https://github.com/msveshnikov/claude-game-pipeline):
-концепт-доки и промпты, концепт-арт через ChatGPT во встроенном браузере Claude desktop, шаблоны task1–task5,
-соглашения Blender (всё через Python), архитектура Godot (уровень из JSON, UI кодом, автотест), билды и выкладка.
-Установка в Claude Code:
+concept docs and prompts, concept art via ChatGPT in the Claude desktop built-in browser, task1–task5 templates,
+Blender conventions (everything through Python), Godot architecture (level from JSON, UI in code, autotest), builds and deployment.
+Installing in Claude Code:
 
 ```
 /plugin marketplace add msveshnikov/claude-game-pipeline
 /plugin install game-pipeline@claude-game-pipeline
 ```
 
-Старые команды с `alchemists-of-prague` тоже работают: маркетплейс этого репозитория ссылается на новый.
-Без плагинов можно скопировать папку `skills/game-pipeline` из того репозитория в `~/.claude/skills/`.
-Дальше достаточно написать Claude «давай сделаем игру …» или «сделай task3», и скилл подхватится сам.
+The old commands with `alchemists-of-prague` still work: this repository's marketplace points to the new one.
+Without plugins you can copy the `skills/game-pipeline` folder from that repository into `~/.claude/skills/`.
+After that, just tell Claude "let's make a game …" or "do task3", and the skill kicks in on its own.
 
-## Структура
+## Layout
 
 ```
 prague/
-├─ README.md                      ← этот файл
-├─ project.godot, export_presets.cfg   проект Godot 4.7 и пресет экспорта Windows
-├─ icon.svg                       иконка игры (колба с Тынским храмом на закате); растровые варианты — assets/ui/app_icon/
+├─ README.md                      ← this file
+├─ project.godot, export_presets.cfg   Godot 4.7 project and export presets
+├─ icon.svg                       game icon (a flask with Týn Church at sunset); raster versions in assets/ui/app_icon/
 ├─ scenes/                         main_menu.tscn, game.tscn
-├─ scripts/                        GDScript игры (game, sfx, world, river, day_night, player, enemy, npc, potion, autotest, perf_probe, reach_probe, shot_tour, ui/)
-├─ build/windows|web|android/      билды (.gdignore)
-├─ task1.md … task5.md            задачи (срез «Староместская площадь» + раздел «Прогон 2»)
-├─ report_task1.md … report_task5.md   отчёты по задачам
-├─ decisions.md                   все принятые решения и соглашения (оси, имена узлов, маркеры)
-├─ issues.md                      известные проблемы и обходы
-├─ props_list.md                  список окружения и пропсов (Task 1)
-├─ characters_list.md             персонажи: рост, анимации, скорости (Task 2)
+├─ scripts/                        game GDScript (game, sfx, world, river, day_night, player, enemy, npc, potion, autotest, perf_probe, reach_probe, shot_tour, ui/)
+├─ build/windows|web|android/      builds (.gdignore)
+├─ task1.md … task5.md            tasks (the "Old Town Square" slice + the "Run 2" section)
+├─ report_task1.md … report_task5.md   task reports
+├─ decisions.md                   all decisions and conventions (axes, node names, markers)
+├─ issues.md                      known issues and workarounds
+├─ props_list.md                  environment and props list (Task 1)
+├─ characters_list.md             characters: height, animations, speeds (Task 2)
 │
-├─ concept/                       концепт-арты: locations/, characters/, ui/  (.gdignore)
-├─ concept_art/                   исходные картинки (.gdignore)
+├─ concept/                       concept art: locations/, characters/, ui/  (.gdignore)
+├─ concept_art/                   source images (.gdignore)
 │
-├─ assets/                        ← ВСЁ, что нужно игре (импортируется в Godot)
-│  ├─ architecture/*.gltf|.bin    40 зданий и кусков города: ратуша, Тын, бюргерские и фахверковые дома, таверна,
-│  │                              мостовые башни, пролёт моста, набережная, лестница, стены и башни Вышеграда,
-│  │                              ротонда, базилика, утёсы, подъём к Вышеграду, тайлы, фоны (Град, город)
-│  ├─ props/*.gltf|.bin           46 пропсов: прилавки, вертел, кузница, телеги, лодки, статуи, мишени, надгробия…
-│  ├─ characters/*.gltf|.bin      15 персонажей со скелетом и анимациями (+ рыцарь, монах, лодочник)
-│  ├─ textures/*.png              общие текстуры всех glTF (альбедо + *_n нормали)
-│  ├─ audio/ fonts/ ui/            звуки и музыка, шрифты, UI-текстуры и иконки (Task 5)
-│  │  └─ ui/app_icon/             иконка приложения: .ico (Windows), 192 + адаптивные слои 432 (Android), 144/180/512 (PWA)
+├─ assets/                        ← EVERYTHING the game needs (imported into Godot)
+│  ├─ architecture/*.gltf|.bin    40 buildings and city pieces: town hall, Týn, burgher and half-timbered houses, tavern,
+│  │                              bridge towers, bridge span, embankment, stairs, Vyšehrad walls and towers,
+│  │                              rotunda, basilica, cliffs, the climb to Vyšehrad, tiles, backdrops (Castle, city)
+│  ├─ props/*.gltf|.bin           46 props: stalls, spit, forge, carts, boats, statues, targets, gravestones…
+│  ├─ characters/*.gltf|.bin      15 characters with skeletons and animations (+ knight, monk, boatman)
+│  ├─ textures/*.png              shared textures for all glTF files (albedo + *_n normals)
+│  ├─ audio/ fonts/ ui/            sounds and music, fonts, UI textures and icons (Task 5)
+│  │  └─ ui/app_icon/             app icon: .ico (Windows), 192 + adaptive 432 layers (Android), 144/180/512 (PWA)
 │  ├─ levels/
-│  │  ├─ prague_layout.json       ЕДИНЫЙ МИР: 1303 инстанса, маркеры, районы, вода, границы, свет, карта
-│  │  ├─ prague_population.json   193 персонажа всех районов: расписание, роли, маршруты, эффекты
-│  │  └─ old_town_*, charles_bridge_*, mala_strana_*, vysehrad_*   районы по отдельности (исходники сборки мира)
-│  ├─ shaders/water.gdshader      вода Влтавы
-│  └─ CREDITS.md                  внешние ассеты (пока нет — всё своё)
+│  │  ├─ prague_layout.json       THE WHOLE WORLD: 1303 instances, markers, districts, water, bounds, lighting, map
+│  │  ├─ prague_population.json   193 characters across all districts: schedule, roles, routes, effects
+│  │  └─ old_town_*, charles_bridge_*, mala_strana_*, vysehrad_*   individual districts (sources for the world build)
+│  ├─ shaders/water.gdshader      Vltava water
+│  └─ CREDITS.md                  external assets (none yet — everything is original)
 │
-├─ blender/                       исходники (.gdignore — Godot их не импортирует)
-│  ├─ scripts/                    генераторы (см. ниже)
-│  ├─ textures/                   сгенерированные текстуры (источник для assets/textures)
-│  ├─ architecture.blend          библиотека зданий (коллекция на ассет)
-│  ├─ props.blend                 библиотека пропсов
-│  ├─ characters.blend            персонажи с ригами (анимации — NLA-треки)
-│  ├─ world_old_town.blend        пустой уровень (Task 3): инстансы коллекций, маркеры, цикл день/ночь
-│  ├─ scene_old_town.blend        живая сцена (Task 4): уровень + население + эффекты
-│  ├─ locations.blend             ассеты прогона 2 (мост, Мала Страна, Вышеград, фоны)
-│  ├─ world_<L>.blend, scene_<L>.blend   районы по отдельности (L = charles_bridge, mala_strana, vysehrad)
-│  └─ world_prague.blend, scene_prague.blend   единый мир и его население
+├─ blender/                       sources (.gdignore — Godot does not import them)
+│  ├─ scripts/                    generators (see below)
+│  ├─ textures/                   generated textures (source for assets/textures)
+│  ├─ architecture.blend          building library (one collection per asset)
+│  ├─ props.blend                 props library
+│  ├─ characters.blend            rigged characters (animations as NLA tracks)
+│  ├─ world_old_town.blend        empty level (Task 3): collection instances, markers, day/night cycle
+│  ├─ scene_old_town.blend        living scene (Task 4): level + population + effects
+│  ├─ locations.blend             run 2 assets (bridge, Malá Strana, Vyšehrad, backdrops)
+│  ├─ world_<L>.blend, scene_<L>.blend   individual districts (L = charles_bridge, mala_strana, vysehrad)
+│  └─ world_prague.blend, scene_prague.blend   the whole world and its population
 │
-└─ renders/                       превью (.gdignore)
-   ├─ previews/                   каждый ассет и персонаж (+ ночные, + раскадровки анимаций)
-   ├─ world/                      пустые уровни: день/ночь, планы, сравнение с артом; prague_* — единый мир и стыки
-   ├─ scene/                      живые сцены: день/ночь, крупные планы, сравнение с артом
-   └─ game/                       скриншоты автотеста
+└─ renders/                       previews (.gdignore)
+   ├─ previews/                   every asset and character (+ night versions, + animation contact sheets)
+   ├─ world/                      empty levels: day/night, plans, comparison with the art; prague_* — the whole world and seams
+   ├─ scene/                      living scenes: day/night, close-ups, comparison with the art
+   └─ game/                       autotest screenshots
 ```
 
-## Соглашения (кратко; подробно — decisions.md)
+## Conventions (short; details in decisions.md)
 
-- 1 unit = 1 м. В JSON-файлах координаты уже **в системе Godot** (+Y вверх, север плана = −Z).
-- Фасады зданий и «перед» персонажей смотрят в **Godot +Z** (стандарт glTF). `yaw_deg` — поворот вокруг +Y.
-- Маркер смотрит туда же, куда должен смотреть персонаж на нём.
-- Узлы внутри glTF:
+- 1 unit = 1 m. Coordinates in the JSON files are already **in Godot space** (+Y up, plan north = −Z).
+- Building facades and the "front" of characters face **Godot +Z** (glTF standard). `yaw_deg` is rotation around +Y.
+- A marker faces the same way the character standing on it should face.
+- Nodes inside glTF files:
 
-| Префикс | Что это |
+| Prefix | What it is |
 |---|---|
-| `INT_door_*` | дверь, pivot на петле |
-| `INT_window_*` (+`_shutter_L/R`) | окно для дефенестрации и ставни на петлях |
-| `INT_stall_*`, `INT_anvil` | торговец, кузнец |
-| `MARK_*` | точки: дверь/интерьер/под окном/торговец/покупатель/кузнец/повар/лошадь |
-| `ANIM_spit`, `ANIM_banner` | вращение вертела, покачивание знамени |
-| `LIGHT_*` | точечный свет; ночной свет умножать на `lamp_factor` из пресетов |
-| `*-colonly` | коллизия (Godot сам делает из неё StaticBody3D) |
-| `<имя>_body`, `<имя>_rig` | меш и скелет персонажа |
-| `WEAPON_*`, `HELD_*` | оружие и предметы в руках, можно скрывать или менять |
+| `INT_door_*` | door, pivot on the hinge |
+| `INT_window_*` (+`_shutter_L/R`) | window for defenestration and hinged shutters |
+| `INT_stall_*`, `INT_anvil` | merchant, blacksmith |
+| `MARK_*` | points: door/interior/below window/merchant/customer/blacksmith/cook/horse |
+| `ANIM_spit`, `ANIM_banner` | spit rotation, banner sway |
+| `LIGHT_*` | point light; multiply night light by `lamp_factor` from the presets |
+| `*-colonly` | collision (Godot builds a StaticBody3D from it) |
+| `<name>_body`, `<name>_rig` | character mesh and skeleton |
+| `WEAPON_*`, `HELD_*` | weapons and held items, can be hidden or swapped |
 
-- Материалы, светящиеся ночью: `M_WindowLit`, `M_LanternGlass` — днём гасить emission. Огонь и угли светятся всегда.
-- Анимации персонажей: `idle, walk, run, hit, death, flail` + `attack` (враги, стража), `block, throw, jump, dodge, attack2`
-  (Вацлав), `talk/work/beg/cast` (горожане, алхимик), `spar` (рыцарь), `pray` (монах), у лошади `idle, walk, pull`.
-  Без root motion; скорости — в characters_list.md.
+- Materials that glow at night: `M_WindowLit`, `M_LanternGlass` — turn off emission during the day. Fire and embers always glow.
+- Character animations: `idle, walk, run, hit, death, flail` + `attack` (enemies, guards), `block, throw, jump, dodge, attack2`
+  (Václav), `talk/work/beg/cast` (townsfolk, alchemist), `spar` (knight), `pray` (monk), and `idle, walk, pull` for the horse.
+  No root motion; speeds are in characters_list.md.
 
-## Как использовать в Godot (Task 5)
+## Using it in Godot (Task 5)
 
-1. Корень проекта Godot — эта папка. Пути в JSON — `res://assets/...`.
-2. Мир: прочитать `assets/levels/prague_layout.json` и для каждой записи `instances[]` инстанцировать
-   `path` в `pos` с поворотом `yaw_deg` вокруг Y. 1303 инстанса, сцены glTF переиспользуются; у каждого — поле `district`.
-   Дополнительные поля мира:
+1. The Godot project root is this folder. Paths in JSON are `res://assets/...`.
+2. World: read `assets/levels/prague_layout.json` and for every entry in `instances[]` instantiate
+   `path` at `pos` rotated by `yaw_deg` around Y. 1303 instances, glTF scenes are reused; each has a `district` field.
+   Extra world fields:
 
-| Поле | Что это |
+| Field | What it is |
 |---|---|
-| `districts[]` | районы: `id`, `name`, прямоугольник `rect` [x0, z0, x1, z1], смещение района `offset`, плотность тумана `fog` |
-| `water[]` | плоскости реки: высота и прямоугольник (Влтава на −6 м) |
-| `planes[]` | дальняя земля за кварталами (без коллизии) |
-| `blockers[]` | невидимые стены: край мира, закрытые ворота Града |
-| `kill_y` | ниже — упал в реку / с края: игрок возвращается на берег, враг гибнет |
-| `map` | центр и размер плана `assets/ui/map_prague.png` для вкладки «Карта» |
+| `districts[]` | districts: `id`, `name`, rectangle `rect` [x0, z0, x1, z1], district offset `offset`, fog density `fog` |
+| `water[]` | river planes: height and rectangle (the Vltava at −6 m) |
+| `planes[]` | distant ground beyond the blocks (no collision) |
+| `blockers[]` | invisible walls: world edge, the locked Castle gates |
+| `kill_y` | below this you have fallen into the river / off the edge: the player returns to the bank, an enemy dies |
+| `map` | center and size of the `assets/ui/map_prague.png` plan for the "Map" tab |
 
-3. Маркеры `markers[]` (у маркеров районов прогона 2 к имени добавлено `@<район>`, например `MARK_player_start@vysehrad`):
+3. Markers `markers[]` (run 2 district markers get `@<district>` appended to the name, e.g. `MARK_player_start@vysehrad`):
 
-| `kind` | Что это |
+| `kind` | What it is |
 |---|---|
-| `door` / `interior` / `window` | входы в дома и окна для дефенестрации; поле `owner` — дом |
-| `merchant` / `customer` / `smith` / `cook` / `horse` | рабочие места |
-| `spawn` | враги (`enemy`, `time: night`) |
-| `npc`, `patrol`, `wander` | NPC, маршрут стражи, точки блуждания |
-| `player` | старт игрока (общий старт — `MARK_player_start` на Староместской площади) |
-| `ledge` | точка броска через парапет / стену; маркер смотрит туда, куда полетит враг |
-| `gate`, `inn`, `guard_post` | ворота башен, стойка таверны, пост стражи |
-| `exit` | закрытые дороги за край мира (`leads_to`: powder_gate, jewish_town, castle) |
+| `door` / `interior` / `window` | house entrances and windows for defenestration; the `owner` field is the house |
+| `merchant` / `customer` / `smith` / `cook` / `horse` | workplaces |
+| `spawn` | enemies (`enemy`, `time: night`) |
+| `npc`, `patrol`, `wander` | NPCs, guard patrol route, wander points |
+| `player` | player start (the shared start is `MARK_player_start` on Old Town Square) |
+| `ledge` | throw point over a parapet / wall; the marker faces where the enemy will fly |
+| `gate`, `inn`, `guard_post` | tower gates, the tavern counter, guard post |
+| `exit` | closed roads beyond the world edge (`leads_to`: powder_gate, jewish_town, castle) |
 
-4. Население: `assets/levels/prague_population.json → population[]`:
-   - `character` и `path` — какую сцену инстанцировать;
-   - `animation` — какую анимацию играть;
-   - `schedule` — когда персонаж на сцене: `day`, `night` или `always`;
-   - `role` — роль, `route`/`route_points` — маршрут, `district` — район, `static` — не двигать (лодочники на лодках).
-   В игре персонажи появляются только рядом с игроком (радиус ~105 м).
-5. Эффекты: `fx[]` — вращение вертела, покачивание знамён, мерцание огня, дым (в Godot — GPUParticles3D),
-   знамёна-пропсы.
-6. День/ночь: `layout.lighting.keys` — ключи солнца, неба, ламп и окон на цикле 400 кадров.
-   Рекомендуемая длина цикла — 1200 с (≈20 минут, как в Task 5).
+4. Population: `assets/levels/prague_population.json → population[]`:
+   - `character` and `path` — which scene to instantiate;
+   - `animation` — which animation to play;
+   - `schedule` — when the character is present: `day`, `night` or `always`;
+   - `role` — role, `route`/`route_points` — route, `district` — district, `static` — don't move (boatmen on boats).
+   In game, characters appear only near the player (radius ~105 m).
+5. Effects: `fx[]` — spit rotation, banner sway, fire flicker, smoke (GPUParticles3D in Godot), banner props.
+6. Day/night: `layout.lighting.keys` — sun, sky, lamp and window keys over a 400-frame cycle.
+   Recommended cycle length is 1200 s (≈20 minutes, as in Task 5).
 
-## Пересборка
+## Rebuilding
 
-`blender` = `C:\Program Files\Blender Foundation\Blender 5.2\blender.exe`, запуск из `blender/scripts`:
+`blender` = `C:\Program Files\Blender Foundation\Blender 5.2\blender.exe`, run from `blender/scripts`:
 
 ```
-blender -b --factory-startup -P make_textures.py          # текстуры окружения
-blender -b --factory-startup -P make_char_textures.py     # текстуры персонажей
-blender -b --factory-startup -P build_architecture.py     # здания (+превью)        [-- --no-render | --only a,b]
-blender -b --factory-startup -P build_props.py            # пропсы (+превью)
-blender -b --factory-startup -P build_characters.py       # персонажи (+превью)
-blender -b --factory-startup -P build_world.py            # уровень + layout.json (+рендеры)
-blender -b --factory-startup -P build_scene.py            # население + эффекты + population.json (+рендеры)
-blender -b --factory-startup -P make_ui_assets.py         # UI-текстуры и иконки предметов (Task 5)
-# прогон 2
-blender -b --factory-startup -P make_textures_locations.py   # скала, трава, грунт, мишень, вывеска, надгробие + новый лев
-blender -b --factory-startup -P build_locations.py           # ассеты моста, Малой Страны, Вышеграда, фоны (+превью)
-blender -b --factory-startup -P build_world_ext.py -- --level charles_bridge   # уровень + население + рендеры + карта
+blender -b --factory-startup -P make_textures.py          # environment textures
+blender -b --factory-startup -P make_char_textures.py     # character textures
+blender -b --factory-startup -P build_architecture.py     # buildings (+previews)      [-- --no-render | --only a,b]
+blender -b --factory-startup -P build_props.py            # props (+previews)
+blender -b --factory-startup -P build_characters.py       # characters (+previews)
+blender -b --factory-startup -P build_world.py            # level + layout.json (+renders)
+blender -b --factory-startup -P build_scene.py            # population + effects + population.json (+renders)
+blender -b --factory-startup -P make_ui_assets.py         # UI textures and item icons (Task 5)
+# run 2
+blender -b --factory-startup -P make_textures_locations.py   # rock, grass, soil, target, sign, gravestone + the new lion
+blender -b --factory-startup -P build_locations.py           # bridge, Malá Strana, Vyšehrad assets, backdrops (+previews)
+blender -b --factory-startup -P build_world_ext.py -- --level charles_bridge   # level + population + renders + map
 blender -b --factory-startup -P build_world_ext.py -- --level mala_strana
 blender -b --factory-startup -P build_world_ext.py -- --level vysehrad
-blender -b --factory-startup -P build_prague.py              # единый мир: prague_layout.json + prague_population.json + карта
+blender -b --factory-startup -P build_prague.py              # whole world: prague_layout.json + prague_population.json + map
 ```
 
-Порядок важен: текстуры → архитектура/пропсы → персонажи → районы → единый мир (`build_prague.py` читает
-`architecture.blend`, `props.blend`, `locations.blend`, `characters.blend` и строители районов).
+Order matters: textures → architecture/props → characters → districts → the whole world (`build_prague.py` reads
+`architecture.blend`, `props.blend`, `locations.blend`, `characters.blend` and the district builders).
 
-Модули:
-- `lib_tex.py`, `lib_tex_char.py`, `lib_tex2.py` — текстуры; `lib_heraldry.py` — чешский лев;
-- `loc_common.py`, `loc_bridge.py`, `loc_mala.py`, `loc_vysehrad.py` — ассеты прогона 2;
-- `build_world_ext.py` — районы прогона 2; `build_prague.py` — сборка единого мира (смещения, стыки, границы);
-- `lib_geo.py` — меши, материалы, UV, экспорт glTF;
-- `lib_char.py` — лофты, скелеты, скиннинг, позы, анимации;
-- `lib_render.py`, `sheet.py` — превью.
+Modules:
+- `lib_tex.py`, `lib_tex_char.py`, `lib_tex2.py` — textures; `lib_heraldry.py` — the Czech lion;
+- `loc_common.py`, `loc_bridge.py`, `loc_mala.py`, `loc_vysehrad.py` — run 2 assets;
+- `build_world_ext.py` — run 2 districts; `build_prague.py` — the whole-world build (offsets, seams, bounds);
+- `lib_geo.py` — meshes, materials, UVs, glTF export;
+- `lib_char.py` — lofts, skeletons, skinning, poses, animations;
+- `lib_render.py`, `sheet.py` — previews.
