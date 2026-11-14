@@ -1,5 +1,13 @@
 # Alchemists of Prague — assets and game (Old Town Square, Charles Bridge, Malá Strana, Vyšehrad)
 
+<p align="center">
+  <a href="https://github.com/msveshnikov/alchemists-of-prague/releases/latest"><img alt="release" src="https://img.shields.io/github/v/release/msveshnikov/alchemists-of-prague?label=release&color=b03a2e"></a>
+  <img alt="Godot 4.7" src="https://img.shields.io/badge/Godot-4.7-478cbf?logo=godotengine&logoColor=white">
+  <img alt="Blender 5.2" src="https://img.shields.io/badge/Blender-5.2-e87d0d?logo=blender&logoColor=white">
+  <img alt="platforms" src="https://img.shields.io/badge/Windows%20%C2%B7%20Android%20%C2%B7%20Web-play-d8402b">
+  <a href="https://severance.lol/4/"><img alt="play in the browser" src="https://img.shields.io/badge/%E2%96%B6-play%20in%20the%20browser-6aa640"></a>
+</p>
+
 An action RPG set in medieval Prague (in the spirit of Gothic 1–2), built with Godot 4.7. Tasks 1–5 were completed twice:
 first as a vertical slice (Old Town Square), then (run 2) Charles Bridge, Malá Strana and Vyšehrad. After that all four
 parts were merged into **one open world** (`build_prague.py`).
