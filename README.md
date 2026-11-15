@@ -112,6 +112,18 @@ python tools/seal_world.py --check                                  # "leaked in
 down the river through the middle arches of the bridge — punts, cargo barges and large sailing barges with a striped sail
 (the mast is lowered when passing under the bridge). A boatman with a pole stands at the stern; barges carry a lantern at night.
 
+**Paving** (`assets/shaders/paving.gdshader`, textures from `tools/make_paving.py`): every `M_Cobble` surface is replaced
+at load time by a world-space shader, so ground tiles join without seams. The Old Town and the streets get rounded field-stone
+cobbles of mixed granite, basalt and sandstone with sand and moss in the joints; Charles Bridge gets rows of granite setts.
+Parallax occlusion mapping gives the stones real depth near the camera (fewer steps on Web/Android), and a macro map adds
+dirt, hue drift and puddles that break up the repeat.
+
+**Birds** (`scripts/birds.gd`, `assets/shaders/bird.gdshader`): 30 pigeons on Old Town Square walk with a bobbing head, peck
+and look around; come close or run past and they burst up with a clatter of wings, their neighbours follow, and the group
+lands together elsewhere on the square, on a stall roof or a cornice, and later comes back. Sixteen gulls circle and glide over
+Charles Bridge and the Vltava, scream, and rest on the parapet until you walk up. One MultiMesh per species, wings/head/legs
+animated in the shader; the calls, coos and wing claps are synthesised by `tools/make_bird_sfx.py`. Birds sleep at night.
+
 **Performance**: townsfolk and enemies spawn within ~105 m of the player, small objects and lanterns are hidden at a distance.
 On integrated graphics (Intel UHD 620) it runs at 6–10 fps, same as the former standalone Old Town;
 on a discrete GPU and in the browser with Compatibility it is noticeably faster.

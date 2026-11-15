@@ -18,6 +18,9 @@
 | `music/town_theme` | Town Theme RPG | cynicmusic | CC0 | https://opengameart.org/content/town-theme-rpg |
 | `music/battle_theme` | Battle Theme A | cynicmusic | CC0 | https://opengameart.org/content/battle-theme-a |
 
+Свои звуки (синтез, `tools/make_bird_sfx.py`): `sfx/gull_1..6` (крики чаек), `sfx/coo_1..3` (воркование голубей),
+`sfx/wings_1..3` (хлопанье крыльев).
+
 ## Шрифты
 
 | Файл в `assets/fonts/` | Автор | Лицензия | Ссылка |

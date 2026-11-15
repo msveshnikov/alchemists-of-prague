@@ -76,6 +76,7 @@ var _field_info := {}
 var _town_pos := Vector3.INF      # last spot of the player that was not in the field
 var hidden_tiles := {}     # ground tiles beyond the town walls (prague_seal.json): not placed, the meadow shows instead
 var river: Node3D
+var birds: Node3D            # pigeons on Old Town Square, gulls over Charles Bridge (scripts/birds.gd)
 
 
 func _ready() -> void:
@@ -156,6 +157,10 @@ func _build() -> void:
 		river = load("res://scripts/river.gd").new()
 		add_child(river)
 		river.setup(self)
+	if level == WORLD:
+		birds = load("res://scripts/birds.gd").new()
+		add_child(birds)
+		birds.setup(self)
 	_set_loading("Waking the townsfolk...")
 	await get_tree().process_frame
 	_register_interactables()
@@ -308,6 +313,9 @@ func _place(inst: Dictionary, extra := false) -> void:
 			if m == null:
 				continue
 			var rn: String = m.resource_name
+			if rn.begins_with("M_Cobble"):
+				mi.set_surface_override_material(i, _paving("setts" if asset.begins_with("bridge_") else "cobble"))
+				continue
 			if rn.begins_with("M_WindowLit") or rn.begins_with("M_LanternGlass"):
 				var key: String = rn.substr(0, 14)
 				if not _glow_shared.has(key):
@@ -319,6 +327,27 @@ func _place(inst: Dictionary, extra := false) -> void:
 		anim_nodes.append(a)
 	if asset in ["spit_roast", "forge", "cooking_pot"]:
 		Sfx.loop_at("fire", node, -10.0, 3.0)
+
+
+var _paving_mats := {}
+
+
+## World-space paving with parallax depth and puddles (assets/shaders/paving.gdshader, textures from tools/make_paving.py):
+## rounded field-stone cobbles in the Old Town and the streets, rows of granite setts on Charles Bridge.
+func _paving(kind: String) -> ShaderMaterial:
+	if _paving_mats.has(kind):
+		return _paving_mats[kind]
+	var m := ShaderMaterial.new()
+	m.shader = load("res://assets/shaders/paving.gdshader")
+	m.set_shader_parameter("albedo_h", load("res://assets/textures/paving_%s.png" % kind))
+	m.set_shader_parameter("normal_tex", load("res://assets/textures/paving_%s_n.png" % kind))
+	m.set_shader_parameter("macro_tex", load("res://assets/textures/paving_macro.png"))
+	if kind == "setts":
+		m.set_shader_parameter("depth_m", 0.035)
+		m.set_shader_parameter("puddles", 0.3)
+		m.set_shader_parameter("tint", Color(0.95, 0.93, 0.9))
+	_paving_mats[kind] = m
+	return m
 
 
 func _smoke(at: Vector3) -> void:
