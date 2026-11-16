@@ -15,6 +15,8 @@ uniform vec3 hip = vec3(0.025, 0.07, 0.0);
 varying float v_part;
 varying vec2 v_wing;
 varying float v_variant;
+varying vec3 v_wp;
+varying vec3 v_wn;
 
 vec3 rot_x(vec3 p, float a) { float c = cos(a), s = sin(a); return vec3(p.x, p.y * c - p.z * s, p.y * s + p.z * c); }
 vec3 rot_y(vec3 p, float a) { float c = cos(a), s = sin(a); return vec3(p.x * c + p.z * s, p.y, -p.x * s + p.z * c); }
@@ -60,6 +62,8 @@ void vertex() {
 	}
 	VERTEX = p;
 	NORMAL = n;
+	v_wp = (MODEL_MATRIX * vec4(p, 1.0)).xyz;
+	v_wn = (MODEL_MATRIX * vec4(n, 0.0)).xyz;      // the top side of the wing, before any back-face flip
 }
 
 void fragment() {
@@ -69,7 +73,9 @@ void fragment() {
 	if (part == 1.0 || part == 2.0) {
 		float s = v_wing.x, ch = v_wing.y;
 		if (gull) {
-			c = vec3(0.6, 0.64, 0.7);
+			// pale grey on top, white underneath (that is what you see from the bridge), black tips
+			bool under = dot(CAMERA_POSITION_WORLD - v_wp, v_wn) < 0.0;
+			c = under ? vec3(0.95, 0.95, 0.96) : vec3(0.8, 0.83, 0.87);
 			float tip = smoothstep(0.74, 0.8, s);
 			c = mix(c, vec3(0.06, 0.06, 0.07), tip);
 			float mirror = step(0.9, s) * step(0.45, ch) * step(ch, 0.75);
@@ -95,6 +101,9 @@ void fragment() {
 	ALBEDO = c;
 	ROUGHNESS = skin ? 0.5 : 0.85;
 	SPECULAR = 0.3;
+	if (gull) {
+		EMISSION = c * 0.22;          // sunlit white plumage still reads white against the bright sky
+	}
 	// iridescent neck of the pigeons
 	if (!gull && COLOR.a > 0.6 && COLOR.a < 0.9) {
 		float f = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), 2.0);

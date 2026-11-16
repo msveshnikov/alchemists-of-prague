@@ -122,7 +122,7 @@ dirt, hue drift and puddles that break up the repeat.
 and look around; come close or run past and they burst up with a clatter of wings, their neighbours follow, and the group
 lands together elsewhere on the square, on a stall roof or a cornice, and later comes back. Sixteen gulls circle and glide over
 Charles Bridge and the Vltava, scream, and rest on the parapet until you walk up. One MultiMesh per species, wings/head/legs
-animated in the shader; the calls, coos and wing claps are synthesised by `tools/make_bird_sfx.py`. Birds sleep at night.
+animated in the shader; the gull calls are CC0 field recordings (cleaned by `tools/import_gull_sfx.py`), the coos and wing claps are synthesised by `tools/make_bird_sfx.py`. Birds sleep at night.
 
 **Performance**: townsfolk and enemies spawn within ~105 m of the player, small objects and lanterns are hidden at a distance.
 On integrated graphics (Intel UHD 620) it runs at 6–10 fps, same as the former standalone Old Town;

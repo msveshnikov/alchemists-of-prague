@@ -11,6 +11,7 @@
 | `sfx/hurt_*`, `grunt_*`, `scream_creature` | 80 CC0 creature SFX | rubberduck | CC0 | https://opengameart.org/content/80-cc0-creature-sfx |
 | `sfx/step_stone_1..6` (вырезаны из `fallfantozi.ogg`) | Fantozzi's Footsteps (Grass/Sand & Stone) | Fantozzi, публикация qubodup | CC0 | https://opengameart.org/content/fantozzis-footsteps-grasssand-stone |
 | `sfx/scream_0..7` | Aargh (male screams); исходники в `sfx/scream_credits.txt` (в т.ч. «Helmut Scream», creativeheroes, freesound.org/people/creativeheroes/sounds/84353) | congusbongus | **CC-BY 3.0** | https://opengameart.org/content/aargh-male-screams |
+| `sfx/gull_1..10` (почищены и нарезаны `tools/import_gull_sfx.py`) | Solo Seagull Sound Effects | Rango Mango | CC0 | https://opengameart.org/content/solo-seagull-sound-effects |
 | `sfx/horse_trot` | Horse Trotting | EZduzziteh | CC0 | https://opengameart.org/content/horse-trotting |
 | `ambience/fire` | Fire Crackling | AntumDeluge | CC0 | https://opengameart.org/content/fire-crackling |
 | `ambience/market_crowd` | Crowd Shouting/Speaking Ambience | StarNinjas | CC0 | https://opengameart.org/content/crowd-shoutingspeaking-ambience |
@@ -18,8 +19,7 @@
 | `music/town_theme` | Town Theme RPG | cynicmusic | CC0 | https://opengameart.org/content/town-theme-rpg |
 | `music/battle_theme` | Battle Theme A | cynicmusic | CC0 | https://opengameart.org/content/battle-theme-a |
 
-Свои звуки (синтез, `tools/make_bird_sfx.py`): `sfx/gull_1..6` (крики чаек), `sfx/coo_1..3` (воркование голубей),
-`sfx/wings_1..3` (хлопанье крыльев).
+Свои звуки (синтез, `tools/make_bird_sfx.py`): `sfx/coo_1..3` (воркование голубей), `sfx/wings_1..3` (хлопанье крыльев).
 
 ## Шрифты
 

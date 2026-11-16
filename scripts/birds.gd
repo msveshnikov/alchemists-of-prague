@@ -51,8 +51,10 @@ func setup(p_world: Node) -> void:
 	gmat.set_shader_parameter("hip", Vector3(0.025, 0.07, 0.0) * g)
 	_pmm = _multimesh(pm, PIGEON_N)
 	_gmm = _multimesh(gm, GULL_N)
-	_pmi = _instance(_pmm, pmat, 110.0)
-	_gmi = _instance(_gmm, gmat, 260.0)
+	# no visibility range: it would be measured from the node origin, not from each bird; whole flocks are shown and
+	# hidden in _process by the player's distance instead
+	_pmi = _instance(_pmm, pmat)
+	_gmi = _instance(_gmm, gmat)
 	# parapet perches between the statues
 	var statues: Array = []
 	var bays: Array = []
@@ -83,12 +85,11 @@ func _multimesh(mesh: Mesh, n: int) -> MultiMesh:
 	return mm
 
 
-func _instance(mm: MultiMesh, mat: Material, vis: float) -> MultiMeshInstance3D:
+func _instance(mm: MultiMesh, mat: Material) -> MultiMeshInstance3D:
 	var mi := MultiMeshInstance3D.new()
 	mi.multimesh = mm
 	mi.material_override = mat
 	mi.custom_aabb = AABB(Vector3(-2000, -50, -2000), Vector3(4000, 200, 4000))
-	mi.visibility_range_end = vis
 	add_child(mi)
 	return mi
 
@@ -102,7 +103,7 @@ func _bird_mesh(gull: bool) -> ArrayMesh:
 	var breast := Color(0.95, 0.95, 0.94) if gull else Color(0.47, 0.42, 0.5)
 	var head := Color(0.95, 0.95, 0.95) if gull else Color(0.36, 0.38, 0.45)
 	var neck := Color(0.94, 0.94, 0.94) if gull else Color(0.3, 0.4, 0.38, 0.75)
-	var back := Color(0.6, 0.64, 0.7) if gull else body
+	var back := Color(0.8, 0.83, 0.87) if gull else body
 	var bill := Color(0.95, 0.78, 0.18, 0.0) if gull else Color(0.16, 0.15, 0.15, 0.0)
 	var legc := Color(0.85, 0.62, 0.55, 0.0) if gull else Color(0.75, 0.25, 0.25, 0.0)
 	var eye := Color(0.9, 0.85, 0.5, 0.0) if gull else Color(0.85, 0.4, 0.1, 0.0)

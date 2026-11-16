@@ -16,7 +16,7 @@ const VARIANTS := {
 	"ui": ["ui_1", "ui_2", "ui_3"],
 	"golem": ["golem_1", "golem_2", "golem_3"],
 	"skeleton": ["skeleton_1", "skeleton_2", "skeleton_3"],
-	"gull": ["gull_1", "gull_2", "gull_3", "gull_4", "gull_5", "gull_6"],
+	"gull": ["gull_1", "gull_2", "gull_3", "gull_4", "gull_5", "gull_6", "gull_7", "gull_8", "gull_9", "gull_10"],
 	"coo": ["coo_1", "coo_2", "coo_3"],
 	"wings": ["wings_1", "wings_2", "wings_3"],
 }

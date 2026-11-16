@@ -1,8 +1,10 @@
 """Synthesised bird sounds for scripts/birds.gd (no recordings, so no licence to track):
 
-  assets/audio/sfx/gull_1..6.wav   herring-gull calls: long call, single "kyow", laughing series, mew, alarm "kek"
   assets/audio/sfx/coo_1..3.wav    rock-pigeon coos ("hu-rroo-oo")
   assets/audio/sfx/wings_1..3.wav  a few pigeons clattering up off the cobbles
+
+The gull calls are real recordings (CC0), see tools/import_gull_sfx.py; gulls() below is the old synthetic
+version, kept only for reference and not run by default.
 
 Run: python tools/make_bird_sfx.py   (numpy + scipy)
 """
@@ -184,6 +186,5 @@ def wings():
 
 
 if __name__ == "__main__":
-    gulls()
     coos()
     wings()
