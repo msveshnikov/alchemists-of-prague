@@ -58,3 +58,19 @@ https://github.com/msveshnikov/claude-game-pipeline (локальный клон
 painterly, moody, gritty, факелы, туман, мокрая брусчатка, чешский лев на гербах; `wide cinematic 16:9`
 для сцен, `full-body character sheet, front/side/back, neutral background` для персонажей; всегда `no text`.
 Пример: `concept_art/prague_old_town_square_dusk.png` (Староместская площадь, рыцарь, лавка алхимика).
+
+## Google Play
+Приложение «Alchemists of Prague», пакет `com.maxsoft.alchemistsofprague`, Play Console app id 4972752803204865798
+(dev 5957945224586801272), создано 2026-11-23. Язык по умолчанию en-US; категория «Ролевые»; аудитория 16–17 и 18+;
+IARC: PEGI 16, ESRB T; реклама нет, данные не собираются; политика https://maxims.top/prague/privacy.html (`store/privacy.html`).
+- AAB: пресет «Android Play» (Gradle, target SDK 36) → `build/play/AlchemistsOfPrague.aab`; поднимать `version/code` в ОБОИХ Android-пресетах.
+  Шаблон сборки `android/` (в .gitignore) распакован из export templates 4.7.2.
+- Ключ загрузки: `~/.android/alchemistsofprague-upload.jks` (alias `alchemistsofprague`, пароль в `alchemistsofprague-upload.txt`),
+  Godot читает его из `.godot/export_credentials.cfg` (preset.3). Никогда не коммитить.
+- Графика стора: `-- --storeshots` (окно 1920x1080 через временный override.cfg) → `renders/play/raw/`, затем
+  `python tools/play_store.py` → `store/play/` (en/ru скриншоты, баннеры, иконка). Тексты: `store/listing.md`.
+  Баннер (арт ChatGPT) помечен в Play как созданный ИИ.
+- Загрузка файлов во встроенном браузере: локальный CORS-сервер на 127.0.0.1:8765, JS-клик по «Добавить объекты» нужного слота,
+  затем `input[type=file]` ← File из fetch через DataTransfer + событие change. Всплывающие меню и боковые панели Play Console
+  не рисуются, пока панель браузера скрыта — тогда попросить пользователя её показать.
+- Android: рендерер Mobile (Vulkan) с откатом на OpenGL, без MSAA, 80% масштаб рендера при первом запуске.
