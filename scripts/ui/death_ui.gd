@@ -26,7 +26,7 @@ func _ready() -> void:
 	v.alignment = BoxContainer.ALIGNMENT_CENTER
 	UiKit.centered(self, v)
 	var sw := TextureRect.new()
-	sw.texture = Game.icon("sword_%d" % (Game.sword_level + 1))
+	sw.texture = Game.icon(Game.ITEMS[Game.weapon_id()]["icon"])
 	sw.custom_minimum_size = Vector2(160, 160)
 	sw.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	sw.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED

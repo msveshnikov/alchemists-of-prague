@@ -13,3 +13,10 @@ renders/previews/_frames/
 
 # Trailer videos (tens to hundreds of MB) — rendered with scripts/cinematic.gd + tools/edit_trailer.py, shared outside git
 renders/trailer/
+
+# Throw-away probe output: --tour screenshots and the raw reachability / seal grids (re-made by the tools in seconds)
+renders/game/tour_*.png
+renders/world/*.bin
+renders/world/*.npy
+renders/world/reach*.json
+renders/world/seal_preview.json

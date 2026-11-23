@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Game="*res://scripts/game.gd"
 Sfx="*res://scripts/sfx.gd"
+Quests="*res://scripts/quests.gd"
 
 [display]
 

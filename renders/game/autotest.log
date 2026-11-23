@@ -1,8 +1,8 @@
-start: houses=257 enemies=8 npcs=55 interactables=323
+start: houses=257 enemies=6 npcs=57 interactables=328
 PASS level built from layout JSON (houses > 100)
 PASS day population spawned (npcs > 30)
 screenshot 01_square_day
-PASS player moves (3.7 m)
+PASS player moves (3.2 m)
 PASS no townsfolk walk on the spot (0)
 PASS cart horse turned round at the end of its street
 PASS cart horse and cart stay on the ground (y=-0.20, cart -0.20)
@@ -39,38 +39,66 @@ PASS body landed on the street (y=0.0)
 PASS chest looted for gold
 PASS left the house
 screenshot 09_body_on_street
+PASS the first quest is active and tracked
+PASS HUD shows the quest objective
+PASS Sergeant Bořek stands on the square with a ? over his head
+PASS compass points to the quest target
+PASS prompt offers to talk to the sergeant (Talk to Sergeant Bořek)
+screenshot 05b_dialog
+PASS dialogue topic for the quest step is offered
+PASS talking advances the quest
+PASS killing 3 skeletons on the square completes the kill step
+PASS quest finished and rewarded (347 -> 387 gold)
+PASS quests and kills give experience (125)
+PASS the sergeant offers the next quest (!)
+PASS next main quest accepted
+PASS quest target is the bone-buyer's door
+PASS the bone-buyer waits in his house
+screenshot 05c_quest_house
+PASS killing him yields the ledger
+PASS ledger delivered, the cipher quest unlocked
+PASS the weapons stall sells a longer sword and an axe
+screenshot 05d_weapons
+PASS bought sword is equipped and reaches further
+PASS the hero holds the new sword
+PASS the old sword goes into the pack
+screenshot 05e_journal
+screenshot 05f_map_quests
 PASS night falls
-PASS night enemies spawned around the square (17)
+PASS night enemies spawned around the square (18)
 PASS merchants closed at night
 screenshot 10_square_night
 PASS enemies notice the player at night (6 hostile)
 screenshot 11_night_fight
-PASS enemies deal damage (hp 54)
+PASS enemies deal damage (hp 40)
 PASS game saved to disk
 reloading save...
-PASS load restores gold (347, saved 347)
+PASS load restores gold (743, saved 743)
 PASS load restores sword level
 PASS load restores kill counts
+PASS load restores finished quests
+PASS load restores the equipped weapon (w_longsword)
+PASS load restores the hero's level (3)
 PASS player can die
 PASS death screen shown
 screenshot 12_death
 screenshot 13_pause
 screenshot 14_settings
 PASS one world with four districts (4)
-fps on the Old Town Square: 2, instances 1303
-PASS walked from Karlova onto the bridge approach (x=-113, charles_bridge)
+fps on the Old Town Square: 1, instances 1303
+PASS walked from Karlova onto the bridge approach (x=-121, charles_bridge)
 screenshot world_01_karlova_to_bridge
-PASS walked through the Lesser Town tower into Malá Strana (x=-354, mala_strana)
+PASS walked through the Lesser Town tower into Malá Strana (x=-355, mala_strana)
 screenshot world_02_into_mala_strana
 PASS climbed the road towards Vyšehrad (y=10.0)
 screenshot world_03_road_up
-PASS walked along the gate lane into Vyšehrad (x=-50, vysehrad)
+PASS walked along the gate lane into Vyšehrad (x=-49, vysehrad)
 screenshot world_04_vysehrad_gate
-fps at Vyšehrad gate: 11, npcs spawned 13, enemies 3
+fps at Vyšehrad gate: 12, npcs spawned 14, enemies 3
 PASS the embankment street ends at a wall (z=-127)
 PASS stepping onto the field beyond the walls is undone (2.3 m back)
 PASS charles_bridge: the HUD names the district (charles_bridge)
-PASS charles_bridge: townsfolk around (18)
+PASS charles_bridge: townsfolk around (19)
 screenshot charles_bridge_01_arrival
 PASS Vltava water plane under the bridge
 screenshot charles_bridge_02_deck
@@ -83,7 +111,7 @@ PASS charles_bridge: counted as a defenestration
 PASS charles_bridge: night enemies around (4)
 screenshot charles_bridge_05_night
 PASS mala_strana: the HUD names the district (mala_strana)
-PASS mala_strana: townsfolk around (16)
+PASS mala_strana: townsfolk around (17)
 screenshot mala_strana_01_arrival
 PASS tavern: food & drink and a bed to rent
 PASS tavern trade window opens
@@ -97,7 +125,7 @@ screenshot mala_strana_04_interior
 PASS mala_strana: night enemies around (12)
 screenshot mala_strana_05_night
 PASS vysehrad: the HUD names the district (vysehrad)
-PASS vysehrad: townsfolk around (11)
+PASS vysehrad: townsfolk around (12)
 screenshot vysehrad_01_arrival
 PASS knights spar on the training ground (6)
 screenshot vysehrad_02_training

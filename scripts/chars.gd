@@ -32,6 +32,19 @@ static func find_mesh(n: Node, name_prefix: String) -> MeshInstance3D:
 	return null
 
 
+## Hero weapons: all WEAPON_* meshes except the shield sit in the right hand; show only `weapon_id`'s mesh.
+static func show_weapon(n: Node, weapon_id: String) -> MeshInstance3D:
+	var want: String = Game.ITEMS.get(weapon_id, {}).get("mesh", "WEAPON_sword")
+	var shown: MeshInstance3D = null
+	for m in n.find_children("WEAPON_*", "MeshInstance3D", true, false):
+		if String(m.name).begins_with("WEAPON_shield"):
+			continue
+		m.visible = String(m.name).begins_with(want)
+		if m.visible:
+			shown = m
+	return shown
+
+
 static func play(ap: AnimationPlayer, anim: String, blend := 0.18, speed := 1.0, restart := false) -> void:
 	if ap == null or not ap.has_animation(anim):
 		return

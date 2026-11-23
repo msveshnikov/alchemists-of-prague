@@ -10,6 +10,9 @@ var gold_label: Label
 var weight_label: Label
 var stats_box: VBoxContainer
 var journal_box: VBoxContainer
+var quest_list: VBoxContainer
+var quest_view: VBoxContainer
+var journal_sel := ""
 var model: Node3D
 
 
@@ -138,9 +141,7 @@ func _doll_view() -> SubViewportContainer:
 	if ap:
 		ap.process_mode = Node.PROCESS_MODE_ALWAYS
 		Chars.play(ap, "idle")
-	var sm := Chars.find_mesh(model, "WEAPON_sword")
-	if sm and world and world.player.sword_mesh:
-		sm.material_override = world.player.sword_mesh.material_override
+	Chars.show_weapon(model, Game.weapon_id())
 	return svc
 
 
@@ -158,14 +159,36 @@ func _character_tab(tabs: TabContainer) -> void:
 	m.add_child(stats_box)
 
 
+## Journal: quest list (active, then completed) | the selected quest's page | the diary below it.
 func _journal_tab(tabs: TabContainer) -> void:
-	var sc := ScrollContainer.new()
-	sc.name = "Journal"
-	tabs.add_child(sc)
+	var h := HBoxContainer.new()
+	h.name = "Journal"
+	h.add_theme_constant_override("separation", 28)
+	tabs.add_child(h)
+	var lsc := ScrollContainer.new()
+	lsc.custom_minimum_size = Vector2(430, 640)
+	lsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	h.add_child(lsc)
+	quest_list = VBoxContainer.new()
+	quest_list.custom_minimum_size = Vector2(410, 0)
+	quest_list.add_theme_constant_override("separation", 6)
+	lsc.add_child(quest_list)
+	var rsc := ScrollContainer.new()
+	rsc.custom_minimum_size = Vector2(840, 640)
+	rsc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	rsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	h.add_child(rsc)
+	var rv := VBoxContainer.new()
+	rv.custom_minimum_size = Vector2(820, 0)
+	rv.add_theme_constant_override("separation", 12)
+	rsc.add_child(rv)
+	quest_view = VBoxContainer.new()
+	quest_view.add_theme_constant_override("separation", 10)
+	rv.add_child(quest_view)
 	journal_box = VBoxContainer.new()
-	journal_box.custom_minimum_size = Vector2(1300, 0)
-	journal_box.add_theme_constant_override("separation", 12)
-	sc.add_child(journal_box)
+	journal_box.add_theme_constant_override("separation", 8)
+	rv.add_child(journal_box)
+	journal_sel = Quests.tracked
 
 
 func _map_tab(tabs: TabContainer) -> void:
@@ -195,6 +218,35 @@ func _map_tab(tabs: TabContainer) -> void:
 			var lbl := UiKit.shadow_label(d["name"], 26, UiKit.PARCH)
 			c.add_child(lbl)
 			marks.append([lbl, (r[0] + r[2]) / 2.0, (r[1] + r[3]) / 2.0])
+	var qmarks: Array = []    # [control, world pos]
+	for q in Quests.active_quests():
+		var tp = Quests.target(q)
+		if tp == null:
+			continue
+		var tracked: bool = q == Quests.tracked
+		var qm := Control.new()
+		qm.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var r := 13.0 if tracked else 9.0
+		qm.draw.connect(func():
+			var pts := PackedVector2Array([Vector2(0, -r), Vector2(r, 0), Vector2(0, r), Vector2(-r, 0)])
+			qm.draw_colored_polygon(pts, UiKit.GOLD if tracked else Color(0.75, 0.6, 0.35))
+			qm.draw_polyline(pts + PackedVector2Array([pts[0]]), Color(0.1, 0.05, 0.02), 2.5, true))
+		c.add_child(qm)
+		var ql := UiKit.shadow_label(Quests.QUESTS[q]["title"], 20 if tracked else 16, UiKit.GOLD if tracked else UiKit.PARCH)
+		c.add_child(ql)
+		qmarks.append([qm, ql, tp])
+	var seen := {}
+	for o in Quests.offered():     # people with work for you: a gold "!" where they stand
+		if seen.has(o[1]) or not Quests.npc_home.has(o[1]):
+			continue
+		seen[o[1]] = true
+		var ex := UiKit.shadow_label("!", 30, UiKit.GOLD)
+		ex.add_theme_font_override("font", Game.FONT_GOTHIC)
+		c.add_child(ex)
+		var nl := UiKit.shadow_label(Quests.npc_name(o[1]), 14, UiKit.PARCH)
+		c.add_child(nl)
+		var hp3: Vector3 = Quests.npc_home[o[1]]
+		qmarks.append([ex, nl, hp3])
 	var marker: Control = null
 	if world and world.player:
 		# player arrow: drawn at the exact world position, pointing where the hero faces
@@ -214,6 +266,10 @@ func _map_tab(tabs: TabContainer) -> void:
 			me = to_px.call(p.x, p.z)
 			marker.position = me
 			marker.rotation = atan2(f.z, f.x)
+		for qm in qmarks:
+			var qp: Vector2 = to_px.call(qm[2].x, qm[2].z)
+			qm[0].position = qp if not (qm[0] is Label) else qp - qm[0].size / 2.0
+			qm[1].position = qp + Vector2(-qm[1].size.x / 2.0, 12)
 		for mk in marks:
 			var ctl: Control = mk[0]
 			ctl.position = to_px.call(mk[1], mk[2]) - Vector2(ctl.size.x / 2.0, 16)
@@ -243,7 +299,7 @@ func _refresh() -> void:
 		var id: String = Game.equipment.get(s, "")
 		var icon_id := ""
 		if s == "sword":
-			icon_id = "sword_%d" % (Game.sword_level + 1)
+			icon_id = Game.ITEMS[Game.weapon_id()]["icon"]
 		elif id != "":
 			icon_id = Game.ITEMS[id]["icon"]
 		if icon_id != "":
@@ -260,6 +316,8 @@ func _refresh() -> void:
 			b.add_child(ic)
 	gold_label.text = str(Game.gold)
 	weight_label.text = "Weight: %.1f / 70" % Game.weight()
+	if model:
+		Chars.show_weapon(model, Game.weapon_id())
 	_refresh_stats()
 	_refresh_journal()
 	if selected != "" and (Game.count(selected) > 0 or selected.begins_with("slot:")):
@@ -290,11 +348,13 @@ func _show_details(key: String) -> void:
 		var slot := key.substr(5)
 		if slot == "sword":
 			var s: Dictionary = Game.sword()
-			details.add_child(UiKit.title(s["name"], 40))
-			details.add_child(UiKit.label("One-handed sword", 22))
-			details.add_child(_icon_big("sword_%d" % (Game.sword_level + 1)))
-			details.add_child(UiKit.label("Damage: %d–%d\nReach: 2.3 m" % [s["min"], s["max"]], 22))
-			details.add_child(UiKit.label("The smith on the square can improve it.", 20, UiKit.INK, true))
+			var tl := UiKit.title(s["name"], 36)
+			tl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			details.add_child(tl)
+			details.add_child(_icon_big(s["icon"]))
+			details.add_child(UiKit.label("Damage: %d–%d\nReach: %.1f m · Speed: %d%%\nStamina per swing: %d" % [s["min"], s["max"], s["reach"], int(s["speed"] * 100), s["cost"]], 22))
+			details.add_child(UiKit.label(s["desc"], 20, Color(0.25, 0.17, 0.1), true))
+			details.add_child(UiKit.label("Buy better weapons from Radim on the square; Havel the smith hones the edge.", 19, UiKit.INK, true))
 			return
 		var id: String = Game.equipment.get(slot, "")
 		if id == "":
@@ -309,9 +369,10 @@ func _show_details(key: String) -> void:
 	var it: Dictionary = Game.ITEMS[key]
 	if it["type"] in ["potion", "food"]:
 		details.add_child(UiKit.button("Use", func(): Game.use_item(key), 240))
-	elif it["type"] == "equip":
+	elif it["type"] in ["equip", "weapon"]:
 		details.add_child(UiKit.button("Equip", func(): Game.equip(key), 240))
-	details.add_child(UiKit.button("Drop", func(): Game.add_item(key, -1, true); Sfx.play("cloth"), 240))
+	if it["type"] != "quest":
+		details.add_child(UiKit.button("Drop", func(): Game.add_item(key, -1, true); Sfx.play("cloth"), 240))
 
 
 func _icon_big(icon_id: String) -> TextureRect:
@@ -328,13 +389,17 @@ func _item_text(id: String) -> void:
 	details.add_child(UiKit.title(it["name"], 38))
 	details.add_child(_icon_big(it["icon"]))
 	var stats := ""
+	if it["type"] == "weapon":
+		stats += Game.item_stats(id) + "\n"
+	if it["type"] == "quest":
+		stats += "Quest item — cannot be sold.\n"
 	if it.has("armor"):
 		stats += "Armour: +%d\n" % it["armor"]
 	if it.has("stamina"):
 		stats += "Stamina: +%d\n" % it["stamina"]
 	if it.has("block"):
 		stats += "Blocks: %d%%\n" % int(it["block"] * 100)
-	stats += "Value: %d gold · Weight: %.1f" % [it["price"], it["weight"]]
+	stats += ("Value: %d gold · " % it["price"] if it["price"] > 0 else "") + "Weight: %.1f" % it["weight"]
 	details.add_child(UiKit.label(stats, 21))
 	details.add_child(UiKit.label(it["desc"], 20, Color(0.25, 0.17, 0.1), true))
 
@@ -344,9 +409,10 @@ func _refresh_stats() -> void:
 		ch.queue_free()
 	stats_box.add_child(UiKit.title("Václav of Vyšehrad", 52))
 	var lines := [
+		"Level %d · Experience %d / %d" % [Game.level, Game.xp, Game.xp_for_next()],
 		"Health: %d / %d" % [Game.hp, Game.max_hp],
 		"Stamina: %d / %d" % [Game.stamina, Game.max_stamina()],
-		"Weapon: %s (%d–%d)" % [Game.sword()["name"], Game.sword()["min"], Game.sword()["max"]],
+		"Weapon: %s (%d–%d, reach %.1f m)" % [Game.sword()["name"], Game.sword()["min"], Game.sword()["max"], Game.sword()["reach"]],
 		"Armour: %d" % Game.armor(),
 		"Shield: blocks %d%% of frontal blows" % int(Game.block_factor() * 100),
 		"",
@@ -355,16 +421,101 @@ func _refresh_stats() -> void:
 		"Golems broken: %d" % Game.kills["golem"],
 		"Defenestrations: %d" % Game.kills["defenestrated"],
 		"Houses searched: %d" % Game.looted_houses.size(),
+		"Quests completed: %d of %d" % [Quests.done_quests().size(), Quests.QUESTS.size()],
 	]
 	for l in lines:
 		stats_box.add_child(UiKit.label(l, 26))
 
 
 func _refresh_journal() -> void:
+	for ch in quest_list.get_children():
+		ch.queue_free()
+	var act: Array = Quests.active_quests()
+	var done: Array = Quests.done_quests()
+	if journal_sel == "" or not Quests.state.has(journal_sel):
+		journal_sel = Quests.tracked if Quests.tracked != "" else (act[0] if not act.is_empty() else "")
+	quest_list.add_child(UiKit.title("Quests", 40))
+	quest_list.add_child(UiKit.label("Active", 22, UiKit.BLOOD))
+	if act.is_empty():
+		quest_list.add_child(UiKit.label("Nothing to do. Talk to people with a  !  over their heads.", 19, UiKit.INK, true))
+	for q in act:
+		quest_list.add_child(_quest_button(q, false))
+	var offers: Array = Quests.offered()
+	if not offers.is_empty():
+		quest_list.add_child(UiKit.label("They have work for you  !", 22, UiKit.BLOOD))
+		for o in offers:
+			var place: String = Quests.npc_place(o[1])
+			var l := UiKit.label("!  %s%s%s" % [Quests.npc_name(o[1]), (" — " + place) if place != "" else "",
+				"  ✠" if Quests.QUESTS[o[0]].get("main", false) else ""], 19, UiKit.INK, true)
+			quest_list.add_child(l)
+	if not done.is_empty():
+		quest_list.add_child(UiKit.label("Completed (%d of %d)" % [done.size(), Quests.QUESTS.size()], 22, UiKit.BLOOD))
+		for q in done:
+			quest_list.add_child(_quest_button(q, true))
+	_refresh_quest_view()
 	for ch in journal_box.get_children():
 		ch.queue_free()
-	journal_box.add_child(UiKit.title("Journal", 48))
+	journal_box.add_child(UiKit.title("Diary", 34))
 	var j := Game.journal.duplicate()
 	j.reverse()
 	for e in j:
-		journal_box.add_child(UiKit.label("• " + e, 22, UiKit.INK, true))
+		journal_box.add_child(UiKit.label("• " + e, 19, Color(0.3, 0.22, 0.14), true))
+
+
+func _quest_button(q: String, done: bool) -> Button:
+	var qq: Dictionary = Quests.QUESTS[q]
+	var mark := "✓ " if done else ("➤ " if q == Quests.tracked else "")
+	var b := Button.new()
+	b.text = mark + qq["title"] + ("" if not qq.get("main", false) else "  ✠")
+	b.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	b.custom_minimum_size = Vector2(400, 46)
+	b.add_theme_font_size_override("font_size", 24)
+	b.focus_mode = Control.FOCUS_NONE
+	if done:
+		b.modulate = Color(1, 1, 1, 0.6)
+	if q == journal_sel:
+		b.add_theme_color_override("font_color", UiKit.BLOOD)
+	b.pressed.connect(func(): Sfx.play("paper"); journal_sel = q; _refresh_journal())
+	return b
+
+
+func _refresh_quest_view() -> void:
+	for ch in quest_view.get_children():
+		ch.queue_free()
+	if journal_sel == "" or not Quests.QUESTS.has(journal_sel):
+		quest_view.add_child(UiKit.title("Journal", 44))
+		quest_view.add_child(UiKit.label("Talk to the people of Prague. A gold  !  over a head means they have work for you; a  ?  means they expect you.", 22, UiKit.INK, true))
+		return
+	var q := journal_sel
+	var qq: Dictionary = Quests.QUESTS[q]
+	var t := UiKit.title(qq["title"], 44)
+	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	quest_view.add_child(t)
+	quest_view.add_child(UiKit.label(("Main story" if qq.get("main", false) else "Side quest") + " · from " + Quests.npc_name(qq["giver"]), 20, UiKit.BLOOD))
+	quest_view.add_child(UiKit.label(qq["summary"], 22, UiKit.INK, true))
+	var st: Array = qq["stages"]
+	var cur: int = Quests.state[q]["stage"]
+	for i in st.size():
+		if i > cur:
+			break
+		var done: bool = i < cur or Quests.is_done(q)
+		var txt: String = st[i]["text"] if done else Quests.objective(q)
+		var l := UiKit.label(("✓  " if done else "➤  ") + txt, 21, Color(0.35, 0.3, 0.22) if done else UiKit.INK, true)
+		quest_view.add_child(l)
+	var r: Dictionary = qq.get("reward", {})
+	var rw: Array = []
+	if r.has("gold"):
+		rw.append("%d gold" % r["gold"])
+	for id in r.get("items", {}):
+		rw.append(Game.ITEMS[id]["name"])
+	if r.has("max_hp"):
+		rw.append("+%d max health" % r["max_hp"])
+	if r.has("xp"):
+		rw.append("%d experience" % r["xp"])
+	quest_view.add_child(UiKit.label("Reward: " + ", ".join(rw), 20, Color(0.35, 0.25, 0.12), true))
+	if Quests.is_active(q):
+		if q != Quests.tracked:
+			quest_view.add_child(UiKit.button("Track on the compass", func(): Quests.set_tracked(q); _refresh_journal(), 360))
+		else:
+			quest_view.add_child(UiKit.label("➤ Tracked: the gold mark on the compass and the map points the way.", 20, UiKit.BLOOD, true))
+	quest_view.add_child(HSeparator.new())

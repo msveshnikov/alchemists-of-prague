@@ -63,8 +63,8 @@ func _ready() -> void:
 	model = Chars.instance("vaclav")
 	add_child(model)
 	ap = Chars.anim_player(model)
-	sword_mesh = Chars.find_mesh(model, "WEAPON_sword")
 	apply_sword_look()
+	Game.stats_changed.connect(apply_sword_look)
 	pivot = Node3D.new()
 	pivot.top_level = true
 	add_child(pivot)
@@ -86,22 +86,9 @@ func _ready() -> void:
 	Chars.play(ap, "idle")
 
 
+## Show the equipped weapon (one of the WEAPON_* meshes in the hand) and hide the others.
 func apply_sword_look() -> void:
-	if sword_mesh == null:
-		return
-	var lvl := Game.sword_level
-	if lvl == 0:
-		sword_mesh.material_override = null
-		return
-	var m := StandardMaterial3D.new()
-	m.metallic = 1.0
-	m.roughness = [0.4, 0.25, 0.2, 0.15][lvl]
-	m.albedo_color = [Color(0.7, 0.7, 0.72), Color(0.85, 0.85, 0.9), Color(0.8, 0.62, 0.32), Color(0.95, 0.75, 0.3)][lvl]
-	if lvl >= 3:
-		m.emission_enabled = true
-		m.emission = Color(1.0, 0.6, 0.2)
-		m.emission_energy_multiplier = 0.4
-	sword_mesh.material_override = m
+	sword_mesh = Chars.show_weapon(model, Game.weapon_id())
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -235,11 +222,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _start_attack() -> void:
-	if Game.stamina < 10.0:
+	if Game.stamina < float(Game.sword().get("cost", 12)) - 2.0:
 		Game.say("Too exhausted to swing.", Color(1, 0.7, 0.4))
 		return
-	Game.stamina -= 12.0
-	var spd := 1.25
+	var w := Game.sword()
+	Game.stamina -= float(w.get("cost", 12))
+	var spd := 1.25 * float(w.get("speed", 1.0))
 	# chained swings alternate forehand / backhand
 	var anim := "attack2" if combo % 2 == 1 and ap.has_animation("attack2") else "attack"
 	combo += 1
@@ -251,16 +239,16 @@ func _start_attack() -> void:
 
 
 func _deal_hit() -> void:
-	var dmg := Game.sword_damage()
+	var w := Game.sword()
 	var hit_any := false
 	for t in world.attackable():
 		if not is_instance_valid(t) or t.is_dead():
 			continue
 		var to: Vector3 = t.global_position - global_position
 		to.y = 0
-		var reach: float = ATTACK_RANGE + t.radius()
+		var reach: float = float(w.get("reach", ATTACK_RANGE)) + t.radius()
 		if to.length() <= reach and facing().dot(to.normalized()) >= ATTACK_ARC:
-			t.take_hit(dmg, self)
+			t.take_hit(Game.sword_damage(t), self)
 			hit_any = true
 	if hit_any:
 		shake = max(shake, 0.35)

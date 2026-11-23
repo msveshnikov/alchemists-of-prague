@@ -572,7 +572,7 @@ func _shot_finale() -> void:
 	await _secs(3.2)
 	_title("Alchemists of Prague", 104, 330, UiKit.PARCH, 1.4, 3.2, 0.6)
 	await _secs(0.8)
-	_title("Play in your browser  ·  severance.lol/4", 40, 460, UiKit.GOLD, 1.2, 2.6, 0.6)
+	_title("Play in your browser  ·  maxims.top/prague", 40, 460, UiKit.GOLD, 1.2, 2.6, 0.6)
 	await _secs(4.8)
 
 

@@ -391,6 +391,87 @@ def longsword(mb, length=0.98):
     mb.sphere((0, 0, 0.125), (0.014, 0.02, 0.014), "M_Brass", segs=8, rings=4)
 
 
+def bastard_sword(mb, length=1.14):
+    """Hand-and-a-half sword: long tapering blade, straight cross with flared ends, long two-tone grip, scent-stopper pommel."""
+    L = length
+    blade = [(-0.028, 0.0), (0.028, 0.0), (0.019, -L * 0.75), (0.0, -L), (-0.019, -L * 0.75)]
+    mb.prism([(x, z - 0.08) for x, z in blade], -0.0058, 0.0058, "M_Steel")
+    for yy in (-0.0064, 0.0064):
+        f = [(-0.006, -0.1), (0.006, -0.1), (0.003, -L * 0.55), (-0.003, -L * 0.55)]
+        mb.face([(x, yy, z) for x, z in (f if yy > 0 else list(reversed(f)))], "M_Iron")
+    mb.box((-0.15, -0.013, -0.09), (0.15, 0.013, -0.068), "M_Iron")
+    for sx in (-1, 1):
+        mb.box((sx * 0.15 - 0.012, -0.018, -0.096), (sx * 0.15 + 0.012, 0.018, -0.062), "M_Iron")
+    mb.rod((0, 0, -0.068), (0, 0, 0.17), 0.017, "M_LeatherDark", segs=8)
+    for k in range(4):
+        z = -0.04 + k * 0.055
+        mb.rod((0, 0, z), (0, 0, z + 0.012), 0.019, "M_ClothRed", segs=8)
+    mb.lathe([(0.0, 0.17), (0.026, 0.18), (0.03, 0.2), (0.02, 0.225), (0.0, 0.232)], "M_Iron", segs=10)
+
+
+def war_axe(mb, haft=0.78):
+    """Bohemian war axe: ash haft along -Z from the grip, bearded iron head at the far end, iron langets, leather wrap."""
+    mb.rod((0, 0, 0.1), (0, 0, -haft), 0.019, "M_WoodLight", segs=8)
+    mb.rod((0, 0, -0.06), (0, 0, 0.09), 0.022, "M_LeatherC", segs=8)
+    mb.sphere((0, 0, 0.105), 0.024, "M_Iron", segs=8, rings=5)
+    z = -haft + 0.06
+    mb.box((-0.026, -0.024, z - 0.07), (0.026, 0.024, z + 0.07), "M_Iron")            # socket
+    head = [(0.02, z + 0.055), (0.2, z + 0.12), (0.25, z + 0.02), (0.235, z - 0.12), (0.17, z - 0.2), (0.12, z - 0.1),
+            (0.02, z - 0.055)]
+    mb.prism(head, -0.009, 0.009, "M_Iron")
+    edge = [(0.2, z + 0.12), (0.25, z + 0.02), (0.235, z - 0.12), (0.17, z - 0.2), (0.205, z - 0.12), (0.215, z + 0.02)]
+    mb.prism(edge, -0.011, 0.011, "M_Steel")
+    mb.prism([(-0.02, z + 0.035), (-0.075, z + 0.015), (-0.075, z - 0.015), (-0.02, z - 0.035)], -0.012, 0.012, "M_Iron")
+    for sy in (-1, 1):
+        mb.box((-0.006, sy * 0.02 - 0.003, z - 0.3), (0.006, sy * 0.02 + 0.003, z - 0.06), "M_Iron")   # langets
+
+
+def greatsword(mb, length=1.24):
+    """Two-handed executioner's sword: broad blade with a blunt rounded tip, ricasso, long cross, long grip, pear pommel."""
+    L = length
+    blade = [(-0.034, 0.0), (0.034, 0.0), (0.03, -L * 0.9), (0.012, -L), (-0.012, -L), (-0.03, -L * 0.9)]
+    mb.prism([(x, z - 0.12) for x, z in blade], -0.0065, 0.0065, "M_Steel")
+    mb.box((-0.03, -0.009, -0.2), (0.03, 0.009, -0.1), "M_Iron")                         # ricasso
+    for yy in (-0.007, 0.007):
+        f = [(-0.008, -0.21), (0.008, -0.21), (0.006, -L * 0.7), (-0.006, -L * 0.7)]
+        mb.face([(x, yy, z) for x, z in (f if yy > 0 else list(reversed(f)))], "M_Iron")
+    for sx in (-1, 1):
+        mb.rod((0, 0, -0.1), (sx * 0.2, 0, -0.13), 0.014, "M_Iron", segs=6, r1=0.011)
+        mb.sphere((sx * 0.2, 0, -0.132), 0.017, "M_Iron", segs=6, rings=4)
+    mb.box((-0.045, -0.016, -0.11), (0.045, 0.016, -0.085), "M_Iron")
+    mb.rod((0, 0, -0.085), (0, 0, 0.26), 0.019, "M_LeatherDark", segs=8)
+    for k in range(6):
+        zz = -0.06 + k * 0.055
+        mb.rod((0, 0, zz), (0, 0, zz + 0.01), 0.021, "M_LeatherC", segs=8)
+    mb.lathe([(0.0, 0.26), (0.03, 0.275), (0.036, 0.31), (0.022, 0.345), (0.0, 0.352)], "M_Iron", segs=10)
+
+
+def vysehrad_blade(mb, length=1.06):
+    """Blade of Vysehrad: bright fullered blade, gilded crown-shaped cross and wheel pommel, red grip — the reward sword."""
+    L = length
+    blade = [(-0.027, 0.0), (0.027, 0.0), (0.022, -L * 0.82), (0.0, -L), (-0.022, -L * 0.82)]
+    mb.prism([(x, z - 0.08) for x, z in blade], -0.0058, 0.0058, "M_Steel")
+    for yy in (-0.0064, 0.0064):
+        f = [(-0.007, -0.095), (0.007, -0.095), (0.004, -L * 0.68), (-0.004, -L * 0.68)]
+        mb.face([(x, yy, z) for x, z in (f if yy > 0 else list(reversed(f)))], "M_Gold")
+    mb.box((-0.035, -0.014, -0.092), (0.035, 0.014, -0.066), "M_Gold")
+    for sx in (-1, 1):
+        mb.rod((0, 0, -0.078), (sx * 0.13, 0, -0.06), 0.012, "M_Gold", segs=6, r1=0.009)
+        mb.sphere((sx * 0.133, 0, -0.058), 0.016, "M_Gold", segs=6, rings=4)
+    mb.rod((0, 0, -0.066), (0, 0, 0.11), 0.017, "M_ClothRed", segs=8)
+    for k in range(3):
+        z = -0.04 + k * 0.06
+        mb.rod((0, 0, z), (0, 0, z + 0.01), 0.019, "M_Gold", segs=8)
+    with mb.at((0, 0, 0.14), rot_x=PI / 2):
+        mb.cyl((0, 0, -0.013), 0.038, 0.026, "M_Gold", segs=16)
+    mb.sphere((0, 0, 0.14), (0.016, 0.022, 0.016), "M_ClothRed", segs=8, rings=4)
+
+
+# extra hand weapons of the hero (inventory: the game shows only the equipped one); name -> builder
+HERO_WEAPONS = {"WEAPON_longsword": bastard_sword, "WEAPON_axe": war_axe, "WEAPON_greatsword": greatsword,
+                "WEAPON_vysehrad": vysehrad_blade}
+
+
 def round_shield(mb, r=0.36):
     mb.cyl((0, 0, -0.016), r, 0.032, "M_WoodDark", segs=32, cap=True, smooth=False)
     mb.face([(r * 0.985 * math.cos(2 * PI * k / 32), r * 0.985 * math.sin(2 * PI * k / 32), 0.0175) for k in range(32)], "M_Shield", uv="fit")
@@ -413,6 +494,8 @@ def build_vaclav():
     set_base(arm, base)
     B = C.Body("vaclav", arm, col)
     held(B, arm, "hand.R", "WEAPON_sword", lambda mb: longsword(mb, 0.98), grip_of(arm, "R"), rot_to((-0.05, -0.55, -0.83)))
+    for wname, wbuild in HERO_WEAPONS.items():   # same grip and angle; the game hides all but the equipped one
+        held(B, arm, "hand.R", wname, wbuild, grip_of(arm, "R"), rot_to((-0.05, -0.55, -0.83)))
     fh, ft = posed_points(arm, "forearm.L")
     sc = fh.lerp(ft, 0.55) + V((0.1, -0.035, 0))
     mb = B.separate("WEAPON_shield", ["forearm.L"], 6)

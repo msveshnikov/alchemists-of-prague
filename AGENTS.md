@@ -2,8 +2,8 @@
 
 ## Завершение любой задачи
 Каждую законченную задачу доводить до конца без отдельного вопроса: закоммитить всё, собрать три билда
-(Windows, Web, Android; команды в README) и выложить Web + APK на https://severance.lol/4/
-(`scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/www/severance/4/`), затем открыть страницу и проверить.
+(Windows, Web, Android; команды в README) и выложить Web + APK на https://maxims.top/prague/
+(`scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/www/maxims/prague/`), затем открыть страницу и проверить.
 
 ## Скилл пайплайна
 Общий для всех игр пайплайн — плагин `game-pipeline` в отдельном репозитории

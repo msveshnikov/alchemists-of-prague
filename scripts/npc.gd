@@ -8,6 +8,8 @@ const LINES := [
 	"Mind your purse in the crowd.", "The alchemists pay well for bones. Too well.", "The clock on the town hall has not lied in thirty years.",
 	"Stay off the streets after dark, if you value your skin.", "My cousin saw a clay giant on Celetna. Nobody believes him.",
 	"Buy something or move along!", "A copper for a poor soul?", "The guards are no use against what comes at night.",
+	"Sergeant Bořek by the Town Hall is looking for anyone who can hold a sword.", "Radim at the weapons stall sells blades longer than your arm.",
+	"Folk with a gold mark over their heads have work for a knight. Go and ask them.",
 ]
 const LOCAL_LINES := {
 	"charles_bridge": ["The bridge was built to stand forever. King Charles laid the first stone at dawn, they say.",
@@ -53,6 +55,8 @@ var turn_pivot := Vector3.ZERO
 var turn_from := 0.0
 var turn_sign := 1.0
 var leader: Npc              # carter: the cart horse he walks beside
+var quest_npc := ""          # id in Quests.NPCS for named people (they talk through the dialogue window)
+var mark: Label3D            # "!" / "?" over a named NPC's head
 
 
 func setup(p_world: Node, e: Dictionary) -> void:
@@ -119,6 +123,38 @@ func setup(p_world: Node, e: Dictionary) -> void:
 		anim = "idle"            # a walker with nowhere to go stood marching on the spot
 		Chars.play(ap, anim)
 	last_pos = position
+	quest_npc = e.get("quest_npc", "")
+	if quest_npc != "":
+		Quests.register_npc(quest_npc, self)
+		mark = Label3D.new()
+		mark.font = Game.FONT_GOTHIC
+		mark.font_size = 160
+		mark.pixel_size = 0.004
+		mark.outline_size = 18
+		mark.outline_modulate = Color(0.1, 0.05, 0.0)
+		mark.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		mark.position.y = (1.25 if character.begins_with("child") else 1.8) + 0.55
+		mark.visibility_range_end = 45.0
+		add_child(mark)
+		Quests.changed.connect(_refresh_mark)
+		Game.inventory_changed.connect(_refresh_mark)
+		_refresh_mark()
+
+
+func _refresh_mark() -> void:
+	if mark == null:
+		return
+	var m := Quests.npc_marker(quest_npc)
+	mark.text = "?" if m == "…" else m
+	mark.modulate = {"!": Color(1.0, 0.82, 0.25), "?": Color(1.0, 0.95, 0.6), "…": Color(0.65, 0.62, 0.55, 0.8)}.get(m, Color.WHITE)
+	mark.visible = m != ""
+
+
+func face_player() -> void:
+	talk_t = 4.0
+	var to: Vector3 = world.player.global_position - global_position
+	model.rotation.y = atan2(to.x, to.z)
+	Chars.play(ap, "talk" if ap and ap.has_animation("talk") else "idle", 0.2)
 
 
 func _exit_tree() -> void:
@@ -141,6 +177,8 @@ func radius() -> float:
 
 
 func display_name() -> String:
+	if quest_npc != "":
+		return Quests.npc_name(quest_npc)
 	return {"market_woman": "market woman", "child_boy": "boy", "child_girl": "girl"}.get(character, character)
 
 

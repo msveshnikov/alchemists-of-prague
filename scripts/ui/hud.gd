@@ -20,6 +20,15 @@ var vignette: TextureRect
 var poison: ColorRect
 var wanted_label: Label
 var _hint_t := 0.0
+var quest_mark: Label          # gold diamond on the compass strip: bearing to the tracked objective
+var tracker: PanelContainer    # tracked quest: title, objective, distance (under the health bars)
+var tracker_title: Label
+var tracker_text: Label
+var tracker_dist: Label
+var banner: VBoxContainer      # "New quest" / "Quest complete" announcement under the compass
+var banner_title: Label
+var banner_text: Label
+var _banner_tw: Tween
 
 
 func _ready() -> void:
@@ -72,9 +81,9 @@ func _ready() -> void:
 	hs.set_content_margin_all(12)
 	hint_panel.add_theme_stylebox_override("panel", hs)
 	hint_panel.set_anchors_preset(Control.PRESET_CENTER_TOP)
-	hint_panel.offset_left = -430
-	hint_panel.offset_right = 430
-	hint_panel.offset_top = 150
+	hint_panel.offset_left = -370
+	hint_panel.offset_right = 370
+	hint_panel.offset_top = 205
 	hint_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	hint_label = UiKit.label("", 22, UiKit.PARCH, true)
 	hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -89,10 +98,87 @@ func _ready() -> void:
 	wanted_label.offset_top = 250
 	wanted_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	root.add_child(wanted_label)
+	_tracker(root)
+	_banner(root)
 	Game.gold_changed.connect(_on_gold)
 	Game.inventory_changed.connect(_refresh_slots)
 	Game.stats_changed.connect(_refresh_slots)
 	_refresh_slots()
+
+
+func _tracker(root: Control) -> void:
+	tracker = PanelContainer.new()
+	var st := StyleBoxFlat.new()
+	st.bg_color = Color(0.07, 0.05, 0.03, 0.72)
+	st.border_color = Color(0.55, 0.42, 0.22, 0.9)
+	st.border_width_left = 3
+	st.set_content_margin_all(10)
+	st.content_margin_left = 14
+	tracker.add_theme_stylebox_override("panel", st)
+	tracker.position = Vector2(24, 146)
+	tracker.custom_minimum_size = Vector2(400, 0)
+	tracker.size = Vector2(400, 0)
+	tracker.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(tracker)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 2)
+	tracker.add_child(v)
+	tracker_title = UiKit.shadow_label("", 24, UiKit.GOLD)
+	tracker_title.add_theme_font_override("font", Game.FONT_GOTHIC)
+	v.add_child(tracker_title)
+	tracker_text = UiKit.shadow_label("", 18, UiKit.PARCH)
+	tracker_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tracker_text.custom_minimum_size = Vector2(370, 0)
+	v.add_child(tracker_text)
+	tracker_dist = UiKit.shadow_label("", 17, Color(0.85, 0.75, 0.5))
+	v.add_child(tracker_dist)
+	tracker.visible = false
+	Quests.changed.connect(_refresh_tracker)
+	Game.inventory_changed.connect(_refresh_tracker)
+	_refresh_tracker()
+
+
+func _refresh_tracker() -> void:
+	var q := Quests.tracked
+	tracker.visible = q != "" and Quests.is_active(q)
+	if not tracker.visible:
+		return
+	tracker_title.text = ("✠ " if Quests.QUESTS[q].get("main", false) else "") + Quests.QUESTS[q]["title"]
+	tracker_text.text = Quests.objective(q)
+	tracker.size = Vector2(400, 0)
+
+
+func _banner(root: Control) -> void:
+	banner = VBoxContainer.new()
+	banner.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	banner.offset_left = -500
+	banner.offset_right = 500
+	banner.offset_top = 80
+	banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(banner)
+	banner_title = UiKit.shadow_label("", 40, UiKit.GOLD)
+	banner_title.add_theme_font_override("font", Game.FONT_GOTHIC)
+	banner_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	banner.add_child(banner_title)
+	banner_text = UiKit.shadow_label("", 21, UiKit.PARCH)
+	banner_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	banner_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	banner.add_child(banner_text)
+	banner.modulate.a = 0.0
+
+
+## Big announcement under the compass: "New quest: ..." / "Quest complete: ...".
+func quest_banner(title: String, text: String) -> void:
+	banner_title.text = title
+	banner_text.text = text
+	if _banner_tw:
+		_banner_tw.kill()
+	banner.modulate.a = 1.0
+	_banner_tw = banner.create_tween()
+	_banner_tw.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_banner_tw.tween_interval(5.0)
+	_banner_tw.tween_property(banner, "modulate:a", 0.0, 1.2)
+	add_message(title, UiKit.GOLD)
 
 
 func _bar(parent: Control, icon: String, fill: String, y: float) -> TextureProgressBar:
@@ -157,6 +243,9 @@ func _compass(root: Control) -> void:
 		l.set_meta("deg", d[1])
 		compass.add_child(l)
 		compass_letters.append(l)
+	quest_mark = UiKit.shadow_label("◆", 30, UiKit.GOLD)
+	quest_mark.visible = false
+	compass.add_child(quest_mark)
 	var needle := UiKit.shadow_label("▼", 16, UiKit.GOLD)
 	needle.set_anchors_preset(Control.PRESET_CENTER_TOP)
 	needle.offset_top = -14
@@ -278,7 +367,7 @@ func _on_gold(g: int) -> void:
 func _refresh_slots() -> void:
 	if sword_icon == null:
 		return
-	sword_icon.texture = Game.icon("sword_%d" % (Game.sword_level + 1))
+	sword_icon.texture = Game.icon(Game.ITEMS[Game.weapon_id()]["icon"])
 	for i in 3:
 		var id: String = ["potion_health", "potion_stamina", "potion_antidote"][i]
 		potion_counts[i].text = str(Game.count(id))
@@ -335,7 +424,41 @@ func _process(delta: float) -> void:
 		l.visible = abs(d) < 75.0
 		l.position = Vector2(w / 2.0 + d / 75.0 * (w / 2.0) - l.size.x / 2.0, 6)
 	wanted_label.text = ("Wanted by the guard: %ds" % int(Game.wanted)) if Game.wanted > 0.0 else ""
+	_update_quest_pointer(heading, w)
 	if _hint_t > 0.0:
 		_hint_t -= delta
 		if _hint_t <= 0.0:
 			hint_panel.visible = false
+
+
+## Compass diamond + distance for the tracked quest's objective.
+func _update_quest_pointer(heading: float, w: float) -> void:
+	var q := Quests.tracked
+	var tp = Quests.target(q) if q != "" else null
+	quest_mark.visible = false
+	if tracker.visible:
+		tracker_dist.text = ""
+		var ot := Quests.objective(q)      # progress / "by day" can change without a quest event
+		if tracker_text.text != ot:
+			tracker_text.text = ot
+	if tp == null or world.inside_house:
+		return
+	var to: Vector3 = tp - world.player.global_position
+	var dist := Vector2(to.x, to.z).length()
+	var bearing := fmod(rad_to_deg(atan2(to.x, -to.z)) + 720.0, 360.0)     # 0 = north (-Z), 90 = east (+X)
+	var d: float = fposmod(bearing - heading + 180.0, 360.0) - 180.0
+	quest_mark.visible = true
+	var edge: bool = abs(d) > 72.0
+	quest_mark.text = "◆" if not edge else ("◀" if d < 0.0 else "▶")
+	var x: float = w / 2.0 + clamp(d, -72.0, 72.0) / 75.0 * (w / 2.0)
+	quest_mark.position = Vector2(x - quest_mark.size.x / 2.0, 2)
+	quest_mark.modulate.a = 0.75 + 0.25 * sin(Time.get_ticks_msec() * 0.006) if dist > 6.0 else 1.0
+	if tracker.visible:
+		var dir := ""
+		if abs(d) <= 20.0:
+			dir = "ahead"
+		elif abs(d) >= 150.0:
+			dir = "behind you"
+		else:
+			dir = "to the left" if d < 0.0 else "to the right"
+		tracker_dist.text = ("Here" if dist < 4.0 else "%d m %s" % [int(dist), dir]) + ("" if abs(to.y) < 4.0 else (" · above" if to.y > 0.0 else " · below"))

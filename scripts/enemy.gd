@@ -13,6 +13,8 @@ const TYPES := {
 		"grab": false, "radius": 0.85, "height": 4.0, "gold": [45, 80], "loot": {"clay_shard": 1.0}},
 	"guard": {"name": "City Guard", "hp": 90.0, "dmg": 13.0, "speed": 3.1, "range": 2.4, "cooldown": 1.5, "detect": 20.0,
 		"grab": true, "radius": 0.35, "height": 1.82, "gold": [0, 0], "loot": {}},
+	"knight": {"name": "Knight", "hp": 130.0, "dmg": 9.0, "speed": 3.0, "range": 2.3, "cooldown": 1.3, "detect": 16.0,
+		"grab": false, "radius": 0.35, "height": 1.85, "gold": [0, 0], "loot": {}},
 }
 
 var kind := "skeleton"
@@ -40,11 +42,13 @@ var defen := false
 var step_t := 0.0
 var stuck_t := 0.0
 var interior: Node = null
+var duel := false            # sparring partner: yields at 30% health instead of dying
+var yielded := false
 
 
 func setup(p_kind: String, p_world: Node, pos: Vector3, yaw: float, p_idle := "idle") -> void:
 	kind = p_kind
-	def = TYPES[kind]
+	def = TYPES[kind].duplicate()
 	world = p_world
 	hp = def["hp"]
 	home = pos
@@ -72,6 +76,30 @@ func setup(p_kind: String, p_world: Node, pos: Vector3, yaw: float, p_idle := "i
 
 
 # ---------------------------------------------------------------- interface used by player / world
+## Quest overrides: {name, hp (multiplier), dmg (multiplier), scale, duel}. Call after setup(), before add_child().
+func customize(sp: Dictionary) -> void:
+	if sp.has("name"):
+		def["name"] = sp["name"]
+		var lbl := Label3D.new()
+		lbl.text = sp["name"]
+		lbl.font = Game.FONT_GOTHIC
+		lbl.font_size = 48
+		lbl.pixel_size = 0.0035
+		lbl.outline_size = 10
+		lbl.modulate = Color(1.0, 0.8, 0.55)
+		lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		lbl.position.y = def["height"] * float(sp.get("scale", 1.0)) + 0.6
+		lbl.visibility_range_end = 22.0
+		lbl.name = "NameTag"
+		add_child(lbl)
+	def["hp"] = def["hp"] * float(sp.get("hp", 1.0))
+	def["dmg"] = def["dmg"] * float(sp.get("dmg", 1.0))
+	hp = def["hp"]
+	if sp.has("scale"):
+		model.scale = Vector3.ONE * float(sp["scale"])
+	duel = sp.get("duel", false)
+
+
 func is_dead() -> bool:
 	return state == S.DEAD
 
@@ -96,6 +124,9 @@ func take_hit(dmg: float, attacker: Node) -> void:
 	if state == S.DEAD or state == S.GRABBED or state == S.THROWN:
 		return
 	hp -= dmg
+	if duel and not yielded and hp <= def["hp"] * 0.3:
+		_yield()
+		return
 	Chars.set_bar(bar, hp / def["hp"])
 	_flash()
 	if kind == "guard" and Game.wanted <= 0.0:
@@ -121,6 +152,21 @@ func take_hit(dmg: float, attacker: Node) -> void:
 		state = S.HIT
 		timer = 0.4
 		Chars.play(ap, "hit", 0.05, 1.0, true)
+
+
+func _yield() -> void:
+	yielded = true
+	hp = def["hp"]
+	Chars.set_bar(bar, 1.0)
+	state = S.NEUTRAL
+	Chars.play(ap, "hit", 0.05, 0.7, true)
+	Sfx.play_at("grunt", global_position + Vector3(0, 1.6, 0), 0.0, 0.9)
+	Game.say("%s lowers his sword: \"Enough! I yield!\"" % def["name"], Color(1.0, 0.85, 0.5))
+	Quests.on_kill(self, false)
+	get_tree().create_timer(8.0).timeout.connect(func():
+		if is_instance_valid(self):
+			world.enemies.erase(self)
+			queue_free())
 
 
 func _flash() -> void:
@@ -176,7 +222,7 @@ func _die(by_fall: bool) -> void:
 	collision_mask = 1
 	Chars.play(ap, "death", 0.1)
 	velocity = Vector3.ZERO
-	Sfx.play_at({"skeleton": "bones", "golem": "golem", "alchemist": "scream", "guard": "hurt"}[kind],
+	Sfx.play_at({"skeleton": "bones", "golem": "golem", "alchemist": "scream", "guard": "hurt", "knight": "hurt"}[kind],
 		global_position + Vector3(0, 1.2, 0), 0.0, 0.7 if kind == "golem" else 1.0)
 	world.on_enemy_killed(self, by_fall)
 

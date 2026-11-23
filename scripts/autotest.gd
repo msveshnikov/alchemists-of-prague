@@ -233,6 +233,7 @@ func _stage_main() -> void:
 	p.yaw += PI
 	await _wait(0.5)
 	await _shot("09_body_on_street")
+	await _quests()
 	# --- night
 	Game.time_of_day = 252.0 / 400.0
 	world.day_night.apply(Game.time_of_day)
@@ -296,6 +297,127 @@ func _stage_main() -> void:
 	world.quickload()
 
 
+## Talk to someone through the dialogue window: play the lines, pick the topic whose text starts with `prefix`.
+func _converse(npc_id: String, prefix: String) -> bool:
+	var npc = Quests.npc_nodes.get(npc_id)
+	if npc == null or not is_instance_valid(npc):
+		_log("no npc " + npc_id)
+		return false
+	world.player.global_position = npc.global_position + Vector3(1.2, 0.1, 0)
+	await _wait(0.3)
+	world.open_dialog(npc)
+	await _wait(0.4)
+	var ui = world.ui_stack.back().get_child(0)
+	while ui._lines_mode:
+		ui._next()
+	var picked := false
+	for i in ui.choices.size():
+		if String(ui.choices[i]["text"]).begins_with(prefix):
+			ui._choose(i)
+			picked = true
+			break
+	await _wait(0.2)
+	for i in 30:
+		if not ui._lines_mode:
+			break
+		ui._next()
+	await _wait(0.2)
+	world.close_ui()
+	await _wait(0.2)
+	return picked
+
+
+## Quests, dialogue, weapons: the first main quest from talking to finishing, a house quest, buying a longer sword.
+func _quests() -> void:
+	var p: Player = world.player
+	_check(Quests.is_active("m1_night") and Quests.tracked == "m1_night", "the first quest is active and tracked")
+	_check(world.hud.tracker.visible and String(world.hud.tracker_text.text).contains("Bořek"), "HUD shows the quest objective")
+	var borek = Quests.npc_nodes.get("borek")
+	_check(borek != null and is_instance_valid(borek) and borek.mark.visible and borek.mark.text == "?", "Sergeant Bořek stands on the square with a ? over his head")
+	await _wait(0.3)
+	_check(world.hud.quest_mark.visible, "compass points to the quest target")
+	if borek == null:
+		return
+	p.global_position = borek.global_position + Vector3(1.4, 0.1, 0.8)
+	var tob: Vector3 = borek.global_position - p.global_position
+	p.yaw = atan2(-tob.x, -tob.z)
+	p.model.rotation.y = atan2(tob.x, tob.z)
+	await _wait(0.6)
+	p._update_focus()
+	_check(String(p.focus.get("label", "")).begins_with("Talk to Sergeant"), "prompt offers to talk to the sergeant (%s)" % p.focus.get("label", ""))
+	world.open_dialog(borek)
+	await _wait(0.6)
+	await _shot("05b_dialog")
+	world.close_ui()
+	await _wait(0.2)
+	_check(await _converse("borek", "Sergeant, Václav"), "dialogue topic for the quest step is offered")
+	_check(Quests.state["m1_night"]["stage"] == 1, "talking advances the quest")
+	for i in 3:
+		var en := Enemy.new()
+		en.setup("skeleton", world, Vector3(3.0 + i, 0.1, 5.0), 0.0)
+		world.add_child(en)
+		world.enemies.append(en)
+		await _wait(0.1)
+		en.take_hit(9999.0, p)
+	await _wait(0.3)
+	_check(Quests.state["m1_night"]["stage"] == 2, "killing 3 skeletons on the square completes the kill step")
+	var g0 := Game.gold
+	await _converse("borek", "Three skeletons")
+	_check(Quests.is_done("m1_night") and Game.gold >= g0 + 40, "quest finished and rewarded (%d -> %d gold)" % [g0, Game.gold])
+	_check(Game.xp > 0, "quests and kills give experience (%d)" % Game.xp)
+	_check(borek.mark.text == "!", "the sergeant offers the next quest (!)")
+	await _converse("borek", "Is there more work")
+	_check(Quests.is_active("m2_bones"), "next main quest accepted")
+	# house quest: skip to the bone-buyer's house, his foe is spawned inside
+	Quests.state["m2_bones"]["stage"] = 2
+	Quests.changed.emit()
+	var hid := "house_burgher_c#05"
+	var tp = Quests.target("m2_bones")
+	_check(tp != null and tp.distance_to(world.v3(world.marker("MARK_door@" + hid)["pos"])) < 0.5, "quest target is the bone-buyer's door")
+	world.enter_house(hid)
+	await _wait(1.0)
+	var jira: Enemy = null
+	for e in world.enemies:
+		if is_instance_valid(e) and e.get_meta("quest", "") == "m2_bones":
+			jira = e
+	_check(jira != null and jira.def["name"] == "Jíra the Bone-buyer", "the bone-buyer waits in his house")
+	await _shot("05c_quest_house")
+	if jira:
+		jira.take_hit(9999.0, p)
+	await _wait(0.3)
+	_check(Game.count("ledger") == 1 and Quests.state["m2_bones"]["stage"] == 3, "killing him yields the ledger")
+	world.exit_house()
+	await _wait(0.5)
+	await _converse("borek", "Jíra is dead")
+	_check(Quests.is_done("m2_bones") and Quests.is_available("m3_cipher"), "ledger delivered, the cipher quest unlocked")
+	# weapons: buy a longer sword from Radim
+	Game.add_gold(400, true)
+	var reach0: float = Game.sword()["reach"]
+	world.open_trade("market_stall_weapons#00", "weapons")
+	await _wait(0.6)
+	var tui = world.ui_stack.back().get_child(0)
+	_check("w_longsword" in tui.stock and "w_axe" in tui.stock, "the weapons stall sells a longer sword and an axe")
+	tui._buy("w_longsword")
+	await _wait(0.4)
+	await _shot("05d_weapons")
+	world.close_ui()
+	_check(Game.weapon_id() == "w_longsword" and Game.sword()["reach"] > reach0, "bought sword is equipped and reaches further")
+	_check(p.sword_mesh != null and String(p.sword_mesh.name).begins_with("WEAPON_longsword") and p.sword_mesh.visible, "the hero holds the new sword")
+	_check(Game.count("w_sword") == 1, "the old sword goes into the pack")
+	var inv = load("res://scripts/ui/inventory_ui.gd").new()
+	world.open_ui(inv)
+	await _wait(0.6)
+	var tabs: TabContainer = inv.find_children("*", "TabContainer", true, false)[0]
+	tabs.current_tab = 2
+	await _wait(0.5)
+	await _shot("05e_journal")
+	tabs.current_tab = 3
+	await _wait(0.5)
+	await _shot("05f_map_quests")
+	world.close_ui()
+	await _wait(0.3)
+
+
 func _stage_after_load() -> void:
 	fails = Game.get_meta("autotest_fails", 0)
 	log_lines = Game.get_meta("autotest_log", PackedStringArray())
@@ -304,6 +426,9 @@ func _stage_after_load() -> void:
 	_check(Game.gold == Game.get_meta("autotest_gold", -1), "load restores gold (%d, saved %d)" % [Game.gold, Game.get_meta("autotest_gold", -1)])
 	_check(Game.sword_level == 1, "load restores sword level")
 	_check(Game.kills["defenestrated"] >= 1, "load restores kill counts")
+	_check(Quests.is_done("m1_night") and Quests.is_done("m2_bones"), "load restores finished quests")
+	_check(Game.weapon_id() == "w_longsword", "load restores the equipped weapon (%s)" % Game.weapon_id())
+	_check(Game.level >= 2, "load restores the hero's level (%d)" % Game.level)
 	# --- death
 	p.take_damage(9999.0, p.global_position + p.facing())
 	await _wait(4.0)

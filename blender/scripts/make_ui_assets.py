@@ -329,9 +329,113 @@ def make_icons():
         mb.box((0.36, -0.02, -0.1), (0.4, 0.02, 0.0), "M_Iron")
         mb.box((0.42, -0.02, -0.08), (0.45, 0.02, 0.0), "M_Iron")
     render_icon("key", key)
+    make_quest_icons()
+
+
+def make_quest_icons(only=None):
+    """Hero weapons (same builders as the WEAPON_* meshes on vaclav.gltf) and quest items."""
+    os.makedirs(ICONS, exist_ok=True)
+    G.MATS["M_WaxRed"] = (None, 0, 0.35, 0.0, {"color": (0.55, 0.04, 0.03)})
+    G.MATS["M_BlackIron"] = (None, 0, 0.45, 0.9, {"color": (0.06, 0.06, 0.07)})
+    G.MATS["M_PaintBlue"] = (None, 0, 0.7, 0.0, {"color": (0.15, 0.3, 0.6)})
+    if bpy.context.scene.camera is None:
+        icon_scene()
+    import build_characters as BC
+    diag = (0, math.radians(-45), 0)
+    jobs = {
+        "w_sword": (lambda mb: BC.longsword(mb, 0.98), diag),
+        "w_longsword": (lambda mb: BC.bastard_sword(mb), diag),
+        "w_axe": (lambda mb: BC.war_axe(mb), (0, math.radians(-40), 0)),
+        "w_greatsword": (lambda mb: BC.greatsword(mb), diag),
+        "w_vysehrad": (lambda mb: BC.vysehrad_blade(mb), diag),
+    }
+
+    def ledger(mb):
+        mb.box((-0.22, -0.06, -0.3), (0.22, 0.06, 0.3), "M_Linen")
+        mb.box((-0.235, -0.075, -0.315), (0.235, -0.06, 0.315), "M_LeatherDark")
+        mb.box((-0.235, 0.06, -0.315), (0.235, 0.075, 0.315), "M_LeatherDark")
+        mb.box((-0.25, -0.075, -0.315), (-0.22, 0.075, 0.315), "M_LeatherDark")
+        mb.box((0.18, -0.09, -0.04), (0.26, -0.07, 0.04), "M_Brass")
+        mb.sphere((0, -0.08, 0), (0.07, 0.015, 0.07), "M_BlackIron", segs=12, rings=4)
+    jobs["ledger"] = (ledger, (0.25, 0, 0.35))
+
+    def sun_seal(mb):
+        with mb.at(rot_x=PI / 2):
+            mb.cyl((0, 0, -0.04), 0.28, 0.08, "M_BlackIron", segs=28)
+            for k in range(12):
+                a = 2 * PI * k / 12
+                mb.prism([(0.1 * math.cos(a - 0.18), 0.1 * math.sin(a - 0.18)), (0.24 * math.cos(a), 0.24 * math.sin(a)),
+                          (0.1 * math.cos(a + 0.18), 0.1 * math.sin(a + 0.18))], 0.04, 0.055, "M_Gold", plane="xy")
+            mb.cyl((0, 0, 0.04), 0.09, 0.02, "M_Gold", segs=20)
+        with mb.at((0, 0, 0.29), rot_x=PI / 2):
+            mb.torus(0.06, 0.018, "M_Iron", segs=14, tsegs=6)
+    jobs["sun_seal"] = (sun_seal, (0.15, 0, 0))
+
+    def cloth_bale(mb):
+        with mb.at(rot_y=PI / 2):
+            mb.cyl((0, 0, -0.34), 0.17, 0.68, "M_ClothGreen", segs=20)
+            mb.cyl((0, 0, -0.35), 0.06, 0.7, "M_WoodLight", segs=10)
+        for x in (-0.2, 0.2):                       # rope bands round the roll
+            with mb.at((x, 0, 0), rot_y=PI / 2):
+                mb.cyl((0, 0, -0.02), 0.178, 0.04, "M_Rope", segs=20, cap=False)
+    jobs["cloth_bale"] = (cloth_bale, (0.3, 0, 0.4))
+
+    def cask(mb):
+        mb.lathe([(0.17, 0.0), (0.22, 0.12), (0.235, 0.25), (0.22, 0.38), (0.17, 0.5)], "M_WoodLight", segs=20)
+        for z, r in ((0.04, 0.185), (0.15, 0.228), (0.35, 0.228), (0.46, 0.185)):
+            mb.cyl((0, 0, z - 0.012), r + 0.006, 0.024, "M_Iron", segs=20, cap=False)
+        mb.rod((0, -0.2, 0.25), (0, -0.28, 0.25), 0.025, "M_WoodDark", segs=8)
+    jobs["cask"] = (cask, (0.35, 0, 0.5))
+
+    def letter(mb):
+        mb.box((-0.3, -0.01, -0.2), (0.3, 0.01, 0.2), "M_Linen")
+        mb.face([(-0.3, -0.012, 0.2), (0.3, -0.012, 0.2), (0.0, -0.012, -0.02)], "M_Linen")
+        with mb.at((0, -0.02, -0.02), rot_x=PI / 2):
+            mb.cyl((0, 0, -0.012), 0.07, 0.024, "M_WaxRed", segs=16)
+    jobs["letter"] = (letter, (0.2, 0, 0.15))
+
+    def toy_horse(mb):
+        mb.box((-0.2, -0.07, 0.1), (0.2, 0.07, 0.24), "M_WoodLight")
+        for x in (-0.15, 0.15):
+            for y in (-0.05, 0.05):
+                mb.box((x - 0.025, y - 0.02, -0.08), (x + 0.025, y + 0.02, 0.11), "M_WoodLight")
+        mb.box((0.15, -0.05, 0.2), (0.23, 0.05, 0.38), "M_WoodLight")
+        mb.box((0.17, -0.055, 0.32), (0.33, 0.055, 0.4), "M_WoodLight")
+        mb.box((0.08, -0.02, 0.24), (0.2, 0.02, 0.4), "M_PaintBlue")
+        mb.rod((-0.2, 0, 0.2), (-0.3, 0, 0.05), 0.02, "M_Rope", segs=6)
+        for x in (-0.25, 0.25):
+            with mb.at((x * 0.8, 0, -0.1), rot_x=PI / 2):
+                mb.cyl((0, 0, -0.1), 0.05, 0.2, "M_WoodDark", segs=10)
+    jobs["toy_horse"] = (toy_horse, (0.0, 0, 0.5))
+
+    def bread_basket(mb):
+        mb.lathe([(0.2, 0.0), (0.28, 0.08), (0.3, 0.2)], "M_Burlap", segs=20, cap_top=False)
+        for k, (x, y) in enumerate(((-0.08, 0.0), (0.1, 0.04), (0.0, -0.1))):
+            mb.sphere((x, y, 0.22), (0.12, 0.08, 0.07), "M_Bread", segs=12, rings=6, noise=0.05, seed=k)
+        mb.rod((-0.28, 0, 0.2), (0.28, 0, 0.2), 0.015, "M_WoodLight", segs=6)
+        with mb.at((0, 0, 0.2), rot_x=PI / 2):
+            mb.torus(0.27, 0.014, "M_WoodLight", segs=20, tsegs=4)
+    jobs["bread_basket"] = (bread_basket, (0.5, 0, 0.3))
+
+    def iron_key(mb):
+        with mb.at(rot_x=PI / 2):
+            mb.torus(0.12, 0.03, "M_BlackIron", segs=16, tsegs=6)
+        mb.rod((0.12, 0, 0), (0.5, 0, 0), 0.03, "M_BlackIron", segs=6)
+        mb.box((0.4, -0.025, -0.14), (0.45, 0.025, 0.0), "M_Brass")
+        mb.box((0.47, -0.025, -0.1), (0.5, 0.025, 0.0), "M_Brass")
+    jobs["armoury_key"] = (iron_key, (0, 0, 0))
+    for name, (fn, rot) in jobs.items():
+        if only and name not in only:
+            continue
+        render_icon(name, fn, rot=rot)
 
 
 if __name__ == "__main__":
-    make_2d()
-    make_icons()
+    argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+    if "--quest-icons" in argv:        # only the weapon / quest item icons
+        icon_scene()
+        make_quest_icons()
+    else:
+        make_2d()
+        make_icons()
     print("DONE ui")

@@ -1,0 +1,306 @@
+=== m1_night (Night Watch)
+PASS m1_night started
+stage 0: talk
+PASS stage 0 has a target for the compass
+PASS Sergeant Bořek shows ?
+PASS Sergeant Bořek is there
+PASS Sergeant Bořek stands where expected (0.0 m from home, y 0.0)
+stage 1: kill
+PASS stage 1 has a target for the compass
+PASS foes of m1_night are present (3)
+PASS Skeleton stands on the ground (y 0.0, spawned 0.2)
+PASS Skeleton stands on the ground (y 0.0, spawned 0.2)
+PASS Skeleton stands on the ground (y 0.0, spawned 0.2)
+stage 2: talk
+PASS stage 2 has a target for the compass
+PASS Sergeant Bořek shows ?
+PASS Sergeant Bořek is there
+PASS Sergeant Bořek stands where expected (0.0 m from home, y 0.0)
+PASS m1_night completed
+=== m2_bones (Who Buys the Bones?)
+PASS m2_bones is available
+PASS Sergeant Bořek is there
+PASS Sergeant Bořek stands where expected (0.0 m from home, y 0.0)
+PASS m2_bones started
+stage 0: talk
+PASS stage 0 has a target for the compass
+PASS Lazar the Beggar shows ?
+PASS Lazar the Beggar is there
+PASS Lazar the Beggar stands where expected (0.0 m from home, y 0.0)
+stage 1: deliver
+PASS stage 1 has a target for the compass
+PASS Lazar the Beggar shows ?
+PASS Lazar the Beggar is there
+PASS Lazar the Beggar stands where expected (0.0 m from home, y 0.0)
+stage 2: kill
+PASS stage 2 has a target for the compass
+PASS house house_burgher_c#05 exists
+PASS foes of m2_bones are present (1)
+PASS Jíra the Bone-buyer stands on the ground (y 4.6, spawned 4.7)
+stage 3: deliver
+PASS stage 3 has a target for the compass
+PASS Sergeant Bořek shows ?
+PASS Sergeant Bořek is there
+PASS Sergeant Bořek stands where expected (0.0 m from home, y 0.0)
+PASS m2_bones completed
+=== m3_cipher (The Black Sun Cipher)
+PASS m3_cipher is available
+PASS Sergeant Bořek is there
+PASS Sergeant Bořek stands where expected (0.0 m from home, y 0.0)
+PASS m3_cipher started
+stage 0: deliver
+PASS stage 0 has a target for the compass
+PASS Brother Anselm shows ?
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+stage 1: deliver
+PASS stage 1 has a target for the compass
+PASS Brother Anselm shows ?
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+PASS m3_cipher completed
+=== m4_golem (The Clay Giant)
+PASS m4_golem is available
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+PASS m4_golem started
+stage 0: kill
+PASS stage 0 has a target for the compass
+PASS foes of m4_golem are present (1)
+PASS The Bridge Golem stands on the ground (y -0.0, spawned 0.1)
+stage 1: deliver
+PASS stage 1 has a target for the compass
+PASS Brother Anselm shows ?
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+PASS m4_golem completed
+=== m5_lab (The Laboratory)
+PASS m5_lab is available
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+PASS m5_lab started
+stage 0: talk
+PASS stage 0 has a target for the compass
+PASS Markéta, Innkeeper shows ?
+PASS Markéta, Innkeeper is there
+PASS Markéta, Innkeeper stands where expected (0.0 m from home, y 0.0)
+stage 1: kill
+PASS stage 1 has a target for the compass
+PASS house house_burgher_c#22 exists
+PASS foes of m5_lab are present (2)
+PASS Brewer of the Black Sun stands on the ground (y 4.6, spawned 4.7)
+PASS Brewer of the Black Sun stands on the ground (y 4.6, spawned 4.7)
+stage 2: deliver
+PASS stage 2 has a target for the compass
+PASS Brother Anselm shows ?
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+PASS m5_lab completed
+=== m6_graves (The Restless Graves)
+PASS m6_graves is available
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+PASS m6_graves started
+stage 0: talk
+PASS stage 0 has a target for the compass
+PASS Captain Jan shows ?
+PASS Captain Jan is there
+PASS Captain Jan stands where expected (0.0 m from home, y 10.0)
+stage 1: kill
+PASS stage 1 has a target for the compass
+PASS foes of m6_graves are present (5)
+PASS Skeleton stands on the ground (y 10.0, spawned 10.1)
+PASS Skeleton stands on the ground (y 10.0, spawned 10.1)
+PASS Skeleton stands on the ground (y 10.0, spawned 10.1)
+PASS Skeleton stands on the ground (y 10.0, spawned 10.1)
+PASS Skeleton stands on the ground (y 10.0, spawned 10.1)
+stage 2: talk
+PASS stage 2 has a target for the compass
+PASS Captain Jan shows ?
+PASS Captain Jan is there
+PASS Captain Jan stands where expected (0.0 m from home, y 10.0)
+PASS m6_graves completed
+=== m7_magister (The Magister)
+PASS m7_magister is available
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+PASS m7_magister started
+stage 0: kill
+PASS stage 0 has a target for the compass
+PASS house house_burgher_f#17 exists
+PASS foes of m7_magister are present (2)
+PASS Magister Ozzo stands on the ground (y 4.6, spawned 4.7)
+PASS Ozzo's Servant stands on the ground (y 4.6, spawned 4.7)
+stage 1: talk
+PASS stage 1 has a target for the compass
+PASS Sergeant Bořek shows ?
+PASS Sergeant Bořek is there
+PASS Sergeant Bořek stands where expected (0.0 m from home, y 0.0)
+PASS m7_magister completed
+=== m8_blade (The Blade of Vyšehrad)
+PASS m8_blade started
+stage 0: talk
+PASS stage 0 has a target for the compass
+PASS Captain Jan shows ?
+PASS Captain Jan is there
+PASS Captain Jan stands where expected (0.0 m from home, y 10.0)
+PASS m8_blade completed
+=== s_pork (A Hungry Watchman)
+PASS s_pork is available
+PASS Watchman Matěj is there
+PASS Watchman Matěj stands where expected (0.0 m from home, y 0.0)
+PASS s_pork started
+stage 0: deliver
+PASS stage 0 has a target for the compass
+PASS Watchman Matěj shows ?
+PASS Watchman Matěj is there
+PASS Watchman Matěj stands where expected (0.0 m from home, y 0.0)
+PASS s_pork completed
+=== s_toy (The Wooden Horse)
+PASS s_toy is available
+PASS Little Kuba is there
+PASS Little Kuba stands where expected (0.0 m from home, y 0.0)
+PASS s_toy started
+stage 0: pickup
+PASS stage 0 has a target for the compass
+PASS pickup lies at its spot
+stage 1: deliver
+PASS stage 1 has a target for the compass
+PASS Little Kuba shows ?
+PASS Little Kuba is there
+PASS Little Kuba stands where expected (0.0 m from home, y 0.0)
+PASS s_toy completed
+=== s_cloth (Cloth for Master Kunz)
+PASS s_cloth is available
+PASS Master Kunz is there
+PASS Master Kunz stands where expected (0.0 m from home, y 0.0)
+PASS s_cloth started
+stage 0: talk
+PASS stage 0 has a target for the compass
+PASS Bětka, Bread Woman shows ?
+PASS Bětka, Bread Woman is there
+PASS Bětka, Bread Woman stands where expected (0.3 m from home, y -0.0)
+stage 1: deliver
+PASS stage 1 has a target for the compass
+PASS Master Kunz shows ?
+PASS Master Kunz is there
+PASS Master Kunz stands where expected (0.0 m from home, y 0.0)
+PASS s_cloth completed
+=== s_herbs (The Barber's Herbs)
+PASS s_herbs is available
+PASS Jakub the Barber is there
+PASS Jakub the Barber stands where expected (0.3 m from home, y -0.0)
+PASS s_herbs started
+stage 0: deliver
+PASS stage 0 has a target for the compass
+PASS Jakub the Barber shows ?
+PASS Jakub the Barber is there
+PASS Jakub the Barber stands where expected (0.3 m from home, y -0.0)
+PASS s_herbs completed
+=== s_bones (Rest for the Dead)
+PASS s_bones is available
+PASS Brother Prokop is there
+PASS Brother Prokop stands where expected (0.0 m from home, y 10.0)
+PASS s_bones started
+stage 0: deliver
+PASS stage 0 has a target for the compass
+PASS Brother Prokop shows ?
+PASS Brother Prokop is there
+PASS Brother Prokop stands where expected (0.0 m from home, y 10.0)
+PASS s_bones completed
+=== s_beer (A Cask for the Tankard)
+PASS s_beer is available
+PASS Vít the Boatman is there
+PASS Vít the Boatman stands where expected (0.0 m from home, y 0.0)
+PASS s_beer started
+stage 0: deliver
+PASS stage 0 has a target for the compass
+PASS Markéta, Innkeeper shows ?
+PASS Markéta, Innkeeper is there
+PASS Markéta, Innkeeper stands where expected (0.0 m from home, y 0.0)
+PASS s_beer completed
+=== s_duel (A Lesson in Steel)
+PASS s_duel is available
+PASS Sir Ota is there
+PASS Sir Ota stands where expected (0.0 m from home, y 10.0)
+PASS s_duel started
+stage 0: kill
+PASS stage 0 has a target for the compass
+PASS foes of s_duel are present (1)
+PASS Squire Lev stands on the ground (y 10.0, spawned 10.1)
+stage 1: talk
+PASS stage 1 has a target for the compass
+PASS Sir Ota shows ?
+PASS Sir Ota is there
+PASS Sir Ota stands where expected (0.0 m from home, y 10.0)
+PASS s_duel completed
+=== s_key (The Armoury Key)
+PASS s_key is available
+PASS Gatekeeper Bohuslav is there
+PASS Gatekeeper Bohuslav stands where expected (0.0 m from home, y 10.0)
+PASS s_key started
+stage 0: kill
+PASS stage 0 has a target for the compass
+PASS foes of s_key are present (1)
+PASS Old Ondřej stands on the ground (y 10.0, spawned 10.1)
+stage 1: deliver
+PASS stage 1 has a target for the compass
+PASS Gatekeeper Bohuslav shows ?
+PASS Gatekeeper Bohuslav is there
+PASS Gatekeeper Bohuslav stands where expected (0.0 m from home, y 10.0)
+PASS s_key completed
+=== s_letter (A Letter for the Castle)
+PASS s_letter is available
+PASS Captain Jan is there
+PASS Captain Jan stands where expected (0.0 m from home, y 10.0)
+PASS s_letter started
+stage 0: deliver
+PASS stage 0 has a target for the compass
+PASS Hynek, Castle Sentry shows ?
+PASS Hynek, Castle Sentry is there
+PASS Hynek, Castle Sentry stands where expected (0.0 m from home, y 8.0)
+PASS s_letter completed
+=== s_defen (A Prague Tradition)
+PASS s_defen is available
+PASS Old Zbyněk is there
+PASS Old Zbyněk stands where expected (0.0 m from home, y 0.0)
+PASS s_defen started
+stage 0: defenestrate
+PASS stage 0 has a target for the compass
+stage 1: talk
+PASS stage 1 has a target for the compass
+PASS Old Zbyněk shows ?
+PASS Old Zbyněk is there
+PASS Old Zbyněk stands where expected (0.0 m from home, y 0.0)
+PASS s_defen completed
+=== s_basket (Bread for the Brothers)
+PASS s_basket is available
+PASS Dorota is there
+PASS Dorota stands where expected (0.0 m from home, y 0.0)
+PASS s_basket started
+stage 0: deliver
+PASS stage 0 has a target for the compass
+PASS Brother Anselm shows ?
+PASS Brother Anselm is there
+PASS Brother Anselm stands where expected (0.0 m from home, y -0.0)
+PASS s_basket completed
+=== s_haunted (The Haunted House)
+PASS s_haunted is available
+PASS Anička is there
+PASS Anička stands where expected (0.0 m from home, y 0.0)
+PASS s_haunted started
+stage 0: kill
+PASS stage 0 has a target for the compass
+PASS house house_burgher_c#23 exists
+PASS foes of s_haunted are present (2)
+PASS Skeleton stands on the ground (y 4.6, spawned 4.7)
+PASS Skeleton stands on the ground (y 4.6, spawned 4.7)
+stage 1: talk
+PASS stage 1 has a target for the compass
+PASS Anička shows ?
+PASS Anička is there
+PASS Anička stands where expected (0.0 m from home, y 0.0)
+PASS s_haunted completed
+PASS the Blade of Vyšehrad is the final reward
+PASS all 20 quests completed (20)
+DONE fails=0 level=9 xp=2890 gold=6354

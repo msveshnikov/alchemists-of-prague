@@ -5,7 +5,7 @@
   <img alt="Godot 4.7" src="https://img.shields.io/badge/Godot-4.7-478cbf?logo=godotengine&logoColor=white">
   <img alt="Blender 5.2" src="https://img.shields.io/badge/Blender-5.2-e87d0d?logo=blender&logoColor=white">
   <img alt="platforms" src="https://img.shields.io/badge/Windows%20%C2%B7%20Android%20%C2%B7%20Web-play-d8402b">
-  <a href="https://severance.lol/4/"><img alt="play in the browser" src="https://img.shields.io/badge/%E2%96%B6-play%20in%20the%20browser-6aa640"></a>
+  <a href="https://maxims.top/prague/"><img alt="play in the browser" src="https://img.shields.io/badge/%E2%96%B6-play%20in%20the%20browser-6aa640"></a>
 </p>
 
 An action RPG set in medieval Prague (in the spirit of Gothic 1–2), built with Godot 4.7. Tasks 1–5 were completed twice:
@@ -40,7 +40,7 @@ Any file can be rebuilt with a single command (see "Rebuilding").
 
 ## Play (Task 5)
 
-**▶ In the browser (PC or phone): https://severance.lol/4/** · **Android APK: https://severance.lol/4/AlchemistsOfPrague.apk**
+**▶ In the browser (PC or phone): https://maxims.top/prague/** · **Android APK: https://maxims.top/prague/AlchemistsOfPrague.apk**
 
 **⬇ Download (Windows .exe and Android .apk): https://github.com/msveshnikov/alchemists-of-prague/releases/latest**
 
@@ -77,11 +77,42 @@ go into the build.
 godot --headless --path . --export-release "Windows Desktop" build/windows/AlchemistsOfPrague.exe
 godot --headless --path . --export-release "Web" build/web/index.html
 godot --headless --path . --export-debug "Android" build/android/AlchemistsOfPrague.apk
-scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/www/severance/4/
+scp build/web/* build/android/AlchemistsOfPrague.apk ubuntu@severance.lol:/var/www/maxims/prague/
 gh release create vX.Y build/windows/AlchemistsOfPrague.exe build/android/AlchemistsOfPrague.apk --title "..." --notes "..."
+# Keep the exe named exactly AlchemistsOfPrague.exe: maxims.top links to releases/latest/download/AlchemistsOfPrague.exe
 ```
 GitHub releases (exe + APK downloads): https://github.com/msveshnikov/alchemists-of-prague/releases —
 bump `version/code` and `version/name` of the Android preset for every new release.
+
+### Quests, dialogue, weapons
+
+**20 quests**: the main story "The Alchemists of Prague" (8 quests, from the Old Town night watch to Magister Ozzo and
+the Blade of Vyšehrad) and 12 side quests in all four districts — deliveries between traders, fetching goods, clearing
+haunted houses, a duel with a squire, bone dust for the monks, a letter to the castle, three throws "in the Prague
+tradition". Everything is told in text, Gothic style.
+
+How the game shows the way:
+- a gold **!** over a head = this person has work for you; **?** = they expect you (to talk or to hand something over);
+- **E** on a named person opens a conversation: lines play one by one (click / E / Space), then pick a topic
+  with the mouse or the keys **1–9**; quest topics are marked, "Who are you?" and small talk give hints where to go;
+- the tracked quest's objective with progress and distance is on the left under the health bars; the gold **◆** on the
+  compass points to the target (◀ ▶ when it is behind you); the **Map** tab marks all active quests;
+- **Tab → Journal**: active and completed quests, every step done, the reward, "Track on the compass"; the diary below;
+- "New quest" / "Quest complete" banners; quests and kills give experience, every level adds health and stamina.
+
+**Weapons** are items now: Knightly Sword (start), Bastard Sword (longer reach), Bohemian War Axe (+60% against
+golems), Executioner's Greatsword (huge reach, slow, Vyšehrad stall only) and the Blade of Vyšehrad (main story
+reward). Reach, swing speed and stamina per swing differ; Radim at the weapons stall sells them (a bought weapon goes
+straight into your hand), Havel the smith hones the equipped one (+3 / +6 / +10). The models are `WEAPON_*` meshes on
+`vaclav.gltf` (`build_characters.py`, `HERO_WEAPONS`); icons from `make_ui_assets.py -- --quest-icons`.
+Code: `scripts/quests.gd` (autoload `Quests`: named NPCs, quest data, state, world hooks), `scripts/ui/dialog_ui.gd`.
+All 20 quests are played through automatically by `godot --headless --path . scenes/game.tscn -- --quest-run`
+(`scripts/quest_probe.gd` → `renders/game/quest_run.log`; ~15 min): every giver is found, every house, foe and item is
+where the quest says, every foe stands on the ground.
+
+| | |
+|---|---|
+| ![A conversation with Sergeant Bořek](renders/game/05b_dialog.png) | ![Quest journal](renders/game/05e_journal.png) |
 
 Tip: an alchemist is hiding in the first house on the square — wound him, grab him (E) and throw him out of the window (E).
 On Charles Bridge a weakened enemy can be thrown over the parapet into the Vltava, at Vyšehrad off the wall into the abyss.

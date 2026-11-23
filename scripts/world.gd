@@ -35,9 +35,11 @@ const HOUSE_DIMS := {  # asset: [width, depth, upper-floor height, inner facade 
 const STOCK := {
 	"produce": ["bread", "herb", "mushroom", "meat"], "bread": ["bread", "meat"], "meat": ["meat", "bread"],
 	"pottery": ["potion_health", "potion_stamina", "potion_antidote", "quicksilver"],
-	"cloth": ["gloves", "ring", "potion_stamina"], "weapons": ["helmet", "chainmail", "gloves", "potion_health"],
+	"cloth": ["gloves", "ring", "potion_stamina"],
+	"weapons": ["w_longsword", "w_axe", "helmet", "chainmail", "gloves", "shield", "potion_health"],
 	"tavern": ["bread", "meat", "potion_stamina", "potion_health", "herb", "mushroom"],
 }
+const STOCK_EXTRA := {"market_stall_weapons#01": ["w_greatsword"]}   # the Vyšehrad armoury stall
 
 var level := WORLD
 var district := ""         # part of the city the player is in (old_town, charles_bridge, mala_strana, vysehrad)
@@ -121,6 +123,12 @@ func _build() -> void:
 	population = JSON.parse_string(FileAccess.get_file_as_string("res://assets/levels/%s_population.json" % level))
 	for m in layout["markers"]:
 		markers_by_name[m["name"]] = m
+	for e in population["population"]:
+		# the Vyšehrad smith was exported with the district offset applied twice: stand him at his forge
+		if e.get("role", "") == "blacksmith" and e.get("district", "") == "vysehrad" and markers_by_name.has("MARK_smith@blacksmith_shed#01"):
+			var sp: Array = markers_by_name["MARK_smith@blacksmith_shed#01"]["pos"]
+			e["pos"] = [sp[0], sp[1], sp[2] - 1.5]
+	Quests.patch_population(self, population["population"])
 	districts = layout.get("districts", [])
 	var order := ["vysehrad", "mala_strana", "charles_bridge", "old_town"]   # first matching rectangle wins
 	districts.sort_custom(func(a, b): return order.find(a["id"]) < order.find(b["id"]))
@@ -186,6 +194,8 @@ func _build() -> void:
 				hud.hint("Left thumb: move (push past the ring to sprint) · Right thumb: look · Tap a potion to drink · Bag: inventory · Menu: save & settings")
 			else:
 				hud.hint("WASD move · Shift sprint · LMB strike · RMB block · Q dodge · E interact · Tab inventory · T wait · F5 save")
+		if Game.visited.is_empty() and Quests.is_active("m1_night") and Quests.state["m1_night"]["stage"] == 0:
+			hud.quest_banner("Night Watch", Quests.objective("m1_night") + "\nFollow the gold ◆ on the compass. Tab → Journal for all quests.")
 		if Game.visited.is_empty():
 			Game.log_journal("Karlova leads west to the stone bridge and Malá Strana beyond the Vltava; Melantrichova leads south and up to Vyšehrad.")
 	_update_district(true)
@@ -207,6 +217,10 @@ func _build() -> void:
 		var cine = load("res://scripts/cinematic.gd").new()
 		cine.world = self
 		add_child(cine)
+	if "--quest-run" in OS.get_cmdline_user_args():  # play all 20 quests through (renders/game/quest_run.log)
+		var qr = load("res://scripts/quest_probe.gd").new()
+		qr.world = self
+		add_child(qr)
 	if Game.autotest:
 		var at = load("res://scripts/autotest.gd").new()
 		at.world = self
@@ -445,8 +459,8 @@ func _register_interactables() -> void:
 				interactables.append({"pos": v3(m["pos"]), "radius": 2.4, "kind": "trade", "label": "Trade",
 					"action": func(): open_trade(stall_id, stall_type), "enabled": func(): return _trader_present(stall_id)})
 			"smith":
-				if owner_id.begins_with("anvil"):
-					interactables.append({"pos": v3(m["pos"]), "radius": 2.6, "kind": "smith", "label": "Blacksmith — improve your sword",
+				if owner_id.begins_with("blacksmith_shed"):
+					interactables.append({"pos": v3(m["pos"]), "radius": 2.6, "kind": "smith", "label": "Blacksmith — hone your weapon",
 						"action": func(): open_ui(load("res://scripts/ui/smith_ui.gd").new()), "enabled": func(): return not day_night.is_night})
 			"cook":
 				var cp := v3(m["pos"])
@@ -551,7 +565,7 @@ func _spawn_entry(e: Dictionary) -> void:
 	var p := v3(e["pos"])
 	var yaw := deg_to_rad(float(e.get("yaw_deg", 0)))
 	var node: Node3D
-	if ch in ["alchemist", "skeleton", "golem", "guard"]:
+	if ch in ["alchemist", "skeleton", "golem", "guard"] and not e.has("quest_npc"):
 		var en := Enemy.new()
 		var idle: String = e.get("animation", "idle")
 		if idle in ["walk", "run"]:
@@ -590,7 +604,11 @@ func _spawn_entry(e: Dictionary) -> void:
 				npc.add_collision_exception_with(b)
 		npcs.append(npc)
 		node = npc
-		if not npc.role.begins_with("trader") and npc.role not in ["cook", "blacksmith", "cart_driver", "cart_horse"]:
+		if npc.quest_npc != "":
+			interactables.append({"pos": Vector3.ZERO, "radius": 2.5, "kind": "talk", "label": "Talk to " + npc.display_name(), "node": npc,
+				"action": func(): open_dialog(npc),
+				"enabled": func(): return is_instance_valid(npc) and not npc.dead and not inside_house})
+		elif not npc.role.begins_with("trader") and npc.role not in ["cook", "blacksmith", "cart_driver", "cart_horse"]:
 			interactables.append({"pos": Vector3.ZERO, "radius": 1.8, "kind": "talk", "label": "Talk", "node": npc,
 				"action": func(): _talk_to(npc),
 				"enabled": func(): return is_instance_valid(npc) and not npc.dead and not inside_house})
@@ -611,9 +629,9 @@ func attackable() -> Array:
 			out.append(e)
 	if not inside_house:
 		for n in npcs:
-			if is_instance_valid(n) and not n.dead:
+			if is_instance_valid(n) and not n.dead and n.quest_npc == "":
 				out.append(n)
-	return out
+	return out.filter(func(t): return not (t is Enemy and t.yielded))
 
 
 func alert(pos: Vector3, r: float) -> void:
@@ -626,6 +644,8 @@ func on_enemy_killed(e: Enemy, by_fall: bool) -> void:
 	var def: Dictionary = e.def
 	if e.spawn_id != "":
 		killed[e.spawn_id] = _phase_serial
+	Quests.on_kill(e, by_fall)
+	Game.add_xp(int(Quests.XP_KILL.get(e.kind, 0) * (2.0 if e.has_meta("quest") else 1.0)))
 	if e.kind == "guard":
 		Game.set_wanted(300.0)
 		Game.say("You killed a guard of the city!", Color(1, 0.3, 0.2))
@@ -640,7 +660,9 @@ func on_enemy_killed(e: Enemy, by_fall: bool) -> void:
 			"wall": "Over the walls of Vyšehrad!", "terrace": "DEFENESTRATED — from the terrace!"}.get(how, "DEFENESTRATED!"), Color(1.0, 0.75, 0.3))
 		var where: String = {"window": "out of a window", "water": "off the bridge into the Vltava", "wall": "off the walls of Vyšehrad",
 			"terrace": "off a terrace"}.get(how, "out of a window")
-		Game.log_journal("Threw a %s %s in %s. Defenestrations so far: %d." % [def["name"].to_lower(), where, district_name(district), Game.kills["defenestrated"]])
+		var who: String = def["name"] if e.has_meta("quest") else def["name"].to_lower()
+		var art: String = "" if e.has_meta("quest") else ("an " if who[0] in "aeiou" else "a ")
+		Game.log_journal("Threw %s%s %s in %s. Defenestrations so far: %d." % [art, who, where, district_name(district), Game.kills["defenestrated"]])
 	Game.add_gold(g)
 	Sfx.play("coin")
 	for item in def["loot"]:
@@ -665,6 +687,16 @@ func _on_message(text: String, color: Color) -> void:
 func _talk_to(npc) -> void:
 	if is_instance_valid(npc):
 		npc.talk()
+
+
+## Conversation window with a named NPC (scripts/ui/dialog_ui.gd).
+func open_dialog(npc) -> void:
+	if not is_instance_valid(npc) or npc.quest_npc == "":
+		return
+	var ui = load("res://scripts/ui/dialog_ui.gd").new()
+	ui.npc = npc
+	ui.npc_id = npc.quest_npc
+	open_ui(ui)
 
 
 func throw_potion(from_enemy: Enemy, from: Vector3, target: Vector3) -> void:
@@ -695,6 +727,7 @@ func enter_house(hid: String) -> void:
 	for en in it["enemies"]:
 		if is_instance_valid(en) and not en.is_dead():
 			en.interior = it["root"]
+	Quests.on_enter_house(hid, it["root"], f)
 	Game.say("You climb the stairs to the upper floor.", Color(0.85, 0.8, 0.7))
 	if not Game.looted_houses.has(hid) and not Game.journal.has("houses"):
 		hud.hint("Search chests to loot them — but if a guard sees you by day, you are a thief.")
@@ -818,9 +851,11 @@ func _build_interior(hid: String) -> Dictionary:
 	# occupants
 	var occ: Array = []
 	var night := day_night.is_night
-	var first := interiors.is_empty()
+	var first := interiors.is_empty() and not Quests.house_has_quest(hid)
 	var count := 0
-	if first:
+	if Quests.house_has_quest(hid):
+		count = 0                 # a quest lives here: its own foes are spawned by Quests.on_enter_house
+	elif first:
 		count = 1
 	elif night:
 		count = 1 + int(randf() < 0.5)
@@ -1238,13 +1273,15 @@ func close_ui() -> void:
 
 func open_trade(stall_id: String, stall_type: String) -> void:
 	var ui = load("res://scripts/ui/trade_ui.gd").new()
-	ui.stock = STOCK.get(stall_type, ["bread"])
+	ui.stock = STOCK.get(stall_type, ["bread"]) + STOCK_EXTRA.get(stall_id, [])
 	ui.stall_type = stall_type
 	for id in spawned:
 		var nd = spawned[id]
 		if is_instance_valid(nd) and nd is Npc and ((stall_id != "" and nd.entry.get("stall", "") == stall_id) or
 				(stall_id == "" and nd.role == "innkeeper")):
 			ui.merchant = nd.character
+			if nd.quest_npc != "":
+				ui.merchant_name = nd.display_name()
 	open_ui(ui)
 
 
@@ -1352,6 +1389,7 @@ func _process(delta: float) -> void:
 	if district == "old_town":
 		near_sq = clamp(1.0 - Vector2(player.global_position.x, player.global_position.z).length() / 60.0, 0.0, 1.0)
 	_check_falls()
+	Quests.tick(delta)
 	_district_t -= delta
 	if _district_t <= 0.0:
 		_district_t = 0.5

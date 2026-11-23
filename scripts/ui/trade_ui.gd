@@ -5,10 +5,13 @@ var world: Node
 var stock: Array = []
 var stall_type := "produce"
 var merchant := "merchant"
+var merchant_name := ""
 var buy_grid: GridContainer
 var sell_grid: GridContainer
 var gold_label: Label
 var info: Label
+var buy_btn: Button
+var picked := ""               # merchant's item chosen with a click: its details + the Buy button
 
 const NAMES := {"merchant": "Master Kunz, merchant", "market_woman": "Dorota, market woman", "butcher": "Havel the butcher"}
 
@@ -32,10 +35,11 @@ func _ready() -> void:
 	por.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	por.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	left.add_child(por)
-	var n := UiKit.title(NAMES.get(merchant, "Trader"), 30)
+	var n := UiKit.title(merchant_name if merchant_name != "" else NAMES.get(merchant, "Trader"), 30)
 	n.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	left.add_child(n)
-	info = UiKit.label("\"Look, but pay before you touch.\"", 20, Color(0.3, 0.2, 0.12), true)
+	info = UiKit.label("\"Look, but pay before you touch.\"
+Click my goods to see them, yours to sell them.", 20, Color(0.3, 0.2, 0.12), true)
 	left.add_child(info)
 	var gh := HBoxContainer.new()
 	var gi := TextureRect.new()
@@ -47,6 +51,9 @@ func _ready() -> void:
 	gold_label = UiKit.title(str(Game.gold), 40)
 	gh.add_child(gold_label)
 	left.add_child(gh)
+	buy_btn = UiKit.button("Buy", func(): _buy(picked), 240)
+	buy_btn.visible = false
+	left.add_child(buy_btn)
 	left.add_child(UiKit.button("Leave", func(): world.close_ui(), 240))
 	buy_grid = _column(h, "Merchant's goods")
 	sell_grid = _column(h, "Your goods")
@@ -95,14 +102,37 @@ func _refresh() -> void:
 		c.queue_free()
 	for id in stock:
 		var price: int = Game.ITEMS[id]["price"]
-		buy_grid.add_child(_cell(id, 0, price, _buy.bind(id), "%s — %s" % [Game.ITEMS[id]["name"], Game.ITEMS[id]["desc"]]))
+		var stats := Game.item_stats(id)
+		buy_grid.add_child(_cell(id, 0, price, _pick.bind(id), "%s%s
+%s" % [Game.ITEMS[id]["name"], ("
+" + stats) if stats != "" else "", Game.ITEMS[id]["desc"]]))
 	for id in Game.inventory:
+		if Game.ITEMS[id]["type"] == "quest":
+			continue
 		var sp: int = max(1, int(Game.ITEMS[id]["price"] * 0.5))
 		sell_grid.add_child(_cell(id, Game.count(id), sp, _sell.bind(id), "%s — click to sell" % Game.ITEMS[id]["name"]))
 	gold_label.text = str(Game.gold)
+	if picked != "" and buy_btn:
+		buy_btn.disabled = Game.gold < int(Game.ITEMS[picked]["price"])
+
+
+## Click on the merchant's goods: show what it is first, buy with the button.
+func _pick(id: String) -> void:
+	picked = id
+	Sfx.play("cloth")
+	var it: Dictionary = Game.ITEMS[id]
+	var stats := Game.item_stats(id)
+	info.text = "%s%s
+%s" % [it["name"], ("
+" + stats) if stats != "" else "", it["desc"]]
+	buy_btn.text = "Buy — %d g" % it["price"]
+	buy_btn.disabled = Game.gold < int(it["price"])
+	buy_btn.visible = true
 
 
 func _buy(id: String) -> void:
+	if id == "":
+		return
 	var price: int = Game.ITEMS[id]["price"]
 	if Game.gold < price:
 		info.text = "\"You are %d groschen short, sir knight.\"" % (price - Game.gold)
@@ -111,6 +141,10 @@ func _buy(id: String) -> void:
 	Game.add_item(id, 1, true)
 	Sfx.play("coin")
 	info.text = "\"%s — a fine choice.\"" % Game.ITEMS[id]["name"]
+	if Game.ITEMS[id]["type"] in ["weapon", "equip"] and (Game.ITEMS[id]["type"] == "weapon" or Game.equipment.get(Game.ITEMS[id]["slot"], "") == ""):
+		Game.equip(id)        # into your hand / onto you right away; the old weapon goes into the pack
+		info.text = "\"%s — a fine choice. Wear it well, sir knight.\"
+%s" % [Game.ITEMS[id]["name"], Game.item_stats(id)]
 	_refresh()
 
 
