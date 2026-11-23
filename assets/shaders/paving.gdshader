@@ -40,7 +40,7 @@ void fragment() {
 	float fade = 1.0 - smoothstep(pom_far * 0.55, pom_far, dist);
 	if (fade > 0.01) {
 		vec3 vt = vec3(dot(V, T), dot(V, B), dot(V, N0));
-#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+#if CURRENT_RENDERER == RENDERER_COMPATIBILITY || CURRENT_RENDERER == RENDERER_MOBILE
 		float steps = mix(8.0, 4.0, vt.z);
 #else
 		float steps = mix(16.0, 6.0, vt.z);
@@ -80,7 +80,7 @@ void fragment() {
 	float pool = smoothstep(0.8 - 0.25 * puddles, 0.88 - 0.25 * puddles, m1.g * 0.8 + m2.g * 0.3) * step(0.01, puddles);
 	float level = pool * 1.15;          // the middle of a puddle drowns whole stones: one calm mirror, not glitter
 	float water = smoothstep(level, level - 0.06, h) * step(0.001, level);
-#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+#if CURRENT_RENDERER == RENDERER_COMPATIBILITY || CURRENT_RENDERER == RENDERER_MOBILE
 	water *= 0.35;                      // no screen-space tricks there: keep the puddles matt
 #endif
 	float damp = clamp(water + pool * 0.6 + (1.0 - h) * 0.25 * puddles, 0.0, 1.0);

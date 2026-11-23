@@ -131,6 +131,10 @@ func _ready() -> void:
 	_setup_input()
 	if OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios") or "--touch" in OS.get_cmdline_user_args():
 		enable_touch()
+	if OS.has_feature("mobile") and not FileAccess.file_exists(SETTINGS_PATH):
+		# phones: first run renders at 80% (Mobile renderer, Vulkan) and skips SSAO (Forward+ only anyway)
+		settings["render_scale"] = 0.8
+		settings["ssao"] = false
 	load_settings()
 	apply_settings()
 

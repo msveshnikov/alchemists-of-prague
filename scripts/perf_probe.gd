@@ -28,6 +28,16 @@ func _run() -> void:
 	await _sample("start_again")
 	p.yaw = PI / 2.0
 	await _sample("start_look_west")
+	if "--perf-split" in OS.get_cmdline_user_args():     # which system eats the CPU: switch them off one by one
+		var groups := {"birds": [world.birds], "river": [world.river], "npcs": world.npcs, "enemies": world.enemies,
+			"hud": [world.hud], "player": [world.player]}
+		for g in groups:
+			for n in groups[g]:
+				if is_instance_valid(n):
+					n.process_mode = Node.PROCESS_MODE_DISABLED
+			await _sample("without_" + g, 2.0)
+		get_tree().quit()
+		return
 	for spot in [["bridge", Vector3(-236, 0.3, 32), PI / 2.0], ["mala", Vector3(-420, 0.3, 32), PI / 2.0],
 			["vysehrad", Vector3(-160, 10.3, 170), PI / 2.0]]:
 		p.global_position = spot[1]

@@ -217,6 +217,10 @@ func _build() -> void:
 		var cine = load("res://scripts/cinematic.gd").new()
 		cine.world = self
 		add_child(cine)
+	if "--storeshots" in OS.get_cmdline_user_args():  # clean 1920x1080 store screenshots (renders/play/raw/)
+		var ss = load("res://scripts/store_shots.gd").new()
+		ss.world = self
+		add_child(ss)
 	if "--quest-run" in OS.get_cmdline_user_args():  # play all 20 quests through (renders/game/quest_run.log)
 		var qr = load("res://scripts/quest_probe.gd").new()
 		qr.world = self
